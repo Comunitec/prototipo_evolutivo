@@ -1,19 +1,22 @@
 <div class="signup-container">
   <div class="signup-box">
     <h1>Criar Conta</h1>
-    <form action="/localhost:8080/user/">
+    <form (submit)="enviarRegistro()">
+      >
       <div class="input-group">
-        <label for="nomeCompleto">Nome Completo:</label>
+        <label for="nome">Nome Completo:</label>
         <input
           name="name"
           type="text"
-          id="nomeCompleto"
+          id="name"
+          [(ngModel)]="name"
           placeholder="Digite seu nome completo"
         />
       </div>
       <div class="input-group">
         <label for="email">E-mail:</label>
         <input
+          [(ngModel)]="email"
           name="email"
           type="email"
           id="email"
@@ -21,11 +24,12 @@
         />
       </div>
       <div class="input-group">
-        <label for="senha">Senha:</label>
+        <label for="password">Senha:</label>
         <input
+          [(ngModel)]="password"
           name="password"
           type="password"
-          id="senha"
+          id="password"
           placeholder="Digite sua senha"
         />
       </div>

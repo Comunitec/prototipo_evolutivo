@@ -9,7 +9,8 @@ import { HomeComponentComponent } from './components/home-component/home-compone
 import { InitialactionsComponent } from './components/initialactions/initialactions.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { LoginComponent } from './components/login/login.component';
-import { HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   { path: '', component: HomeComponentComponent },
@@ -29,7 +30,9 @@ const routes: Routes = [
     LoginComponent
   ],
   imports: [
+    FormsModule,
     BrowserModule,
+    HttpClientModule,
     RouterModule.forRoot(routes) // Use RouterModule.forRoot para configurar as rotas
   ],
   providers: [],
