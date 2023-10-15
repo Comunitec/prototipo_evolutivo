@@ -2,34 +2,6 @@ const router = require("express").Router();
 const User = require("../Models/User");
 const bcrypt = require("bcrypt");
 
-// Criação de usuários
-
-//rotas da api
-// router.post("/", async (req, res) => {
-//   //req.body
-//   const { name, email, password, preferences, ranking, points } = req.body;
-
-//   if (!name) {
-//     res.status(422).json({ error: "O nome é obrigatório" });
-//     return;
-//   }
-
-//   const user = {
-//     name,
-//     email,
-//     password,
-//     preferences,
-//     ranking,
-//     points,
-//   };
-
-//   try {
-//     await User.create(user);
-//     res.status(201).json({ message: "Usuário criado com sucesso" });
-//   } catch (error) {
-//     res.status(500).json({ error: error });
-//   }
-// });
 // Rota de criação de usuário
 router.post("/", async (req, res) => {
   const { name, email, password, preferences, ranking, points } = req.body;
@@ -127,10 +99,6 @@ router.patch("/:id", async (req, res) => {
 // User login
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
-
-  console.log("Dados do request recebidos:");
-  console.log("Email:", email);
-  console.log("Senha:", password);
 
   if (!email || !password) {
     res.status(422).json({ error: "Email e senha são obrigatórios" });
