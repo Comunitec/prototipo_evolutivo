@@ -11,12 +11,14 @@ import { SignupComponent } from './components/signup/signup.component';
 import { LoginComponent } from './components/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { MainComponent } from './components/main/main.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponentComponent },
   { path: 'HeaderComponent', component: HeaderComponent },
   { path: 'signup', component: SignupComponent },
   {path: 'login', component: LoginComponent},
+  {path: 'main', component: MainComponent}
 ];
 
 @NgModule({
@@ -27,7 +29,8 @@ const routes: Routes = [
     HomeComponentComponent,
     InitialactionsComponent,
     SignupComponent,
-    LoginComponent
+    LoginComponent,
+    MainComponent
   ],
   imports: [
     FormsModule,

@@ -7,9 +7,9 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent {
-  name: string = 'allan';
-  email: string = '@asdas';
-  password: string = '123';
+  name: string = '';
+  email: string = '';
+  password: string = '';
   
 
   constructor(private http: HttpClient) { }
