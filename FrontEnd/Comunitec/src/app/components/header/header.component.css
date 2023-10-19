@@ -3,6 +3,7 @@ html,
 body {
     margin: 0;
     padding: 0;
+
 }
 
 /* Estilos do cabeçalho */
@@ -27,6 +28,7 @@ nav ul {
     padding: 0;
     margin: 0;
     display: flex;
+    font-family: sans-serif, Arial, Helvetica;
 }
 
 nav li {
