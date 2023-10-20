@@ -1,7 +1,14 @@
 // Coniguração inicial
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 const app = express();
+
+const corsOptions = {
+  origin: "http://localhost:4200", // Substitua pelo seu domínio Angular
+};
+
+app.use(cors(corsOptions));
 
 // forma de ler Json / middlewares
 app.use(
