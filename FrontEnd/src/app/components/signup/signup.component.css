@@ -45,6 +45,7 @@ input[type="text"],
 input[type="email"],
 input[type="password"],
 input[type="date"] {
+    display: flex;
     width: 400px;
     height: 30px;
     padding: 10px;
@@ -97,5 +98,5 @@ form {
 }
 
 .img-signup {
-    margin-top: -180px;
+    margin-top: 0;
 }
