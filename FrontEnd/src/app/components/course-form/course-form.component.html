@@ -1,1 +1,74 @@
-<p>course-form works!</p>
+<div class="container">
+  <!-- Coluna Esquerda (Fixa) - Ranking -->
+  <div class="left-column">
+    <h2>Ranking</h2>
+    <ul>
+      <li>Usuário 1</li>
+      <li>Usuário 2</li>
+      <li>Usuário 3</li>
+      <li>Usuário 4</li>
+      <li>Usuário 5</li>
+    </ul>
+  </div>
+
+  <!-- Coluna do Meio (Rolável) - Feed Principal -->
+  <div class="middle-column">
+    <form action="">
+      <h1>Gerenciar Cursos</h1>
+
+      <div class="input-group">
+        <label for="nome">Nome do Curso</label>
+        <input
+          class="common-style"
+          name="courseName"
+          type="text"
+          id="courseName"
+          placeholder="Digite o nome do curso"
+        />
+
+        <label for="nome">Descrição</label>
+        <textarea
+          class="common-style"
+          name="courseDescription"
+          id="courseDescription"
+          cols="30"
+          rows="10"
+          placeholder="Digite a descrição do curso"
+        ></textarea>
+        <label for="nome">Tag</label>
+
+        <select
+          class="common-style"
+          *ngIf="tagListOpen"
+          name="tagSelector"
+          id="tag"
+          [(ngModel)]="selectedTag"
+          placeholder="Selecione uma tag"
+        >
+          <option *ngFor="let tag of tagList" [value]="tag">
+            {{ tag }}
+          </option>
+        </select>
+
+        <button class="common-style" (click)="openTagSelector()">
+          + Adicionar tag
+        </button>
+
+        <label for="adiconarImagem">Adicionar imagem</label>
+        <input
+          class="input-file"
+          id="adiconarImagem"
+          type="file"
+          name="adiconarImagem"
+          accept=".jpg, .jpeg, .png"
+        />
+      </div>
+    </form>
+  </div>
+
+  <!-- Coluna Direita (Fixa) - Sem Ranking -->
+  <div class="right-column">
+    <h2>Outras informações</h2>
+    <p>Este é o conteúdo da coluna direita.</p>
+  </div>
+</div>
