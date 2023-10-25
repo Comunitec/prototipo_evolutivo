@@ -1,0 +1,95 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif, Arial;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+}
+
+.container .middle-column {
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+}
+
+
+/* Estilos das colunas */
+.left-column,
+.right-column {
+    width: 250px;
+    /* Largura das colunas fixas */
+    background-color: #e0e0e0;
+    /* Cor de fundo das colunas fixas */
+    padding: 10px;
+    /* Adicione outros estilos conforme necessário */
+    height: 100vh;
+}
+
+.middle-column {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    background-color: #fff;
+    padding: 10px;
+
+}
+
+/* Estilos do ranking na coluna esquerda */
+.left-column h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+/* Estilos da coluna direita (sem ranking) */
+.right-column h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+form {
+    width: 800px;
+    /* align-items: center; */
+}
+
+.input-group {
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    text-align: left;
+    margin-bottom: 5px;
+    margin-top: 30px;
+}
+
+.common-style {
+    display: flex;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background-color: #d9d9d9;
+    box-shadow: 1px 3px 4px -2px #898989;
+    font-size: 16px;
+}
+
+input {
+    width: 100%;
+}
+
+textarea {
+    width: 100%;
+}
+
+button {
+    width: fit-content;
+    margin: 10px;
+}
