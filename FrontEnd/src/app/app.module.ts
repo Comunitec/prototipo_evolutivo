@@ -12,13 +12,15 @@ import { LoginComponent } from './components/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { MainComponent } from './components/main/main.component';
+import { CourseFormComponent } from './components/course-form/course-form.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponentComponent },
   { path: 'HeaderComponent', component: HeaderComponent },
   { path: 'signup', component: SignupComponent },
   {path: 'login', component: LoginComponent},
-  {path: 'main', component: MainComponent}
+  {path: 'main', component: MainComponent},
+  {path: 'courseForm', component: CourseFormComponent}
 ];
 
 @NgModule({
@@ -30,7 +32,8 @@ const routes: Routes = [
     InitialactionsComponent,
     SignupComponent,
     LoginComponent,
-    MainComponent
+    MainComponent,
+    CourseFormComponent
   ],
   imports: [
     FormsModule,

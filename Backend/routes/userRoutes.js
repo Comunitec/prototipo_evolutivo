@@ -126,7 +126,8 @@ router.post("/login", async (req, res) => {
     );
 
     if (passwordMatch) {
-      res.status(200).json({ message: "Login bem-sucedido" });
+      const userId = userFromDB._id; // Obtenha o ID real do usuário
+      res.status(200).json({ message: "Login bem-sucedido", userId }); // Inclua o userId na resposta
     } else {
       res.status(401).json({ error: "Credenciais inválidas" });
     }
