@@ -39,29 +39,52 @@
 
         <select
           class="common-style"
-          *ngIf="tagListOpen"
           name="tagSelector"
           id="tag"
           [(ngModel)]="selectedTag"
-          placeholder="Selecione uma tag"
+          (change)="optionSelected()"
         >
+          <!-- <option value="" selected label="Selecione">
+            Selecione uma tag para seu curso
+          </option> -->
           <option *ngFor="let tag of tagList" [value]="tag">
             {{ tag }}
           </option>
         </select>
+        <div class="container-tags">
+          <p *ngFor="let tag of selectedOptions">{{ tag }}</p>
+        </div>
 
-        <button class="common-style" (click)="openTagSelector()">
-          + Adicionar tag
-        </button>
+        <div class="container-buttons">
+          <button class="common-style" (click)="removeTags()">
+            - Remover tags
+          </button>
+          <!-- <button class="common-style" (click)="openTagSelector()">
+            + Adicionar tag
+          </button> -->
+        </div>
 
         <label for="adiconarImagem">Adicionar imagem</label>
         <input
           class="input-file"
           id="adiconarImagem"
           type="file"
-          name="adiconarImagem"
           accept=".jpg, .jpeg, .png"
         />
+        <label for="">Enviar vídeos</label>
+        <div class="add-video">
+          <label for="">Título da aula</label>
+          <input type="text" class="common-style" />
+          <label for="">Descrição da aula</label>
+          <textarea class="common-style" cols="30" rows="2"></textarea>
+          <label for="">Adicionar vídeo</label>
+          <input
+            class="input-file"
+            id="adiconarVideo"
+            type="file"
+            accept=".mp4"
+          />
+        </div>
       </div>
     </form>
   </div>

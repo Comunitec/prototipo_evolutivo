@@ -5,19 +5,17 @@
     font-family: sans-serif, Arial;
 }
 
-.container {
+.container,
+.container-tags,
+.container-buttons {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0;
 }
 
 .container .middle-column {
     width: 100%;
-    height: 100vh;
+    flex: 1;
     text-align: center;
 }
-
 
 /* Estilos das colunas */
 .left-column,
@@ -28,7 +26,7 @@
     /* Cor de fundo das colunas fixas */
     padding: 10px;
     /* Adicione outros estilos conforme necessário */
-    height: 100vh;
+    flex: 1;
 }
 
 .middle-column {
@@ -54,6 +52,7 @@
 
 form {
     width: 800px;
+    padding: 30px;
     /* align-items: center; */
 }
 
@@ -81,15 +80,44 @@ label {
     font-size: 16px;
 }
 
-input {
-    width: 100%;
+.common-style:focus {
+    outline: none;
 }
 
+input,
 textarea {
     width: 100%;
 }
 
 button {
     width: fit-content;
-    margin: 10px;
+    margin: 0 20px 0 0;
+}
+
+select {
+    margin-bottom: 10px;
+}
+
+.input-file {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #d9d9d9;
+    color: #898989;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.add-video {
+    background-color: #ededed;
+    padding: 0 30px 30px 30px;
+}
+
+.container-tags p {
+    background-color: #666;
+    color: #fff;
+    border-radius: 14px;
+    padding: 5px 30px;
+    font-size: 14px;
+    margin: 0 10px 10px 0;
 }

@@ -7,20 +7,21 @@ import { Component } from '@angular/core';
 })
 export class CourseFormComponent {
   tagListOpen = false;
-  postContent = '';
   tagList = ['Angular', 'JavaScript', 'TypeScript', 'HTML', 'CSS'];
   selectedTag: string | undefined;
+  selectedOptions: string[] = [];
 
   openTagSelector() {
     this.tagListOpen = true;
   }
+  removeTags() {
+    this.selectedOptions = [];
+  }
 
-  savePost() {
-    // Aqui você pode implementar a lógica para salvar o conteúdo do post, por exemplo, em um serviço ou no banco de dados.
-    console.log('Conteúdo salvo:', this.postContent);
-
-    // Feche o editor após salvar.
-    this.tagListOpen = false;
-    this.postContent = '';
+  optionSelected() {
+    if (this.selectedTag && this.selectedOptions.length < 3) {
+      this.selectedOptions.push(this.selectedTag);
+      this.selectedTag = undefined;
+    }
   }
 }
