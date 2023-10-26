@@ -1,0 +1,39 @@
+*{
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  color: #000;
+}
+
+.card_item-nav{
+  padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+
+}
+.card_item-nav >div{
+  padding: 10px;
+  padding-left: 50px;
+  border-top: 1px groove rgb(189, 188, 188);
+  border-bottom: 1px groove rgb(189, 188, 188);
+
+}
+
+.card_item-nav > div:not(:first-child) {
+  border-top: none; /* Remove a borda superior do primeiro elemento */
+}
+
+.card_item-nav >div > a > i{
+  justify-content:center ;
+
+}
+
+.card_item-nav >div > a > span{
+  font-size: 14px;
+  font-weight: bold;
+  padding-left: 30px;
+}
+
+.card_item-nav >div > a > span:hover{
+  color: #990000;
+}

@@ -12,6 +12,7 @@ body {
 
 /* Estilos do cabeçalho (header) */
 header {
+
     display: flex;
     justify-content: space-between;
     background-color: #f0f0f0;

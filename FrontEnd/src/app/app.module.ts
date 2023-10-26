@@ -13,6 +13,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { MainComponent } from './components/main/main.component';
 import { CourseFormComponent } from './components/course-form/course-form.component';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { PerfilComponent } from './pages/perfil/perfil.component';
+import { HomeLogadoComponent } from './pages/home-logado/home-logado.component';
+import { CardPerfilComponent } from './components/card-perfil/card-perfil.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 const routes: Routes = [
   { path: '', component: HomeComponentComponent },
@@ -33,13 +38,18 @@ const routes: Routes = [
     SignupComponent,
     LoginComponent,
     MainComponent,
-    CourseFormComponent
+    CourseFormComponent,
+    SidenavComponent,
+    PerfilComponent,
+    HomeLogadoComponent,
+    CardPerfilComponent
   ],
   imports: [
     FormsModule,
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot(routes) // Use RouterModule.forRoot para configurar as rotas
+    RouterModule.forRoot(routes),
+    FontAwesomeModule // Use RouterModule.forRoot para configurar as rotas
   ],
   providers: [],
   bootstrap: [AppComponent]
