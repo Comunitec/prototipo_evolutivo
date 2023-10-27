@@ -1,16 +1,26 @@
 *{
-  margin: 0;
-  padding: 5px;
+  margin: 1px;
+  padding: 3px;
   box-sizing: border-box;
-  background-color: #EDEDED;
-  max-width: 220px;
-  max-height: 80px;
+  text-decoration: none;
+  color: #000;
+
+}
+
+.container_menu-lateral{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
 }
 
 .card_perfil{
-  padding: 2pox;
+  max-width: 220px;
+  max-height: 80px;
+  padding: 5px;
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
 .card_perfil-foto{
@@ -48,14 +58,13 @@
   padding-top: 25px;
   display: flex;
   flex-direction: column;
-  width: 70%;
-
 }
 
 .card_perfil-dados > .nomePerfil{
   font-size: 14px;
   font-weight: bold;
   padding: 0;
+  text-align: center;
 }
 
 .card_perfil-dados > .xpPerfil{
@@ -90,3 +99,40 @@
   position: absolute;
   left: 0;
 }
+
+.container_sidenav{
+  max-width: 220px;
+}
+.card_item-nav{
+  padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.card_item-nav > a:not(:first-child) {
+  border-top: none;
+}
+
+a{
+  margin-left: 20px;
+  margin-right: 20px;
+  padding: 10px 10px 10px 30px;
+  border-top: 1px groove rgb(189, 188, 188);
+  border-bottom: 1px groove rgb(189, 188, 188);
+}
+
+.card_item-nav a > span{
+  font-size: 14px;
+  font-weight: bold;
+  padding-left: 30px;
+}
+
+a:hover{
+  background-color: rgb(189, 188, 188);
+}
+
+a:hover i > fa-icon, a:hover span {
+  color: #990000;
+}
+

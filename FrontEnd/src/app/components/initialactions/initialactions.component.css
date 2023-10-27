@@ -1,4 +1,10 @@
-/* Estilos para o componente button-box */
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+}
+
 .black-box {
   margin:5px;
   background-color: black;
@@ -10,6 +16,7 @@
   padding: 15px 10px 30px 10px;
   margin: 0 auto;
 }
+
 h1{
   font-size: 20px;
 }
@@ -17,17 +24,6 @@ h1{
 p{
   font-size: 14px;
 }
-
-.signup-container {
-  position:fixed;
-  top: 25%;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-
 
 .input-group {
   margin-bottom: 10px;

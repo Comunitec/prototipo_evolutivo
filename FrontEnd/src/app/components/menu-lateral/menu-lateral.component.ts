@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import{faHouse, faBookOpen, faUsers,faBell, faRankingStar, faDoorOpen, faUser,faFile} from '@fortawesome/free-solid-svg-icons'
 
 @Component({
-  selector: 'app-sidenav',
-  templateUrl: './sidenav.component.html',
-  styleUrls: ['./sidenav.component.css']
+  selector: 'app-menu-lateral',
+  templateUrl: './menu-lateral.component.html',
+  styleUrls: ['./menu-lateral.component.css']
 })
-export class SidenavComponent {
+export class MenuLateralComponent {
   faHouse = faHouse;
   faUser =faUser;
   faBookOpen = faBookOpen;
