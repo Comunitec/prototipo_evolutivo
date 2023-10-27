@@ -24,7 +24,7 @@ export class SignupComponent {
       preferences: 0,
       ranking: 0,
       points:0,
-      
+
     };
 
     this.http.post(url, dados).subscribe(
