@@ -1,0 +1,62 @@
+
+/* Estilos do cabeçalho (header) */
+.teste{
+  display: flex;
+  justify-content: space-between;
+  /* Cor de fundo do cabeçalho */
+  padding: 10px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Estilos das colunas */
+
+.right-column {
+  width: 250px;
+  /* Largura das colunas fixas */
+  background-color: #e0e0e0;
+  /* Cor de fundo das colunas fixas */
+  padding: 10px;
+  /* Adicione outros estilos conforme necessário */
+}
+
+.right-column h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.middle-column {
+  flex-grow: 1;
+  /* Cor de fundo da coluna do meio (rolável) */
+  padding: 10px;
+  height: calc(100vh - 40px);
+  /* 100vh é a altura total da janela, subtraímos 40px (altura do cabeçalho) */
+  overflow-y: auto;
+  /* Adiciona uma barra de rolagem vertical se o conteúdo for muito longo */
+  /* Adicione outros estilos conforme necessário */
+}
+
+/* Estilos do ranking na coluna esquerda */
+
+
+.right-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.right-column li {
+  margin-bottom: 5px;
+}
+
+/* Estilos dos posts no feed principal (coluna do meio) */
+.post {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.post h3 {
+  font-size: 16px;
+  margin-bottom: 5px;
+}

@@ -2,7 +2,9 @@
   margin: 0;
   padding: 5px;
   box-sizing: border-box;
-  background-color: #E0E0E0;
+  background-color: #EDEDED;
+  max-width: 220px;
+  max-height: 80px;
 }
 
 .card_perfil{
@@ -54,7 +56,6 @@
   font-size: 14px;
   font-weight: bold;
   padding: 0;
-
 }
 
 .card_perfil-dados > .xpPerfil{
@@ -62,6 +63,7 @@
   font-size: 12px;
   font-style: oblique;
   text-align: right;
+  color: rgb(102, 101, 101);
 }
 
 .progresso{

@@ -43,7 +43,3 @@ nav a {
     font-weight: bold;
 }
 
-/* Estilos de hover para os links */
-nav a:hover {
-    text-decoration: underline;
-}

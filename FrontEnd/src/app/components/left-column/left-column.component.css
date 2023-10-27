@@ -1,0 +1,10 @@
+.left-column {
+  position: fixed;
+  left: 0;
+  width: 20%;
+  height: calc(100vh - 40px);
+  box-sizing: border-box;
+  background-color: #EDEDED;
+
+}
+
