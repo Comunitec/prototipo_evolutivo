@@ -6,14 +6,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./course-form.component.css'],
 })
 export class CourseFormComponent {
-  tagListOpen = false;
   tagList = ['Angular', 'JavaScript', 'TypeScript', 'HTML', 'CSS'];
   selectedTag: string | undefined;
   selectedOptions: string[] = [];
 
-  openTagSelector() {
-    this.tagListOpen = true;
-  }
+  // lógica para salvar os vídeos na coluna da direita:
+  classOpen = false;
+  titulo = '';
+  descricao = '';
+  classList: object[] = [];
+
   removeTags() {
     this.selectedOptions = [];
   }
@@ -23,5 +25,18 @@ export class CourseFormComponent {
       this.selectedOptions.push(this.selectedTag);
       this.selectedTag = undefined;
     }
+  }
+  saveClass() {
+    this.classOpen = true;
+    const newClass = {
+      titulo: this.titulo,
+      descricao: this.descricao,
+    };
+    this.classList.push(newClass);
+    console.log(this.classList);
+
+    // Limpa os campos de entrada após adicionar à lista
+    this.titulo = '';
+    this.descricao = '';
   }
 }
