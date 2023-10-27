@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import{faEdit,faTrash, faCamera} from '@fortawesome/free-solid-svg-icons'
 
 @Component({
   selector: 'app-perfil',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./perfil.component.css']
 })
 export class PerfilComponent {
+  faEdit = faEdit;
+  faTrash = faTrash;
+  faCamera= faCamera;
+
 
 }
