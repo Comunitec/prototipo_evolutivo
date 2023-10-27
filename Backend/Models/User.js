@@ -7,6 +7,7 @@ const User = mongoose.model("User", {
   preferences: String,
   ranking: Number,
   points: Number,
+  tagCourse: Number,
 });
 
 module.exports = User;
