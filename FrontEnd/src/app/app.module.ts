@@ -19,6 +19,8 @@ import { LeftColumnComponent } from './components/left-column/left-column.compon
 import { RightColumnComponent } from './components/right-column/right-column.component';
 import { MiddleColumnComponent } from './components/middle-column/middle-column.component';
 import { MenuLateralComponent } from './components/menu-lateral/menu-lateral.component';
+import { CursoComponent } from './components/curso/curso.component';
+
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -46,7 +48,8 @@ const routes: Routes = [
     LeftColumnComponent,
     RightColumnComponent,
     MiddleColumnComponent,
-    MenuLateralComponent
+    MenuLateralComponent,
+    CursoComponent,
   ],
   imports: [
     FormsModule,
