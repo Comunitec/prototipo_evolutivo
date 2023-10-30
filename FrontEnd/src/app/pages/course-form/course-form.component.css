@@ -5,55 +5,22 @@
     font-family: sans-serif, Arial;
 }
 
-.container,
-.container-tags,
+.container-tags {
+    display: flex;
+}
+
 .container-buttons {
     display: flex;
-}
-
-.container .middle-column {
-    width: 100%;
-    flex: 1;
-    text-align: center;
-}
-
-/* Estilos das colunas */
-.left-column,
-.right-column {
-    width: 250px;
-    /* Largura das colunas fixas */
-    background-color: #e0e0e0;
-    /* Cor de fundo das colunas fixas */
-    padding: 10px;
-    /* Adicione outros estilos conforme necessário */
-    flex: 1;
-}
-
-.middle-column {
-    display: flex;
-    align-items: baseline;
     justify-content: center;
-    background-color: #fff;
-    padding: 10px;
-
-}
-
-/* Estilos do ranking na coluna esquerda */
-.left-column h2 {
-    font-size: 18px;
-    margin-bottom: 10px;
-}
-
-/* Estilos da coluna direita (sem ranking) */
-.right-column h2 {
-    font-size: 18px;
-    margin-bottom: 10px;
 }
 
 form {
-    width: 800px;
-    padding: 30px;
-    /* align-items: center; */
+    width: 100%;
+    padding: 0 70px 50px 70px;
+}
+
+h1 {
+    text-align: center;
 }
 
 .input-group {
@@ -91,7 +58,6 @@ textarea {
 
 button {
     width: fit-content;
-    margin: 0 20px 0 0;
 }
 
 select {
@@ -112,6 +78,7 @@ select {
     background-color: #ededed;
     padding: 0 30px 30px 30px;
 }
+
 
 .container-tags p {
     background-color: #666;
