@@ -26,6 +26,9 @@ app.use("/user", userRoutes);
 const courseRoutes = require("./routes/courseRoutes");
 app.use("/course", courseRoutes);
 
+const classRouter = require("./routes/classRoutes");
+app.use("/class", classRouter);
+
 // Rota inicial / endpoint
 app.get("/", (req, res) => {
   res.json({ message: "Oi Express!" });

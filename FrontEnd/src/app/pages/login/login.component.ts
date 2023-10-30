@@ -11,7 +11,7 @@ export class LoginComponent {
   name: string = '';
   email: string = '';
   password: string = '';
-  
+
   constructor(private http: HttpClient, private router: Router) { }
 
   enviarRegistro() {
@@ -28,7 +28,7 @@ export class LoginComponent {
         const userId = response.userId; // Receba o userId da resposta
         localStorage.setItem('userId', userId); // Armazene o userId no LocalStorage
         console.log('UserId:', userId);
-        this.router.navigate(['/main']);
+        this.router.navigate(['/menu-logado']);
       },
       (error) => {
         console.error('Erro na solicitação:', error);

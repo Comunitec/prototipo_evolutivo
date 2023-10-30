@@ -1,0 +1,8 @@
+.middle-column{
+  position: fixed;
+  left: 15%;
+  width: 70%;
+  box-sizing: border-box;
+  background-color: #FFFFFF;
+  height: calc(100vh - 40px);
+}

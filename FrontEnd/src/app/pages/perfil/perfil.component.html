@@ -1,0 +1,57 @@
+<app-left-column>
+  <app-menu-lateral></app-menu-lateral>
+</app-left-column>
+
+
+<app-middle-column>
+
+  <h1 style="text-align: center;">Gerenciar dados cadastrais</h1>
+  <div class="container_dados-cadastrais">
+
+    <div class="card_perfil-foto">
+      <img src="https://portal.fidelis.edu.br/wp-content/uploads/2020/10/perfil.jpg" alt="">
+      <i class="icone-foto"><fa-icon [icon]="faCamera"></fa-icon></i>
+    </div>
+
+    <div class="card_dados_cadastrais">
+
+        <div class="card_nome-completo">
+          <label for="">Nome completo</label>
+          <input type="text">
+        </div>
+
+      <div class="coluna">
+
+        <div class="card_e-mail">
+          <label for="">E-mail</label>
+          <input type="email">
+        </div>
+
+        <div class="card_data-nascimento">
+          <label for="">Data de nascimento</label>
+          <input type="date">
+        </div>
+
+      </div>
+
+
+      <div class="card_senha">
+          <label for="">Senha</label>
+          <input type="password">
+      </div>
+
+    </div>
+
+  </div>
+  <div class="container_btn">
+    <button class="btn-editar"><fa-icon [icon]="faEdit"></fa-icon> Editar Dados</button>
+    <button class="btn-excluir"><fa-icon [icon]="faTrash"></fa-icon> Excluir Conta</button>
+  </div>
+
+</app-middle-column>
+
+
+
+<app-right-column>
+  <!--Acrescentar Ranking-->
+</app-right-column>
