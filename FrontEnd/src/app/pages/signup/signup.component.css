@@ -98,5 +98,12 @@ form {
 }
 
 .img-signup {
+  display: flex;
+  justify-content: center;
   margin-top: 0;
+}
+
+img {
+  display: flex;
+  width: 80%;
 }
