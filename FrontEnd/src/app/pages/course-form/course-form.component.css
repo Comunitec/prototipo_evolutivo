@@ -121,3 +121,18 @@ select {
     font-size: 14px;
     margin: 0 10px 10px 0;
 }
+
+.save-button {
+    background-color: #990000;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    height: 32px;
+    padding: 10px 20px;
+    margin-top: 20px;
+}
+
+.save-button:hover {
+    background-color: #3a3a3a;
+}

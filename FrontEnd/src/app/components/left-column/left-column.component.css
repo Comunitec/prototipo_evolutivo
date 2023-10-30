@@ -2,9 +2,9 @@
   position: fixed;
   left: 0;
   width: 15%;
-  height: calc(100vh - 40px);
+  height: calc(106vh - 40px);
   box-sizing: border-box;
   background-color: #EDEDED;
-
+  top: 1px;
+  z-index: -1;
 }
-

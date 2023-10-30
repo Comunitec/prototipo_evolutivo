@@ -74,9 +74,24 @@
         <label for="">Enviar vídeos</label>
         <div class="add-video">
           <label for="">Título da aula</label>
-          <input type="text" class="common-style" />
+          <input
+            type="text"
+            class="common-style"
+            placeholder="Digite o título da aula"
+            name="titulo"
+            id="titulo"
+            [(ngModel)]="titulo"
+            [ngModelOptions]="{ standalone: true }"
+          />
           <label for="">Descrição da aula</label>
-          <textarea class="common-style" cols="30" rows="2"></textarea>
+          <textarea
+            class="common-style"
+            cols="30"
+            rows="2"
+            placeholder="Digite a descrição da aula"
+            [(ngModel)]="descricao"
+            [ngModelOptions]="{ standalone: true }"
+          ></textarea>
           <label for="">Adicionar vídeo</label>
           <input
             class="input-file"
@@ -84,14 +99,19 @@
             type="file"
             accept=".mp4"
           />
+          <button class="save-button" (click)="saveClass()">Salvar aula</button>
         </div>
       </div>
+      <button class="save-button">Finalizar gerenciamento do curso</button>
     </form>
   </div>
 
   <!-- Coluna Direita (Fixa) - Sem Ranking -->
   <div class="right-column">
-    <h2>Outras informações</h2>
-    <p>Este é o conteúdo da coluna direita.</p>
+    <h2>Aulas Salvas</h2>
+    <p>As aulas que você salvar aparecerão aqui</p>
+    <p *ngIf="classOpen">Aula salva</p>
+    <p *ngFor="let class of classList">{{ titulo }}</p>
+    <p>{{ descricao }}</p>
   </div>
 </div>
