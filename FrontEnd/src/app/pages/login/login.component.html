@@ -7,38 +7,40 @@
   </head>
   <body>
     <div class="container">
-      <form (submit)="enviarRegistro()" class="login-form">
-        <h2>Login</h2>
-        <div class="form-group">
-          <label for="email">E-mail</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            [(ngModel)]="email"
-            placeholder="Digite seu email"
-            required
-          />
+      <app-middle-column>
+        <form (submit)="enviarRegistro()" class="login-form">
+          <h2>Login</h2>
+          <div class="form-group">
+            <label for="email">E-mail</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              [(ngModel)]="email"
+              placeholder="Digite seu email"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="password">Senha</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              [(ngModel)]="password"
+              placeholder="Digite sua senha"
+              required
+            />
+          </div>
+          <div class="button-container">
+            <button class="back-button" routerLink="/">Voltar</button>
+            <button class="login-button" type="submit">Entrar</button>
+          </div>
+        </form>
+        <div class="img-login">
+          <img src="assets\img-login.png" alt="Imagem de login" />
         </div>
-        <div class="form-group">
-          <label for="password">Senha</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            [(ngModel)]="password"
-            placeholder="Digite sua senha"
-            required
-          />
-        </div>
-        <div class="button-container">
-          <button class="back-button" routerLink="/">Voltar</button>
-          <button class="login-button" type="submit">Entrar</button>
-        </div>
-      </form>
-      <div class="img-login">
-        <img src="assets\img-login.png" alt="Imagem de login" />
-      </div>
+      </app-middle-column>
     </div>
   </body>
 </html>
