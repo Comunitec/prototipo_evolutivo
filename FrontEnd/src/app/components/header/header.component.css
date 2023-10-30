@@ -8,6 +8,7 @@ body {
 
 /* Estilos do cabeçalho */
 header {
+    position: fixed;
     display: flex;
     width: 100%;
     background-color: #990000;
@@ -17,10 +18,11 @@ header {
     justify-content: space-between;
 
 }
-.logo{
-  margin-top: 20px;
-  width: 20%;
-  align-items: center;
+
+.logo {
+    margin-top: 20px;
+    width: 20%;
+    align-items: center;
 }
 
 .logo img {
@@ -33,12 +35,12 @@ header {
 nav ul {
     list-style: none;
     padding: 0;
-    margin:0;
+    margin: 0;
     display: flex;
     font-family: sans-serif, Arial, Helvetica;
 }
 
-nav li{
+nav li {
     margin-right: 20px;
     /* Espaçamento entre os itens de menu */
 }
@@ -48,4 +50,3 @@ nav a {
     color: #fff;
     font-weight: bold;
 }
-
