@@ -42,7 +42,6 @@
         id="tag"
         [(ngModel)]="selectedTag"
         (change)="optionSelected()"
-        [ariaPlaceholder]="placeholder"
       >
         <option *ngFor="let tag of tagList" [value]="tag">
           {{ tag }}
@@ -53,7 +52,11 @@
       </div>
 
       <div class="container-buttons">
-        <button class="common-style" (click)="removeTags()">
+        <button
+          class="common-style"
+          (click)="removeTags()"
+          [ngClass]="{ 'btn-tag-selecionada': tagBoolean }"
+        >
           - Remover tags
         </button>
       </div>
