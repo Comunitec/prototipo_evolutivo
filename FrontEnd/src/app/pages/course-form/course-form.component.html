@@ -42,10 +42,8 @@
         id="tag"
         [(ngModel)]="selectedTag"
         (change)="optionSelected()"
+        [ariaPlaceholder]="placeholder"
       >
-        <!-- <option value="" selected label="Selecione">
-            Selecione uma tag para seu curso
-          </option> -->
         <option *ngFor="let tag of tagList" [value]="tag">
           {{ tag }}
         </option>
@@ -58,9 +56,6 @@
         <button class="common-style" (click)="removeTags()">
           - Remover tags
         </button>
-        <!-- <button class="common-style" (click)="openTagSelector()">
-            + Adicionar tag
-          </button> -->
       </div>
 
       <label for="adiconarImagem">Adicionar imagem</label>
@@ -111,9 +106,23 @@
 
 <!-- Coluna Direita (Fixa) - Sem Ranking -->
 <app-right-column>
-  <h2>Aulas Salvas</h2>
-  <p>As aulas que você salvar aparecerão aqui</p>
-  <p *ngIf="classOpen">Aula salva</p>
-  <p *ngFor="let class of classList">{{ titulo }}</p>
-  <p>{{ descricao }}</p>
+  <div class="column-right">
+    <h3>Aulas Salvas</h3>
+    <p>
+      As aulas que você salvar aparecerão aqui, clique em uma aula para editar
+      as informações
+    </p>
+  </div>
+  <div
+    class="saved-classes"
+    *ngFor="let class of classList"
+    (click)="mostraDados(class)"
+  >
+    <h4>{{ class.titulo }}</h4>
+    <p>{{ class.descricao }}</p>
+  </div>
+  <div class="saved-classes">
+    <h4>título da aula para teste</h4>
+    <p>está é uma breve descrição do conteudo da aula x</p>
+  </div>
 </app-right-column>

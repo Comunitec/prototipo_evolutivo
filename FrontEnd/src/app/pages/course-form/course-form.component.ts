@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 
+interface Aula {
+  titulo: string;
+  descricao: string;
+}
 @Component({
   selector: 'app-course-form',
   templateUrl: './course-form.component.html',
@@ -9,12 +13,13 @@ export class CourseFormComponent {
   tagList = ['Angular', 'JavaScript', 'TypeScript', 'HTML', 'CSS'];
   selectedTag: string | undefined;
   selectedOptions: string[] = [];
+  placeholder = 'Selecione até 3 tags';
 
   // lógica para salvar os vídeos na coluna da direita:
   classOpen = false;
   titulo = '';
   descricao = '';
-  classList: object[] = [];
+  classList: Aula[] = [];
 
   removeTags() {
     this.selectedOptions = [];
@@ -38,5 +43,8 @@ export class CourseFormComponent {
     // Limpa os campos de entrada após adicionar à lista
     this.titulo = '';
     this.descricao = '';
+  }
+  mostraDados(aula: Aula) {
+    console.log('título:' + aula.titulo, 'descrição:' + aula.descricao);
   }
 }
