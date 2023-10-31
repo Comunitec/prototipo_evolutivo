@@ -7,4 +7,19 @@
   padding-top: 10px;
   background-color: #EDEDED;
   z-index: -1;
+  overflow-y: auto;
+  max-height: 89vh;
+}
+
+.right-column::-webkit-scrollbar {
+  width: 5px;
+}
+
+.right-column::-webkit-scrollbar-track {
+  background: #7e7e7e42;
+}
+
+.right-column::-webkit-scrollbar-thumb {
+  background: rgb(139, 139, 139);
+  border-radius: 10px;
 }
