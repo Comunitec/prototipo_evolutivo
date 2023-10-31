@@ -104,8 +104,9 @@ select {
     margin-top: 20px;
 }
 
-.save-button:hover {
-    background-color: #3a3a3a;
+.save-button:hover,
+.btn-tag-selecionada:hover {
+    background-color: #720101;
 }
 
 .saved-classes {
