@@ -58,10 +58,17 @@ textarea {
 
 button {
     width: fit-content;
+    color: #898989;
 }
 
 select {
     margin-bottom: 10px;
+}
+
+.btn-tag-selecionada {
+    background-color: #990000;
+    color: white;
+    cursor: pointer;
 }
 
 .input-file {

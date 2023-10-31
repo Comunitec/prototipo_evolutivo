@@ -13,7 +13,7 @@ export class CourseFormComponent {
   tagList = ['Angular', 'JavaScript', 'TypeScript', 'HTML', 'CSS'];
   selectedTag: string | undefined;
   selectedOptions: string[] = [];
-  placeholder = 'Selecione até 3 tags';
+  tagBoolean: boolean = false;
 
   // lógica para salvar os vídeos na coluna da direita:
   classOpen = false;
@@ -23,12 +23,16 @@ export class CourseFormComponent {
 
   removeTags() {
     this.selectedOptions = [];
+    this.tagBoolean = false;
   }
 
   optionSelected() {
     if (this.selectedTag && this.selectedOptions.length < 3) {
       this.selectedOptions.push(this.selectedTag);
       this.selectedTag = undefined;
+    }
+    if (this.selectedOptions.length > 0) {
+      this.tagBoolean = true;
     }
   }
   saveClass() {
