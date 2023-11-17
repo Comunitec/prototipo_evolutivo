@@ -1,13 +1,6 @@
 <!-- Coluna Esquerda (Fixa) - Ranking -->
 <app-left-column>
-  <h2>Ranking</h2>
-  <ul>
-    <li>Usuário 1</li>
-    <li>Usuário 2</li>
-    <li>Usuário 3</li>
-    <li>Usuário 4</li>
-    <li>Usuário 5</li>
-  </ul>
+  <app-menu-lateral></app-menu-lateral>
 </app-left-column>
 
 <!-- Coluna do Meio (Rolável) - Feed Principal -->
@@ -43,9 +36,6 @@
         [(ngModel)]="selectedTag"
         (change)="optionSelected()"
       >
-        <!-- <option value="" selected label="Selecione">
-            Selecione uma tag para seu curso
-          </option> -->
         <option *ngFor="let tag of tagList" [value]="tag">
           {{ tag }}
         </option>
@@ -55,12 +45,13 @@
       </div>
 
       <div class="container-buttons">
-        <button class="common-style" (click)="removeTags()">
+        <button
+          class="common-style"
+          (click)="removeTags()"
+          [ngClass]="{ 'btn-tag-selecionada': tagBoolean }"
+        >
           - Remover tags
         </button>
-        <!-- <button class="common-style" (click)="openTagSelector()">
-            + Adicionar tag
-          </button> -->
       </div>
 
       <label for="adiconarImagem">Adicionar imagem</label>
@@ -111,9 +102,23 @@
 
 <!-- Coluna Direita (Fixa) - Sem Ranking -->
 <app-right-column>
-  <h2>Aulas Salvas</h2>
-  <p>As aulas que você salvar aparecerão aqui</p>
-  <p *ngIf="classOpen">Aula salva</p>
-  <p *ngFor="let class of classList">{{ titulo }}</p>
-  <p>{{ descricao }}</p>
+  <div class="column-right">
+    <h3>Aulas Salvas</h3>
+    <p>
+      As aulas que você salvar aparecerão aqui, clique em uma aula para editar
+      as informações
+    </p>
+  </div>
+  <div
+    class="saved-classes"
+    *ngFor="let class of classList"
+    (click)="mostraDados(class)"
+  >
+    <h4>{{ class.titulo }}</h4>
+    <p>{{ class.descricao }}</p>
+  </div>
+  <div class="saved-classes">
+    <h4>título da aula para teste</h4>
+    <p>está é uma breve descrição do conteudo da aula x</p>
+  </div>
 </app-right-column>

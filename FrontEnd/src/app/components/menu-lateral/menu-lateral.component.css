@@ -101,6 +101,9 @@
   left: 0;
 }
 
+
+/*Menu*/
+
 .container_sidenav{
   max-width: 220px;
 }
@@ -134,5 +137,35 @@ a:hover{
 
 a:hover i > fa-icon, a:hover span {
   color: #ffff;
+}
+
+
+/*submenu cursos*/
+.submenus{
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+}
+
+.submenus > a{
+  width: 100%;
+  display: flex;
+
+  background: rgb(189, 188, 188);
+  border-top: 1px groove white;
+  border-bottom: 1px groove white;
+  box-shadow: 0px 1px 10px -4px rgba(0,0,0,0.75) inset;
+  -webkit-box-shadow: 0px 1px 10px -4px rgba(0,0,0,0.75) inset;
+  -moz-box-shadow: 0px 1px 10px -4px rgba(0,0,0,0.75) inset;
+}
+.submenus > a > span{
+  font-size: 13px;
+  font-weight: bold;
+  padding-left: 20px;
+}
+
+.submenus > a:not(:first-child) {
+  border-top: none;
 }
 

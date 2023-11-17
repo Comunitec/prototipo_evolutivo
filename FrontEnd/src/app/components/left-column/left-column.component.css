@@ -2,9 +2,9 @@
   position: fixed;
   left: 0;
   width: 15%;
-  height: calc(106vh - 40px);
-  box-sizing: border-box;
+  height: 100%;
+  margin-top: 60px;
+  padding-top: 10px;
   background-color: #EDEDED;
-  top: 1px;
   z-index: -1;
 }

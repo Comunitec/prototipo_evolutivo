@@ -1,8 +1,9 @@
 .container_curso{
-  margin: 5rem 10rem;
+  margin: 1rem 8rem;
   box-shadow: 10px 10px 5px -4px rgba(0,0,0,0.09);
   -webkit-box-shadow: 10px 10px 5px -4px rgba(0,0,0,0.09);
   -moz-box-shadow: 10px 10px 5px -4px rgba(0,0,0,0.09);
+
 }
 
 .card_curso{

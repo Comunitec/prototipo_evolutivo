@@ -33,10 +33,22 @@
         <span>Perfil</span>
        </a>
 
-       <a routerLink="/courseForm">
+       <a (click)="toggleSubmenus()">
         <i class="fa-layers center-icon"><fa-icon [icon]="faBookOpen"></fa-icon></i>
         <span>Cursos</span>
-       </a>
+      </a>
+
+      <div class="submenus" [style.display]="submenusVisible ? 'block' : 'none'">
+        <a routerLink="/perfil">
+          <i class="fa-layers center-icon"><fa-icon [icon]="faUserGraduate"></fa-icon></i>
+          <span>Aluno</span>
+        </a>
+
+        <a routerLink="/perfil">
+          <i class="fa-layers center-icon"><fa-icon [icon]="faChalkboardTeacher"></fa-icon></i>
+          <span>Professor</span>
+         </a>
+      </div>
 
       <a href="">
         <i class="fa-layers center-icon"><fa-icon [icon]="faRankingStar"></fa-icon></i>

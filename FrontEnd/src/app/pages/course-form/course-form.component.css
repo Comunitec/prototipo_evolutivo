@@ -58,25 +58,29 @@ textarea {
 
 button {
     width: fit-content;
+    color: #898989;
 }
 
 select {
     margin-bottom: 10px;
 }
 
-.input-file {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #d9d9d9;
-    color: #898989;
-    border: none;
+.btn-tag-selecionada {
+    background-color: #990000;
+    color: white;
     cursor: pointer;
-    border-radius: 5px;
+}
+
+.input-file {
+    color: #898989;
+    width: fit-content;
+    cursor: pointer;
 }
 
 .add-video {
     background-color: #ededed;
     padding: 0 30px 30px 30px;
+    box-shadow: 1px 3px 4px -2px #898989;
 }
 
 
@@ -100,6 +104,30 @@ select {
     margin-top: 20px;
 }
 
-.save-button:hover {
-    background-color: #3a3a3a;
+.save-button:hover,
+.btn-tag-selecionada:hover {
+    background-color: #720101;
+}
+
+.saved-classes {
+    padding: 10px 10px;
+}
+
+.saved-classes p {
+    font-size: 12px;
+    color: #666;
+}
+
+.saved-classes:hover {
+    background-color: rgb(189, 188, 188);
+    cursor: pointer;
+}
+
+.column-right {
+    padding: 10px;
+    text-align: justify;
+}
+
+.column-right h3 {
+    text-align: center;
 }

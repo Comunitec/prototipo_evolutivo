@@ -1,10 +1,26 @@
 .middle-column {
-  position: absolute;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  margin-top: 60px;
+  z-index: 2;
   left: 15%;
   width: 70%;
-  box-sizing: border-box;
   background-color: #FFFFFF;
-  height: calc(100vh - 40px);
-  top: 90px;
-  z-index: -1;
+  overflow-y: auto;
+  max-height: 92vh;
+
+}
+
+.middle-column::-webkit-scrollbar {
+  width: 5px;
+}
+
+.middle-column::-webkit-scrollbar-track {
+  background: #7e7e7e42;
+}
+
+.middle-column::-webkit-scrollbar-thumb {
+  background: rgb(139, 139, 139);
+  border-radius: 10px;
 }
