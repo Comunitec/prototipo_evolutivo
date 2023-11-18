@@ -20,6 +20,7 @@ import { RightColumnComponent } from './components/right-column/right-column.com
 import { MiddleColumnComponent } from './components/middle-column/middle-column.component';
 import { MenuLateralComponent } from './components/menu-lateral/menu-lateral.component';
 import { CursoComponent } from './components/curso/curso.component';
+import { ManageCourseComponent } from './pages/manage-course/manage-course.component';
 
 
 const routes: Routes = [
@@ -30,7 +31,8 @@ const routes: Routes = [
   { path: 'courseForm', component: CourseFormComponent},
   { path: 'home', component: HomeComponentComponent},
   { path: 'home-logado', component: HomeLogadoComponent},
-  { path: 'perfil', component: PerfilComponent}
+  { path: 'perfil', component: PerfilComponent},
+  { path: 'manageCourse', component: ManageCourseComponent}
 ];
 
 @NgModule({
@@ -50,6 +52,7 @@ const routes: Routes = [
     MiddleColumnComponent,
     MenuLateralComponent,
     CursoComponent,
+    ManageCourseComponent,
   ],
   imports: [
     FormsModule,

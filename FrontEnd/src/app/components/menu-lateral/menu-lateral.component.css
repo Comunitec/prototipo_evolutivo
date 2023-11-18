@@ -25,17 +25,16 @@
 }
 
 .card_perfil-foto{
-  padding: 0;
-  width: 80px;
-  height: 80px;
+  padding: 1%;
+  width: 70px;
+  height: 70px;
   position: relative;
-
 }
 
 .card_perfil-foto > img{
-  padding: 0;
+  padding: 2%;
   border: 2px solid black;
-  width: 100%;
+  width: 100%;/*200*/
   height: 100%;
   border-radius: 50%;
 }
@@ -56,7 +55,7 @@
 }
 
 .card_perfil-dados{
-  padding-top: 25px;
+  padding-top: 10%;/*20px*/
   display: flex;
   flex-direction: column;
 }
@@ -69,13 +68,14 @@
 }
 
 .card_perfil-dados > .xpPerfil{
-  padding-top: 10px;
+  padding-top: 2%;/*10px*/
   font-size: 12px;
   font-style: oblique;
   text-align: right;
   color: rgb(102, 101, 101);
 }
 
+/*substituido pelo progress bar
 .progresso{
   padding: 0;
   display: flex;
@@ -100,7 +100,7 @@
   position: absolute;
   left: 0;
 }
-
+substituido pelo progress bar*/
 
 /*Menu*/
 
@@ -162,10 +162,20 @@ a:hover i > fa-icon, a:hover span {
 .submenus > a > span{
   font-size: 13px;
   font-weight: bold;
-  padding-left: 20px;
+  padding-left: 15px;
 }
 
 .submenus > a:not(:first-child) {
   border-top: none;
 }
 
+/*progress bar */
+progress {
+  background: rgb(240, 240, 240);
+  align-items: left;
+  width: 100%;
+}
+
+::-webkit-progress-value {
+  background-color: red;
+}

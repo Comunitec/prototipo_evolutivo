@@ -1,3 +1,4 @@
+/*
 .container_curso{
   margin: 1rem 8rem;
   box-shadow: 10px 10px 5px -4px rgba(0,0,0,0.09);
@@ -51,4 +52,164 @@
   width: 2.5rem;
   border-radius: 10px;
   text-align: center;
+}
+*/
+/*comentario*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif, Arial;
+}
+
+html{
+  height: 100%;
+}
+body{
+  min-height: 100vh;
+} 
+.container {
+  margin: 1rem 8rem;
+  box-shadow: 10px 10px 5px -4px rgba(0,0,0,0.09);
+  -webkit-box-shadow: 10px 10px 5px -4px rgba(0,0,0,0.09);
+  -moz-box-shadow: 10px 10px 5px -4px rgba(0,0,0,0.09);
+/*
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+  height: 90VH;
+  */
+}
+
+.container .middle-column {
+  width: 100%;
+  height: 90VH;
+  text-align: center;
+  margin-top: 1px;
+  display: block;
+}
+
+
+/* Estilos das colunas */
+/*
+.left-column,
+.right-column {
+  display: inline-block;
+  width: 250px;
+  /* Largura das colunas fixas /
+  background-color: #e0e0e0;
+  /* Cor de fundo das colunas fixas /
+  padding: 5% 20px;
+  /* Adicione outros estilos conforme necessário /
+  MIN-height: 90vh;
+  
+}
+*/
+.middle-column {
+  align-items: baseline;
+  justify-content: center;
+  background-color: #fff;
+  padding: 1%;
+  height: 100vh;
+  margin: 0 auto;
+  CLEAR:both;
+ /* overflow-y: scroll;*/
+}
+
+/*criando o container de entrada de dados*/
+
+.box_conteudo {
+
+  display : inline-flex;
+  border-radius: 20px;
+  background-color: #d9d9d9;
+  margin: auto 5% 3%;
+  margin-top: 5%;
+  width: 90%;
+  right: 90%;
+}    
+
+
+/* Estilos do ranking na coluna esquerda /
+.left-column h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+*/
+/* Estilos da coluna direita (sem ranking) /
+.right-column h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+*/
+.titulo{
+  display: block;
+  width: auto;
+  margin: auto;
+  clear: both;
+}
+
+.imagem-curso{
+  display: inline-block;
+  align-self: LEFT;
+  margin: auto 2%;
+  padding: 2%;
+  height: 150px;
+  width: 150px;
+  clear: both;
+}
+
+.nome_curso{
+  height: 25px;
+  width: auto;
+  margin: 18px auto;
+  padding: 1% 2% 1% 2%;
+  border-radius: 12px;
+  background: rgb(190, 185, 190);
+  text-decoration: none;
+  text-align: center;
+}
+
+.posicao_conteudo{
+  clear:both;
+  display: inline-block;
+  padding: 2%;
+  border: 2px solid #990000;
+  border-radius: 10%;
+  margin: 2% 5%;
+
+}
+.tags{
+  display: inline;
+  clear: left;
+  margin: 3%;
+}
+
+.tags > a{
+  height: 25px;
+  width: auto;
+  margin: 18px 10px;
+  padding: 1% 2% 1% 2%;
+  border-radius: 12px;
+  background: rgb(190, 185, 190);
+  text-decoration: none;
+}
+
+
+.descritivo{
+  display: inline-block;
+  background-color: rgb(200, 200, 200);
+  margin: 3% 5%;
+  position: CENTER;
+  align-items: center;
+  width: 90%;
+  height: 150px;
+  border-radius: 5%;
+  padding: auto;
+}
+
+.descritivo > p{
+  align-self: center;
+  margin: 5%;
 }
