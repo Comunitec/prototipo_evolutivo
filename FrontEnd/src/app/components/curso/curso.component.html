@@ -32,17 +32,19 @@
     <div class="middle-column">
       <!-- *ngFor="let item of items" para cada curso-->
    <div class="box_conteudo" *ngFor="let item of listteste">
-     <div class="imagem-curso">
-       <img
-       src= .\..\assets\{{item.imgCurso}}.PNG
-       alt="Logo do curso"
-       routerLink="/"
-       height="100%"
-     />
-     <div class="tags">
-       <p>{{ item.nomeCurso }}</p>
-     </div>
-     </div>
+    <div class="box_imagem">
+      <div class="imagem-curso">
+         <img
+         src= .\..\assets\{{item.imgCurso}}.PNG
+         alt="Logo do curso"
+        routerLink="/"
+        height="100%"
+        />
+        <div class="tags">
+           <p class="tag_name">{{ item.nomeCurso }}</p>
+        </div>
+      </div><!--imagem curso-->
+    </div><!--imagem curso + nome-->
      
      <div class="posicao_conteudo">
       <!-- *ngFor="let item of items" para tags-->
@@ -58,7 +60,13 @@
                pariatur eum doloremque, odio consequuntur itaque! 
            </p>
        </div><!--descritivo-->
+       <div class ="bt_action">
+        <button type="submit" >Acessar</button>
+        <button type="submit" >Editar</button>
+       </div>
      </div><!--posicao_conteudo-->
+    
    </div><!--conteudo-->
+   
    <!-- *ngFor="let item of items" para cada curso-->
  </div><!--middle-column-->

@@ -124,10 +124,10 @@ body{
   display : inline-flex;
   border-radius: 20px;
   background-color: #d9d9d9;
-  margin: auto 5% 3%;
-  margin-top: 5%;
+  margin: 2% 5% 3% 5%;
   width: 90%;
-  right: 90%;
+  height: 70%;
+
 }    
 
 
@@ -149,15 +149,33 @@ body{
   margin: auto;
   clear: both;
 }
-
-.imagem-curso{
+.box_imagem {
+  margin: 2% 2%;
+  align-items: center center;
+  border-radius: 5%;
   display: inline-block;
-  align-self: LEFT;
-  margin: auto 2%;
-  padding: 2%;
-  height: 150px;
-  width: 150px;
+  width: 100%;
   clear: both;
+}
+.imagem-curso{
+  align-items: center;
+  border-radius: 3%;
+  display: inline-block;
+  margin: auto;
+  padding: 1%;
+  width: 100%;
+  clear: both;
+}
+
+.imagem-curso > img {
+  width: 100%;
+}
+
+
+.tag_name {
+  padding: 0;
+  margin: 10% auto ;
+  text-align: center;
 }
 
 .nome_curso{
@@ -172,24 +190,25 @@ body{
 }
 
 .posicao_conteudo{
-  clear:both;
+  clear: both;
   display: inline-block;
   padding: 2%;
   border: 2px solid #990000;
   border-radius: 10%;
-  margin: 2% 5%;
+  margin: 2% 2%;
 
 }
 .tags{
-  display: inline;
+  display: flex;
+  flex-wrap: wrap;
   clear: left;
-  margin: 3%;
+  margin: auto 1%;
 }
 
 .tags > a{
   height: 25px;
   width: auto;
-  margin: 18px 10px;
+  margin: 2% 1%;
   padding: 1% 2% 1% 2%;
   border-radius: 12px;
   background: rgb(190, 185, 190);
@@ -204,7 +223,7 @@ body{
   position: CENTER;
   align-items: center;
   width: 90%;
-  height: 150px;
+  height: 70%;
   border-radius: 5%;
   padding: auto;
 }
@@ -212,4 +231,20 @@ body{
 .descritivo > p{
   align-self: center;
   margin: 5%;
+}
+
+.bt_action{
+  display: block;
+  margin:auto;
+  width: 100%;
+}
+
+.bt_action > button{
+  display: inline;
+  float: right;
+  padding: 1%;
+  margin: 2%;
+  width: 25%;
+  text-align: center;
+
 }
