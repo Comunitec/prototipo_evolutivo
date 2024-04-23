@@ -1,14 +1,14 @@
 .right-column {
   position: fixed;
+  top: 60px;
   right: 0;
   width: 15%;
   height: 100%;
-  margin-top: 60px;
   padding-top: 10px;
   background-color: #EDEDED;
   z-index: -1;
   overflow-y: auto;
-  max-height: 89vh;
+  max-height: 100vh;
 }
 
 .right-column::-webkit-scrollbar {
