@@ -1,6 +1,7 @@
 .container_curso {
   margin: 1rem;
   margin-bottom: 1rem;
+    cursor: pointer; 
 }
 
 .card_curso {
@@ -21,7 +22,7 @@
   padding: 1rem;
   background-color: #f9f9f9;
   max-height: 200px;
-  overflow: auto; 
+  overflow: hidden;
 }
 
 .card_descricao-titulo {
@@ -46,6 +47,11 @@
 .card_descricao-texto {
   text-align: justify;
   margin-bottom: 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 5; /* Número de linhas para exibir */
+  -webkit-box-orient: vertical;
 }
 
 .card_descricao-botoes {
@@ -63,8 +69,20 @@
   font-weight: bold;
 }
 
-.btn-editar, .btn-excluir {
+.btn-excluir, .btn-Reprovar {
   background-color: red;
+}
+
+.btn-editar{
+  background-color: blue;
+}
+
+.btn-Aprovar{
+  background-color: rgb(2, 189, 2);
+}
+
+.btn-Inativar {
+  background-color: gray;
 }
 
 @media (min-width: 768px) {

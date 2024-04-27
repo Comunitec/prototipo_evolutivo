@@ -1,7 +1,7 @@
 <div class="container_curso">
-  <div class="card_curso">
+  <div class="card_curso" (click)="redirecionarParaRota">
     <div class="card_curso-thumb">
-      <img src="{{ imagem }}" alt="" />
+      <img [src]="imagem" alt="" />
     </div>
     <div class="card_curso-descricao">
       <div class="card_descricao-titulo">
@@ -16,6 +16,9 @@
 
       <div class="card_descricao-botoes">
         <button *ngIf="podeEditar" class="btn-editar">Editar</button>
+        <button *ngIf="podeAprovar" class="btn-Aprovar">Aprovar</button>
+        <button *ngIf="podeReprovar" class="btn-Reprovar">Reprovar</button>
+        <button *ngIf="podeInativar" class="btn-Inativar">Inativar</button>
         <button *ngIf="podeExcluir" class="btn-excluir">Excluir</button>
       </div>
     </div>
