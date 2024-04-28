@@ -1,0 +1,20 @@
+.adicionar > button {
+    margin-left: 10px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    float: right;
+  }
+
+
+  .btn-adicionarCurso {
+    background-color: red;
+  }
+
+  h1{
+    margin: 20px;
+    text-align: center;
+  }
+  
