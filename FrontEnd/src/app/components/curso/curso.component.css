@@ -1,250 +1,103 @@
-/*
-.container_curso{
-  margin: 1rem 8rem;
-  box-shadow: 10px 10px 5px -4px rgba(0,0,0,0.09);
-  -webkit-box-shadow: 10px 10px 5px -4px rgba(0,0,0,0.09);
-  -moz-box-shadow: 10px 10px 5px -4px rgba(0,0,0,0.09);
-
+.container_curso {
+  margin: 1rem;
+  margin-bottom: 1rem;
+    cursor: pointer;
 }
 
-.card_curso{
-  display: flex;
-  flex-direction: row;
-}
-.card_curso-thumb {
-  flex: 2;
+.card_curso {
+  position: relative;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
-.card_curso-thumb > img{
+.card_curso-thumb img {
   width: 100%;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
+  height: auto;
   border-top-left-radius: 10px;
-  border-bottom-left-radius:10px;
+  border-top-right-radius: 10px;
 }
 
-
-
-.card_curso-descricao{
-  padding: 15px;
-  flex: 3;
+.card_curso-descricao {
+  padding: 1rem;
+  background-color: #f9f9f9;
+  max-height: 200px;
+  overflow: hidden;
 }
 
-.card_descricao-texto{
-  text-align: justify;
+.card_descricao-titulo {
+  margin-bottom: 1rem;
 }
 
-.card_descricao-tags{
+.card_descricao-tags {
   display: flex;
-  flex-direction: row;
-  padding: .5rem 0;
+  flex-wrap: wrap;
 }
 
-.card_descricao-tags > span{
+.card_descricao-tags span {
   font-size: 12px;
   font-weight: bold;
   color: white;
   background-color: red;
-
-  margin: 0.5rem 0.5rem 0.5rem 0;
-  padding: 5px 10px;
-  width: 2.5rem;
-  border-radius: 10px;
-  text-align: center;
-}
-*/
-/*comentario*/
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: sans-serif, Arial;
+  margin: 0.2rem;
+  padding: 0.3rem 0.5rem;
+  border-radius: 5px;
 }
 
-html{
-  height: 100%;
-}
-body{
-  min-height: 100vh;
-} 
-.container {
-  margin: 1rem 8rem;
-  box-shadow: 10px 10px 5px -4px rgba(0,0,0,0.09);
-  -webkit-box-shadow: 10px 10px 5px -4px rgba(0,0,0,0.09);
-  -moz-box-shadow: 10px 10px 5px -4px rgba(0,0,0,0.09);
-/*
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: auto;
-  height: 90VH;
-  */
+.card_descricao-texto {
+  text-align: justify;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 5; /* Número de linhas para exibir */
+  -webkit-box-orient: vertical;
 }
 
-.container .middle-column {
-  width: 100%;
-  height: 90VH;
-  text-align: center;
-  margin-top: 1px;
-  display: block;
+.card_descricao-botoes {
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
 
-
-/* Estilos das colunas */
-/*
-.left-column,
-.right-column {
-  display: inline-block;
-  width: 250px;
-  /* Largura das colunas fixas /
-  background-color: #e0e0e0;
-  /* Cor de fundo das colunas fixas /
-  padding: 5% 20px;
-  /* Adicione outros estilos conforme necessário /
-  MIN-height: 90vh;
-  
-}
-*/
-.middle-column {
-  align-items: baseline;
-  justify-content: center;
-  background-color: #fff;
-  padding: 1%;
-  height: 100vh;
-  margin: 0 auto;
-  CLEAR:both;
- /* overflow-y: scroll;*/
+.card_descricao-botoes > button {
+  margin-left: 10px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
 }
 
-/*criando o container de entrada de dados*/
-
-.box_conteudo {
-
-  display : inline-flex;
-  border-radius: 20px;
-  background-color: #d9d9d9;
-  margin: 2% 5% 3% 5%;
-  width: 90%;
-  height: 70%;
-
-}    
-
-
-/* Estilos do ranking na coluna esquerda /
-.left-column h2 {
-  font-size: 18px;
-  margin-bottom: 10px;
-}
-*/
-/* Estilos da coluna direita (sem ranking) /
-.right-column h2 {
-  font-size: 18px;
-  margin-bottom: 10px;
-}
-*/
-.titulo{
-  display: block;
-  width: auto;
-  margin: auto;
-  clear: both;
-}
-.box_imagem {
-  margin: 2% 2%;
-  align-items: center center;
-  border-radius: 5%;
-  display: inline-block;
-  width: 100%;
-  clear: both;
-}
-.imagem-curso{
-  align-items: center;
-  border-radius: 3%;
-  display: inline-block;
-  margin: auto;
-  padding: 1%;
-  width: 100%;
-  clear: both;
+.btn-excluir, .btn-Reprovar {
+  background-color: red;
 }
 
-.imagem-curso > img {
-  width: 100%;
+.btn-editar{
+  background-color: blue;
 }
 
-
-.tag_name {
-  padding: 0;
-  margin: 10% auto ;
-  text-align: center;
+.btn-Aprovar{
+  background-color: rgb(2, 189, 2);
 }
 
-.nome_curso{
-  height: 25px;
-  width: auto;
-  margin: 18px auto;
-  padding: 1% 2% 1% 2%;
-  border-radius: 12px;
-  background: rgb(190, 185, 190);
-  text-decoration: none;
-  text-align: center;
+.btn-Inativar {
+  background-color: gray;
 }
 
-.posicao_conteudo{
-  clear: both;
-  display: inline-block;
-  padding: 2%;
-  border: 2px solid #990000;
-  border-radius: 10%;
-  margin: 2% 2%;
+@media (min-width: 768px) {
+  .card_curso {
+    display: flex;
+    flex-direction: row;
+  }
 
-}
-.tags{
-  display: flex;
-  flex-wrap: wrap;
-  clear: left;
-  margin: auto 1%;
-}
+  .card_curso-thumb {
+    flex: 1;
+  }
 
-.tags > a{
-  height: 25px;
-  width: auto;
-  margin: 2% 1%;
-  padding: 1% 2% 1% 2%;
-  border-radius: 12px;
-  background: rgb(190, 185, 190);
-  text-decoration: none;
-}
-
-
-.descritivo{
-  display: inline-block;
-  background-color: rgb(200, 200, 200);
-  margin: 3% 5%;
-  position: CENTER;
-  align-items: center;
-  width: 90%;
-  height: 70%;
-  border-radius: 5%;
-  padding: auto;
-}
-
-.descritivo > p{
-  align-self: center;
-  margin: 5%;
-}
-
-.bt_action{
-  display: block;
-  margin:auto;
-  width: 100%;
-}
-
-.bt_action > button{
-  display: inline;
-  float: right;
-  padding: 1%;
-  margin: 2%;
-  width: 25%;
-  text-align: center;
-
+  .card_curso-descricao {
+    flex: 2;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 10px;
+  }
 }

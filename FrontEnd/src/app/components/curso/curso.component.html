@@ -1,26 +1,28 @@
 <!--
 <div class="container_curso">
-  <div class="card_curso">
+  <div class="card_curso" (click)="redirecionarParaRota">
     <div class="card_curso-thumb">
-      <img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*moJeTvW97yShLB7URRj5Kg.png" alt="">
+      <img [src]="imagem" alt="" />
     </div>
     <div class="card_curso-descricao">
       <div class="card_descricao-titulo">
-        <h2>Curso completo de TypeScript</h2>
+        <h2>{{ nomeCurso }}</h2>
       </div>
 
       <div class="card_descricao-tags">
-        <span>HTML</span>
-        <span>CSS</span>
-        <span>JS</span>
-        <span>TS</span>
-
+        <span *ngFor="let tag of tags">{{ tag }}</span>
       </div>
 
-      <div class="card_descricao-texto">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa magnam dolorum non vero blanditiis quia at ducimus eveniet? Eaque ipsam corporis numquam exercitationem molestiae? Soluta non ut numquam debitis accusamus.
+      <div class="card_descricao-texto">{{ descricao }}</div>
+
+      <div class="card_descricao-botoes">
+        <button *ngIf="podeEditar" class="btn-editar">Editar</button>
+        <button *ngIf="podeAprovar" class="btn-Aprovar">Aprovar</button>
+        <button *ngIf="podeReprovar" class="btn-Reprovar">Reprovar</button>
+        <button *ngIf="podeInativar" class="btn-Inativar">Inativar</button>
+        <button *ngIf="podeExcluir" class="btn-excluir">Excluir</button>
       </div>
-      </div>
+    </div>
   </div>
   <div class="card_curso-progresso">
     <div class="card_progresso-barra"></div>
@@ -45,10 +47,10 @@
         </div>
       </div><!--imagem curso-->
     </div><!--imagem curso + nome-->
-     
+
      <div class="posicao_conteudo">
       <!-- *ngFor="let item of items" para tags-->
-       <div class="tags" > 
+       <div class="tags" >
            <a href="/" *ngFor="let tag of item.tagCurso"> + {{ tag }}</a>
          </div><!--tags-->
        <!-- *ngFor="let item of items" para tags-->
@@ -56,8 +58,8 @@
            <p><b>{{item.nomeCurso}}</b>
                Lorem ipsum dolor sit, amet consectetur adipisicing elit
                Nihil eum voluptatem, quaerat accusantium neque est totam
-               omnis! Neque non porro natus, debitis maiores, ipsum 
-               pariatur eum doloremque, odio consequuntur itaque! 
+               omnis! Neque non porro natus, debitis maiores, ipsum
+               pariatur eum doloremque, odio consequuntur itaque!
            </p>
        </div><!--descritivo-->
        <div class ="bt_action">
@@ -65,8 +67,8 @@
         <button type="submit" >Editar</button>
        </div>
      </div><!--posicao_conteudo-->
-    
+
    </div><!--conteudo-->
-   
+
    <!-- *ngFor="let item of items" para cada curso-->
  </div><!--middle-column-->

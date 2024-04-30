@@ -1,11 +1,11 @@
 <div class="container_menu-lateral">
   <div class="card_perfil">
-  
+
     <div class="card_perfil-foto">
       <img src="https://portal.fidelis.edu.br/wp-content/uploads/2020/10/perfil.jpg" alt="">
       <span class="nível">20</span>
     </div>
-  
+
     <div class="card_perfil-dados">
       <span class="nomePerfil">JOÃO DA SILVA</span>
       <div class="progresso">
@@ -17,72 +17,73 @@
       <progress id="status" value="73" max="100"></progress>
       <span class="xpPerfil"><b>XP 73/100</b></span><!-- LINHA ORIGINAL-->
     </div>
-  
+    <span class="xpPerfil">XP 50/100</span>
   </div>
-  
-  
-  <div class="container_sidenav">
-    <div class="card_item-nav">
-  
-        <a routerLink="/home-logado">
-          <i class="fa-layers center-icon"><fa-icon [icon]="faHouse"></fa-icon></i>
-          <span>Home</span>
+
+</div>
+
+
+<div class="container_sidenav">
+  <div class="card_item-nav">
+
+      <a routerLink="/home-logado">
+        <i class="fa-layers center-icon"><fa-icon [icon]="faHouse"></fa-icon></i>
+        <span>Home</span>
+       </a>
+
+
+      <a routerLink="/perfil">
+        <i class="fa-layers center-icon"><fa-icon [icon]="faUser"></fa-icon></i>
+        <span>Perfil</span>
+       </a>
+
+       <a (click)="toggleSubmenus()">
+        <i class="fa-layers center-icon"><fa-icon [icon]="faBookOpen"></fa-icon></i>
+        <span>Cursos</span>
+      </a>
+
+      <div class="submenus" [style.display]="submenusVisible ? 'block' : 'none'">
+        <a routerLink="/meusCursosAluno">
+          <i class="fa-layers center-icon"><fa-icon [icon]="faUserGraduate"></fa-icon></i>
+          <span>Aluno</span>
+        </a>
+
+        <a routerLink="/meusCursosProfessor">
+          <i class="fa-layers center-icon"><fa-icon [icon]="faChalkboardTeacher"></fa-icon></i>
+          <span>Professor</span>
          </a>
-  
-  
-        <a routerLink="/perfil">
-          <i class="fa-layers center-icon"><fa-icon [icon]="faUser"></fa-icon></i>
-          <span>Perfil</span>
-         </a>
-  
-         <a (click)="toggleSubmenus()">
-          <i class="fa-layers center-icon"><fa-icon [icon]="faBookOpen"></fa-icon></i>
-          <span>Cursos</span>
-        </a>
-  
-        <div class="submenus" [style.display]="submenusVisible ? 'block' : 'none'">
-          <a routerLink="/home-logado">
-            <i class="fa-layers center-icon"><fa-icon [icon]="faUserGraduate"></fa-icon></i>
-            <span>Aluno</span>
-          </a>
-  
-          <a routerLink="/manageCourse">
-            <i class="fa-layers center-icon"><fa-icon [icon]="faChalkboardTeacher"></fa-icon></i>
-            <span>Professor</span>
-           </a>
-        </div>
-  
-        <a href="">
-          <i class="fa-layers center-icon"><fa-icon [icon]="faRankingStar"></fa-icon></i>
-          <span>Ranking</span>
-        </a>
-  
-        <a href="">
-          <i class="fa-layers center-icon"><fa-icon [icon]="faBell"></fa-icon></i>
-          <span>Notificações</span>
-        </a>
-  
-        <a href="">
-          <i class="fa-layers center-icon"><fa-icon [icon]="faUsers"></fa-icon></i>
-          <span>Fórum</span>
-        </a>
-  
-        <a href="">
-          <i class="fa-layers center-icon"><fa-icon [icon]="faFile"></fa-icon></i>
-          <span>Vagas</span>
-        </a>
-  
-  
-      <br><br><br>
-  
-  
-        <a href="">
-          <i class="fa-layers center-icon"><fa-icon [icon]="faDoorOpen"></fa-icon></i>
-          <span>Sair</span>
-        </a>
-  
-  
-    </div>
+      </div>
+
+      <a href="">
+        <i class="fa-layers center-icon"><fa-icon [icon]="faRankingStar"></fa-icon></i>
+        <span>Ranking</span>
+      </a>
+
+      <a href="">
+        <i class="fa-layers center-icon"><fa-icon [icon]="faBell"></fa-icon></i>
+        <span>Notificações</span>
+      </a>
+
+      <a href="">
+        <i class="fa-layers center-icon"><fa-icon [icon]="faUsers"></fa-icon></i>
+        <span>Fórum</span>
+      </a>
+
+      <a href="">
+        <i class="fa-layers center-icon"><fa-icon [icon]="faFile"></fa-icon></i>
+        <span>Vagas</span>
+      </a>
+
+
+    <br><br><br>
+
+
+      <a href="">
+        <i class="fa-layers center-icon"><fa-icon [icon]="faDoorOpen"></fa-icon></i>
+        <span>Sair</span>
+      </a>
+
+
   </div>
-  </div>
-  
+</div>
+</div>

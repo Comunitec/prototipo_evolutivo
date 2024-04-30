@@ -20,7 +20,8 @@ import { RightColumnComponent } from './components/right-column/right-column.com
 import { MiddleColumnComponent } from './components/middle-column/middle-column.component';
 import { MenuLateralComponent } from './components/menu-lateral/menu-lateral.component';
 import { CursoComponent } from './components/curso/curso.component';
-import { ManageCourseComponent } from './pages/manage-course/manage-course.component';
+import { MeusCursosProfessorComponent } from './pages/meus-cursos-professor/meus-cursos-professor.component';
+import { MeusCursosAlunoComponent } from './pages/meus-cursos-aluno/meus-cursos-aluno.component';
 
 
 const routes: Routes = [
@@ -32,7 +33,8 @@ const routes: Routes = [
   { path: 'home', component: HomeComponentComponent},
   { path: 'home-logado', component: HomeLogadoComponent},
   { path: 'perfil', component: PerfilComponent},
-  { path: 'manageCourse', component: ManageCourseComponent}
+  {path: 'meusCursosProfessor', component: MeusCursosProfessorComponent},
+  {path: 'meusCursosAluno', component: MeusCursosAlunoComponent},
 ];
 
 @NgModule({
@@ -52,7 +54,8 @@ const routes: Routes = [
     MiddleColumnComponent,
     MenuLateralComponent,
     CursoComponent,
-    ManageCourseComponent,
+    MeusCursosProfessorComponent,
+    MeusCursosAlunoComponent,
   ],
   imports: [
     FormsModule,
