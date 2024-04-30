@@ -1,3 +1,4 @@
+<!--
 <div class="container_curso">
   <div class="card_curso" (click)="redirecionarParaRota">
     <div class="card_curso-thumb">
@@ -28,3 +29,46 @@
     <div class="card_progresso-descricao"></div>
   </div>
 </div>
+-->
+    <!-- Coluna do Meio (Rolável) - Feed Principal -->
+    <div class="middle-column">
+      <!-- *ngFor="let item of items" para cada curso-->
+   <div class="box_conteudo" *ngFor="let item of listteste">
+    <div class="box_imagem">
+      <div class="imagem-curso">
+         <img
+         src= .\..\assets\{{item.imgCurso}}.PNG
+         alt="Logo do curso"
+        routerLink="/"
+        height="100%"
+        />
+        <div class="tags">
+           <p class="tag_name">{{ item.nomeCurso }}</p>
+        </div>
+      </div><!--imagem curso-->
+    </div><!--imagem curso + nome-->
+
+     <div class="posicao_conteudo">
+      <!-- *ngFor="let item of items" para tags-->
+       <div class="tags" >
+           <a href="/" *ngFor="let tag of item.tagCurso"> + {{ tag }}</a>
+         </div><!--tags-->
+       <!-- *ngFor="let item of items" para tags-->
+       <div class = "descritivo">
+           <p><b>{{item.nomeCurso}}</b>
+               Lorem ipsum dolor sit, amet consectetur adipisicing elit
+               Nihil eum voluptatem, quaerat accusantium neque est totam
+               omnis! Neque non porro natus, debitis maiores, ipsum
+               pariatur eum doloremque, odio consequuntur itaque!
+           </p>
+       </div><!--descritivo-->
+       <div class ="bt_action">
+        <button type="submit" >Acessar</button>
+        <button type="submit" >Editar</button>
+       </div>
+     </div><!--posicao_conteudo-->
+
+   </div><!--conteudo-->
+
+   <!-- *ngFor="let item of items" para cada curso-->
+ </div><!--middle-column-->
