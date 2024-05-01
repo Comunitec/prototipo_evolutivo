@@ -1,6 +1,14 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto");
 
 
+:root {
+  --primary-color: #990000;
+  --secondary-color: #666666;
+  --button-width: 110px;
+  --hover-btn-primary: #6a0000;
+  --hover-btn-secondary: #414141;
+}
+
 * {
   margin: 0;
   padding: 0;
