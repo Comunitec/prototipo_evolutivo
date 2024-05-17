@@ -2,14 +2,14 @@
   <div class="signup-container">
     <div class="signup-box">
       <h1>Criar Conta</h1>
-      <form (submit)="enviarRegistro()">
+      <form (ngSubmit)="enviarRegistro()">
         <div class="input-group">
           <label for="name">Nome Completo</label>
           <input
             name="name"
             type="text"
             id="name"
-            [(ngModel)]="name"
+            [(ngModel)]="Nome"
             placeholder="Digite seu nome completo"
             required
           />
@@ -17,7 +17,7 @@
         <div class="input-group">
           <label for="password">Senha</label>
           <input
-            [(ngModel)]="password"
+            [(ngModel)]="Senha"
             name="password"
             type="password"
             id="password"
@@ -28,7 +28,7 @@
         <div class="input-group">
           <label for="email">E-mail</label>
           <input
-            [(ngModel)]="email"
+            [(ngModel)]="Email"
             name="email"
             type="email"
             id="email"
@@ -52,7 +52,7 @@
         </div>
         <div class="input-group">
           <label for="birthdate">Data de Nascimento</label>
-          <input type="date" id="birthdate" name="birthdate" required />
+          <input type="date" id="birthdate" name="birthdate" required [(ngModel)]="DataNasc" />
         </div>
 
         <div class="input-group">
@@ -62,6 +62,7 @@
             id="addImage"
             type="file"
             accept=".jpg, .jpeg, .png"
+            (change)="onFileSelected($event)"
           />
         </div>
 
@@ -69,11 +70,10 @@
           <button class="back-button" [routerLink]="'/'" id="backButton">Voltar</button>
           <button type="submit" class="signup-button">Criar conta</button>
         </div>
-
       </form>
 
       <div class="img-signup">
-        <img src="assets\img-criar-conta.png" alt="Imagem de criar conta" />
+        <img src="assets/img-criar-conta.png" alt="Imagem de criar conta" />
       </div>
     </div>
   </div>

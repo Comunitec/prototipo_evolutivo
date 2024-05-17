@@ -7,31 +7,46 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent {
-  name: string = '';
-  email: string = '';
-  password: string = '';
-  
+  Nome: string = '';
+  Email: string = '';
+  Senha: string = '';
+  DataNasc: string = '';
+  Pontuacao: number = 0;
+  PerfilDeAcesso: string = "Aluno";
+  Foto: string = '';
+
+  selectedFile: File | null = null; // Propriedade para armazenar o arquivo selecionado
 
   constructor(private http: HttpClient) { }
 
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.Foto = e.target.result.split(',')[1]; // Obtém a string base64 sem o prefixo
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
   enviarRegistro() {
-    const url = 'http://localhost:8080/user'; // Substitua pela URL do seu servidor Node.js
-
-    const dados = {
-      name: this.name,
-      email: this.email,
-      password: this.password,
-      preferences: 0,
-      ranking: 0,
-      points:0,
-
+    const url = 'http://localhost:8800/addAluno'; // Substitua pela URL do seu servidor Node.js
+    
+    const formData = {
+      Nome: this.Nome,
+      Email: this.Email,
+      Senha: this.Senha,
+      DataNasc: this.DataNasc,
+      Pontuacao: this.Pontuacao,
+      PerfilDeAcesso: this.PerfilDeAcesso,
+      Foto: this.Foto // Inclui a imagem em base64
     };
 
-    this.http.post(url, dados).subscribe(
+    this.http.post(url, formData).subscribe(
       (response) => {
         console.log('Resposta do servidor:', response);
         // Faça algo com a resposta do servidor Node.js
-      console.log('Dados a serem enviados:', dados);
       },
       (error) => {
         console.error('Erro na solicitação:', error);
