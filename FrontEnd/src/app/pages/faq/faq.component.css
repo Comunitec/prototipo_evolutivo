@@ -1,0 +1,44 @@
+::ng-deep .matExpansion .mat-expansion-panel-body{
+    padding: 50px!important;
+}
+
+.matExpansion.mat-expansion-panel .mat-expansion-panel-header{
+    background-color: rgb(219, 219, 219);
+}
+
+.matExpansion.mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:hover:not([aria-disabled=true]){
+    background-color: rgb(196, 196, 196);
+}
+  
+
+h1 {
+    text-align: center;
+}
+
+.contentToogle{
+    font-size: 16px;
+}
+
+.rodape{
+    font-size: 12px;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+

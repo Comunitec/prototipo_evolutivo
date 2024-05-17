@@ -1,0 +1,45 @@
+<!-- Coluna Esquerda (Fixa) - Ranking -->
+<app-left-column>
+    <app-menu-lateral></app-menu-lateral>
+  </app-left-column>
+  
+  <!-- Coluna do Meio (Rolável) - Feed Principal -->
+  <app-middle-column>
+  
+<div class="container_curso">
+    <div class="card_curso">
+
+
+      <div class="card_curso-thumb">
+        <img [src]="imagem" alt="" />
+        <button *ngIf="matricula" class="btn-matricula" (click)="openModal()">Matricular-se</button>
+        <button *ngIf="verAulas" class="btn-matricula" routerLink="/assistirAulas">Asistir aulas</button>
+
+
+        <div class="card_descricao-texto">Curso criado por: <b>{{ nomeCriador }}</b> <br><br>
+            <b>{{ finishTotal }} pessoas</b> já concluiram este curso</div>
+      </div>
+
+      
+      <div class="card_curso-descricao">
+        
+        <div class="card_descricao-titulo">
+            <h2>{{ nomeCurso }}</h2>
+        </div>
+
+        <div class="card_descricao-texto">Descrição:</div>
+  
+        <div class="card_descricao-texto">{{ descricao }}</div>
+
+        <div class="card_descricao-tags">
+            <span *ngFor="let tag of tags">{{ tag }}</span>
+          </div>
+  
+        
+        
+      </div>
+    </div>
+  </div>
+  </app-middle-column>
+
+  <app-right-column></app-right-column>

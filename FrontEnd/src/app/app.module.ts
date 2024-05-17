@@ -22,6 +22,15 @@ import { MenuLateralComponent } from './components/menu-lateral/menu-lateral.com
 import { CursoComponent } from './components/curso/curso.component';
 import { MeusCursosProfessorComponent } from './pages/meus-cursos-professor/meus-cursos-professor.component';
 import { MeusCursosAlunoComponent } from './pages/meus-cursos-aluno/meus-cursos-aluno.component';
+import { AssistirAulasComponent } from './pages/assistir-aulas/assistir-aulas.component';
+import { DetalheCursoComponent } from './pages/detalhe-curso/detalhe-curso.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatDialogModule} from '@angular/material/dialog';
+import { ModalMatRealizadaComponent } from './components/modal-mat-realizada/modal-mat-realizada.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { ModalWQuestoesComponent } from './components/modal-wquestoes/modal-wquestoes.component';
+import {MatRadioModule} from '@angular/material/radio';
+import { FaqComponent } from './pages/faq/faq.component';
 
 
 const routes: Routes = [
@@ -35,6 +44,9 @@ const routes: Routes = [
   { path: 'perfil', component: PerfilComponent},
   {path: 'meusCursosProfessor', component: MeusCursosProfessorComponent},
   {path: 'meusCursosAluno', component: MeusCursosAlunoComponent},
+  {path: 'assistirAulas', component: AssistirAulasComponent},
+  {path: 'detalheCurso', component: DetalheCursoComponent},
+  {path: 'faq', component: FaqComponent},
 ];
 
 @NgModule({
@@ -56,13 +68,22 @@ const routes: Routes = [
     CursoComponent,
     MeusCursosProfessorComponent,
     MeusCursosAlunoComponent,
+    AssistirAulasComponent,
+    DetalheCursoComponent,
+    ModalMatRealizadaComponent,
+    ModalWQuestoesComponent,
+    FaqComponent,
   ],
   imports: [
     FormsModule,
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot(routes),
-    FontAwesomeModule // Use RouterModule.forRoot para configurar as rotas
+    RouterModule.forRoot(routes), // Use RouterModule.forRoot para configurar as rotas
+    FontAwesomeModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
+    MatExpansionModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]
