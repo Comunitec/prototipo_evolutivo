@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import{faHouse, faBookOpen, faUsers,faBell, faRankingStar, faDoorOpen, faUser,faFile, faChalkboardTeacher, faUserGraduate} from '@fortawesome/free-solid-svg-icons'
+import{faHouse, faBookOpen, faRankingStar, faDoorOpen, faUser, faChalkboardTeacher, faUserGraduate, faThumbsUp} from '@fortawesome/free-solid-svg-icons'
 
 @Component({
   selector: 'app-menu-lateral',
@@ -8,15 +8,13 @@ import{faHouse, faBookOpen, faUsers,faBell, faRankingStar, faDoorOpen, faUser,fa
 })
 export class MenuLateralComponent {
   faHouse = faHouse;
-  faUser =faUser;
+  faUser = faUser;
   faBookOpen = faBookOpen;
   faRankingStar = faRankingStar;
-  faBell = faBell;
-  faUsers = faUsers;
   faDoorOpen = faDoorOpen;
-  faFile = faFile;
   faChalkboardTeacher= faChalkboardTeacher;
   faUserGraduate = faUserGraduate;
+  faThumbsUp = faThumbsUp;
 
   submenusVisible: boolean = false;
 
