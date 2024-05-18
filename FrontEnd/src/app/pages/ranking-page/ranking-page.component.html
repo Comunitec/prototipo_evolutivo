@@ -4,7 +4,19 @@
 </app-left-column>
 
 <app-middle-column>
-
+  <div class="card">
+    <h2>Ranking</h2>
+    <div *ngFor="let item of rankingItems">
+      <div class="ranking-item">
+        <span>{{ item.position }}</span>
+        <img [src]="item.photo" alt="{{ item.name }}">
+        <div>
+          <p>{{ item.name }}</p>
+          <p>{{ item.points }} comunicoins</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </app-middle-column>
 
 <app-right-column></app-right-column>
