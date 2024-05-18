@@ -1,12 +1,20 @@
-import express from "express"
-import alunoRoutes from "./routes/alunos.js"
-import cors from "cors"
+import express from "express";
+import path from "path";
+import { fileURLToPath } from 'url'; // Importa a função fileURLToPath
 
-const app = express()
+const __dirname = path.dirname(fileURLToPath(import.meta.url)); // Obtém o diretório atual
 
-app.use(express.json())
-app.use(cors())
+import alunoRoutes from "./routes/alunos.js";
+import cors from "cors";
 
-app.use("/", alunoRoutes)
+const app = express();
 
-app.listen(8800)
+app.use(express.json());
+app.use(cors());
+app.use('/static', express.static(path.join(__dirname, 'static')));
+
+app.use("/", alunoRoutes);
+
+app.listen(8800, () => {
+  console.log("Server running on port 8800");
+});

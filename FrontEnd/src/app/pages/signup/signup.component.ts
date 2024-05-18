@@ -13,35 +13,27 @@ export class SignupComponent {
   DataNasc: string = '';
   Pontuacao: number = 0;
   PerfilDeAcesso: string = "Aluno";
-  Foto: string = '';
-
   selectedFile: File | null = null; // Propriedade para armazenar o arquivo selecionado
 
   constructor(private http: HttpClient) { }
 
   onFileSelected(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.Foto = e.target.result.split(',')[1]; // Obtém a string base64 sem o prefixo
-      };
-      reader.readAsDataURL(file);
-    }
+    this.selectedFile = event.target.files[0];
   }
 
   enviarRegistro() {
     const url = 'http://localhost:8800/addAluno'; // Substitua pela URL do seu servidor Node.js
-    
-    const formData = {
-      Nome: this.Nome,
-      Email: this.Email,
-      Senha: this.Senha,
-      DataNasc: this.DataNasc,
-      Pontuacao: this.Pontuacao,
-      PerfilDeAcesso: this.PerfilDeAcesso,
-      Foto: this.Foto // Inclui a imagem em base64
-    };
+
+    const formData = new FormData();
+    formData.append('Nome', this.Nome);
+    formData.append('Email', this.Email);
+    formData.append('Senha', this.Senha);
+    formData.append('DataNasc', this.DataNasc);
+    formData.append('Pontuacao', this.Pontuacao.toString());
+    formData.append('PerfilDeAcesso', this.PerfilDeAcesso);
+    if (this.selectedFile) {
+      formData.append('Foto', this.selectedFile, this.selectedFile.name);
+    }
 
     this.http.post(url, formData).subscribe(
       (response) => {
