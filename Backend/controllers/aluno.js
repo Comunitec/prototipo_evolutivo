@@ -33,6 +33,7 @@ export const addAluno = (req, res) => {
     if (err) return res.json(err);
 
     return res.status(200).json("Usuário criado com sucesso.");
+
   });
 };
 

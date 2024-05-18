@@ -1,0 +1,19 @@
+.btn{
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    position: relative;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    background-color: red;
+    width: 500px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .btn:hover {
+    background-color: rgb(121, 0, 0);
+    cursor: pointer;
+}
