@@ -33,6 +33,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import { FaqComponent } from './pages/faq/faq.component';
 import { ModalUsuarioCriadoComponent } from './components/modal-usuario-criado/modal-usuario-criado.component';
 import { ModalErroAoCriarUsuarioComponent } from './components/modal-erro-ao-criar-usuario/modal-erro-ao-criar-usuario.component';
+import { PesquisaComponent } from './components/pesquisa/pesquisa.component';
 
 
 
@@ -78,6 +79,7 @@ const routes: Routes = [
     FaqComponent,
     ModalUsuarioCriadoComponent,
     ModalErroAoCriarUsuarioComponent,
+    PesquisaComponent,
   ],
   imports: [
     FormsModule,

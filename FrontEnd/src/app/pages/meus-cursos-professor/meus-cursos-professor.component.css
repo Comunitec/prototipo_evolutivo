@@ -10,7 +10,11 @@
 
 
   .btn-adicionarCurso {
-    background-color: red;
+    background-color: var(--primary-color);
+  }
+
+  .btn-adicionarCurso:hover {
+    background-color: var(--hover-btn-primary);
   }
 
   h1{
