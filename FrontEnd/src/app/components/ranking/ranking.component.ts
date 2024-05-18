@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RankingService } from 'src/app/services/ranking.service';
+import{faRankingStar} from '@fortawesome/free-solid-svg-icons'
 
 interface RankingItem {
   position: number;
@@ -14,6 +15,8 @@ interface RankingItem {
   styleUrls: ['./ranking.component.css']
 })
 export class RankingComponent implements OnInit {
+  faRankingStar = faRankingStar;
+
   rankingItems: RankingItem[] = [];
 
   constructor(private rankingService: RankingService) {}

@@ -18,23 +18,25 @@
 }
 
 h1{
+  font-weight: bold;
   font-size: 18px;
   text-shadow: 4px 4px 6px rgba(153,0,0,0.6);
-  padding-bottom: 5PX;
+  padding-bottom: 3px;
 }
 
 p{
   font-size: 14px;
   text-align: justify;
-  word-spacing: -3px;
-  padding: 5px;
+  word-spacing: 2px;
+  padding: 0px;
+  margin: 0;
 }
 
 .login-button,
 .signup-button {
   width: 70%;
   padding: 5px;
-  margin: 5PX;
+  margin: 3px;
   background: rgb(193,3,3);
   color: white;
   border: none;
@@ -43,6 +45,7 @@ p{
   transition: background-color 0.2s;
   font-size: 16;
   font-weight: bold;
+
 }
 
 .login-button:hover,
