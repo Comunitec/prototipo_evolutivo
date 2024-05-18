@@ -4,19 +4,30 @@
 </app-left-column>
 
 <app-middle-column>
-  <div class="card">
-    <h2>Ranking</h2>
-    <div *ngFor="let item of rankingItems">
-      <div class="ranking-item">
-        <span>{{ item.position }}</span>
-        <img [src]="item.photo" alt="{{ item.name }}">
-        <div>
-          <p>{{ item.name }}</p>
-          <p>{{ item.points }} comunicoins</p>
-        </div>
-      </div>
-    </div>
+
+  <div class="card-ranking">
+    <h1>RANKING</h1>
+    <table>
+      <thead>
+        <tr>
+          <th >Posição</th>
+          <th class="foto">Foto</th>
+          <th class="nome">Nome Aluno</th>
+          <th class="ponto">Pontos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of rankingItems">
+          <td class="posicao">{{ item.position }} º</td>
+          <td><img [src]="item.photo" alt="{{ item.name }}" class="avatar"></td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.points }} comunicoins</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
+
+
 </app-middle-column>
 
 <app-right-column></app-right-column>

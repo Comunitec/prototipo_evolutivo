@@ -8,6 +8,10 @@
   background-color: #EDEDED;
   z-index: 1;
   overflow-y: auto;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .right-column::-webkit-scrollbar {

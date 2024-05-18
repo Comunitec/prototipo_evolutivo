@@ -1,0 +1,54 @@
+
+.card-ranking{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1{
+  text-align: center;
+  font-weight: bold;
+  padding: 50px ;
+}
+
+table {
+  align-items: center;
+  margin: 10px 50px;
+  border-collapse: collapse; /* Colapsa as bordas das células */
+}
+
+th{
+  background-color: rgb(182, 182, 182);
+}
+
+td, th {
+  padding: 8px 15px;
+}
+
+td, th:not(:last-child) {
+  border-right: none; /* Remove a borda direita das células, exceto a última célula */
+}
+
+th {
+
+  text-align: center;
+}
+
+.posicao {
+  font-weight: bold;
+  text-align: center;
+  font-size: large;
+}
+
+.nome {
+  width: 300px;
+}
+
+img {
+  border-radius: 50%;
+}
+
+tr:not(:last-child) td {
+  border-bottom: 2px solid #ddd; /* Adiciona uma borda inferior para todas as células, exceto a última linha */
+}

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RankingService } from 'src/app/services/ranking.service';
-import{faRankingStar} from '@fortawesome/free-solid-svg-icons'
+import { faRankingStar } from '@fortawesome/free-solid-svg-icons';
 
 interface RankingItem {
   position: number;
@@ -25,5 +25,17 @@ export class RankingComponent implements OnInit {
     this.rankingService.getTopRanking().subscribe(data => {
       this.rankingItems = data;
     });
+  }
+
+  getBorderClass(index: number): string {
+    if (index === 0) {
+      return 'primeiro';
+    } else if (index === 1) {
+      return 'segundo';
+    } else if (index === 2) {
+      return 'terceiro';
+    } else {
+      return '';
+    }
   }
 }

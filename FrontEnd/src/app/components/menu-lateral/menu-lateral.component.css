@@ -76,36 +76,11 @@
   color: rgb(102, 101, 101);
 }
 
-.progresso{
-  padding: 0;
-  display: flex;
-  flex-direction: row;
-  border-radius: 5%;
-  position: relative;
-}
-
-.concluido {
-  width: 50%;
-  height: 2px;
-  background-color: red;
-  border-radius: 10px;
-  position: absolute;
-  left: 0;
-}
-
-.faltante{
-  background-color: grey;
-  width: 100%;
-  border-radius: 10px;
-  position: absolute;
-  left: 0;
-}
-
 
 /*Menu*/
 
 .container_sidenav{
-  max-width: 220px;
+  max-width: 230px;
 }
 .card_item-nav{
   padding-top: 30px;
@@ -169,3 +144,7 @@ a:hover i > fa-icon, a:hover span {
   border-top: none;
 }
 
+
+fa-icon{
+  font-size: 15px;
+}
