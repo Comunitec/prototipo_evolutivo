@@ -31,6 +31,9 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { ModalWQuestoesComponent } from './components/modal-wquestoes/modal-wquestoes.component';
 import {MatRadioModule} from '@angular/material/radio';
 import { FaqComponent } from './pages/faq/faq.component';
+import { ModalUsuarioCriadoComponent } from './components/modal-usuario-criado/modal-usuario-criado.component';
+import { ModalErroAoCriarUsuarioComponent } from './components/modal-erro-ao-criar-usuario/modal-erro-ao-criar-usuario.component';
+
 
 
 const routes: Routes = [
@@ -73,6 +76,8 @@ const routes: Routes = [
     ModalMatRealizadaComponent,
     ModalWQuestoesComponent,
     FaqComponent,
+    ModalUsuarioCriadoComponent,
+    ModalErroAoCriarUsuarioComponent,
   ],
   imports: [
     FormsModule,

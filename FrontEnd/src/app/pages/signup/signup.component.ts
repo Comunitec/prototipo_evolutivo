@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { MatDialog } from '@angular/material/dialog'; // Importe o MatDialog
+import { ModalUsuarioCriadoComponent } from 'src/app/components/modal-usuario-criado/modal-usuario-criado.component';
+import { ModalErroAoCriarUsuarioComponent } from 'src/app/components/modal-erro-ao-criar-usuario/modal-erro-ao-criar-usuario.component'
 
 @Component({
   selector: 'app-signup',
@@ -15,14 +18,14 @@ export class SignupComponent {
   PerfilDeAcesso: string = "Aluno";
   selectedFile: File | null = null; // Propriedade para armazenar o arquivo selecionado
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private dialog: MatDialog) { } // Injete o MatDialog no construtor
 
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
   }
 
   enviarRegistro() {
-    const url = 'http://localhost:8800/addAluno'; // Substitua pela URL do seu servidor Node.js
+    const url = 'http://localhost:8800/addAluno';
 
     const formData = new FormData();
     formData.append('Nome', this.Nome);
@@ -38,12 +41,32 @@ export class SignupComponent {
     this.http.post(url, formData).subscribe(
       (response) => {
         console.log('Resposta do servidor:', response);
-        // Faça algo com a resposta do servidor Node.js
+        this.openModal();
       },
       (error) => {
         console.error('Erro na solicitação:', error);
-        // Trate o erro, se necessário
+        this.openModalErro();
       }
     );
+  }
+
+  openModal(): void {
+    const dialogRef = this.dialog.open(ModalUsuarioCriadoComponent, {
+      width: '350px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+  openModalErro(): void {
+    const dialogRef = this.dialog.open(ModalErroAoCriarUsuarioComponent, {
+      width: '350px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 }
