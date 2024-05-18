@@ -37,6 +37,7 @@ import { RankingComponent } from './components/ranking/ranking.component';
 import { RankingPageComponent } from './pages/ranking-page/ranking-page.component';
 
 
+import { PesquisaComponent } from './components/pesquisa/pesquisa.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -81,8 +82,10 @@ const routes: Routes = [
     FaqComponent,
     ModalUsuarioCriadoComponent,
     ModalErroAoCriarUsuarioComponent,
+    PesquisaComponent,
     RankingComponent,
     RankingPageComponent,
+
   ],
   imports: [
     FormsModule,
