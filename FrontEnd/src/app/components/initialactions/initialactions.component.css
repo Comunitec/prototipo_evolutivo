@@ -15,24 +15,6 @@
   box-shadow: 1px 0px 78px 6px rgba(153,0,0,0.28);
   -webkit-box-shadow: 1px 0px 78px 6px rgba(153,0,0,0.28);
   -moz-box-shadow: 1px 0px 78px 6px rgba(153,0,0,0.28);
-  animation: balanco 1.5s infinite;
-}
-@keyframes balanco {
-  0% {
-    transform: rotate(0deg);
-  }
-  25% {
-    transform: rotate(2deg);
-  }
-  50% {
-    transform: rotate(0deg);
-  }
-  75% {
-    transform: rotate(-2deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
 }
 
 h1{

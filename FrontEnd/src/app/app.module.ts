@@ -33,6 +33,8 @@ import {MatRadioModule} from '@angular/material/radio';
 import { FaqComponent } from './pages/faq/faq.component';
 import { ModalUsuarioCriadoComponent } from './components/modal-usuario-criado/modal-usuario-criado.component';
 import { ModalErroAoCriarUsuarioComponent } from './components/modal-erro-ao-criar-usuario/modal-erro-ao-criar-usuario.component';
+import { RankingComponent } from './components/ranking/ranking.component';
+import { RankingPageComponent } from './pages/ranking-page/ranking-page.component';
 
 
 
@@ -50,6 +52,7 @@ const routes: Routes = [
   {path: 'assistirAulas', component: AssistirAulasComponent},
   {path: 'detalheCurso', component: DetalheCursoComponent},
   {path: 'faq', component: FaqComponent},
+  {path: 'ranking-page', component: RankingPageComponent},
 ];
 
 @NgModule({
@@ -78,6 +81,8 @@ const routes: Routes = [
     FaqComponent,
     ModalUsuarioCriadoComponent,
     ModalErroAoCriarUsuarioComponent,
+    RankingComponent,
+    RankingPageComponent,
   ],
   imports: [
     FormsModule,
