@@ -1,6 +1,6 @@
 <div class="container_menu-lateral">
-<div class="card_perfil">
 
+<div class="card_perfil">
   <div class="card_perfil-foto">
     <img src="https://portal.fidelis.edu.br/wp-content/uploads/2020/10/perfil.jpg" alt="">
     <span class="nível">20</span>
@@ -8,15 +8,12 @@
 
   <div class="card_perfil-dados">
     <span class="nomePerfil">JOÃO DA SILVA</span>
-
     <span class="pontuacao">100 comunicoins</span>
   </div>
-
 </div>
 
 
 <div class="container_sidenav">
-  <div class="card_item-nav">
 
       <a routerLink="/home-logado">
         <i class="fa-layers center-icon"><fa-icon [icon]="faHouse"></fa-icon></i>
@@ -30,11 +27,20 @@
        </a>
 
        <a (click)="toggleSubmenus()">
-        <i class="fa-layers center-icon"><fa-icon [icon]="faBookOpen"></fa-icon></i>
+        <i class="fa-layers center-icon">
+          <fa-icon [icon]="faBookOpen"></fa-icon>
+        </i>
         <span>Cursos</span>
+        <i class="fa-layers center-icon chevron" *ngIf="!submenuOpen">
+          <fa-icon [icon]="faChevronRight"></fa-icon>
+        </i>
+        <i class="fa-layers center-icon chevron" *ngIf="submenuOpen">
+          <fa-icon [icon]="faChevronDown"></fa-icon>
+        </i>
       </a>
 
-      <div class="submenus" [style.display]="submenusVisible ? 'block' : 'none'">
+
+      <div class="submenus" [style.display]="submenuOpen ? 'block' : 'none'">
         <a routerLink="/meusCursosAluno">
           <i class="fa-layers center-icon"><fa-icon [icon]="faUserGraduate"></fa-icon></i>
           <span>Aluno</span>
@@ -66,6 +72,5 @@
       </a>
 
 
-  </div>
 </div>
 </div>
