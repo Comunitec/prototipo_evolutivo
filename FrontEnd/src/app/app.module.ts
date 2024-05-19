@@ -39,6 +39,9 @@ import { PesquisaComponent } from './components/pesquisa/pesquisa.component';
 import { StaffComponent } from './pages/staff/staff.component';
 import { ModalSalvarCursoComponent } from './components/modal-salvar-curso/modal-salvar-curso.component';
 import { ModalAlterarSenhaComponent } from './components/modal-alterar-senha/modal-alterar-senha.component';
+import { ModalConfimarAlteracaoComponent } from './components/modal-confimar-alteracao/modal-confimar-alteracao.component';
+import { ModalExcluirContaComponent } from './components/modal-excluir-conta/modal-excluir-conta.component';
+import { ModalCancelarAlteracaoComponent } from './components/modal-cancelar-alteracao/modal-cancelar-alteracao.component';
 
 
 const routes: Routes = [
@@ -92,6 +95,9 @@ const routes: Routes = [
     StaffComponent,
     ModalAlterarSenhaComponent,
     ModalSalvarCursoComponent,
+    ModalConfimarAlteracaoComponent,
+    ModalExcluirContaComponent,
+    ModalCancelarAlteracaoComponent,
 
   ],
   imports: [
