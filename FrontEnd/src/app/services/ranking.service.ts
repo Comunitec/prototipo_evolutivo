@@ -22,7 +22,8 @@ export class RankingService {
       { position: 2, photo: 'https://via.placeholder.com/50', name: 'Maria Oliveira', points: 90 },
       { position: 3, photo: 'https://via.placeholder.com/50', name: 'Pedro Nascimento', points: 80 },
       { position: 4, photo: 'https://via.placeholder.com/50', name: 'Mariana Ferreira', points: 70 },
-      { position: 5, photo: 'https://via.placeholder.com/50', name: 'Ana Gonçalves', points: 60 }
+      { position: 5, photo: 'https://via.placeholder.com/50', name: 'Ana Gonçalves', points: 60 },
+      { position: 6, photo: 'https://via.placeholder.com/50', name: 'José Silveira', points: 60 },
     ];
     return of(data);
   }

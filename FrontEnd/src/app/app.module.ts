@@ -38,6 +38,11 @@ import { RankingPageComponent } from './pages/ranking-page/ranking-page.componen
 import { PesquisaComponent } from './components/pesquisa/pesquisa.component';
 import { StaffComponent } from './pages/staff/staff.component';
 import { ModalSalvarCursoComponent } from './components/modal-salvar-curso/modal-salvar-curso.component';
+import { ModalAlterarSenhaComponent } from './components/modal-alterar-senha/modal-alterar-senha.component';
+import { ModalConfimarAlteracaoComponent } from './components/modal-confimar-alteracao/modal-confimar-alteracao.component';
+import { ModalExcluirContaComponent } from './components/modal-excluir-conta/modal-excluir-conta.component';
+import { ModalCancelarAlteracaoComponent } from './components/modal-cancelar-alteracao/modal-cancelar-alteracao.component';
+
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -88,7 +93,11 @@ const routes: Routes = [
     RankingComponent,
     RankingPageComponent,
     StaffComponent,
+    ModalAlterarSenhaComponent,
     ModalSalvarCursoComponent,
+    ModalConfimarAlteracaoComponent,
+    ModalExcluirContaComponent,
+    ModalCancelarAlteracaoComponent,
 
   ],
   imports: [

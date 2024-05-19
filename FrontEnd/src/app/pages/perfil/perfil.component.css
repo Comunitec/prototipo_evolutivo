@@ -4,61 +4,107 @@
 
 h1{
   margin: 20px;
+  padding-bottom: 10px;
+  font-weight: bold;
+  text-align: center;
 }
 
 .container_dados-cadastrais {
-  border: 1px solid blue;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
 }
+
+.card_perfil{
+  width: 65%;
+  height: 150px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
 .card_perfil-foto{
+  width: 70%;
+  height: 100%;
+  max-width: 150px;
+  max-height: 150px;
   position: relative;
   display: flex;
-  justify-content: center;
   align-items: center;
-  border: 1px solid yellowgreen;
-  margin: 0 auto;
+  justify-content: center;
 }
 .card_perfil-foto > img{
-  border: 2px solid black;
-  width: 25%;
-  height: 25%;
+  width: 90%;
+  height: 90%;
   border-radius: 50%;
 }
-.card_perfil-foto > i {
+
+input[type="file"] {
+  display: none;
+}
+
+.input-icon {
   position: absolute;
-  bottom: 10%;
+  bottom: 5%;
   left: 55%;
   background-color: #898989;
   border-radius: 50%;
   padding: 12px;
-  border:1px solid black;
+  border:1px solid #ffffff;
   font-size: 25px;
+  cursor: pointer;
 }
-
-.card_perfil-foto > i > fa-icon
-{
+.input-icon .icone-foto {
   width: 25%;
   height: 25%;
   border-radius: 50%;
 }
-
-.card_nome-completo{
-  border: 1px solid purple;
+.input-icon input[type="file"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
 }
 
-.coluna{
+.card_pontuacao{
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  height: 70;
+  width: 70%;
+  font-weight: bold;
+
+}
+
+.card_pontuacao-posicao, .card_pontuacao-comunicoins, .card_pontuacao-emblemas{
+  height: 33%;
+  width: 100%;
+}
+
+.card_dados_cadastrais{
+  padding-top: 10px;
+}
+
+.card_dados_cadastrais-linha1 > input{
+  width: 97%;
+}
+
+.card_dados_cadastrais-linha2{
+  padding: 10px 0;
   display: flex;
   flex-direction: row;
-  border: 1px solid red;
 }
 
 .card_data-nascimento{
   padding-left: 35px;
 }
+
 
 input[type="text"],
 input[type="email"],
@@ -67,7 +113,7 @@ input[type="date"] {
   display: flex;
   width: 200px;
   height: 16px;
-  padding: 8px;
+  padding: 10px;
   border-radius: 8px;
   border: none;
   background-color: #d9d9d9;
@@ -83,6 +129,23 @@ input[type="email"]{
 input[type="text"]{
   width: 600px;
 }
+.card_senha{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  padding-top: 10px;
+}
+
+.card_senha > a {
+  padding-left: 5px;
+
+}
+
+.card_senha:hover{
+  color: #3a3a3a;
+}
+
 
 button {
   color: white;
@@ -95,20 +158,33 @@ button {
 
 
 }
-
-button.btn-excluir {
-  background-color: #990000;
-  width: 150px;
+.card_edicao-salvar{
+  width: 100%;
 }
 
-button.btn-editar {
+.btn-cancelar {
+  background-color: #990000;
+  width: 160px;
+  transition: background-color 0.2s;
+}
+
+.btn-editar , .btn-salvar{
   padding: 10px 30px;
   background-color: #666666;
   transition: background-color 0.2s;
+  width: 160px;
 
 }
+.excluir{
+  font-weight: bold;
+  color: #990000;
+}
 
-button.btn-excluir:hover {
+.excluir:hover {
+ color: #720101;
+}
+
+button.btn-cancelar:hover {
   background-color: #720101;
 
 }
@@ -117,8 +193,11 @@ button.btn-editar:hover {
   background-color: #3a3a3a;
 }
 
+button.btn-salvar:hover {
+  background-color: #3a3a3a;
+}
+
 .container_btn{
-  border:1px solid orange;
   display: flex;
   flex-direction: column;
   align-items: center;
