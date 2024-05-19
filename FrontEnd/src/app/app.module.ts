@@ -35,9 +35,8 @@ import { ModalUsuarioCriadoComponent } from './components/modal-usuario-criado/m
 import { ModalErroAoCriarUsuarioComponent } from './components/modal-erro-ao-criar-usuario/modal-erro-ao-criar-usuario.component';
 import { RankingComponent } from './components/ranking/ranking.component';
 import { RankingPageComponent } from './pages/ranking-page/ranking-page.component';
-
-
 import { PesquisaComponent } from './components/pesquisa/pesquisa.component';
+import { StaffComponent } from './pages/staff/staff.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -54,6 +53,8 @@ const routes: Routes = [
   {path: 'detalheCurso', component: DetalheCursoComponent},
   {path: 'faq', component: FaqComponent},
   {path: 'ranking-page', component: RankingPageComponent},
+  {path: 'staff', component: StaffComponent},
+
 ];
 
 @NgModule({
@@ -85,6 +86,7 @@ const routes: Routes = [
     PesquisaComponent,
     RankingComponent,
     RankingPageComponent,
+    StaffComponent,
 
   ],
   imports: [
