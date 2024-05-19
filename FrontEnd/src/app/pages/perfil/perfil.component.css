@@ -7,7 +7,6 @@ h1{
 }
 
 .container_dados-cadastrais {
-  border: 1px solid blue;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -18,13 +17,14 @@ h1{
 .card_perfil{
   width: 65%;
   height: 150px;
-  border: 1px solid red;
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
 .card_perfil-foto{
-  width: 35%;
+  width: 70%;
   height: 100%;
   max-width: 150px;
   max-height: 150px;
@@ -32,57 +32,73 @@ h1{
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid yellowgreen;
 }
 .card_perfil-foto > img{
-  border: 2px solid black;
   width: 90%;
   height: 90%;
   border-radius: 50%;
 }
-.card_perfil-foto > i {
+
+input[type="file"] {
+  display: none;
+}
+
+.input-icon {
   position: absolute;
   bottom: 5%;
   left: 55%;
   background-color: #898989;
   border-radius: 50%;
   padding: 12px;
-  border:1px solid black;
+  border:1px solid #ffffff;
   font-size: 25px;
+  cursor: pointer;
 }
-
-.card_perfil-foto > i > fa-icon
-{
+.input-icon .icone-foto {
   width: 25%;
   height: 25%;
   border-radius: 50%;
 }
-.card_perfil_pontuacao{
+.input-icon input[type="file"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.card_pontuacao{
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  height: 70;
   width: 70%;
-  border:1px solid pink;
-}
-.card_perfil_pontuacao-ranking{
-  height: 50%;
-  border:1px solid black;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.card_perfil_pontuacao-emblemas{
-  height: 50%;
-  border:1px solid black;
-}
-.card_nome-completo{
-  border: 1px solid purple;
+.card_pontuacao-posicao, .card_pontuacao-comunicoins, .card_pontuacao-emblemas{
+  height: 33%;
+  width: 100%;
 }
 
-.coluna{
+.card_dados_cadastrais{
+  padding-top: 10px;
+}
+
+.card_dados_cadastrais-linha1 > input{
+  width: 97%;
+}
+
+.card_dados_cadastrais-linha2{
+  padding: 10px 0;
   display: flex;
   flex-direction: row;
-  border: 1px solid red;
 }
 
 .card_data-nascimento{
-  border: 1px solid red;
   padding-left: 35px;
 }
 
@@ -94,7 +110,7 @@ input[type="date"] {
   display: flex;
   width: 200px;
   height: 16px;
-  padding: 8px;
+  padding: 10px;
   border-radius: 8px;
   border: none;
   background-color: #d9d9d9;
@@ -109,6 +125,23 @@ input[type="email"]{
 
 input[type="text"]{
   width: 600px;
+}
+.card_senha{
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+
+}
+
+.card_senha > div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.card_senha > div > i > fa-icon {
+  font-size: 20px;
+  padding-left: 10px;
 }
 
 button {
@@ -145,7 +178,6 @@ button.btn-editar:hover {
 }
 
 .container_btn{
-  border:1px solid orange;
   display: flex;
   flex-direction: column;
   align-items: center;
