@@ -1,4 +1,4 @@
-<header></header>
+<app-header></app-header>
 <app-left-column>
   <app-menu-lateral></app-menu-lateral>
 </app-left-column>
@@ -10,7 +10,7 @@
     <table>
       <thead>
         <tr>
-          <th >Posição</th>
+          <th>Posição</th>
           <th class="foto">Foto</th>
           <th class="nome">Nome Aluno</th>
           <th class="ponto">Pontos</th>
@@ -19,14 +19,15 @@
       <tbody>
         <tr *ngFor="let item of rankingItems">
           <td class="posicao">{{ item.position }} º</td>
-          <td><img [src]="item.photo" alt="{{ item.name }}" class="avatar"></td>
+          <td>
+            <img [src]="item.photo" alt="{{ item.name }}" class="avatar" style="width: 100px; height: 100px; border-radius: 50%;">
+          </td>
           <td>{{ item.name }}</td>
           <td>{{ item.points }} comunicoins</td>
         </tr>
       </tbody>
     </table>
   </div>
-
 
 </app-middle-column>
 

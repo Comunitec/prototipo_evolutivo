@@ -13,6 +13,20 @@ export const getAlunos = (_, res) => {
     return res.status(200).json(data);
   });
 };
+//Get de todos os alunos ranking
+export const getAlunosRanking = (_, res) => {
+  const q = `
+    SELECT idAluno, Nome, Pontuacao,
+           RANK() OVER (ORDER BY Pontuacao DESC) AS position
+    FROM aluno
+  `;
+
+  db.query(q, (err, data) => {
+    if (err) return res.json(err);
+
+    return res.status(200).json(data);
+  });
+};
 
 //Adicionar alunos
 export const addAluno = (req, res) => {

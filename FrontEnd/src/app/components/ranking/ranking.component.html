@@ -1,11 +1,10 @@
 <div class="card-ranking">
-
   <h2>RANKING</h2>
 
   <div *ngFor="let item of rankingItems; let i = index">
-    <div class="ranking-item">
+    <div class="ranking-item" [ngClass]="getBorderClass(i)">
       <span>{{ item.position }}º</span>
-      <img [src]="item.photo" alt="{{ item.name }}" [ngClass]="getBorderClass(i)">
+      <img [src]="item.photo" alt="{{ item.name }}" class="photo">
       <div class="dados">
         <p class="name">{{ item.name }}</p>
         <p class="pontos">{{ item.points }} comunicoins</p>
