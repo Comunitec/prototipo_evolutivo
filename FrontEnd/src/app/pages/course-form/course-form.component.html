@@ -2,40 +2,19 @@
 <app-left-column>
   <app-menu-lateral></app-menu-lateral>
 </app-left-column>
-
 <!-- Coluna do Meio (Rolável) - Feed Principal -->
 <app-middle-column>
   <form action="">
     <h1>Gerenciar Cursos</h1>
-
     <div class="input-group">
-      <label for="nome">Nome do Curso</label>
-      <input
-        class="common-style"
-        name="courseName"
-        type="text"
-        id="courseName"
-        placeholder="Digite o nome do curso"
-      />
-
-      <label for="nome">Descrição</label>
-      <textarea
-        class="common-style"
-        name="courseDescription"
-        id="courseDescription"
-        cols="30"
-        rows="10"
-        placeholder="Digite a descrição do curso"
-      ></textarea>
-      <label for="nome">Tag</label>
-
-      <select
-        class="common-style"
-        name="tagSelector"
-        id="tag"
-        [(ngModel)]="selectedTag"
-        (change)="optionSelected()"
-      >
+      <label for="courseName">Nome do Curso</label>
+      <input class="common-style" name="courseName" type="text" id="courseName" placeholder="Digite o nome do curso"
+        required [(ngModel)]="curso.tituloCurso" />
+      <label for="courseDescription">Descrição</label>
+      <textarea class="common-style" name="courseDescription" id="courseDescription" cols="30" rows="10"
+        placeholder="Digite a descrição do curso" [(ngModel)]="curso.descricaoCurso"></textarea>
+      <label for="tag">Tag</label>
+      <select class="common-style" name="tagSelector" id="tag" [(ngModel)]="selectedTag" (change)="optionSelected()">
         <option *ngFor="let tag of tagList" [value]="tag">
           {{ tag }}
         </option>
@@ -43,63 +22,79 @@
       <div class="container-tags">
         <p *ngFor="let tag of selectedOptions">{{ tag }}</p>
       </div>
-
       <div class="container-buttons">
-        <button
-          class="common-style"
-          (click)="removeTags()"
-          [ngClass]="{ 'btn-tag-selecionada': tagBoolean }"
-        >
+        <button class="common-style" type="button" (click)="removeTags()"
+          [ngClass]="{ 'btn-tag-selecionada': tagBoolean }">
           - Remover tags
         </button>
       </div>
+      <!-- Seção de imagem -->
+      <label for="adicionarImagem">Adicionar imagem</label>
+      <input class="input-file" id="adicionarImagem" type="file" accept=".jpg, .jpeg, .png"
+        (change)="onFileSelected($event, 'imagem')" hidden />
+      <div class="image-preview" *ngIf="selectedImagem">
+        <img [src]="selectedImagem" alt="selecionada">
+      </div>
+      <button type="button" class="save-button" (click)="triggerFileInput('adicionarImagem')">Escolher Imagem</button>
 
-      <label for="adiconarImagem">Adicionar imagem</label>
-      <input
-        class="input-file"
-        id="adiconarImagem"
-        type="file"
-        accept=".jpg, .jpeg, .png"
-      />
-      <label for="">Enviar vídeos</label>
+      <!-- Seção de emblema -->
+      <label for="adicionarEmblema">Adicionar emblema</label>
+      <input class="input-file" id="adicionarEmblema" type="file" accept=".jpg, .jpeg, .png"
+        (change)="onFileSelected($event, 'emblema')" hidden />
+      <div class="image-preview" *ngIf="selectedEmblema">
+        <img [src]="selectedEmblema" alt="Emblema selecionado">
+      </div>
+      <button type="button" class="save-button" (click)="triggerFileInput('adicionarEmblema')">Escolher
+        Emblema</button>
+
+      <!-- Seção de PDF -->
+      <label for="adicionarCertificado">Adicionar Certificado (PDF)</label>
+      <input class="input-file" id="adicionarCertificado" type="file" accept=".pdf"
+        (change)="onFileSelected($event, 'certificado')" hidden />
+      <div class="pdf-preview" *ngIf="selectedCertificadoName">
+        <p>Arquivo selecionado: {{ selectedCertificadoName }}</p>
+      </div>
+      <button type="button" class="save-button" (click)="triggerFileInput('adicionarCertificado')">Escolher
+        PDF</button>
+      <!-- Seção de aulas -->
+      <label for="adicionarVideos">Enviar vídeos</label>
       <div class="add-video">
-        <label for="">Título da aula</label>
-        <input
-          type="text"
-          class="common-style"
-          placeholder="Digite o título da aula"
-          name="titulo"
-          id="titulo"
-          [(ngModel)]="titulo"
-          [ngModelOptions]="{ standalone: true }"
-        />
-        <label for="">Descrição da aula</label>
-        <textarea
-          class="common-style"
-          cols="30"
-          rows="2"
-          placeholder="Digite a descrição da aula"
-          [(ngModel)]="descricao"
-          [ngModelOptions]="{ standalone: true }"
-        ></textarea>
-        <label for="">Adicionar vídeo</label>
-        <input
-          class="input-file"
-          id="adiconarVideo"
-          type="file"
-          accept=".mp4"
-        />
+        <label for="tituloAula">Título da aula</label>
+        <input type="text" class="common-style" placeholder="Digite o título da aula" name="tituloAula" id="tituloAula"
+          [(ngModel)]="tituloAula" [ngModelOptions]="{ standalone: true }" required />
+        <label for="descricaoAula">Descrição da aula</label>
+        <textarea class="common-style" cols="30" rows="2" placeholder="Digite a descrição da aula" name="descricaoAula"
+          id="descricaoAula" [(ngModel)]="descricaoAula" [ngModelOptions]="{ standalone: true }"></textarea>
+        <label for="adiconarVideo">Adicionar link do vídeo</label>
+        <input class="common-style" id="adiconarVideo" type="text" placeholder="Insira o link do vídeo"
+          [(ngModel)]="linkAula" [ngModelOptions]="{ standalone: true }" />
+        <!-- Seção de questionário -->
+        <label for="">Adicionar questionário</label>
+        <div class="container-questionary" *ngFor="let questao of questionario; let qi = index">
+          <label for="questao{{qi}}">Questão {{qi+1}}:</label>
+          <input type="text" class="common-style" placeholder="Digite a questão" name="questao{{qi}}" id="questao{{qi}}"
+            [(ngModel)]="questao.questao" [ngModelOptions]="{ standalone: true }" />
+          <label for="">Digite as respostas e marque a alternativa correta</label>
+          <div *ngFor="let alternativa of questao.respostas; let ai = index" class="answer-group">
+            <input type="text" class="common-style" placeholder="Digite a resposta" name="respostaCorreta{{qi}}_{{ai}}"
+              id="respostaCorreta{{qi}}_{{ai}}" [(ngModel)]="alternativa.textoAlternativa"
+              [ngModelOptions]="{ standalone: true }" />
+            <div class="container-buttons">
+              <button type="button" [ngClass]="{'btn-correta': alternativa.correta, 'save-button': !alternativa.correta}"
+                (click)="setCorrectAnswer(qi, ai)">{{alternativa.correta ? 'Correta': 'Marcar correta'}} </button>
+            </div>
+          </div>
+        </div>
         <div class="container-buttons">
-          <button class="save-button" (click)="saveClass()">Salvar aula</button>
+          <button class="save-button" type="button" (click)="saveClass()">Salvar aula</button>
         </div>
       </div>
     </div>
     <div class="container-buttons">
-      <button class="save-button">Finalizar gerenciamento do curso</button>
+      <button class="save-button" type="button" (click)="salvarCurso()">Finalizar gerenciamento do curso</button>
     </div>
   </form>
 </app-middle-column>
-
 <!-- Coluna Direita (Fixa) - Sem Ranking -->
 <app-right-column>
   <div class="column-right">
@@ -109,16 +104,8 @@
       as informações
     </p>
   </div>
-  <div
-    class="saved-classes"
-    *ngFor="let class of classList"
-    (click)="mostraDados(class)"
-  >
-    <h4>{{ class.titulo }}</h4>
-    <p>{{ class.descricao }}</p>
-  </div>
-  <div class="saved-classes">
-    <h4>título da aula para teste</h4>
-    <p>está é uma breve descrição do conteudo da aula x</p>
+  <div class="saved-classes" *ngFor="let aula of curso.aulas; let a=index" (click)="mostraDados(aula, a)">
+    <h4><b>Aula {{a+1}}:</b> {{ aula.tituloAula }}</h4>
+    <p>{{ aula.descricaoAula }}</p>
   </div>
 </app-right-column>

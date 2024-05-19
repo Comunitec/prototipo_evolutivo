@@ -8,8 +8,7 @@
   width: 70%;
   background-color: #FFFFFF;
   overflow-y: auto;
-
-
+  max-height: 92vh;
 }
 
 .middle-column::-webkit-scrollbar {
