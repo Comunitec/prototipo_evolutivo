@@ -1,1 +1,19 @@
-<p>modal-alterar-senha works!</p>
+<h2>Alterar Senha</h2>
+<form>
+  <div>
+    <label for="senhaAtual">Senha Atual</label>
+    <input type="password" id="senhaAtual" [(ngModel)]="senhaAtual" name="senhaAtual">
+  </div>
+  <div>
+    <label for="novaSenha">Nova Senha</label>
+    <input type="password" id="novaSenha" [(ngModel)]="novaSenha" name="novaSenha">
+  </div>
+  <div>
+    <label for="confirmarNovaSenha">Confirmar Nova Senha</label>
+    <input type="password" id="confirmarNovaSenha" [(ngModel)]="confirmarNovaSenha" name="confirmarNovaSenha">
+  </div>
+  <div class="buttons">
+    <button type="button" mat-button (click)="salvar()">Salvar</button>
+    <button type="button" mat-button class="cancel" (click)="close()">Cancelar</button>
+  </div>
+</form>

@@ -16,6 +16,7 @@ table {
   align-items: center;
   margin: 10px 50px;
   border-collapse: collapse; /* Colapsa as bordas das células */
+  text-align: center;
 }
 
 th{
@@ -31,7 +32,6 @@ td, th:not(:last-child) {
 }
 
 th {
-
   text-align: center;
 }
 
@@ -42,7 +42,7 @@ th {
 }
 
 .nome {
-  width: 300px;
+  width: 400px;
 }
 
 img {

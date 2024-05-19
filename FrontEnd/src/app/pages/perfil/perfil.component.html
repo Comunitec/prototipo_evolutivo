@@ -5,7 +5,7 @@
 
 <app-middle-column>
 
-  <h1 style="text-align: center;">Gerenciar dados cadastrais</h1>
+  <h1>Gerenciar Pefil</h1>
   <div class="container_dados-cadastrais">
 
     <div class="card_perfil">
@@ -19,7 +19,11 @@
       <div class="card_pontuacao">
         <div class="card_pontuacao-posicao">Ranking: 20º lugar</div>
         <div class="card_pontuacao-comunicoins">Pontuação: 100 Comunicoins</div>
-        <div class="card_pontuacao-emblemas">Emblemas adquiridos:</div>
+        <div class="card_pontuacao-emblemas">Emblemas adquiridos:
+          <i class="icone-foto"><fa-icon [icon]="faCamera"></fa-icon></i>
+          <i class="icone-foto"><fa-icon [icon]="faCamera"></fa-icon></i>
+          <i class="icone-foto"><fa-icon [icon]="faCamera"></fa-icon></i>
+        </div>
       </div>
     </div>
 
@@ -48,35 +52,33 @@
 
 
       <div class="card_senha">
-        <label for="">Senha</label>
-        <div>
-          <input type="password" disabled>
-          <i class="icone-foto"><fa-icon [icon]="faEye"></fa-icon></i>
+        <fa-icon [icon]="faKey"></fa-icon>
+        <a (click)="openModal()">Altere sua senha</a>
+      </div>
+      <div class="container_btn">
+        <div class="card_edicao" *ngIf="!editando">
+          <div class="card_edicao-editar">
+            <button class="btn-editar" (click)="habilitarEdicao()"> <fa-icon [icon]="faEdit"></fa-icon> Editar Dados</button>
+          </div>
         </div>
+        <div class="card_edicao" *ngIf="editando">
+          <div class="card_edicao-salvar">
+            <button class="btn-salvar"><fa-icon [icon]="faFloppyDisk"></fa-icon> Salvar</button>
+            <button class="btn-cancelar"><fa-icon [icon]="faXmark"></fa-icon> Cancelar</button>
+          </div>
+        </div>
+        <br><br><br><br><br><br>
+        <div class="excluir"><fa-icon [icon]="faTrash"></fa-icon> Excluir Conta</div>
       </div>
-
     </div>
 
   </div>
-  <div class="container_btn">
-    <div class="card_edicao" *ngIf="!editando">
-      <div class="card_edicao-editar">
-        <button class="btn-editar" (click)="habilitarEdicao()"> <fa-icon [icon]="faEdit"></fa-icon> Editar Dados</button>
-      </div>
-    </div>
-    <div class="card_edicao" *ngIf="editando">
-      <div class="card_edicao-salvar">
-        <button class="btn-salvar"><fa-icon [icon]="faFloppyDisk"></fa-icon> Salvar</button>
-        <button class="btn-salvar"><fa-icon [icon]="faXmark"></fa-icon> Cancelar</button>
-      </div>
-    </div>
-    <button class="btn-excluir"><fa-icon [icon]="faTrash"></fa-icon> Excluir Conta</button>
-  </div>
+
 
 </app-middle-column>
 
 
 
 <app-right-column>
-  <!--Acrescentar Ranking-->
+    <app-ranking></app-ranking>
 </app-right-column>
