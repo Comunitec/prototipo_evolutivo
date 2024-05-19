@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { ModalSalvarCursoComponent } from 'src/app/components/modal-salvar-curso/modal-salvar-curso.component';
+
+import { DomSanitizer } from '@angular/platform-browser';
+import { MatDialog } from '@angular/material/dialog';
 
 interface Curso {
   tituloCurso: string;
@@ -35,6 +39,11 @@ type imageType = string | ArrayBuffer | null;
   styleUrls: ['./course-form.component.css'],
 })
 export class CourseFormComponent {
+  constructor(
+    public sanitizer: DomSanitizer,
+    public dialog: MatDialog
+  ){}
+
   curso: Curso = {
     tituloCurso: '',
     descricaoCurso: '',
@@ -165,12 +174,18 @@ export class CourseFormComponent {
     this.editingIndex = index;
   }
 
+  openModal(): void {
+    const dialogRef = this.dialog.open(ModalSalvarCursoComponent);
+
+  }
+
   salvarCurso() {
     this.curso.tag = this.selectedOptions;
     this.curso.imagem = this.selectedImagem as string;
     this.curso.emblema = this.selectedEmblema as string;
     this.curso.certificado = this.selectedCertificadoName as string;
     console.log(this.curso);
+    this.openModal();
   }
 
   selectedImagem: imageType = null;
