@@ -1,0 +1,36 @@
+
+.btn{
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  position: relative;
+  margin-top: 10px;
+  background-color: #990000;
+  display: flex;
+  justify-content: center;
+  width: fit-content;
+}
+
+.btn:hover {
+  background-color: rgb(110, 0, 0);
+  cursor: pointer;
+}
+
+.close{
+  background-color: #575656;
+}
+.close:hover{
+  background-color: #666666;
+}
+.modal-container{
+  display: flex;
+  flex-direction: column;
+  padding: 20px 30px;
+  width: 730px;
+}
+.container-btn{
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}

@@ -37,6 +37,7 @@ import { RankingComponent } from './components/ranking/ranking.component';
 import { RankingPageComponent } from './pages/ranking-page/ranking-page.component';
 import { PesquisaComponent } from './components/pesquisa/pesquisa.component';
 import { StaffComponent } from './pages/staff/staff.component';
+import { ModalSalvarCursoComponent } from './components/modal-salvar-curso/modal-salvar-curso.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -87,6 +88,7 @@ const routes: Routes = [
     RankingComponent,
     RankingPageComponent,
     StaffComponent,
+    ModalSalvarCursoComponent,
 
   ],
   imports: [
