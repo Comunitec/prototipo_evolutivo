@@ -1,27 +1,19 @@
 *{
-  margin: 1px;
-  padding: 3px;
-  box-sizing: border-box;
   text-decoration: none;
   color: #000;
-
 }
 
 .container_menu-lateral{
   margin-top: 20px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-
 }
 
 .card_perfil{
-  max-width: 220px;
-  max-height: 80px;
   padding: 5px;
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  justify-content: center;
+  gap: 20px
 }
 
 .card_perfil-foto{
@@ -29,7 +21,6 @@
   width: 80px;
   height: 80px;
   position: relative;
-
 }
 
 .card_perfil-foto > img{
@@ -41,13 +32,11 @@
 }
 
 .card_perfil-foto > span{
-  width: 35%;
-  height: 35%;
   bottom: 0;
   left: 0;
   position: absolute;
   border-radius: 50%;
-
+  padding: 5px;
   text-align: center;
   background-color: red;
   color: white;
@@ -80,7 +69,9 @@
 /*Menu*/
 
 .container_sidenav{
-  max-width: 230px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
 }
 .card_item-nav{
   padding-top: 30px;
@@ -95,9 +86,19 @@
 
 a{
   margin: 0;
-  padding: 10px 0px 10px 30px;
-  border-top: 1px groove rgb(189, 188, 188);
-  border-bottom: 1px groove rgb(189, 188, 188);
+  padding: 10px 10px 10px 10px;
+  text-align: center;
+  /* gap: 10px; */
+  /* border-top: 1px groove rgb(189, 188, 188); */
+  /* border-bottom: 1px groove rgb(189, 188, 188); */
+}
+i{
+  margin-right: 10px;
+}
+
+a, i{
+  font-size: 14px;
+  font-weight: bold;
 }
 
 .card_item-nav a > span{
@@ -110,35 +111,31 @@ a:hover{
   background-color: rgb(189, 188, 188);
 }
 
-a:hover i > fa-icon, a:hover span {
-  color: #ffff;
-}
 
 
 /*submenu cursos*/
 .submenus{
-  padding: 0;
-  margin: 0;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .submenus > a{
-  width: 100%;
-  display: flex;
+     /* width: 100%; */
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     background: rgb(189, 188, 188);
+     border-bottom: 1px #959595 solid;
+     border-top: 1px #959595 solid;
+     /* border-top: 1px groove white; */
+     /* border-bottom: 1px groove white; */
+     /* box-shadow: 0px 1px 10px -4px rgba(0,0,0,0.75) inset; */
+     /* -webkit-box-shadow: 0px 1px 10px -4px rgba(0,0,0,0.75) inset; */
+     /* -moz-box-shadow: 0px 1px 10px -4px rgba(0,0,0,0.75) inset; */
+}
 
-  background: rgb(189, 188, 188);
-  border-top: 1px groove white;
-  border-bottom: 1px groove white;
-  box-shadow: 0px 1px 10px -4px rgba(0,0,0,0.75) inset;
-  -webkit-box-shadow: 0px 1px 10px -4px rgba(0,0,0,0.75) inset;
-  -moz-box-shadow: 0px 1px 10px -4px rgba(0,0,0,0.75) inset;
-}
-.submenus > a > span{
-  font-size: 13px;
-  font-weight: bold;
-  padding-left: 20px;
-}
 
 .submenus > a:not(:first-child) {
   border-top: none;
@@ -147,4 +144,7 @@ a:hover i > fa-icon, a:hover span {
 
 fa-icon{
   font-size: 15px;
+}
+.chevron{
+  margin-left: 10px;
 }
