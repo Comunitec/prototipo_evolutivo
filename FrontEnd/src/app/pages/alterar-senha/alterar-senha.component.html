@@ -1,0 +1,40 @@
+
+  <!-- Coluna do Meio (Rolável) - Feed Principal -->
+  <app-middle-column>
+    <h2>Alterar senha</h2>
+    <div class="form">
+
+
+    <form (submit)="enviarRegistro()" class="login-form">
+      <div class="input-group">
+        <label for="senha">Insira sua nova senha</label>
+        <input
+        class="common-style"
+          type="senha"
+          id="senha"
+          name="senha"
+          [(ngModel)]="senha"
+          placeholder="Digite sua senha"
+          required
+        />
+        <label for="senha">Confirme sua nova senha</label>
+        <input
+        class="common-style"
+          type="senha"
+          id="senha"
+          name="senha"
+          [(ngModel)]="senha"
+          placeholder="Digite sua nova senha"
+          required
+        />
+      </div>
+      <div class="button-container">
+        <button class="back-button" routerLink="/login">Voltar</button>
+        <button class="ok-button" type="submit">Alterar</button>
+      </div>
+      </form>
+      <div class="img-recuperar-senha">
+        <img src="assets\img-recuperar-senha.png" alt="recuperar senha" />
+      </div>
+    </div>
+    </app-middle-column>

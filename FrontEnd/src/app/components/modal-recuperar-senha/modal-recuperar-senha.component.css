@@ -20,10 +20,9 @@
   display: flex;
   flex-direction: column;
   padding: 20px 30px;
-  width: 510px;
+  width: 456px;
 }
 .container-btn{
   display: flex;
-  justify-content: flex-end;
-  gap: 10px;
+  justify-content: center;
 }
