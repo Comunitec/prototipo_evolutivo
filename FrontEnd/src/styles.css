@@ -7,6 +7,8 @@
   --button-width: 110px;
   --hover-btn-primary: #6a0000;
   --hover-btn-secondary: #414141;
+  --hover-menu:  rgb(189, 189, 189);
+  --back-menu: #d9d9d9;
 }
 
 * {

@@ -66,7 +66,7 @@ select {
 }
 
 .btn-tag-selecionada {
-    background-color: #990000;
+    background-color: var(--primary-color);
     color: white;
     cursor: pointer;
 }
@@ -94,7 +94,7 @@ select {
 }
 
 .save-button {
-    background-color: #990000;
+    background-color: var(--primary-color);
     color: white;
     border: none;
     border-radius: 8px;
@@ -162,7 +162,7 @@ select {
 }
 
 .saved-classes:hover {
-    background-color: rgb(189, 188, 188);
+    background-color:var(--hover-menu);
     cursor: pointer;
 }
 
