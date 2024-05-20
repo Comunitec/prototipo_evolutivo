@@ -25,6 +25,10 @@ body {
     flex-direction: column;
     align-items: center;
 }
+.form-group > a {
+    font-size: 10px;
+    color: #990000;
+}
 
 label {
     display: block;
@@ -86,5 +90,5 @@ button.back-button:hover {
 
 img {
     display: flex;
-    width: 70%;
+    width: 60%;
 }
