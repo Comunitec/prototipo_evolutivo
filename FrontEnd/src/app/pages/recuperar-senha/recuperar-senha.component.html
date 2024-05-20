@@ -1,0 +1,30 @@
+
+  <!-- Coluna do Meio (Rolável) - Feed Principal -->
+  <app-middle-column>
+    <h2>Recuperar senha</h2>
+    <div class="form">
+
+
+    <form (submit)="enviarRegistro()" class="login-form">
+      <div class="input-group">
+        <label for="email">Insira o e-mail institucional cadastrado</label>
+        <input
+        class="common-style"
+          type="email"
+          id="email"
+          name="email"
+          [(ngModel)]="email"
+          placeholder="Digite seu email"
+          required
+        />
+      </div>
+      <div class="button-container">
+        <button class="back-button" routerLink="/login">Voltar</button>
+        <button class="ok-button" type="submit">Obter código</button>
+      </div>
+      </form>
+      <div class="img-recuperar-senha">
+        <img src="assets\img-recuperar-senha.png" alt="recuperar senha" />
+      </div>
+    </div>
+    </app-middle-column>

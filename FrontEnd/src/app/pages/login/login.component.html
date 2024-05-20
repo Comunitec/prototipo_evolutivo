@@ -1,8 +1,8 @@
 
     <div class="container">
       <app-middle-column>
+        <h2>Login</h2>
         <form (submit)="enviarRegistro()" class="login-form">
-          <h2>Login</h2>
           <div class="form-group">
             <label for="email">E-mail</label>
             <input
@@ -24,6 +24,7 @@
               placeholder="Digite sua senha"
               required
             />
+            <a routerLink="/recuperar-senha">Esqueceu a senha?</a>
           </div>
           <div class="button-container">
             <button class="back-button" routerLink="/">Voltar</button>
@@ -31,7 +32,7 @@
           </div>
         </form>
         <div class="img-login">
-          <img src="assets\img-login.png" alt="Imagem de login" />
+          <img src="assets\img-login.png" alt="login" />
         </div>
       </app-middle-column>
     </div>

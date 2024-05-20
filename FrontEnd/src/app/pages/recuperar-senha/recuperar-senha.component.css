@@ -1,0 +1,91 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif, Arial;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+form {
+  width: 50%;
+}
+.form{
+  padding: 0 40px;
+}
+
+h2 {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.input-group {
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  text-align: left;
+  margin-bottom: 5px;
+  margin-top: 30px;
+}
+
+.common-style {
+  display: flex;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  background-color: #d9d9d9;
+  box-shadow: 1px 3px 4px -2px #898989;
+  font-size: 16px;
+}
+
+.common-style:focus {
+  outline: none;
+}
+
+input,
+textarea {
+  width: 100%;
+}
+
+button {
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  height: 32px;
+  padding: 10px 20px;
+  margin-top: 20px;
+  width: 110px;
+}
+
+button.ok-button {
+  background-color: #990000;
+  width: fit-content;
+}
+
+button.back-button {
+  background-color: #666666;
+  transition: background-color 0.2s;
+}
+
+button.ok-button:hover {
+  background-color: #720101;
+}
+
+button.back-button:hover {
+  background-color: #3a3a3a;
+}
+
+.img-recuperar-senha {
+  display: flex;
+  justify-content: flex-end;
+}

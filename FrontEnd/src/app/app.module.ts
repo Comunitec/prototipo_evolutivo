@@ -42,6 +42,8 @@ import { ModalAlterarSenhaComponent } from './components/modal-alterar-senha/mod
 import { ModalConfimarAlteracaoComponent } from './components/modal-confimar-alteracao/modal-confimar-alteracao.component';
 import { ModalExcluirContaComponent } from './components/modal-excluir-conta/modal-excluir-conta.component';
 import { ModalCancelarAlteracaoComponent } from './components/modal-cancelar-alteracao/modal-cancelar-alteracao.component';
+import { RecuperarSenhaComponent } from './pages/recuperar-senha/recuperar-senha.component';
+import { ModalRecuperarSenhaComponent } from './components/modal-recuperar-senha/modal-recuperar-senha.component';
 
 
 const routes: Routes = [
@@ -60,6 +62,7 @@ const routes: Routes = [
   {path: 'faq', component: FaqComponent},
   {path: 'ranking-page', component: RankingPageComponent},
   {path: 'staff', component: StaffComponent},
+  {path: 'recuperar-senha', component: RecuperarSenhaComponent}
 
 ];
 
@@ -98,6 +101,8 @@ const routes: Routes = [
     ModalConfimarAlteracaoComponent,
     ModalExcluirContaComponent,
     ModalCancelarAlteracaoComponent,
+    RecuperarSenhaComponent,
+    ModalRecuperarSenhaComponent,
 
   ],
   imports: [
