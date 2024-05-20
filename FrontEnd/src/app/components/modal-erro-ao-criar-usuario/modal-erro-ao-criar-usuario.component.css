@@ -7,13 +7,13 @@
     position: relative;
     margin-top: 10px;
     margin-bottom: 15px;
-    background-color: red;
+    background-color: var(--primary-color);
     width: 500px;
     display: flex;
     justify-content: center;
   }
 
   .btn:hover {
-    background-color: rgb(121, 0, 0);
+    background-color: var(--secondary-color);
     cursor: pointer;
 }

@@ -4,11 +4,13 @@
     border: none;
     border-radius: 5px;
     color: white;
-    font-weight: bold;
     float: right;
+
   }
 
-
+.adicionar{
+  padding: 10px 20px;
+}
   .btn-adicionarCurso {
     background-color: var(--primary-color);
   }
@@ -21,4 +23,3 @@
     margin: 20px;
     text-align: center;
   }
-  

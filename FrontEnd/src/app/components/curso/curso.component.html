@@ -1,18 +1,21 @@
 <div class="container_curso">
+
   <div class="card_curso" (click)="redirecionarParaRota">
+
     <div class="card_curso-thumb">
       <img [src]="imagem" alt="" />
     </div>
+
     <div class="card_curso-descricao">
       <div class="card_descricao-titulo">
         <h2>{{ nomeCurso }}</h2>
       </div>
 
-      <div class="card_descricao-tags">
-        <span *ngFor="let tag of tags">{{ tag }}</span>
+      <div class="container-tags">
+        <p *ngFor="let tag of tags">{{ tag }}</p>
       </div>
 
-      <div class="card_descricao-texto">{{ descricao }}</div>
+      <div class="card_descricao-texto">{{ getTruncatedText(descricao, 300) }}</div>
 
       <div class="card_descricao-botoes">
         <button *ngIf="podeEditar" class="btn-editar">Editar</button>
