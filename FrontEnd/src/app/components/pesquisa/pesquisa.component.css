@@ -21,7 +21,6 @@
     flex: 1; /* Alterado para o elemento preencher todo o espaço disponível */
     padding: 12px; /* Aumenta o tamanho do padding para aumentar o tamanho da caixa */
     font-size: 16px;
-    border: 1px solid #ccc;
     border-radius: 5px;
     margin-right: 10px; /* Adiciona um espaçamento entre os elementos */
   }
