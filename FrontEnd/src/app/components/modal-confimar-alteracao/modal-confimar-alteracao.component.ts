@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-modal-confimar-alteracao',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./modal-confimar-alteracao.component.css']
 })
 export class ModalConfimarAlteracaoComponent {
+  constructor(public dialogRef: MatDialogRef<ModalConfimarAlteracaoComponent>) {}
 
+  closeModal(): void {
+    this.dialogRef.close();
+  }
 }
