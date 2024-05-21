@@ -1,0 +1,48 @@
+
+  <!-- Coluna Esquerda (Fixa) - Ranking -->
+  <app-left-column>
+    <app-menu-lateral></app-menu-lateral>
+  </app-left-column>
+  
+  <!-- Coluna do Meio (Rolável) - Feed Principal -->
+  <app-middle-column>
+  
+<div class="container_curso">
+  <h1><b>Parabéns!</b> Você finalizou o curso: {{ nomeCurso }}</h1>
+    <div class="card_curso">
+
+      
+
+
+      <div class="card_curso-thumb">
+        <img [src]="imagem" alt="" />
+
+        
+      </div>
+
+      <div class="card_curso-descricao">
+    
+
+        <div class="card_descricao-texto">
+            <b> {{ pontos }} pontos</b> obtidos por concluir este curso <br><br>
+            <p> Certificado disponível, clique no botao abaixo para fazer o download!</p>
+            <button  class="btn-matricula" ><a href="imagem" download>Baixar certificado</a></button>
+        </div>
+  
+        <ul class="avaliacao">
+            <li class="star-icon ativo" data-avaliacao="1"></li>
+            <li class="star-icon" data-avaliacao="2"></li>
+            <li class="star-icon" data-avaliacao="3"></li>
+            <li class="star-icon" data-avaliacao="4"></li>
+            <li class="star-icon" data-avaliacao="5"></li>
+          </ul>
+
+
+
+      
+      </div>
+    </div>
+  </div>
+  </app-middle-column>
+
+  <app-right-column></app-right-column>
