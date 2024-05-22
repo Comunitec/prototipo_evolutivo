@@ -46,6 +46,7 @@ import { RecuperarSenhaComponent } from './pages/recuperar-senha/recuperar-senha
 import { ModalRecuperarSenhaComponent } from './components/modal-recuperar-senha/modal-recuperar-senha.component';
 import { AlterarSenhaComponent } from './pages/alterar-senha/alterar-senha.component';
 import { FinalizarCursoComponent } from './pages/finalizar-curso/finalizar-curso.component';
+import { GerenciarUsuariosComponent } from './pages/gerenciar-usuarios/gerenciar-usuarios.component';
 
 
 const routes: Routes = [
@@ -66,7 +67,8 @@ const routes: Routes = [
   {path: 'staff', component: StaffComponent},
   {path: 'recuperar-senha', component: RecuperarSenhaComponent},
   {path: 'alterar-senha', component: AlterarSenhaComponent},
-  {path: 'finalizarCurso', component: FinalizarCursoComponent}
+  {path: 'finalizarCurso', component: FinalizarCursoComponent},
+  {path: 'gerenciar-usuarios', component: GerenciarUsuariosComponent}
 
 ];
 
@@ -109,6 +111,7 @@ const routes: Routes = [
     ModalRecuperarSenhaComponent,
     AlterarSenhaComponent,
     FinalizarCursoComponent,
+    GerenciarUsuariosComponent,
 
   ],
   imports: [
