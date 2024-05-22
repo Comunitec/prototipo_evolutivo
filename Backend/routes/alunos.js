@@ -1,5 +1,5 @@
 import express from "express";
-import { addAluno, getAlunos, getImagemAluno, getAlunosRanking } from "../controllers/aluno.js";
+import { addAluno, deleteAluno, getAlunos, getImagemAluno, getAlunosRanking } from "../controllers/aluno.js";
 import multer from 'multer';
 import path from 'path';
 import { v4 as uuidv4 } from 'uuid';
@@ -18,10 +18,11 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-router.get("/", getAlunos);
+router.get("/getAlunos", getAlunos);
 router.post("/addAluno", upload.single('Foto'), addAluno);
 router.get("/imagem/:id", getImagemAluno);
 router.get("/ranking", getAlunosRanking)
+router.delete('/deleteAluno/:id', deleteAluno);
 
 
 export default router;

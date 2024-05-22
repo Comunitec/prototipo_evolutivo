@@ -1,14 +1,10 @@
-<!-- Coluna Esquerda (Fixa) - Ranking -->
 <app-left-column>
   <app-menu-lateral></app-menu-lateral>
 </app-left-column>
 
-<!-- Coluna do Meio (Rolável) - Feed Principal -->
 <app-middle-column>
   <div class="container">
-
     <h2>Gerenciar Usuários</h2>
-
     <h3>Usuários cadastrados na comunitec</h3>
     <div class="search">
       <span>Pesquisar:</span>
@@ -16,17 +12,16 @@
       <button class="btn-add" (click)="adicionarUsuario()">Adicionar Usuário</button>
     </div>
     <div class="container-usuarios">
-      <div class="usuario"  *ngFor="let usuario of usuarios">
-        <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="avatar">
-        <p><b>Nome: </b>{{usuario.nome}}</p> <!-- Corrigido para 'name' -->
-        <p><b>Email:</b> {{usuario.email}}</p>
+      <div class="usuario" *ngFor="let usuario of usuarios">
+        <img [src]="usuario.photoUrl || 'https://www.w3schools.com/howto/img_avatar.png'" alt="Avatar" class="avatar">
+        <p><b>Nome: </b>{{ usuario.Nome }}</p>
+        <p><b>Email:</b> {{ usuario.Email }}</p>
         <div class="container-icons">
-          <a  class="edit" (click)="editarUsuario(usuario)"><fa-icon [icon]="faEdit"></fa-icon></a>
-          <a  class="delete" (click)="excluirUsuario(usuario)"><fa-icon [icon]="faTrash"></fa-icon></a>
+          <a class="edit" (click)="editarUsuario(usuario.idAluno)"><fa-icon [icon]="faEdit"></fa-icon></a>
+          <a class="delete" (click)="excluirUsuario(usuario.idAluno)"><fa-icon [icon]="faTrash"></fa-icon></a>
         </div>
       </div>
     </div>
-
   </div>
 </app-middle-column>
 
