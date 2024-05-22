@@ -1,41 +1,63 @@
-import { Component } from '@angular/core';
-import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { faEdit, faTrash, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+
+interface Usuario {
+  idAluno: number;
+  Nome: string;
+  Email: string;
+  photoUrl?: string; // Adicionando a propriedade photoUrl
+}
+
 
 @Component({
   selector: 'app-gerenciar-usuarios',
   templateUrl: './gerenciar-usuarios.component.html',
   styleUrls: ['./gerenciar-usuarios.component.css']
 })
-export class GerenciarUsuariosComponent {
-  usuarios = [
-    { nome: 'Alice Johnson', email: 'alice.johnson@fatec.sp.gov.br' },
-    { nome: 'Bob Smith', email: 'bob.smith@fatec.sp.gov.br' },
-    { nome: 'Carol Williams', email: 'carol.williams@fatec.sp.gov.br' },
-    { nome: 'David Brown', email: 'david.brown@fatec.sp.gov.br' },
-    { nome: 'Emma Davis', email: 'emma.davis@fatec.sp.gov.br' },
-    { nome: 'Frank Miller', email: 'frank.miller@fatec.sp.gov.br' },
-    { nome: 'Grace Wilson', email: 'grace.wilson@fatec.sp.gov.br' },
-    { nome: 'Hank Moore', email: 'hank.moore@fatec.sp.gov.br' },
-    { nome: 'Ivy Taylor', email: 'ivy.taylor@fatec.sp.gov.br' },
-    { nome: 'Jack Anderson', email: 'jack.anderson@fatec.sp.gov.br' },
-    { nome: 'Katie Thomas', email: 'katie.thomas@fatec.sp.gov.br' },
-    { nome: 'Leo Martinez', email: 'leo.martinez@fatec.sp.gov.br' },
-    { nome: 'Mia Harris', email: 'mia.harris@fatec.sp.gov.br' },
-    { nome: 'Nina Clark', email: 'nina.clark@fatec.sp.gov.br' },
-    { nome: 'Owen Rodriguez', email: 'owen.rodriguez@fatec.sp.gov.br' },
-    { nome: 'Paula Lewis', email: 'paula.lewis@fatec.sp.gov.br' },
-    { nome: 'Quincy Walker', email: 'quincy.walker@fatec.sp.gov.br' },
-    { nome: 'Rachel Young', email: 'rachel.young@fatec.sp.gov.br' },
-    { nome: 'Sam King', email: 'sam.king@fatec.sp.gov.br' },
-    { nome: 'Tina Wright', email: 'tina.wright@fatec.sp.gov.br' }
-  ];
+export class GerenciarUsuariosComponent implements OnInit {
+  usuarios: Usuario[] = [];
+  faEdit: IconDefinition = faEdit;
+  faTrash: IconDefinition = faTrash;
 
-  faEdit = faEdit;
-  faTrash = faTrash;
+  constructor(private http: HttpClient, private router: Router) {}
 
-  editando: boolean = false;
+  ngOnInit() {
+    this.carregarUsuarios();
+  }
 
-  editarUsuario(usuario: any) {}
-  excluirUsuario(usuario: any) {}
-  adicionarUsuario() {}
+  carregarUsuarios() {
+    this.http.get<Usuario[]>('http://localhost:8800/getAlunos').subscribe(
+      data => {
+        console.log('Dados dos usuários:', data);
+        this.usuarios = data.map(usuario => ({
+          ...usuario,
+          photoUrl: `http://localhost:8800/imagem/${usuario.idAluno}`
+        }));
+      },
+      error => {
+        console.error('Erro ao carregar usuários:', error);
+      }
+    );
+  }
+
+  editarUsuario(id: number) {
+    this.router.navigate(['/editar-usuario', id]);
+  }
+
+  excluirUsuario(id: number) {
+    this.http.delete(`http://localhost:8800/deleteAluno/${id}`).subscribe(
+      () => {
+        this.carregarUsuarios();
+      },
+      error => {
+        console.error('Erro ao excluir usuário:', error);
+      }
+    );
+  }
+
+  adicionarUsuario() {
+    // Lógica para adicionar um novo usuário
+  }
 }

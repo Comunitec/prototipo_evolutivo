@@ -28,6 +28,45 @@ export const getAlunosRanking = (_, res) => {
   });
 };
 
+export const deleteAluno = (req, res) => {
+  const id = req.params.id;
+
+  const qSelect = "SELECT Foto FROM aluno WHERE idAluno = ?";
+  const qDelete = "DELETE FROM aluno WHERE idAluno = ?";
+
+  db.query(qSelect, [id], (err, result) => {
+    if (err) {
+      console.error("Erro ao selecionar imagem do aluno:", err);
+      return res.sendStatus(500);
+    }
+
+    if (result.length === 0) {
+      return res.status(404).json({ error: "Usuário não encontrado." });
+    }
+
+    const imagePath = result[0].Foto.toString();
+    const imageAbsPath = path.join(process.cwd(), imagePath);
+
+    console.log("Caminho absoluto da imagem:", imageAbsPath);
+
+    fs.unlink(imageAbsPath, (err) => {
+      if (err) {
+        console.error("Erro ao excluir imagem do aluno:", err);
+        return res.sendStatus(500);
+      }
+
+      db.query(qDelete, [id], (err) => {
+        if (err) {
+          console.error("Erro ao excluir aluno do banco de dados:", err);
+          return res.sendStatus(500);
+        }
+
+        return res.status(200).json({ message: "Usuário e imagem deletados com sucesso." });
+      });
+    });
+  });
+};
+
 //Adicionar alunos
 export const addAluno = (req, res) => {
   const { Nome, Email, Senha, DataNasc, Pontuacao, PerfilDeAcesso } = req.body;
