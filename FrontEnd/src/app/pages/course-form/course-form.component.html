@@ -2,6 +2,7 @@
 <app-left-column>
   <app-menu-lateral></app-menu-lateral>
 </app-left-column>
+
 <!-- Coluna do Meio (Rolável) - Feed Principal -->
 <app-middle-column>
   <form action="">
@@ -28,6 +29,7 @@
           - Remover tags
         </button>
       </div>
+
       <!-- Seção de imagem -->
       <label for="adicionarImagem">Adicionar imagem</label>
       <input class="input-file" id="adicionarImagem" type="file" accept=".jpg, .jpeg, .png"
@@ -44,8 +46,7 @@
       <div class="image-preview" *ngIf="selectedEmblema">
         <img [src]="selectedEmblema" alt="Emblema selecionado">
       </div>
-      <button type="button" class="save-button" (click)="triggerFileInput('adicionarEmblema')">Escolher
-        Emblema</button>
+      <button type="button" class="save-button" (click)="triggerFileInput('adicionarEmblema')">Escolher Emblema</button>
 
       <!-- Seção de PDF -->
       <label for="adicionarCertificado">Adicionar Certificado (PDF)</label>
@@ -54,11 +55,15 @@
       <div class="pdf-preview" *ngIf="selectedCertificadoName">
         <p>Arquivo selecionado: {{ selectedCertificadoName }}</p>
       </div>
-      <button type="button" class="save-button" (click)="triggerFileInput('adicionarCertificado')">Escolher
-        PDF</button>
+      <button type="button" class="save-button" (click)="triggerFileInput('adicionarCertificado')">Escolher PDF</button>
+
+      <div style="display: flex; justify-content: center;">
+        <button type="button" class="save-button" (click)="salvarCurso()">Salvar curso e enviar aulas</button>
+      </div>
+
       <!-- Seção de aulas -->
-      <label for="adicionarVideos">Enviar vídeos</label>
-      <div class="add-video">
+      <div class="add-video" *ngIf="mostrarAulas">
+        <label for="adicionarVideos">Enviar vídeos</label>
         <label for="tituloAula">Título da aula</label>
         <input type="text" class="common-style" placeholder="Digite o título da aula" name="tituloAula" id="tituloAula"
           [(ngModel)]="tituloAula" [ngModelOptions]="{ standalone: true }" required />
@@ -91,10 +96,11 @@
       </div>
     </div>
     <div class="container-buttons">
-      <button class="save-button" type="button" (click)="salvarCurso()">Finalizar gerenciamento do curso</button>
+      <button class="save-button" type="button" (click)="finalizarGerenciamento()">Finalizar gerenciamento do curso</button>
     </div>
   </form>
 </app-middle-column>
+
 <!-- Coluna Direita (Fixa) - Sem Ranking -->
 <app-right-column>
   <div class="column-right">
