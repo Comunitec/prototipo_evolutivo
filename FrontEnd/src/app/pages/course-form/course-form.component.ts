@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ModalSalvarCursoComponent } from 'src/app/components/modal-salvar-curso/modal-salvar-curso.component';
-
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -39,10 +38,7 @@ type imageType = string | ArrayBuffer | null;
   styleUrls: ['./course-form.component.css'],
 })
 export class CourseFormComponent {
-  constructor(
-    public sanitizer: DomSanitizer,
-    public dialog: MatDialog
-  ){}
+  constructor(public sanitizer: DomSanitizer, public dialog: MatDialog) {}
 
   curso: Curso = {
     tituloCurso: '',
@@ -83,6 +79,8 @@ export class CourseFormComponent {
     },
   ];
 
+  mostrarAulas = false;
+
   createEmptyAlternatives(): Alternativa[] {
     return [
       { textoAlternativa: '', correta: false },
@@ -100,6 +98,16 @@ export class CourseFormComponent {
   }
 
   editingIndex: number | null = null;
+
+  salvarCurso() {
+    this.curso.tag = this.selectedOptions;
+    this.curso.imagem = this.selectedImagem as string;
+    this.curso.emblema = this.selectedEmblema as string;
+    this.curso.certificado = this.selectedCertificadoName as string;
+    console.log(this.curso);
+    this.mostrarAulas = true;
+
+  }
 
   saveClass() {
     if (this.editingIndex !== null) {
@@ -176,16 +184,6 @@ export class CourseFormComponent {
 
   openModal(): void {
     const dialogRef = this.dialog.open(ModalSalvarCursoComponent);
-
-  }
-
-  salvarCurso() {
-    this.curso.tag = this.selectedOptions;
-    this.curso.imagem = this.selectedImagem as string;
-    this.curso.emblema = this.selectedEmblema as string;
-    this.curso.certificado = this.selectedCertificadoName as string;
-    console.log(this.curso);
-    this.openModal();
   }
 
   selectedImagem: imageType = null;
@@ -206,9 +204,15 @@ export class CourseFormComponent {
       if (type === 'imagem' || type === 'emblema') {
         reader.onload = (e) => {
           if (type === 'imagem') {
-            this.selectedImagem = e.target?.result as string | ArrayBuffer | null;
+            this.selectedImagem = e.target?.result as
+              | string
+              | ArrayBuffer
+              | null;
           } else if (type === 'emblema') {
-            this.selectedEmblema = e.target?.result as string | ArrayBuffer | null;
+            this.selectedEmblema = e.target?.result as
+              | string
+              | ArrayBuffer
+              | null;
           }
         };
         reader.readAsDataURL(file);
@@ -216,5 +220,11 @@ export class CourseFormComponent {
         this.selectedCertificadoName = file.name;
       }
     }
+  }
+
+  finalizarGerenciamento() {
+    // Lógica para finalizar o gerenciamento do curso
+    console.log('Gerenciamento do curso finalizado:', this.curso);
+    this.openModal();
   }
 }
