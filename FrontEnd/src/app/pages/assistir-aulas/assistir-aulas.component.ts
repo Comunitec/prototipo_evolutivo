@@ -31,8 +31,8 @@ export class AssistirAulasComponent {
 
   openModal(): void {
     const dialogRef = this.dialog.open(ModalWQuestoesComponent, {
-      width: '350px'
-      
+      width: '500px',
+
     });
 
     dialogRef.afterClosed().subscribe(result => {
