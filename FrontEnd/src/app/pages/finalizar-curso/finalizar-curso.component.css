@@ -1,69 +1,73 @@
 .container_curso {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
     margin: 1rem;
     margin-bottom: 1rem;
   }
-  
+
   .card_curso {
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     border-radius: 10px;
-    overflow: hidden;
+    margin: 10px 50px;
+    width: fit-content;
   }
-  
-  .card_curso-thumb img {
-    width: 100%;
-  height: auto;
-  border-radius: 10px;
-  }
-  
+
   .card_curso-descricao {
-    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 2rem;
     max-height: 600px;
     overflow: hidden;
   }
-  
+
   .card_descricao-titulo {
     margin-bottom: 1rem;
   }
-  
+
   .card_descricao-tags span {
     font-size: 12px;
     font-weight: bold;
     color: white;
-    background-color: red;
+    background-color: var(--primary-color);
     margin: 0.2rem;
     padding: 0.3rem 0.5rem;
     border-radius: 5px;
   }
-  
+
   .card_descricao-texto {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     padding-top: 25px;
     text-align: center;
     margin-bottom: 1rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 20; /* Número de linhas para exibir */
-    -webkit-box-orient: vertical;
   }
-  
-  
+
+
   .btn-matricula{
     padding: 8px 16px;
     border: none;
     border-radius: 5px;
     color: white;
-    font-weight: bold;
     position: center;
     margin-top: 10px;
     margin-bottom: 15px;
-    background-color: red;
-    width: 300px;
+    background-color: var(--primary-color);
     display: flex;
     justify-content: center;
   }
 
   .btn-matricula:hover {
-    background-color: rgb(121, 0, 0);
+    background-color: var(--primary-color);
     cursor: pointer;
 }
 
@@ -75,25 +79,11 @@ h1{
     margin: 20px;
     text-align: center;
   }
-  
-  
-  @media (min-width: 768px) {
-    .card_curso {
-      display: flex;
-      flex-direction: row;
-    }
-  
-    .card_curso-thumb {
-      flex: 1;
-    }
-  
-    .card_curso-descricao {
-      flex: 2;
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 10px;
-    }
+  img{
+    width: 40%;
+    height: auto;
   }
-  
+
 
 
   .avaliacao{

@@ -1,36 +1,18 @@
+<h1>Questionário</h1>
+<form (ngSubmit)="finalizarQuestionario()">
+    <h3>{{ currentQuestionIndex + 1 }}. {{ questionario[currentQuestionIndex].questao }}</h3>
+    <mat-radio-group
 
-<div><h2 mat-dialog-title>Questionário referente a aula 1</h2>
-<p>1- Quanto é 2+2?</p>
-<mat-radio-group class="radioBtn" aria-label="Select an option">
-    <mat-radio-button value="1">3</mat-radio-button><br>
-    <mat-radio-button value="2">4</mat-radio-button>
-  </mat-radio-group>
+     >
+      <mat-radio-button *ngFor="let resposta of questionario[currentQuestionIndex].respostas" [value]="resposta.textoAlternativa">
+        {{ resposta.textoAlternativa }}
+      </mat-radio-button>
+    </mat-radio-group>
 
-<p>2- Quanto é 2+2?</p>
-<mat-radio-group class="radioBtn" aria-label="Select an option">
-    <mat-radio-button value="1">3</mat-radio-button><br>
-    <mat-radio-button value="2">4</mat-radio-button>
-  </mat-radio-group>
-
-<p>3- Quanto é 2+2?</p>
-<mat-radio-group class="radioBtn" aria-label="Select an option">
-    <mat-radio-button value="1">3</mat-radio-button>
-    <mat-radio-button value="2">4</mat-radio-button>
-  </mat-radio-group>
-
-<p>4- Quanto é 2+2?</p>
-<mat-radio-group class="radioBtn" aria-label="Select an option">
-    <mat-radio-button value="1">3</mat-radio-button>
-    <mat-radio-button value="2">4</mat-radio-button>
-  </mat-radio-group>
-
-<p>5- Quanto é 2+2?</p>
-<mat-radio-group class="radioBtn" aria-label="Select an option">
-    <mat-radio-button value="1">3</mat-radio-button>
-    <mat-radio-button value="2">4</mat-radio-button>
-  </mat-radio-group>
-<mat-dialog-actions>
-  <button class='btn 'mat-button (click)="closeModal()">Entendido</button>
-</mat-dialog-actions>
-
-</div>
+    <div class="navigation-buttons">
+      <button class="btn nav" mat-button type="button" (click)="prevQuestion()" [disabled]="currentQuestionIndex === 0"><fa-icon [icon]="faArrowLeft"></fa-icon></button>
+      <button class="btn cancel" mat-button type="button" (click)="cancel()">Cancelar</button>
+      <button class="btn" mat-button type="button" (click)="finalizarQuestionario()" [disabled]="!isLastQuestion()">Finalizar</button>
+      <button class="btn nav" mat-button type="button" (click)="nextQuestion()" [disabled]="isLastQuestion()"><fa-icon [icon]="faArrowRight"></fa-icon></button>
+    </div>
+</form>

@@ -1,78 +1,89 @@
   <!-- Coluna Esquerda (Fixa) - Ranking -->
-<app-left-column>
+  <app-left-column>
     <app-menu-lateral></app-menu-lateral>
   </app-left-column>
-  
+
   <!-- Coluna do Meio (Rolável) - Feed Principal -->
   <app-middle-column>
-  <br><br><br>
+    <h1>Curso de Typescript</h1>
     <mat-accordion>
-        <mat-expansion-panel class="matExpansion">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Aula 1
-            </mat-panel-title>
-            <mat-panel-description>
-              {{ tituloAula1 }}
-            </mat-panel-description>
-          </mat-expansion-panel-header>
+      <mat-expansion-panel class="matExpansion">
+        <mat-expansion-panel-header>
+          <mat-panel-title>Aula 1</mat-panel-title>
+          <mat-panel-description>
+            {{ tituloAula1 }}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div>
           <p> {{ descricao1 }}</p>
-          
-          <iframe class="iframeElement" width="560" height="315" [src]="Aula1Web" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
-          <button class="btn" (click)="openModal()">Acessar questionário</button>
-        </mat-expansion-panel>
 
-        <br>
+        <iframe class="iframeElement" width="560" height="315" [src]="Aula1Web" frameborder="0"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
+          referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        <button class="btn" (click)="openModal()">Acessar questionário</button>
+        </div>
 
-        <mat-expansion-panel class="matExpansion">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Aula 2
-            </mat-panel-title>
-            <mat-panel-description>
-                {{ tituloAula2 }}
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <p>{{ descricao2 }}</p>
+      </mat-expansion-panel>
 
-          <iframe class="iframeElement" width="560" height="315" [src]="Aula1Web" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
-          <button class="btn" (click)="openModal()">Acessar questionário</button>
-        </mat-expansion-panel>
+      <br>
 
-        <br>
+      <mat-expansion-panel class="matExpansion">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Aula 2
+          </mat-panel-title>
+          <mat-panel-description>
+            {{ tituloAula2 }}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>{{ descricao2 }}</p>
 
-        <mat-expansion-panel class="matExpansion">
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                Aula 3
-              </mat-panel-title>
-              <mat-panel-description>
-                {{ tituloAula3 }}
-              </mat-panel-description>
-            </mat-expansion-panel-header>
-            <p>{{ descricao3 }}</p>
+        <iframe class="iframeElement" width="560" height="315" [src]="Aula1Web" frameborder="0"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
+          referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        <button class="btn" (click)="openModal()">Acessar questionário</button>
+      </mat-expansion-panel>
 
-            <iframe class="iframeElement" width="560" height="315" [src]="Aula1Web" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
-            <button class="btn" (click)="openModal()">Acessar questionário</button>
-          </mat-expansion-panel>
+      <br>
 
-          <br>
+      <mat-expansion-panel class="matExpansion">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Aula 3
+          </mat-panel-title>
+          <mat-panel-description>
+            {{ tituloAula3 }}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>{{ descricao3 }}</p>
 
-          <mat-expansion-panel disabled="true" class="matExpansion">
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                Aula 4
-              </mat-panel-title>
-              <mat-panel-description>
-                {{ tituloAula4 }}
-              </mat-panel-description>
-            </mat-expansion-panel-header>
-            <p>{{ descricao4 }}</p>
-            <iframe class="iframeElement" width="560" height="315" [src]="Aula1Web" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
-            <button class="btn" (click)="openModal()">Acessar questionário</button>
-          </mat-expansion-panel>
+        <iframe class="iframeElement" width="560" height="315" [src]="Aula1Web" frameborder="0"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
+          referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        <button class="btn" (click)="openModal()">Acessar questionário</button>
+      </mat-expansion-panel>
 
-      </mat-accordion>
+      <br>
+
+      <mat-expansion-panel disabled="true" class="matExpansion">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Aula 4
+          </mat-panel-title>
+          <mat-panel-description>
+            {{ tituloAula4 }}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>{{ descricao4 }}</p>
+        <iframe class="iframeElement" width="560" height="315" [src]="Aula1Web" frameborder="0"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
+          referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        <button class="btn" (click)="openModal()">Acessar questionário</button>
+      </mat-expansion-panel>
+
+    </mat-accordion>
+
   </app-middle-column>
 
   <app-right-column></app-right-column>
