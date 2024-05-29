@@ -1,23 +1,27 @@
 import express from "express";
 import path from "path";
-import { fileURLToPath } from 'url'; // Importa a função fileURLToPath
+import { fileURLToPath } from 'url';
 import cors from "cors";
 import alunoRoutes from "./routes/alunos.js";
-import cursoRoutres from "./routes/cursos.js"
+import cursoRoutes from "./routes/cursos.js";
 
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url)); // Obtém o diretório atual
-
-
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const app = express();
 
-app.use(express.json());
+// Middleware do CORS
 app.use(cors());
+
+// Middlewares de parsing do body
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Servir arquivos estáticos
 app.use('/static', express.static(path.join(__dirname, 'static')));
 
+// Rotas
 app.use("/", alunoRoutes);
-app.use("/", cursoRoutres)
+app.use("/", cursoRoutes);
 
 app.listen(8800, () => {
   console.log("Server running on port 8800");
