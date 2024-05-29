@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { ModalSalvarCursoComponent } from 'src/app/components/modal-salvar-curso/modal-salvar-curso.component';
+import { HttpClient } from '@angular/common/http';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatDialog } from '@angular/material/dialog';
+import { ModalSalvarCursoComponent } from 'src/app/components/modal-salvar-curso/modal-salvar-curso.component';
 
 interface Curso {
   tituloCurso: string;
@@ -38,7 +39,11 @@ type imageType = string | ArrayBuffer | null;
   styleUrls: ['./course-form.component.css'],
 })
 export class CourseFormComponent {
-  constructor(public sanitizer: DomSanitizer, public dialog: MatDialog) {}
+  constructor(
+    public sanitizer: DomSanitizer,
+    public dialog: MatDialog,
+    private http: HttpClient
+  ) {}
 
   curso: Curso = {
     tituloCurso: '',
@@ -101,12 +106,32 @@ export class CourseFormComponent {
 
   salvarCurso() {
     this.curso.tag = this.selectedOptions;
-    this.curso.imagem = this.selectedImagem as string;
-    this.curso.emblema = this.selectedEmblema as string;
-    this.curso.certificado = this.selectedCertificadoName as string;
-    console.log(this.curso);
-    this.mostrarAulas = true;
 
+    // Prepare form data
+    const formData = new FormData();
+    formData.append('Nome', this.curso.tituloCurso);
+    formData.append('Descricao', this.curso.descricaoCurso);
+    formData.append('idAlunoCriador', '40'); // ID fixo do aluno criador
+
+    if (this.selectedImagemFile) {
+      formData.append('Imagem', this.selectedImagemFile);
+    }
+    if (this.selectedEmblemaFile) {
+      formData.append('Emblema', this.selectedEmblemaFile);
+    }
+    if (this.selectedCertificadoFile) {
+      formData.append('Certificado', this.selectedCertificadoFile);
+    }
+
+    this.http.post('http://localhost:8800/addCurso', formData).subscribe(
+      (response) => {
+        console.log('Curso salvo com sucesso:', response);
+        this.mostrarAulas = true;
+      },
+      (error) => {
+        console.error('Erro ao salvar curso:', error);
+      }
+    );
   }
 
   saveClass() {
@@ -189,6 +214,9 @@ export class CourseFormComponent {
   selectedImagem: imageType = null;
   selectedEmblema: imageType = null;
   selectedCertificadoName: imageType = null;
+  selectedImagemFile: File | null = null;
+  selectedEmblemaFile: File | null = null;
+  selectedCertificadoFile: File | null = null;
 
   triggerFileInput(inputId: string) {
     const fileInput = document.getElementById(inputId) as HTMLInputElement;
@@ -204,26 +232,22 @@ export class CourseFormComponent {
       if (type === 'imagem' || type === 'emblema') {
         reader.onload = (e) => {
           if (type === 'imagem') {
-            this.selectedImagem = e.target?.result as
-              | string
-              | ArrayBuffer
-              | null;
+            this.selectedImagem = e.target?.result as string | ArrayBuffer | null;
+            this.selectedImagemFile = file;
           } else if (type === 'emblema') {
-            this.selectedEmblema = e.target?.result as
-              | string
-              | ArrayBuffer
-              | null;
+            this.selectedEmblema = e.target?.result as string | ArrayBuffer | null;
+            this.selectedEmblemaFile = file;
           }
         };
         reader.readAsDataURL(file);
       } else if (type === 'certificado') {
         this.selectedCertificadoName = file.name;
+        this.selectedCertificadoFile = file;
       }
     }
   }
 
   finalizarGerenciamento() {
-    // Lógica para finalizar o gerenciamento do curso
     console.log('Gerenciamento do curso finalizado:', this.curso);
     this.openModal();
   }

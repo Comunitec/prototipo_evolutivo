@@ -1,42 +1,64 @@
 import { db } from "../db.js";
-import fs from 'fs';
 import path from 'path';
-import { v4 as uuidv4 } from 'uuid';
 
 //Get de todos os cursos
 export const getCursos = (_, res) => {
-    const q = "SELECT * FROM curso";
+  const q = "SELECT * FROM curso";
   
-    db.query(q, (err, data) => {
-      if (err) return res.json(err);
-  
-      return res.status(200).json(data);
-    });
-  };
+  db.query(q, (err, data) => {
+    if (err) return res.json(err);
+    return res.status(200).json(data);
+  });
+};
 
-// Adicionar cursos
+//Add curso
 export const addCurso = (req, res) => {
-  const { Nome, Descricao, idAlunoCriador, idTag } = req.body;
-  const arquivos = req.files;
+  const { Nome, Descricao, idAlunoCriador } = req.body;
 
-  if (!arquivos || !arquivos['Imagem'] || !arquivos['Certificado'] || !arquivos['Emblema']) {
-    return res.status(400).json({ error: "Todos os arquivos (Imagem, Certificado, Emblema) são necessários" });
+  // Logs para verificar a chegada dos dados
+  console.log("Received body:", req.body);
+  console.log("Received files:", req.files);
+
+  // Verificar se os arquivos foram enviados corretamente
+  const { Imagem, Certificado, Emblema } = req.files;
+
+  if (!Imagem || !Certificado || !Emblema) {
+    console.error("Arquivos não enviados corretamente");
+    return res.status(400).json({ error: "Arquivos não enviados corretamente" });
   }
 
-  const imagem = arquivos['Imagem'][0].filename;
-  const certificado = arquivos['Certificado'][0].filename;
-  const emblema = arquivos['Emblema'][0].filename;
+  // Verificar se os nomes dos arquivos estão definidos corretamente
+  const imagemName = Imagem[0].filename;
+  const certificadoName = Certificado[0].filename;
+  const emblemaName = Emblema[0].filename;
 
-  const imagemPath = path.join('/static/images/cursos', imagem);
-  const certificadoPath = path.join('/static/certificados', certificado);
-  const emblemaPath = path.join('/static/emblemas', emblema);
+  console.log("Imagem Name:", imagemName);
+  console.log("Certificado Name:", certificadoName);
+  console.log("Emblema Name:", emblemaName);
 
-  const query = "INSERT INTO curso(`Nome`, `Descricao`, `Imagem`, `Certificado`, `Emblema`, `idAlunoCriador`, `idTag`) VALUES (?, ?, ?, ?, ?, ?, ?)";
-  const values = [Nome, Descricao, imagemPath, certificadoPath, emblemaPath, idAlunoCriador, idTag];
+  if (!imagemName || !certificadoName || !emblemaName) {
+    console.error("Nomes dos arquivos não definidos corretamente");
+    return res.status(400).json({ error: "Nomes dos arquivos não definidos corretamente" });
+  }
 
-  db.query(query, values, (err) => {
-    if (err) return res.json(err);
+  // Caminhos relativos para os arquivos
+  const imagemPath = path.join('static/images/cursos', imagemName);
+  const certificadoPath = path.join('static/images/certificados', certificadoName);
+  const emblemaPath = path.join('static/images/emblemas', emblemaName);
 
+  console.log("Imagem Path:", imagemPath);
+  console.log("Certificado Path:", certificadoPath);
+  console.log("Emblema Path:", emblemaPath);
+
+  // Inserir informações do curso no banco de dados
+  const q = "INSERT INTO curso(`Nome`, `Descricao`, `Imagem`, `Certificado`, `Emblema`, `idAlunoCriador`) VALUES (?, ?, ?, ?, ?, ?)";
+  const values = [Nome, Descricao, imagemPath, certificadoPath, emblemaPath, idAlunoCriador];
+
+  db.query(q, values, (err) => {
+    if (err) {
+      console.error("Erro ao inserir curso no banco de dados:", err);
+      return res.status(500).json({ error: "Erro ao inserir curso no banco de dados" });
+    }
     return res.status(200).json("Curso criado com sucesso.");
   });
 };
