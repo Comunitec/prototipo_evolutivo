@@ -1,90 +1,94 @@
 .container_curso {
-    margin: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  .card_curso {
-    position: relative;
-    border-radius: 10px;
-    overflow: hidden;
-  }
-
-  .card_curso-thumb img {
-    width: 100%;
-  height: auto;
-  border-radius: 10px;
-  }
-
-  .card_curso-descricao {
-    padding: 2rem;
-    max-height: 600px;
-    overflow: hidden;
-  }
-
-  .card_descricao-titulo {
-    margin-bottom: 1rem;
-  }
-
-  .card_descricao-tags {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  .card_descricao-tags span {
-    font-size: 12px;
-    font-weight: bold;
-    color: white;
-    background-color: var(--primary-color);
-    margin: 0.2rem;
-    padding: 0.3rem 0.5rem;
-    border-radius: 5px;
-  }
-
-  .card_descricao-texto {
-    text-align: justify;
-    margin-bottom: 1rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 20; /* Número de linhas para exibir */
-    -webkit-box-orient: vertical;
-  }
-
-
-  .btn-matricula{
-    padding: 8px 16px;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    font-weight: bold;
-    position: relative;
-    margin-top: 10px;
-    margin-bottom: 15px;
-    background-color: var(--primary-color);
-    width: 500px;
-    display: flex;
-    justify-content: center;
-  }
-
-  .btn-matricula:hover {
-    background-color: var(--secondary-color);
-    cursor: pointer;
+  margin: 4rem 5rem;
+  background: var(--back-menu);
+  border-radius: 8px;
+  box-shadow: var(--box-shadow);
+  padding: 50px;
 }
 
+h1 {
+  text-align: center;
+}
 
-  @media (min-width: 768px) {
-    .card_curso {
-      display: flex;
-      flex-direction: row;
-    }
+.card_curso {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-radius: 10px;
+  overflow: hidden;
+}
 
-    .card_curso-thumb {
-      flex: 1;
-    }
+.card_curso-thumb {
+  flex: 1 1 33.33%;
+  padding: 20px;
+  box-sizing: border-box;
 
-    .card_curso-descricao {
-      flex: 2;
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 10px;
-    }
-  }
+  background: var(--hover-menu);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+p{margin: 0;}
+
+.card_curso-thumb img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.card_curso-descricao {
+  flex: 2 1 66.67%;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.card_descricao-titulo {
+  margin-bottom: 1rem;
+}
+
+.card_descricao-tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.card_descricao-tags span {
+  color: white;
+  background-color: var(--primary-color);
+  border-radius: 14px;
+  padding: 1px 20px;
+  font-size: 10px;
+  margin: 0 10px 10px 0;
+}
+
+.card_descricao-texto {
+  text-align: justify;
+  margin-bottom: 1rem;
+}
+.card_descricao {
+  font-size: 20px;
+  margin-bottom: 1rem;
+}
+
+.btn-matricula {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  position: relative;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  background-color: var(--primary-color);
+  display: flex;
+  justify-content: center;
+}
+
+.btn-matricula:hover {
+  background-color: var(--secondary-color);
+  cursor: pointer;
+}
