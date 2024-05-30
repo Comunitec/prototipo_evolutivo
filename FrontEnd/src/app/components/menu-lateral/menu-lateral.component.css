@@ -72,23 +72,15 @@
   display: flex;
   flex-direction: column;
   margin-top: 20px;
-}
-.card_item-nav{
-  padding-top: 30px;
-  display: flex;
-  flex-direction: column;
 
-}
-
-.card_item-nav > a:not(:first-child) {
-  border-top: none;
 }
 
 a{
   margin: 0;
-  padding: 10px 10px 10px 10px;
-  text-align: center;
+  padding: 10px 10px 10px 60px;
+  text-align: left;
 }
+
 i{
   margin-right: 10px;
 }
@@ -115,17 +107,15 @@ a:hover{
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: left;
 }
 
 .submenus > a{
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     border-bottom: 1px #959595 solid;
-     border-top: 1px #959595 solid;
+  padding-left: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
 }
-
 
 .submenus > a:not(:first-child) {
   border-top: none;

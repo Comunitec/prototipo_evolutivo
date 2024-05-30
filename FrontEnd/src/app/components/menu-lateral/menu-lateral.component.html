@@ -42,7 +42,7 @@
 
       <div class="submenus" [style.display]="submenuOpen ? 'block' : 'none'">
         <a routerLink="/meusCursosAluno">
-          <i class="fa-layers center-icon"><fa-icon [icon]="faUserGraduate"></fa-icon></i>
+          <i class="fa-layers center-icon"><fa-icon [icon]="faBookOpenReader"></fa-icon></i>
           <span>Aluno</span>
         </a>
 
@@ -54,6 +54,11 @@
         <a routerLink="/staff">
           <i class="fa-layers center-icon"><fa-icon [icon]="faThumbsUp"></fa-icon></i>
           <span>Staff</span>
+        </a>
+
+        <a routerLink="/gerenciar-usuarios">
+          <i class="fa-layers center-icon"><fa-icon [icon]="faUserTie"></fa-icon></i>
+          <span>Administrador</span>
         </a>
 
       </div>
