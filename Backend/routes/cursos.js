@@ -1,5 +1,5 @@
 import express from "express";
-import { addCurso, getCursos } from "../controllers/curso.js";
+import { addCurso, getCursos, getImagemCurso, getCursoPorId } from "../controllers/curso.js";
 import multer from 'multer';
 import path from 'path';
 import { v4 as uuidv4 } from 'uuid';
@@ -36,5 +36,10 @@ router.post("/addCurso", upload.fields([
   console.log("Request files:", req.files);
   next();
 }, addCurso);
+
+router.get("/getImagemCurso/:id", getImagemCurso);
+router.get("/getCursoPorId/:id", getCursoPorId);
+
+
 
 export default router;

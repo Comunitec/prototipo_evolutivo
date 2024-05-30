@@ -26,3 +26,32 @@ export const getTags = (_, res) => {
       return res.status(200).json("Relacionamento entre curso e tag adicionado com sucesso.");
     });
   };
+
+// pegar os nomes das tags de um determinado curso
+export const getTagsPorCurso = (req, res) => {
+  const { idCurso } = req.params;
+
+  // Verifique se o ID do curso foi fornecido
+  if (!idCurso) {
+    return res.status(400).json({ error: "ID do curso é obrigatório." });
+  }
+
+  // Consulta SQL para obter os nomes das tags associadas ao curso
+  const q = `
+    SELECT t.Nome AS nome_tag
+    FROM tag t
+    INNER JOIN tagcurso tc ON t.idTag = tc.idTag
+    WHERE tc.idCurso = ?
+  `;
+  const values = [idCurso];
+
+  // Executa a consulta no banco de dados
+  db.query(q, values, (err, result) => {
+    if (err) {
+      console.error("Erro ao buscar tags do curso:", err);
+      return res.status(500).json({ error: "Erro ao buscar tags do curso" });
+    }
+    const tags = result.map((row) => row.nome_tag);
+    return res.status(200).json(tags);
+  });
+};

@@ -1,5 +1,6 @@
 import { db } from "../db.js";
 import path from 'path';
+import fs from 'fs';
 
 //Get de todos os cursos
 export const getCursos = (_, res) => {
@@ -8,6 +9,20 @@ export const getCursos = (_, res) => {
   db.query(q, (err, data) => {
     if (err) return res.json(err);
     return res.status(200).json(data);
+  });
+};
+
+// Get de um curso específico por ID
+export const getCursoPorId = (req, res) => {
+  const idCurso = req.params.id; // Supondo que o ID seja passado como um parâmetro na URL
+  
+  const q = "SELECT * FROM curso WHERE idCurso = ?";
+  db.query(q, [idCurso], (err, data) => {
+    if (err) return res.json(err);
+    if (data.length === 0) {
+      return res.status(404).json({ message: "Curso não encontrado" });
+    }
+    return res.status(200).json(data[0]);
   });
 };
 
@@ -63,5 +78,37 @@ export const addCurso = (req, res) => {
     const idCurso = result.insertId; // Obtém o ID do curso recém-inserido
     console.log("ID do curso inserido:", idCurso);
     return res.status(200).json({ message: "Curso criado com sucesso.", idCurso });
+  });
+};
+
+export const getImagemCurso = (req, res) => {
+  const id = req.params.id; // ID do curso
+  const q = "SELECT Imagem FROM curso WHERE idCurso = ?";
+
+  db.query(q, [id], (err, result) => {
+    if (err) {
+      console.error(err);
+      return res.sendStatus(500);
+    }
+    if (result.length === 0) {
+      return res.sendStatus(404);
+    }
+    
+    const imagePath = result[0].Imagem.toString(); // Converter para string
+    const imageAbsPath = path.join(process.cwd(), imagePath); // Caminho absoluto da imagem usando process.cwd()
+
+    console.log("Caminho absoluto da imagem:", imageAbsPath);
+
+    // Lê o arquivo de imagem do disco
+    fs.readFile(imageAbsPath, (err, data) => {
+      if (err) {
+        console.error(err);
+        return res.sendStatus(500);
+      }
+      // Envia a imagem como resposta
+      console.log("Imagem lida com sucesso.");
+      res.writeHead(200, {'Content-Type': 'image/jpeg'});
+      res.end(data);
+    });
   });
 };
