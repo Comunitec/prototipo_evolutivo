@@ -18,7 +18,8 @@
         <p><b>Email:</b> {{ usuario.Email }}</p>
         <div class="container-icons">
           <a class="edit" (click)="editarUsuario(usuario.idAluno)"><fa-icon [icon]="faEdit"></fa-icon></a>
-          <a class="delete" (click)="excluirUsuario(usuario.idAluno)"><fa-icon [icon]="faTrash"></fa-icon></a>
+          <!--<a class="delete" (click)="excluirUsuario(usuario.idAluno)"><fa-icon [icon]="faTrash"></fa-icon></a>-->
+          <a class="delete" (click)="openModal()"><fa-icon [icon]="faTrash"></fa-icon></a>
         </div>
       </div>
     </div>

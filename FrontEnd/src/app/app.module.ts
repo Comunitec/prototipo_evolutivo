@@ -68,7 +68,9 @@ const routes: Routes = [
   {path: 'recuperar-senha', component: RecuperarSenhaComponent},
   {path: 'alterar-senha', component: AlterarSenhaComponent},
   {path: 'finalizarCurso', component: FinalizarCursoComponent},
-  {path: 'gerenciar-usuarios', component: GerenciarUsuariosComponent}
+  {path: 'gerenciar-usuarios', component: GerenciarUsuariosComponent},
+  {path: 'excluir-conta', component: ModalExcluirContaComponent},
+
 
 ];
 

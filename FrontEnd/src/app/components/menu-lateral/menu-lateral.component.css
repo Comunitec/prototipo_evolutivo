@@ -1,29 +1,29 @@
-*{
+* {
   text-decoration: none;
   color: #000;
 }
 
-.container_menu-lateral{
+.container_menu-lateral {
   margin-top: 20px;
   display: flex;
   flex-direction: column;
 }
 
-.card_perfil{
+.card_perfil {
   padding: 5px;
   display: flex;
   justify-content: center;
-  gap: 20px
+  gap: 20px;
 }
 
-.card_perfil-foto{
+.card_perfil-foto {
   padding: 0;
   width: 80px;
   height: 80px;
   position: relative;
 }
 
-.card_perfil-foto > img{
+.card_perfil-foto > img {
   padding: 0;
   border: 2px solid black;
   width: 100%;
@@ -31,7 +31,7 @@
   border-radius: 50%;
 }
 
-.card_perfil-foto > span{
+.card_perfil-foto > span {
   bottom: 0;
   left: 0;
   position: absolute;
@@ -44,20 +44,20 @@
   font-size: 15px;
 }
 
-.card_perfil-dados{
+.card_perfil-dados {
   padding-top: 25px;
   display: flex;
   flex-direction: column;
 }
 
-.card_perfil-dados > .nomePerfil{
+.card_perfil-dados > .nomePerfil {
   font-size: 14px;
   font-weight: bold;
   padding: 0;
   text-align: center;
 }
 
-.card_perfil-dados > .xpPerfil{
+.card_perfil-dados > .xpPerfil {
   padding-top: 10px;
   font-size: 12px;
   font-style: oblique;
@@ -65,52 +65,50 @@
   color: rgb(102, 101, 101);
 }
 
-
 /*Menu*/
 
-.container_sidenav{
+.container_sidenav {
   display: flex;
   flex-direction: column;
   margin-top: 20px;
-
 }
 
-a{
+a {
   margin: 0;
   padding: 10px 10px 10px 60px;
   text-align: left;
 }
 
-i{
+i {
   margin-right: 10px;
 }
 
-a, i{
+a,
+i {
   font-size: 14px;
   font-weight: bold;
 }
 
-.card_item-nav a > span{
+.card_item-nav a > span {
   font-size: 14px;
   font-weight: bold;
   padding-left: 20px;
 }
 
-a:hover{
+a:hover {
   background-color: var(--hover-menu);
 }
 
-
-
 /*submenu cursos*/
-.submenus{
+
+.submenus {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: left;
 }
 
-.submenus > a{
+.submenus > a {
   padding-left: 80px;
   display: flex;
   align-items: center;
@@ -121,10 +119,16 @@ a:hover{
   border-top: none;
 }
 
-
-fa-icon{
+fa-icon {
   font-size: 15px;
 }
-.chevron{
+
+.chevron {
   margin-left: 10px;
+}
+
+/* Active link style */
+.active span,
+.active fa-icon{
+  color: var(--primary-color);
 }
