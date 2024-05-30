@@ -50,3 +50,6 @@ package-lock.json
 
 
 Backend/static/images/alunos/*
+Backend/static/images/certificados/*
+Backend/static/images/emblemas/*
+Backend/static/images/cursos/*

@@ -111,7 +111,7 @@ export class CourseFormComponent {
     const formData = new FormData();
     formData.append('Nome', this.curso.tituloCurso);
     formData.append('Descricao', this.curso.descricaoCurso);
-    formData.append('idAlunoCriador', '40'); // ID fixo do aluno criador
+    formData.append('idAlunoCriador', '1'); // ID fixo do aluno criador
 
     if (this.selectedImagemFile) {
       formData.append('Imagem', this.selectedImagemFile);
