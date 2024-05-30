@@ -144,6 +144,7 @@ input[type="text"]{
 
 .card_senha:hover{
   color: #3a3a3a;
+  cursor: pointer;
 }
 
 
@@ -182,6 +183,7 @@ button {
 
 .excluir:hover {
  color: #720101;
+ cursor: pointer;
 }
 
 button.btn-cancelar:hover {
