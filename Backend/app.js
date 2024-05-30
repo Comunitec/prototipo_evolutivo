@@ -4,6 +4,7 @@ import { fileURLToPath } from 'url';
 import cors from "cors";
 import alunoRoutes from "./routes/alunos.js";
 import cursoRoutes from "./routes/cursos.js";
+import tagRoutes from "./routes/tags.js"
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -22,6 +23,7 @@ app.use('/static', express.static(path.join(__dirname, 'static')));
 // Rotas
 app.use("/", alunoRoutes);
 app.use("/", cursoRoutes);
+app.use("/", tagRoutes);
 
 app.listen(8800, () => {
   console.log("Server running on port 8800");

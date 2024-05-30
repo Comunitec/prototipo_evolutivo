@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatDialog } from '@angular/material/dialog';
@@ -31,6 +31,11 @@ interface Alternativa {
   correta: boolean;
 }
 
+interface Tag {
+  idTag: Number;
+  Nome: string;
+}
+
 type imageType = string | ArrayBuffer | null;
 
 @Component({
@@ -38,13 +43,7 @@ type imageType = string | ArrayBuffer | null;
   templateUrl: './course-form.component.html',
   styleUrls: ['./course-form.component.css'],
 })
-export class CourseFormComponent {
-  constructor(
-    public sanitizer: DomSanitizer,
-    public dialog: MatDialog,
-    private http: HttpClient
-  ) {}
-
+export class CourseFormComponent implements OnInit {
   curso: Curso = {
     tituloCurso: '',
     descricaoCurso: '',
@@ -55,7 +54,7 @@ export class CourseFormComponent {
     aulas: [],
   };
 
-  tagList = ['Angular', 'JavaScript', 'TypeScript', 'HTML', 'CSS'];
+  tagList: Tag[] = [];
   selectedTag: string | undefined;
   selectedOptions: string[] = [];
   tagBoolean = false;
@@ -70,25 +69,45 @@ export class CourseFormComponent {
       questao: '',
       respostas: this.createEmptyAlternatives(),
     },
-    {
-      questao: '',
-      respostas: this.createEmptyAlternatives(),
-    },
-    {
-      questao: '',
-      respostas: this.createEmptyAlternatives(),
-    },
-    {
-      questao: '',
-      respostas: this.createEmptyAlternatives(),
-    },
   ];
 
   mostrarAulas = false;
 
+  selectedImagem: imageType = null;
+  selectedEmblema: imageType = null;
+  selectedCertificadoName: string | null = null;
+  selectedImagemFile: File | null = null;
+  selectedEmblemaFile: File | null = null;
+  selectedCertificadoFile: File | null = null;
+
+  editingIndex: number | null = null;
+
+  constructor(
+    public sanitizer: DomSanitizer,
+    public dialog: MatDialog,
+    private http: HttpClient
+  ) {}
+
+  ngOnInit() {
+    this.loadTags();
+  }
+
+  loadTags() {
+    this.http.get<Tag[]>('http://localhost:8800/getTags').subscribe(
+      (tags) => {
+        // Adiciona os dados recebidos da API à variável tagList
+        this.tagList = [...tags];
+      },
+      (error) => {
+        console.error('Erro ao carregar as tags:', error);
+      }
+    );
+  }
+  
+  
+
   createEmptyAlternatives(): Alternativa[] {
     return [
-      { textoAlternativa: '', correta: false },
       { textoAlternativa: '', correta: false },
       { textoAlternativa: '', correta: false },
       { textoAlternativa: '', correta: false },
@@ -102,17 +121,15 @@ export class CourseFormComponent {
     });
   }
 
-  editingIndex: number | null = null;
-
   salvarCurso() {
     this.curso.tag = this.selectedOptions;
-
+  
     // Prepare form data
     const formData = new FormData();
     formData.append('Nome', this.curso.tituloCurso);
     formData.append('Descricao', this.curso.descricaoCurso);
-    formData.append('idAlunoCriador', '1'); // ID fixo do aluno criador
-
+    formData.append('idAlunoCriador', '5'); // ID fixo do aluno criador
+  
     if (this.selectedImagemFile) {
       formData.append('Imagem', this.selectedImagemFile);
     }
@@ -122,16 +139,38 @@ export class CourseFormComponent {
     if (this.selectedCertificadoFile) {
       formData.append('Certificado', this.selectedCertificadoFile);
     }
-
-    this.http.post('http://localhost:8800/addCurso', formData).subscribe(
+  
+    this.http.post<any>('http://localhost:8800/addCurso', formData).subscribe(
       (response) => {
         console.log('Curso salvo com sucesso:', response);
+        // Extraia o ID do curso da resposta
+        const idCurso = response.idCurso; 
         this.mostrarAulas = true;
+        // Associe as tags ao curso após salvar o curso
+        this.associarTagsAoCurso(idCurso);
       },
       (error) => {
         console.error('Erro ao salvar curso:', error);
       }
     );
+  }
+
+  associarTagsAoCurso(idCurso: number) {
+    // Para cada tag selecionada, faz uma requisição para associá-la ao curso
+    this.selectedOptions.forEach((tagNome) => {
+      const tag = this.tagList.find((tag) => tag.Nome === tagNome);
+      if (tag) {
+        const tagCursoData = { idCurso, idTag: tag.idTag };
+        this.http.post<any>('http://localhost:8800/addTagCurso', tagCursoData).subscribe(
+          (response) => {
+            console.log(`Tag associada ao curso com sucesso: ${tag.Nome}`);
+          },
+          (error) => {
+            console.error(`Erro ao associar tag ao curso: ${tag.Nome}`, error);
+          }
+        );
+      }
+    });
   }
 
   saveClass() {
@@ -167,9 +206,6 @@ export class CourseFormComponent {
     this.descricaoAula = '';
     this.linkAula = '';
     this.questionario = [
-      { questao: '', respostas: this.createEmptyAlternatives() },
-      { questao: '', respostas: this.createEmptyAlternatives() },
-      { questao: '', respostas: this.createEmptyAlternatives() },
       { questao: '', respostas: this.createEmptyAlternatives() },
     ];
   }
@@ -210,13 +246,6 @@ export class CourseFormComponent {
   openModal(): void {
     const dialogRef = this.dialog.open(ModalSalvarCursoComponent);
   }
-
-  selectedImagem: imageType = null;
-  selectedEmblema: imageType = null;
-  selectedCertificadoName: imageType = null;
-  selectedImagemFile: File | null = null;
-  selectedEmblemaFile: File | null = null;
-  selectedCertificadoFile: File | null = null;
 
   triggerFileInput(inputId: string) {
     const fileInput = document.getElementById(inputId) as HTMLInputElement;
