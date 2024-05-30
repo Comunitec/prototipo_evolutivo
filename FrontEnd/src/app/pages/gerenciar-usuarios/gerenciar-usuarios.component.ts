@@ -60,11 +60,19 @@ export class GerenciarUsuariosComponent implements OnInit {
     );
   }*/
 
-  openModal(): void {
+  openModal(id: number): void {
     const dialogRef = this.dialog.open(ModalExcluirContaComponent, {
-      width: '450px'
+      width: '450px',
+      data: { idAluno: id } // Passa o ID do usuário para o modal
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'confirmado') {
+        this.carregarUsuarios();
+      }
     });
   }
+
   adicionarUsuario() {
     // Lógica para adicionar um novo usuário
   }
