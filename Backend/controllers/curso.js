@@ -11,10 +11,10 @@ export const getCursos = (_, res) => {
   });
 };
 
-//Add curso
+// Rota para adicionar um curso
 export const addCurso = (req, res) => {
   const { Nome, Descricao, idAlunoCriador } = req.body;
-  const status= 'em criação';
+  const status = 'em criação';
 
   // Logs para verificar a chegada dos dados
   console.log("Received body:", req.body);
@@ -55,11 +55,13 @@ export const addCurso = (req, res) => {
   const q = "INSERT INTO curso(`Nome`, `Descricao`, `Imagem`, `Certificado`, `Emblema`, `idAlunoCriador`, `Status`) VALUES (?, ?, ?, ?, ?, ?, ?)";
   const values = [Nome, Descricao, imagemPath, certificadoPath, emblemaPath, idAlunoCriador, status];
 
-  db.query(q, values, (err) => {
+  db.query(q, values, (err, result) => {
     if (err) {
       console.error("Erro ao inserir curso no banco de dados:", err);
       return res.status(500).json({ error: "Erro ao inserir curso no banco de dados" });
     }
-    return res.status(200).json("Curso criado com sucesso.");
+    const idCurso = result.insertId; // Obtém o ID do curso recém-inserido
+    console.log("ID do curso inserido:", idCurso);
+    return res.status(200).json({ message: "Curso criado com sucesso.", idCurso });
   });
 };
