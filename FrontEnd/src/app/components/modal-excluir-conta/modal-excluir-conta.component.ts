@@ -40,10 +40,12 @@ export class ModalExcluirContaComponent implements OnInit {
     );
   }
 
-  excluirUsuario(id: number) {
+  excluirUsuario() {
+    const id = this.usuarios[0].idAluno; // Supondo que você deseja excluir o primeiro usuário da lista
     this.http.delete(`http://localhost:8800/deleteAluno/${id}`).subscribe(
       () => {
-        this.carregarUsuarios();
+        console.log('Usuário excluído com sucesso.');
+        this.dialogRef.close('confirmado'); // Fecha o modal após excluir o usuário
       },
       error => {
         console.error('Erro ao excluir usuário:', error);
