@@ -135,7 +135,7 @@ select {
 
 .save-button:hover,
 .btn-tag-selecionada:hover {
-    background-color: #720101;
+    background-color: var(--primary-color);
 }
 
 .btn-correta{
@@ -189,3 +189,14 @@ select {
     font-size: 14px;
     color: #333;
   }
+
+  .mat-mdc-tab-group, .mat-mdc-tab-nav-bar {
+    --mdc-tab-indicator-active-indicator-color: var(--primary-color);
+    --mat-tab-header-active-label-text-color: var(--primary-color);
+    --mat-tab-header-active-ripple-color:var(--primary-color);
+    --mat-tab-header-inactive-ripple-color:var(--primary-color);
+    --mat-tab-header-active-focus-label-text-color:var(--primary-color);
+    --mat-tab-header-active-hover-label-text-color:var(--primary-color);
+    --mat-tab-header-active-focus-indicator-color:var(--primary-color);
+    --mat-tab-header-active-hover-indicator-color:var(--primary-color);
+}
