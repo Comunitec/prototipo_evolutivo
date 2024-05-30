@@ -1,0 +1,35 @@
+<form>
+  <div class="input-group" *ngFor="let questionario of questionarios; let qi = index">
+    <h3><b>Adicionar questionário referente a aula {{ qi + 1 }}</b></h3>
+    <label for="tituloQuestionario">Título do questionário</label>
+    <input  type="text" class="common-style" placeholder="Digite um título para seu questionário">
+    <label for="descQuestionario">Descrição do questionário</label>
+    <input  type="text" class="common-style" placeholder="Digite um título para seu questionário">
+    <div class="container-buttons">
+    <button type="button" class="save-button" (click)="addQuestoes()">Adicionar questões</button>
+    <button type="button" class="save-button" (click)="fecharQuestoes()">Fechar questões</button>
+    <button type="button" class="save-button" (click)="salvarQuestoes()">Salvar questões</button>
+    </div>
+    <div *ngIf="mostrarQuestionario">
+      <div class="container-questionary"  b *ngFor="let questao of questionario; let qIndex = index">
+        <label for="questao{{ qi }}_{{ qIndex }}">Questão {{ qIndex + 1 }}:</label>
+        <input type="text" class="common-style" placeholder="Digite a questão" name="questao{{ qi }}_{{ qIndex }}"
+          id="questao{{ qi }}_{{ qIndex }}" [(ngModel)]="questao.questao" [ngModelOptions]="{ standalone: true }" />
+
+        <label for="">Digite as respostas e marque a alternativa correta</label>
+        <div *ngFor="let alternativa of questao.respostas; let aIndex = index" class="answer-group">
+          <input type="text" class="common-style" placeholder="Digite a resposta"
+            name="respostaCorreta{{ qi }}_{{ qIndex }}_{{ aIndex }}" id="respostaCorreta{{ qi }}_{{ qIndex }}_{{ aIndex }}"
+            [(ngModel)]="alternativa.textoAlternativa" [ngModelOptions]="{ standalone: true }" />
+
+          <div>
+            <button type="button" [ngClass]="{'btn-correta': alternativa.correta, 'save-button': !alternativa.correta}"
+              (click)="setCorrectAnswer(qIndex, aIndex)">{{ alternativa.correta ? 'Correta' : 'Marcar correta' }} </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+

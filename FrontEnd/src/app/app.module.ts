@@ -47,6 +47,9 @@ import { ModalRecuperarSenhaComponent } from './components/modal-recuperar-senha
 import { AlterarSenhaComponent } from './pages/alterar-senha/alterar-senha.component';
 import { FinalizarCursoComponent } from './pages/finalizar-curso/finalizar-curso.component';
 import { GerenciarUsuariosComponent } from './pages/gerenciar-usuarios/gerenciar-usuarios.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { ClassFormComponent } from './components/class-form/class-form.component';
+import { QuizFormComponent } from './components/quiz-form/quiz-form.component';
 
 
 const routes: Routes = [
@@ -112,6 +115,8 @@ const routes: Routes = [
     AlterarSenhaComponent,
     FinalizarCursoComponent,
     GerenciarUsuariosComponent,
+    ClassFormComponent,
+    QuizFormComponent,
 
   ],
   imports: [
@@ -123,7 +128,8 @@ const routes: Routes = [
     BrowserAnimationsModule,
     MatDialogModule,
     MatExpansionModule,
-    MatRadioModule
+    MatRadioModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

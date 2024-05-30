@@ -1,0 +1,17 @@
+<form>
+  <div class="input-group">
+    <!-- Seção de aulas -->
+    <div class="add-video" *ngFor="let aula of aulas; let i = index">
+      <label for="adicionarVideos">Preencher informações da aula {{ i + 1 }}:</label>
+      <label for="tituloAula">Título da aula</label>
+      <input type="text" class="common-style" placeholder="Digite o título da aula" name="tituloAula" id="tituloAula"
+        [(ngModel)]="aula.titulo" [ngModelOptions]="{ standalone: true }" required />
+      <label for="descricaoAula">Descrição da aula</label>
+      <textarea class="common-style" cols="30" rows="2" placeholder="Digite a descrição da aula" name="descricaoAula"
+        id="descricaoAula" [(ngModel)]="aula.descricao" [ngModelOptions]="{ standalone: true }"></textarea>
+      <label for="adicionarVideo">Adicionar link do vídeo</label>
+      <input class="common-style" id="adicionarVideo" type="text" placeholder="Insira o link do vídeo"
+        [(ngModel)]="aula.link" [ngModelOptions]="{ standalone: true }" />
+    </div>
+  </div>
+</form>
