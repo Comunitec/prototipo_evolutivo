@@ -14,6 +14,7 @@ export const getCursos = (_, res) => {
 //Add curso
 export const addCurso = (req, res) => {
   const { Nome, Descricao, idAlunoCriador } = req.body;
+  const status= 'em criação';
 
   // Logs para verificar a chegada dos dados
   console.log("Received body:", req.body);
@@ -51,8 +52,8 @@ export const addCurso = (req, res) => {
   console.log("Emblema Path:", emblemaPath);
 
   // Inserir informações do curso no banco de dados
-  const q = "INSERT INTO curso(`Nome`, `Descricao`, `Imagem`, `Certificado`, `Emblema`, `idAlunoCriador`) VALUES (?, ?, ?, ?, ?, ?)";
-  const values = [Nome, Descricao, imagemPath, certificadoPath, emblemaPath, idAlunoCriador];
+  const q = "INSERT INTO curso(`Nome`, `Descricao`, `Imagem`, `Certificado`, `Emblema`, `idAlunoCriador`, `Status`) VALUES (?, ?, ?, ?, ?, ?, ?)";
+  const values = [Nome, Descricao, imagemPath, certificadoPath, emblemaPath, idAlunoCriador, status];
 
   db.query(q, values, (err) => {
     if (err) {
