@@ -80,7 +80,9 @@ a{
 
 .edit{
   color: var(--secondary-color);
+  cursor: pointer;
 }
 .delete{
   color: var(--primary-color);
+  cursor: pointer;
 }

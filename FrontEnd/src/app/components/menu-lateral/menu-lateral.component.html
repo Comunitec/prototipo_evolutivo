@@ -1,76 +1,66 @@
 <div class="container_menu-lateral">
-
-<div class="card_perfil">
-  <div class="card_perfil-foto">
-    <img src="https://portal.fidelis.edu.br/wp-content/uploads/2020/10/perfil.jpg" alt="">
-    <span class="nível">20</span>
+  <div class="card_perfil">
+    <div class="card_perfil-foto">
+      <img src="https://portal.fidelis.edu.br/wp-content/uploads/2020/10/perfil.jpg" alt="">
+      <span class="nível">20</span>
+    </div>
+    <div class="card_perfil-dados">
+      <span class="nomePerfil">JOÃO DA SILVA</span>
+      <span class="pontuacao">100 comunicoins</span>
+    </div>
   </div>
 
-  <div class="card_perfil-dados">
-    <span class="nomePerfil">JOÃO DA SILVA</span>
-    <span class="pontuacao">100 comunicoins</span>
-  </div>
-</div>
+  <div class="container_sidenav">
+    <a routerLink="/home-logado" routerLinkActive="active">
+      <i class="fa-layers center-icon"><fa-icon [icon]="faHouse"></fa-icon></i>
+      <span>Home</span>
+    </a>
 
+    <a routerLink="/perfil" routerLinkActive="active">
+      <i class="fa-layers center-icon"><fa-icon [icon]="faUser"></fa-icon></i>
+      <span>Perfil</span>
+    </a>
 
-<div class="container_sidenav">
+    <a (click)="toggleSubmenus()" routerLinkActive="active" #coursesLink="routerLinkActive">
+      <i class="fa-layers center-icon"><fa-icon [icon]="faBookOpen"></fa-icon></i>
+      <span>Cursos</span>
+      <i class="fa-layers center-icon chevron" *ngIf="!submenuOpen">
+        <fa-icon [icon]="faChevronRight"></fa-icon>
+      </i>
+      <i class="fa-layers center-icon chevron" *ngIf="submenuOpen">
+        <fa-icon [icon]="faChevronDown"></fa-icon>
+      </i>
+    </a>
 
-      <a routerLink="/home-logado">
-        <i class="fa-layers center-icon"><fa-icon [icon]="faHouse"></fa-icon></i>
-        <span>Home</span>
-       </a>
-
-
-      <a routerLink="/perfil">
-        <i class="fa-layers center-icon"><fa-icon [icon]="faUser"></fa-icon></i>
-        <span>Perfil</span>
-       </a>
-
-       <a (click)="toggleSubmenus()">
-        <i class="fa-layers center-icon">
-          <fa-icon [icon]="faBookOpen"></fa-icon>
-        </i>
-        <span>Cursos</span>
-        <i class="fa-layers center-icon chevron" *ngIf="!submenuOpen">
-          <fa-icon [icon]="faChevronRight"></fa-icon>
-        </i>
-        <i class="fa-layers center-icon chevron" *ngIf="submenuOpen">
-          <fa-icon [icon]="faChevronDown"></fa-icon>
-        </i>
+    <div class="submenus" [style.display]="submenuOpen || coursesLink.isActive ? 'block' : 'none'">
+      <a routerLink="/meusCursosAluno" routerLinkActive="active">
+        <i class="fa-layers center-icon"><fa-icon [icon]="faBookOpenReader"></fa-icon></i>
+        <span>Aluno</span>
       </a>
-
-
-      <div class="submenus" [style.display]="submenuOpen ? 'block' : 'none'">
-        <a routerLink="/meusCursosAluno">
-          <i class="fa-layers center-icon"><fa-icon [icon]="faUserGraduate"></fa-icon></i>
-          <span>Aluno</span>
-        </a>
-
-        <a routerLink="/meusCursosProfessor">
-          <i class="fa-layers center-icon"><fa-icon [icon]="faChalkboardTeacher"></fa-icon></i>
-          <span>Professor</span>
-        </a>
-
-        <a routerLink="/staff">
-          <i class="fa-layers center-icon"><fa-icon [icon]="faThumbsUp"></fa-icon></i>
-          <span>Staff</span>
-        </a>
-
-      </div>
-
-      <a href="ranking-page">
-        <i class="fa-layers center-icon"><fa-icon [icon]="faTrophy"></fa-icon></i>
-        <span>Ranking</span>
+      <a routerLink="/meusCursosProfessor" routerLinkActive="active">
+        <i class="fa-layers center-icon"><fa-icon [icon]="faChalkboardTeacher"></fa-icon></i>
+        <span>Professor</span>
       </a>
+      <a routerLink="/staff" routerLinkActive="active">
+        <i class="fa-layers center-icon"><fa-icon [icon]="faThumbsUp"></fa-icon></i>
+        <span>Staff</span>
+      </a>
+      <a routerLink="/gerenciar-usuarios" routerLinkActive="active">
+        <i class="fa-layers center-icon"><fa-icon [icon]="faUserTie"></fa-icon></i>
+        <span>Administrador</span>
+      </a>
+    </div>
+
+    <a routerLink="/ranking-page" routerLinkActive="active">
+      <i class="fa-layers center-icon"><fa-icon [icon]="faTrophy"></fa-icon></i>
+      <span>Ranking</span>
+    </a>
 
     <br><br><br>
 
-
-      <a href="">
-        <i class="fa-layers center-icon"><fa-icon [icon]="faDoorOpen"></fa-icon></i>
-        <span>Sair</span>
-      </a>
-
-
-</div>
+    <a href="" routerLinkActive="active">
+      <i class="fa-layers center-icon"><fa-icon [icon]="faDoorOpen"></fa-icon></i>
+      <span>Sair</span>
+    </a>
+  </div>
 </div>

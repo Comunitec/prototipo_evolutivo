@@ -1,0 +1,38 @@
+form{
+  margin: 0;
+  padding: 10px;
+}
+
+h2{
+  text-align: center;
+  font-weight: bold;
+}
+
+p{
+  text-align: justify;
+  font-size: medium;
+}
+
+.btn{
+  margin: 20px 0 20px 0;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  width: 100%;
+  font-size:larger ;
+  font-weight: bolder;
+
+}
+
+.btn > button{
+  font-size:large ;
+  height: 35px;
+  margin-top: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.confirmar{
+  color: white;
+  background-color: var(--primary-color);
+}
