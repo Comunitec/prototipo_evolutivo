@@ -2,6 +2,7 @@ import { db } from "../db.js";
 import fs from 'fs';
 import path from 'path';
 import { v4 as uuidv4 } from 'uuid';
+import jsonwebtoken from 'jsonwebtoken';
 
 //Get de todos os alunos
 export const getAlunos = (_, res) => {
@@ -89,6 +90,78 @@ export const addAluno = (req, res) => {
 
   });
 };
+
+// Rota privada
+export const rotaPrivada = (req, res) => {
+  const id = req.params.id;
+  const q = "SELECT idAluno, Nome, Email, DataNasc, PerfilDeAcesso, Pontuacao FROM aluno WHERE idAluno = ?";
+
+  // check if user exists
+  db.query(q, [id], (err, results) => {
+    if (err) {
+      res.status(500).json({ msg: 'Erro interno' });
+    } else if (results.length === 0) {
+      res.status(401).json({ msg: 'Usuário não encontrado' });
+    } else {
+      const user = results[0];
+      return res.status(200).json({ msg: "usuario existe!" , user });
+    }
+  });
+};
+
+
+export const checkToken=  (req, res, next) => {
+  const authHeader = req.headers["authorization"];
+  const token = authHeader && authHeader.split(" ")[1];
+
+  if (!token) return res.status(401).json({ msg: "Acesso negado!" });
+
+  try {
+    jsonwebtoken.verify(token, "seu_segredo");
+    next();
+  } catch (err) {
+    res.status(400).json({ msg: "O Token é inválido!" });
+  }
+}
+
+// Login
+export const authLogin = (req, res) => {
+  const { email, password } = req.body;
+  const q = "SELECT * FROM aluno WHERE email = ?";
+
+  //validações
+  if (!email) {
+    return res.status(422).json({ msg: "O email é obrigatório!" });
+  }
+
+  if (!password) {
+    return res.status(422).json({ msg: "A senha é obrigatória!" });
+  }
+
+  // Verificar se o usuário existe no banco de dados
+  db.query(q, [email], (err, results) => {
+    if (err) {
+      res.status(500).json({ msg: 'Erro interno' });
+    } else if (results.length === 0) {
+      res.status(401).json({ msg: 'Usuário não encontrado' });
+    } else {
+      const user = results[0];
+      // Verificar se a senha está correta
+      if (user.Senha === password) {
+        // Gerar token JWT
+        const token = jsonwebtoken.sign({ email: user.Email }, 'seu_segredo');
+        const idAluno = user.idAluno;
+
+        res.status(200).json({ msg: "Autenticação realizada com sucesso!" , token, idAluno});
+      } else {
+        res.status(401).json({ msg: 'Senha incorreta' });
+      }
+    }
+  });
+
+}
+
+
 
 // Recuperar imagem de aluno
 export const getImagemAluno = (req, res) => {

@@ -1,12 +1,11 @@
 <div class="container_menu-lateral">
   <div class="card_perfil">
     <div class="card_perfil-foto">
-      <img src="https://portal.fidelis.edu.br/wp-content/uploads/2020/10/perfil.jpg" alt="">
-      <span class="nível">20</span>
+      <img [src]="imagem" alt="">
     </div>
     <div class="card_perfil-dados">
-      <span class="nomePerfil">JOÃO DA SILVA</span>
-      <span class="pontuacao">100 comunicoins</span>
+      <span class="nomePerfil">{{ Nome }}</span>
+      <span class="pontuacao">{{Pontos}} comunicoins</span>
     </div>
   </div>
 
