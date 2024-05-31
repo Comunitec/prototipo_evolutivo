@@ -31,7 +31,29 @@ export class MenuLateralComponent {
   faChevronDown = faChevronDown;
   faUserTie = faUserTie;
 
+  url = "http://localhost:8800/imagem/";
+  Nome = sessionStorage.getItem('Nome');
+  Pontos = sessionStorage.getItem('Pontuacao');
+  id = sessionStorage.getItem('idAluno');
+  imagem = this.url+this.id
+
   submenuOpen: boolean = true;
+
+
+  // ngOnInit(){
+  // fetch(this.url + this.id)
+  // .then(data => {
+  //   this.imagem = data;
+  //     console.log(data);  // Imprimindo a resposta no console
+
+  // })
+  // .catch(error => {
+  //     console.error('Erro ao fazer a solicitação:', error);
+  // });
+  // }
+
+
+
 
   toggleSubmenus() {
     this.submenuOpen = !this.submenuOpen;
