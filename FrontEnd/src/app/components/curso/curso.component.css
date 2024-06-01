@@ -1,102 +1,116 @@
+/* Estilos padrão */
 .container_curso {
-  margin: 1rem;
-  margin-bottom: 1rem;
-  cursor: pointer;
-  border-radius: 8px;
-  box-shadow: 1px 3px 4px -2px #898989;
+  display: flex;
+  flex-direction: column; /* Alterado para exibir os cards um abaixo do outro */
+  align-items: stretch;
+  padding: 16px;
 }
 
 .card_curso {
   display: flex;
-  position: relative;
-  /* border: 1px solid #ccc; */
+  flex-wrap: wrap; /* Adicionado */
+  border: 1px solid #ddd;
   border-radius: 8px;
-  width: 100%;
-  height: 200%;
   overflow: hidden;
+  transition: box-shadow 0.3s ease-in-out; /* Adicionado efeito de transição */
+  background-color: var(--back-menu);
+  margin-bottom: 16px; /* Adicionado espaço entre os cards */
+}
+
+.card_curso:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card_curso-thumb {
+  width: 30%;
+  flex-shrink: 0;
 }
 
 .card_curso-thumb img {
   width: 100%;
-  height: 100%;
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
-  object-fit: cover; /* Cobre o contêiner completamente */
-  display: block; /* Remove o espaço branco ao redor da imagem */
+  height: auto; /* Garante que a altura seja ajustada proporcionalmente à largura */
+  object-fit: cover;
+  max-width: 100%; /* Limita a largura máxima da imagem */
+  max-height: 100%; /* Limita a altura máxima da imagem */
 }
 
 .card_curso-descricao {
-  padding: 1rem;
-  /* max-height: 200px; */
-  overflow: hidden;
-  background-color: var(--back-menu);
+  padding: 16px;
+  flex: 1;
 }
 
-
-.card_descricao-texto {
-  text-align: justify;
-  margin-bottom: 1rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 5; /* Número de linhas para exibir */
-  -webkit-box-orient: vertical;
+.card_descricao-titulo h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 8px;
 }
-
-.card_descricao-botoes {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-}
-
-.card_descricao-botoes > button {
-  margin-left: 10px;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 8px;
-  color: white;
-}
-
-.btn-excluir, .btn-Reprovar {
-  background-color: var(--primary-color);
-}
-
-.btn-editar{
-  background-color: blue;
-}
-
-.btn-Aprovar{
-  background-color: green;
-}
-
-.btn-Inativar {
-  background-color: var(--secondary-color);
-}
-
-/* @media (min-width: 768px) {
-  .card_curso {
-    display: flex;
-    flex-direction: row;
-  }
-
-  .card_curso-thumb {
-    flex: 1;
-  }
-
-  .card_curso-descricao {
-    flex: 2;
-  }
-} */
 
 .container-tags {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .container-tags p {
-  background-color: var(--primary-color);
-  color: #fff;
+  background: var(--primary-color);
+  border-radius: 4px;
+  padding: 4px 8px;
+  margin: 0 4px 4px 0;
+  font-size: 12px;
+  color: white; /* Definindo a cor do texto como branco */
   border-radius: 14px;
-  padding: 5px 30px;
+}
+
+.card_descricao-texto {
+  margin-bottom: 16px;
   font-size: 14px;
-  margin: 0 10px 10px 0;
+  line-height: 1.5;
+  color: #555;
+}
+
+.card_descricao-botoes {
+  display: flex;
+  gap: 8px;
+}
+
+.card_descricao-botoes button {
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+}
+
+.btn-editar { background-color: #4caf50; color: white; }
+.btn-aprovar { background-color: #2196f3; color: white; }
+.btn-reprovar { background-color: #f44336; color: white; }
+.btn-inativar { background-color: #ff9800; color: white; }
+.btn-excluir { background-color: #e91e63; color: white; }
+
+.card_curso-progresso {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 16px;
+  background-color: #f9f9f9;
+}
+
+.card_progresso-barra {
+  height: 8px;
+  background: #4caf50;
+  width: 50%; /* Exemplo de progresso, ajuste conforme necessário */
+}
+
+.card_progresso-descricao {
+  text-align: right;
+  font-size: 12px;
+  margin-top: 4px;
+  color: #555;
+}
+
+/* Media query para dispositivos menores */
+@media (max-width: 768px) {
+  .card_curso {
+    margin-bottom: 8px; /* Reduzir espaço entre os cards */
+  }
 }

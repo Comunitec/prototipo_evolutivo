@@ -12,6 +12,36 @@ export const getCursos = (_, res) => {
   });
 };
 
+//Get de cursos com status em criação de um determinado usuário
+export const getCursosEmCriacao = (req, res) => {
+  const idAlunoCriador = req.params.idAlunoCriador;
+
+  const q = "SELECT * FROM curso WHERE idAlunoCriador = ? AND Status = 'em criação'";
+  db.query(q, idAlunoCriador, (err, data) => {
+    if (err) return res.status(500).json(err);
+    return res.status(200).json(data);
+  });
+};
+
+//Get de cursos com status aguardando aprovação
+export const getCursosAguardandoAprovacao = (_, res) => {
+  const q = "SELECT * FROM curso WHERE Status = 'aguardando aprovação'";
+  db.query(q, (err, data) => {
+    if (err) return res.status(500).json(err);
+    return res.status(200).json(data);
+  });
+};
+
+//Get de cursos com status aprovado
+export const getCursosAprovados = (_, res) => {
+  const q = "SELECT * FROM curso WHERE Status = 'aprovado'";
+  db.query(q, (err, data) => {
+    if (err) return res.status(500).json(err);
+    return res.status(200).json(data);
+  });
+};
+
+
 // Get de um curso específico por ID
 export const getCursoPorId = (req, res) => {
   const idCurso = req.params.id; // Supondo que o ID seja passado como um parâmetro na URL
