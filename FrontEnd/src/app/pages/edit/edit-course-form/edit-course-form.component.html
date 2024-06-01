@@ -1,0 +1,88 @@
+<!-- Coluna Esquerda (Fixa) - Ranking -->
+<app-left-column>
+  <app-menu-lateral></app-menu-lateral>
+</app-left-column>
+
+<!-- Coluna do Meio (Rolável) - Feed Principal -->
+<app-middle-column>
+  <mat-tab-group>
+    <mat-tab label="Gerenciar Curso">
+      <form (ngSubmit)="salvarCurso()" enctype="multipart/form-data">
+        <div class="input-group">
+          <label for="courseName">Nome do Curso</label>
+          <input class="common-style" name="courseName" type="text" id="courseName" placeholder="Digite o nome do curso"
+            required [(ngModel)]="curso.tituloCurso" />
+
+          <label for="courseDescription">Descrição</label>
+          <textarea class="common-style" name="courseDescription" id="courseDescription" cols="30" rows="10"
+            placeholder="Digite a descrição do curso" [(ngModel)]="curso.descricaoCurso"></textarea>
+
+          <label for="tag">Tag</label>
+          <span style="font-size: 10px;">Não encontrou uma tag que se encaixe no seu curso? Entre em contato conosco
+            para fazer uma solicitação através do nosso <a
+              href="mailto:comunitec@gmail.com?subject=Solicitar nova Tag">e-mail</a>.</span>
+          <select class="common-style" name="tagSelector" id="tag" [(ngModel)]="selectedTag" (change)="optionSelected()"
+            [ngModelOptions]="{standalone: true}">
+            <option *ngFor="let tag of tagList" [value]="tag.Nome">
+              {{ tag.Nome }}
+            </option>
+          </select>
+
+          <div class="container-tags">
+            <p *ngFor="let tag of curso.tag">{{ tag }}</p>
+            <p *ngFor="let tag of selectedOptions">{{ tag }}</p>
+          </div>
+
+          <div class="container-buttons">
+            <button class="common-style" type="button" (click)="removeTags()"
+              [ngClass]="{ 'btn-tag-selecionada': tagBoolean }">
+              - Remover tags
+            </button>
+          </div>
+
+          <div class="input-files">
+            <div class="div-files">
+              <!-- Seção de imagem -->
+              <label>Adicionar imagem do curso</label>
+              <img src="/assets/upload.png" style="width: 140px" *ngIf="!selectedImagem" alt="" (click)="triggerFileInput('adicionarImagem')">
+              <input class="input-file" id="adicionarImagem" type="file" accept=".jpg, .jpeg, .png" (change)="onFileSelected($event, 'imagem')" hidden />
+              <div class="image-preview" *ngIf="selectedImagem">
+                <img [src]="selectedImagem" alt="Img selecionada">
+              </div>
+            </div>
+            <div class="div-files">
+              <!-- Seção de emblema -->
+              <label>Adicionar imagem para o emblema</label>
+              <img src="/assets/upload.png" width="140px" *ngIf="!selectedEmblema" alt="" (click)="triggerFileInput('adicionarEmblema')">
+              <input class="input-file" id="adicionarEmblema" type="file" accept=".jpg, .jpeg, .png" (change)="onFileSelected($event, 'emblema')" hidden />
+              <div class="image-preview" *ngIf="selectedEmblema">
+                <img [src]="selectedEmblema" alt="Emblema selecionado">
+              </div>
+            </div>
+            <div class="div-files">
+              <!-- Seção de PDF -->
+              <label for="adicionarCertificado">Adicionar Certificado (PDF)</label>
+              <input class="input-file" id="adicionarCertificado" type="file" accept=".pdf" (change)="onFileSelected($event, 'certificado')" hidden />
+              <div class="pdf-preview" *ngIf="selectedCertificadoName">
+                <p>Arquivo selecionado: {{ selectedCertificadoName }}</p>
+              </div>
+              <button type="button" class="save-button" (click)="triggerFileInput('adicionarCertificado')">Escolher PDF</button>
+            </div>
+          </div>
+
+          <div style="margin-top: 30px; display: flex; justify-content: center; gap: 60px">
+            <button type="button" class="save-button back" routerLink="/meusCursosProfessor">Voltar</button>
+            <button type="submit" class="save-button">Salvar curso</button>
+          </div>
+        </div>
+      </form>
+    </mat-tab>
+    <mat-tab label="Aulas">
+      <app-class-form></app-class-form>
+    </mat-tab>
+    <mat-tab label="Questionário">
+      <app-quiz-form></app-quiz-form>
+    </mat-tab>
+  </mat-tab-group>
+</app-middle-column>
+<app-right-column></app-right-column>
