@@ -1,35 +1,40 @@
 form{
   margin: 0;
-  padding: 10px;
 }
 
 h2{
+  padding: 10px;
   text-align: center;
   font-weight: bold;
+  background-color: var(--primary-color);
+  color: white;
 }
 
 p{
   text-align: justify;
   font-size: medium;
+  padding: 0 15px;
 }
 
 .btn{
-  margin: 20px 0 20px 0;
+  margin-bottom: 15px;
   display: flex;
-  flex-direction: column;
-  justify-items: center;
+  flex-direction: row;
   width: 100%;
   font-size:larger ;
   font-weight: bolder;
+  justify-content: center;
 
 }
 
 .btn > button{
-  font-size:large ;
+  font-size: large ;
   height: 35px;
-  margin-top: 10px;
-  border: none;
+  margin: 10px;
+  padding: 10px;
   cursor: pointer;
+  border: none;
+  border-radius: 5%;
 }
 
 .confirmar{
