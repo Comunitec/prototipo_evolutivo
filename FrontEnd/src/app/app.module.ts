@@ -50,6 +50,7 @@ import { GerenciarUsuariosComponent } from './pages/gerenciar-usuarios/gerenciar
 import { MatTabsModule } from '@angular/material/tabs';
 import { ClassFormComponent } from './components/class-form/class-form.component';
 import { QuizFormComponent } from './components/quiz-form/quiz-form.component';
+import { EditCourseFormComponent } from './pages/edit/edit-course-form/edit-course-form.component';
 
 
 const routes: Routes = [
@@ -73,6 +74,7 @@ const routes: Routes = [
   {path: 'finalizarCurso', component: FinalizarCursoComponent},
   {path: 'gerenciar-usuarios', component: GerenciarUsuariosComponent},
   {path: 'excluir-conta', component: ModalExcluirContaComponent},
+  {path: 'EditCourseFormComponent/:id', component: EditCourseFormComponent},
 
 
 ];
@@ -119,6 +121,7 @@ const routes: Routes = [
     GerenciarUsuariosComponent,
     ClassFormComponent,
     QuizFormComponent,
+    EditCourseFormComponent,
 
   ],
   imports: [

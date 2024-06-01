@@ -1,6 +1,6 @@
 <div class="container_curso">
   <!-- Itera sobre cada curso e exibe as informações -->
-  <div class="card_curso" *ngFor="let curso of cursos" (click)="redirecionarParaRota(curso.idCurso)">
+  <div class="card_curso" *ngFor="let curso of cursos" >
     <div class="card_curso-thumb">
       <img [src]="curso.Imagem" class="photo">
     </div>
@@ -13,7 +13,7 @@
       </div>
       <div class="card_descricao-texto">{{ getTruncatedText(curso.Descricao, 300) }}</div>
       <div class="card_descricao-botoes">
-        <button *ngIf="podeEditar" class="btn-editar">Editar</button>
+        <button *ngIf="podeEditar" (click)="redirecionarParaRota(curso.idCurso)" class="btn-editar">Editar</button>
         <button *ngIf="podeAprovar" class="btn-Aprovar">Aprovar</button>
         <button *ngIf="podeReprovar" class="btn-Reprovar">Reprovar</button>
         <button *ngIf="podeInativar" class="btn-Inativar">Inativar</button>
