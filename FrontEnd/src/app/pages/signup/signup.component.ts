@@ -17,11 +17,22 @@ export class SignupComponent {
   Pontuacao: number = 0;
   PerfilDeAcesso: string = "Aluno";
   selectedFile: File | null = null; // Propriedade para armazenar o arquivo selecionado
+  selectedImagem: string | ArrayBuffer | null = null; // Propriedade para armazenar a URL da imagem selecionada
 
   constructor(private http: HttpClient, private dialog: MatDialog) { } // Injete o MatDialog no construtor
 
   onFileSelected(event: any) {
-    this.selectedFile = event.target.files[0];
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
+      this.selectedFile = file;
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        this.selectedImagem = e.target?.result as string | ArrayBuffer | null; // Add type assertion here
+      };
+      reader.readAsDataURL(file);
+    }
   }
 
   enviarRegistro() {
@@ -68,5 +79,10 @@ export class SignupComponent {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
+  }
+
+  triggerFileInput(inputId: string) {
+    const fileInput = document.getElementById(inputId) as HTMLInputElement;
+    fileInput.click();
   }
 }

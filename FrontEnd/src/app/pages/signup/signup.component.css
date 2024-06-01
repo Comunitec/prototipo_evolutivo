@@ -1,5 +1,7 @@
 /* Estilos para a página de criação de conta */
-
+*{
+  font-size: 12px;
+}
 .signup-container {
   display: flex;
   justify-content: center;
@@ -23,6 +25,18 @@ h1 {
 .input-group {
   margin-bottom: 15px;
 }
+.inputs{
+  display: flex;
+  gap: 25px;
+}
+.imagem{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0;
+  flex-direction: column;
+
+}
 
 p {
   font-size: 10px;
@@ -35,6 +49,7 @@ label {
   display: block;
   font-weight: bold;
   margin-bottom: 5px;
+
 }
 
 input[type="text"],
@@ -43,13 +58,13 @@ input[type="password"],
 input[type="date"],
 input[type="file"] {
   width: 400px;
-  height: 30px;
+  /* height: 20px; */
   padding: 10px;
   border-radius: 8px;
   border: none;
   background-color: #d9d9d9;
   box-shadow: 1px 3px 4px -2px #898989;
-  font-size: 16px;
+
 }
 
 button {
@@ -64,14 +79,14 @@ button {
 
 button.signup-button {
   background-color: var(--primary-color);
-  margin-left: 60px;
-  margin-right: 55px;
+  /* margin-left: 60px;
+  margin-right: 55px; */
 }
 
 button.back-button {
   background-color: var(--secondary-color);
   transition: background-color 0.2s;
-  margin-left: 90px;
+  /* margin-left: 90px; */
 }
 
 button.signup-button:hover {
@@ -84,9 +99,10 @@ button.back-button:hover {
 
 form {
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
+  align-items: center;
   justify-content: center;
-  gap: 0px 30px;
   margin-bottom: 50px;
 }
 
@@ -97,5 +113,20 @@ form {
 }
 
 img {
-  width: 80%;
+  width: 60%;
+}
+
+.image-preview img {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  padding: 5px;
+}
+
+.btns{
+  display: flex;
+  justify-content: space-evenly;
+  padding-top: 30px;
 }
