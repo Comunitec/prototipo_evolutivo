@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { faEdit, faTrash, IconDefinition } from '@fortawesome/free-solid-svg-icons';
-import { MatDialog } from '@angular/material/dialog'; // Importe o MatDialog
+import { MatDialog } from '@angular/material/dialog';
 import { ModalExcluirContaComponent } from 'src/app/components/modal-excluir-conta/modal-excluir-conta.component';
-
 
 interface Usuario {
   idAluno: number;
@@ -12,7 +11,6 @@ interface Usuario {
   Email: string;
   photoUrl?: string; // Adicionando a propriedade photoUrl
 }
-
 
 @Component({
   selector: 'app-gerenciar-usuarios',
@@ -48,17 +46,6 @@ export class GerenciarUsuariosComponent implements OnInit {
   editarUsuario(id: number) {
     this.router.navigate(['/editar-usuario', id]);
   }
-
- /* excluirUsuario(id: number) {
-    this.http.delete(`http://localhost:8800/deleteAluno/${id}`).subscribe(
-      () => {
-        this.carregarUsuarios();
-      },
-      error => {
-        console.error('Erro ao excluir usuário:', error);
-      }
-    );
-  }*/
 
   openModal(id: number): void {
     const dialogRef = this.dialog.open(ModalExcluirContaComponent, {

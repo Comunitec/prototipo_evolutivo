@@ -1,8 +1,8 @@
 <form>
-  <h2>Excluir Conta</h2>
-  <p>Você está prestes a excluir permanentemente sua conta. Esta ação é irreversível e todos os seus dados associados serão perdidos. Por favor, confirme se deseja prosseguir com esta ação.</p>
+  <h2><fa-icon [icon]="faTriangleExclamation"></fa-icon>  Excluir Conta</h2>
+  <p>Você está prestes a excluir permanentemente esta conta. Esta ação é irreversível e todos os seus dados associados serão perdidos. Por favor, confirme se deseja prosseguir com esta ação:</p>
   <div class="btn">
-    <button class="confirmar" (click)="excluirUsuario()">Confirmar</button>
     <button class="cancelar" mat-button (click)="closeModal()">Cancelar</button>
+    <button class="confirmar" (click)="excluirUsuario()">Confirmar</button>
   </div>
 </form>

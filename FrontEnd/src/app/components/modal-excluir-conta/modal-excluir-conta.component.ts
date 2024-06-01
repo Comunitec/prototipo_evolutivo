@@ -1,15 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
-
-interface Usuario {
-  idAluno: number;
-  Nome: string;
-  Email: string;
-  photoUrl?: string; // Adicionando a propriedade photoUrl
-}
+import { faTriangleExclamation} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-modal-excluir-conta',
@@ -17,31 +9,20 @@ interface Usuario {
   styleUrls: ['./modal-excluir-conta.component.css']
 })
 export class ModalExcluirContaComponent implements OnInit {
-  usuarios: Usuario[] = [];
+  faTriangleExclamation = faTriangleExclamation;
 
-  constructor(public dialogRef: MatDialogRef<ModalExcluirContaComponent>, private http: HttpClient, private router: Router, private dialog: MatDialog) {}
+  constructor(
+    public dialogRef: MatDialogRef<ModalExcluirContaComponent>,
+    private http: HttpClient,
+    @Inject(MAT_DIALOG_DATA) public data: { idAluno: number }
+  ) {}
 
   ngOnInit() {
-    this.carregarUsuarios();
-  }
-
-  carregarUsuarios() {
-    this.http.get<Usuario[]>('http://localhost:8800/getAlunos').subscribe(
-      data => {
-        console.log('Dados dos usuários:', data);
-        this.usuarios = data.map(usuario => ({
-          ...usuario,
-          photoUrl: `http://localhost:8800/imagem/${usuario.idAluno}`
-        }));
-      },
-      error => {
-        console.error('Erro ao carregar usuários:', error);
-      }
-    );
+    // Não precisa carregar os usuários aqui
   }
 
   excluirUsuario() {
-    const id = this.usuarios[0].idAluno; // Supondo que você deseja excluir o primeiro usuário da lista
+    const id = this.data.idAluno;
     this.http.delete(`http://localhost:8800/deleteAluno/${id}`).subscribe(
       () => {
         console.log('Usuário excluído com sucesso.');
