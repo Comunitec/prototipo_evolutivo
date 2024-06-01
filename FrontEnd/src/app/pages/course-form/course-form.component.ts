@@ -2,16 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatDialog } from '@angular/material/dialog';
-
 import { MatTabsModule } from '@angular/material/tabs';
-import { ModalSalvarCursoComponent } from 'src/app/components/modal-salvar-curso/modal-salvar-curso.component';
-import {
-  Alternativa,
-  Aula,
-  Curso,
-  Questao,
-  Tag,
-} from 'src/app/interfaces/curso';
+import { Alternativa, Aula, Curso, Questao, Tag } from 'src/app/interfaces/curso';
 
 type imageType = string | ArrayBuffer | null;
 
@@ -108,22 +100,18 @@ export class CourseFormComponent implements OnInit {
       const tag = this.tagList.find((tag) => tag.Nome === tagNome);
       if (tag) {
         const tagCursoData = { idCurso, idTag: tag.idTag };
-        this.http
-          .post<any>('http://localhost:8800/addTagCurso', tagCursoData)
-          .subscribe(
-            (response) => {
-              console.log(`Tag associada ao curso com sucesso: ${tag.Nome}`);
-            },
-            (error) => {
-              console.error(
-                `Erro ao associar tag ao curso: ${tag.Nome}`,
-                error
-              );
-            }
-          );
+        this.http.post<any>('http://localhost:8800/addTagCurso', tagCursoData).subscribe(
+          (response) => {
+            console.log(`Tag associada ao curso com sucesso: ${tag.Nome}`);
+          },
+          (error) => {
+            console.error(`Erro ao associar tag ao curso: ${tag.Nome}`, error);
+          }
+        );
       }
     });
   }
+
   removeTags() {
     this.selectedOptions = [];
     this.tagBoolean = false;
@@ -132,16 +120,9 @@ export class CourseFormComponent implements OnInit {
   optionSelected() {
     if (this.selectedTag && this.selectedOptions.length < 3) {
       this.selectedOptions.push(this.selectedTag);
-      this.selectedTag = undefined;
-    }
-    if (this.selectedOptions.length > 0) {
       this.tagBoolean = true;
+      this.selectedTag = undefined; // Clear selected tag
     }
-  }
-
-  triggerFileInput(inputId: string) {
-    const fileInput = document.getElementById(inputId) as HTMLInputElement;
-    fileInput.click();
   }
 
   onFileSelected(event: Event, type: string) {
@@ -150,21 +131,16 @@ export class CourseFormComponent implements OnInit {
       const file = input.files[0];
       const reader = new FileReader();
 
-      if (type === 'imagem' || type === 'emblema') {
+      if (type === 'imagem') {
         reader.onload = (e) => {
-          if (type === 'imagem') {
-            this.selectedImagem = e.target?.result as
-              | string
-              | ArrayBuffer
-              | null;
-            this.selectedImagemFile = file;
-          } else if (type === 'emblema') {
-            this.selectedEmblema = e.target?.result as
-              | string
-              | ArrayBuffer
-              | null;
-            this.selectedEmblemaFile = file;
-          }
+          this.selectedImagem = e.target?.result as string | ArrayBuffer | null;
+          this.selectedImagemFile = file;
+        };
+        reader.readAsDataURL(file);
+      } else if (type === 'emblema') {
+        reader.onload = (e) => {
+          this.selectedEmblema = e.target?.result as string | ArrayBuffer | null;
+          this.selectedEmblemaFile = file;
         };
         reader.readAsDataURL(file);
       } else if (type === 'certificado') {
@@ -174,7 +150,10 @@ export class CourseFormComponent implements OnInit {
     }
   }
 
-  finalizarGerenciamento() {
-    console.log('Gerenciamento do curso finalizado:', this.curso);
+  triggerFileInput(id: string) {
+    const input = document.getElementById(id) as HTMLInputElement;
+    if (input) {
+      input.click();
+    }
   }
 }
