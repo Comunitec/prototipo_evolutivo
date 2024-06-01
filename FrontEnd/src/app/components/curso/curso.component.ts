@@ -8,6 +8,8 @@ interface Curso {
   Nome: string;
   Imagem: string; // Adicionamos o campo para a URL da imagem do curso
   tags: string[];
+  Descricao: string;
+  tempId?: number; // Propriedade temporária para armazenar o ID temporário
 }
 
 @Component({
@@ -16,53 +18,109 @@ interface Curso {
   styleUrls: ['./curso.component.css']
 })
 export class CursoComponent implements OnInit {
-  cursos: any[] = [];
+  cursos: Curso[] = [];
   podeEditar: boolean = false;
   podeExcluir: boolean = false;
   podeAprovar: boolean = false;
   podeReprovar: boolean = false;
   podeInativar: boolean = false;
 
-  
   constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) {}
 
   ngOnInit() {
     this.route.url.subscribe(url => {
       const currentRoute = this.router.url;
-      // Aqui você pode definir as variáveis com base na rota atual
       if (currentRoute.includes('/meusCursosAluno')) {
+        this.listarCursosMatriculados();
         // Defina as permissões para alunos
-      } else if (currentRoute.includes('/meusCursosProfessor')){
+      } else if (currentRoute.includes('/meusCursosProfessor')) {
         // Defina as permissões para professores
         this.podeEditar = true;
         this.podeExcluir = true;
-      } else if (currentRoute.includes('/staff')){
+        this.listarCursosEmCriacao();
+      } else if (currentRoute.includes('/staff')) {
         // Defina as permissões para o staff
-        this.podeAprovar= true;
+        this.podeAprovar = true;
         this.podeReprovar = true;
+        this.listarCursosAguardandoAprovacao();
+      } else if (currentRoute.includes('/home-logado') || currentRoute.includes('/o')) {
+        this.listarCursosAprovados();
       }
     });
-
-    // Chama a função para carregar os cursos ao inicializar o componente
-    this.listarCursos();
-    
   }
 
-  listarCursos(): void {
-    this.http.get<Curso[]>('http://localhost:8800/getCursos')
+  listarCursosEmCriacao(): void {
+    const idUsuario = sessionStorage.getItem('idAluno');
+    if (idUsuario) {
+      this.http.get<Curso[]>(`http://localhost:8800/getCursosEmCriacao/${idUsuario}`)
+        .subscribe(
+          (data) => {
+            console.log('Cursos em criação:', data);
+            this.cursos = data;
+            this.carregarDadosExtras();
+          },
+          (error) => {
+            console.error('Erro ao obter cursos em criação:', error);
+          }
+        );
+    }
+  }
+
+  listarCursosAguardandoAprovacao(): void {
+    this.http.get<Curso[]>('http://localhost:8800/getCursosAguardandoAprovacao')
       .subscribe(
         (data) => {
+          console.log('Cursos aguardando aprovação:', data);
           this.cursos = data;
-          // Para cada curso, obtemos a URL da imagem usando o ID do curso
-          this.cursos.forEach(curso => {
-            this.getImagemCurso(curso.idCurso, curso);
-            this.getTagsCurso(curso.idCurso, curso);
-          });
+          this.carregarDadosExtras();
         },
         (error) => {
-          console.error('Erro ao obter cursos:', error);
+          console.error('Erro ao obter cursos aguardando aprovação:', error);
         }
       );
+  }
+
+  listarCursosAprovados(): void {
+    this.http.get<Curso[]>('http://localhost:8800/getCursosAprovados')
+      .subscribe(
+        (data) => {
+          console.log('Cursos aprovados:', data);
+          this.cursos = data;
+          this.carregarDadosExtras();
+        },
+        (error) => {
+          console.error('Erro ao obter cursos aprovados:', error);
+        }
+      );
+  }
+
+  listarCursosMatriculados(): void {
+    const idUsuario = sessionStorage.getItem('idAluno');
+    if (idUsuario) {
+      this.http.get<Curso[]>(`http://localhost:8800/getCursosMatriculados/${idUsuario}`)
+        .subscribe(
+          (data) => {
+            console.log('Cursos em criação:', data);
+            this.cursos = data;
+            this.carregarDadosExtras();
+          },
+          (error) => {
+            console.error('Erro ao obter cursos em criação:', error);
+          }
+        );
+    }
+  }
+
+  carregarDadosExtras(): void {
+    this.cursos.forEach(curso => {
+      console.log('Processando curso:', curso);
+      if (curso.idCurso) {
+        this.getImagemCurso(curso.idCurso, curso);
+        this.getTagsCurso(curso.idCurso, curso);
+      } else {
+        console.error('ID do curso é undefined para curso:', curso);
+      }
+    });
   }
 
   getTagsCurso(idCurso: number, curso: Curso): void {
@@ -70,7 +128,7 @@ export class CursoComponent implements OnInit {
       .subscribe(
         (tags) => {
           curso.tags = tags;
-          console.log('Tags do curso', curso.Nome, ':', tags); // Verifica se as tags estão sendo recebidas corretamente
+          console.log('Tags do curso', curso.Nome, ':', tags);
         },
         (error) => {
           console.error(`Erro ao obter tags do curso ${idCurso}:`, error);
@@ -79,12 +137,15 @@ export class CursoComponent implements OnInit {
   }
 
   getImagemCurso(idCurso: number, curso: Curso): void {
-    // Monta a URL da imagem do curso usando o ID do curso
-    curso.Imagem = `http://localhost:8800/getImagemCurso/${idCurso}`;
+    if (idCurso) {
+      console.log(`Setting image URL for course ${curso.Nome} with ID ${idCurso}`);
+      curso.Imagem = `http://localhost:8800/getImagemCurso/${idCurso}`;
+    } else {
+      console.error('ID do curso é undefined para curso:', curso);
+    }
   }
 
-  redirecionarParaRota(idCurso: string) {
-    // Aqui você pode redirecionar para a rota desejada, passando o id do curso
+  redirecionarParaRota(idCurso: number) {
     this.router.navigate(['/sua-rota', idCurso]);
   }
 
@@ -96,4 +157,3 @@ export class CursoComponent implements OnInit {
     }
   }
 }
-
