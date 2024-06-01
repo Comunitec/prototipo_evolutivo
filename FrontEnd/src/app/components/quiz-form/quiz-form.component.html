@@ -1,13 +1,13 @@
 <form>
   <div class="input-group" *ngFor="let questionario of questionarios; let qi = index">
-    <h3><b>Adicionar questionário referente a aula {{ qi + 1 }}</b></h3>
+    <h3 style="margin-top: 20px;">Adicionar questionário referente a aula {{ qi + 1 }}</h3>
     <label for="tituloQuestionario">Título do questionário</label>
     <input  type="text" class="common-style" placeholder="Digite um título para seu questionário">
     <label for="descQuestionario">Descrição do questionário</label>
     <input  type="text" class="common-style" placeholder="Digite um título para seu questionário">
     <div class="container-buttons">
-    <button type="button" class="save-button" (click)="addQuestoes()">Adicionar questões</button>
-    <button type="button" class="save-button" (click)="fecharQuestoes()">Fechar questões</button>
+    <button type="button" class="save-button" (click)="addQuestoes()">Adicionar</button>
+    <button type="button" class="save-button" (click)="fecharQuestoes()">Fechar</button>
     <button type="button" class="save-button" (click)="salvarQuestoes()">Salvar questões</button>
     </div>
     <div *ngIf="mostrarQuestionario">

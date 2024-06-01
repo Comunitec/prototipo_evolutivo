@@ -12,6 +12,13 @@
       <label for="adicionarVideo">Adicionar link do vídeo</label>
       <input class="common-style" id="adicionarVideo" type="text" placeholder="Insira o link do vídeo"
         [(ngModel)]="aula.link" [ngModelOptions]="{ standalone: true }" />
+        <div class="container-buttons">
+          <button type="button" class="save-button delete" >Apagar</button>
+          <button type="button" class="save-button" >Salvar</button>
+          </div>
     </div>
+    <!-- <div class="container-buttons">
+      <button type="button" class="save-button" >Ir para questionário</button>
+      </div> -->
   </div>
 </form>

@@ -8,6 +8,7 @@
 .container-buttons {
   display: flex;
   justify-content: center;
+  gap: 60px;
 }
 
 form {
@@ -38,8 +39,8 @@ label {
   padding: 10px;
   border-radius: 8px;
   border: none;
-  background-color: #d9d9d9;
-  box-shadow: 1px 3px 4px -2px #898989;
+  background-color: var(--back-menu);
+  box-shadow: var(--box-shadow);
   font-size: 16px;
 }
 
@@ -79,5 +80,16 @@ select {
   height: 32px;
   padding: 10px 20px;
   margin-top: 20px;
+}
+
+.save-button:hover {
+  background-color: var(--hover-btn-primary);
+}
+
+.delete{
+  background-color: var(--secondary-color);
+}
+.delete:hover{
+  background-color: var(--hover-btn-secondary);
 }
 
