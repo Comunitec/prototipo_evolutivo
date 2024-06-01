@@ -1,5 +1,5 @@
 import express from "express";
-import { addCurso, getCursos, getImagemCurso, getCursoPorId } from "../controllers/curso.js";
+import { addCurso, getCursos, getImagemCurso, getCursoPorId, getCursosEmCriacao, getCursosAguardandoAprovacao, getCursosAprovados } from "../controllers/curso.js";
 import multer from 'multer';
 import path from 'path';
 import { v4 as uuidv4 } from 'uuid';
@@ -39,6 +39,9 @@ router.post("/addCurso", upload.fields([
 
 router.get("/getImagemCurso/:id", getImagemCurso);
 router.get("/getCursoPorId/:id", getCursoPorId);
+router.get("/getCursosEmCriacao/:id", getCursosEmCriacao);
+router.get("/getCursosAguardandoAprovacao", getCursosAguardandoAprovacao);
+router.get("/getCursosAprovados", getCursosAprovados)
 
 
 

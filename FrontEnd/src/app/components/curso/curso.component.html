@@ -1,22 +1,17 @@
 <div class="container_curso">
-
-  <div class="card_curso" (click)="redirecionarParaRota">
-
+  <!-- Itera sobre cada curso e exibe as informações -->
+  <div class="card_curso" *ngFor="let curso of cursos" (click)="redirecionarParaRota(curso.id)">
     <div class="card_curso-thumb">
-      <img [src]="imagem" alt="" />
+      <img [src]="curso.Imagem" class="photo">
     </div>
-
     <div class="card_curso-descricao">
       <div class="card_descricao-titulo">
-        <h2>{{ nomeCurso }}</h2>
+        <h2>{{ curso.Nome }}</h2>
       </div>
-
       <div class="container-tags">
-        <p *ngFor="let tag of tags">{{ tag }}</p>
+       <p *ngFor="let tag of curso.tags">{{ tag }}</p>
       </div>
-
-      <div class="card_descricao-texto">{{ getTruncatedText(descricao, 300) }}</div>
-
+      <div class="card_descricao-texto">{{ getTruncatedText(curso.Descricao, 300) }}</div>
       <div class="card_descricao-botoes">
         <button *ngIf="podeEditar" class="btn-editar">Editar</button>
         <button *ngIf="podeAprovar" class="btn-Aprovar">Aprovar</button>
@@ -25,9 +20,5 @@
         <button *ngIf="podeExcluir" class="btn-excluir">Excluir</button>
       </div>
     </div>
-  </div>
-  <div class="card_curso-progresso">
-    <div class="card_progresso-barra"></div>
-    <div class="card_progresso-descricao"></div>
   </div>
 </div>
