@@ -5,13 +5,10 @@
 
 <!-- Coluna do Meio (Rolável) - Feed Principal -->
 <app-middle-column>
-
   <mat-tab-group>
     <mat-tab label="Gerenciar Curso">
-      <form action="">
-
+      <form (ngSubmit)="salvarCurso()" enctype="multipart/form-data">
         <div class="input-group">
-
           <label for="courseName">Nome do Curso</label>
           <input class="common-style" name="courseName" type="text" id="courseName" placeholder="Digite o nome do curso"
             required [(ngModel)]="curso.tituloCurso" />
@@ -43,52 +40,40 @@
           </div>
 
           <div class="input-files">
-          <div class="div-files">
-
-            <!-- Seção de imagem -->
-            <label>Adicionar imagem do curso</label>
-              <img src="https://png.pngtree.com/element_our/20190601/ourmid/pngtree-file-upload-icon-image_1344393.jpg"
-                style="width: 140px" *ngIf="!selectedImagem" alt="" (click)="triggerFileInput('adicionarImagem')">
-
-            <input class="input-file" id="adicionarImagem" type="file" accept=".jpg, .jpeg, .png"
-              (change)="onFileSelected($event, 'imagem')" hidden />
-            <div class="image-preview" *ngIf="selectedImagem">
-              <img [src]="selectedImagem" alt="Img selecionada">
+            <div class="div-files">
+              <!-- Seção de imagem -->
+              <label>Adicionar imagem do curso</label>
+              <img src="/assets/upload.png" style="width: 140px" *ngIf="!selectedImagem" alt="" (click)="triggerFileInput('adicionarImagem')">
+              <input class="input-file" id="adicionarImagem" type="file" accept=".jpg, .jpeg, .png" (change)="onFileSelected($event, 'imagem')" hidden />
+              <div class="image-preview" *ngIf="selectedImagem">
+                <img [src]="selectedImagem" alt="Img selecionada">
+              </div>
+            </div>
+            <div class="div-files">
+              <!-- Seção de emblema -->
+              <label>Adicionar imagem para o emblema</label>
+              <img src="/assets/upload.png" width="140px" *ngIf="!selectedEmblema" alt="" (click)="triggerFileInput('adicionarEmblema')">
+              <input class="input-file" id="adicionarEmblema" type="file" accept=".jpg, .jpeg, .png" (change)="onFileSelected($event, 'emblema')" hidden />
+              <div class="image-preview" *ngIf="selectedEmblema">
+                <img [src]="selectedEmblema" alt="Emblema selecionado">
+              </div>
+            </div>
+            <div class="div-files">
+              <!-- Seção de PDF -->
+              <label for="adicionarCertificado">Adicionar Certificado (PDF)</label>
+              <input class="input-file" id="adicionarCertificado" type="file" accept=".pdf" (change)="onFileSelected($event, 'certificado')" hidden />
+              <div class="pdf-preview" *ngIf="selectedCertificadoName">
+                <p>Arquivo selecionado: {{ selectedCertificadoName }}</p>
+              </div>
+              <button type="button" class="save-button" (click)="triggerFileInput('adicionarCertificado')">Escolher PDF</button>
             </div>
           </div>
-          <div class="div-files">
-            <!-- Seção de emblema -->
-            <label>Adicionar imagem para o emblema</label>
-              <img src="https://png.pngtree.com/element_our/20190601/ourmid/pngtree-file-upload-icon-image_1344393.jpg"
-                width="140px" *ngIf="!selectedEmblema" alt="" (click)="triggerFileInput('adicionarEmblema')">
-            <input class="input-file" id="adicionarEmblema" type="file" accept=".jpg, .jpeg, .png"
-              (change)="onFileSelected($event, 'emblema')" hidden />
-            <div class="image-preview" *ngIf="selectedEmblema">
-              <img [src]="selectedEmblema" alt="Emblema selecionado">
-            </div>
-            <!-- <button type="button" class="save-button" (click)="triggerFileInput('adicionarEmblema')">Escolher Emblema</button> -->
-          </div>
-          <div class="div-files">
-
-            <!-- Seção de PDF -->
-            <label for="adicionarCertificado">Adicionar Certificado (PDF)</label>
-            <input class="input-file" id="adicionarCertificado" type="file" accept=".pdf"
-              (change)="onFileSelected($event, 'certificado')" hidden />
-            <div class="pdf-preview" *ngIf="selectedCertificadoName">
-              <p>Arquivo selecionado: {{ selectedCertificadoName }}</p>
-            </div>
-            <button type="button" class="save-button" (click)="triggerFileInput('adicionarCertificado')">Escolher
-              PDF</button>
-          </div>
-        </div>
-
 
           <div style="margin-top: 30px; display: flex; justify-content: center; gap: 60px">
             <button type="button" class="save-button back" routerLink="/meusCursosProfessor">Voltar</button>
-            <button type="button" class="save-button" (click)="salvarCurso()">Salvar curso</button>
+            <button type="submit" class="save-button">Salvar curso</button>
           </div>
         </div>
-
       </form>
     </mat-tab>
     <mat-tab label="Aulas">
@@ -99,5 +84,4 @@
     </mat-tab>
   </mat-tab-group>
 </app-middle-column>
-<app-right-column>
-</app-right-column>
+<app-right-column></app-right-column>
