@@ -1,6 +1,6 @@
 <div class="container_curso">
   <!-- Itera sobre cada curso e exibe as informações -->
-  <div class="card_curso" *ngFor="let curso of cursos" (click)="redirecionarParaRota(curso.id)">
+  <div class="card_curso" *ngFor="let curso of cursos" (click)="redirecionarParaRota(curso.idCurso)">
     <div class="card_curso-thumb">
       <img [src]="curso.Imagem" class="photo">
     </div>
@@ -9,7 +9,7 @@
         <h2>{{ curso.Nome }}</h2>
       </div>
       <div class="container-tags">
-       <p *ngFor="let tag of curso.tags">{{ tag }}</p>
+        <p *ngFor="let tag of curso.tags">{{ tag }}</p>
       </div>
       <div class="card_descricao-texto">{{ getTruncatedText(curso.Descricao, 300) }}</div>
       <div class="card_descricao-botoes">

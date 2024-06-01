@@ -39,7 +39,7 @@ router.post("/addCurso", upload.fields([
 
 router.get("/getImagemCurso/:id", getImagemCurso);
 router.get("/getCursoPorId/:id", getCursoPorId);
-router.get("/getCursosEmCriacao/:id", getCursosEmCriacao);
+router.get("/getCursosEmCriacao/:idAlunoCriador", getCursosEmCriacao);
 router.get("/getCursosAguardandoAprovacao", getCursosAguardandoAprovacao);
 router.get("/getCursosAprovados", getCursosAprovados)
 

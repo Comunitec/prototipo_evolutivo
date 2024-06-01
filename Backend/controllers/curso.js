@@ -17,7 +17,18 @@ export const getCursosEmCriacao = (req, res) => {
   const idAlunoCriador = req.params.idAlunoCriador;
 
   const q = "SELECT * FROM curso WHERE idAlunoCriador = ? AND Status = 'em criação'";
-  db.query(q, idAlunoCriador, (err, data) => {
+  db.query(q, [idAlunoCriador], (err, data) => {
+    if (err) return res.status(500).json(err);
+    return res.status(200).json(data);
+  });
+};
+
+//Get de cursos com status em criação de um determinado usuário
+export const getCursosMatriculado = (req, res) => {
+  const idAlunoCriador = req.params.idAlunoCriador;
+
+  const q = "SELECT * FROM curso WHERE idAlunoCriador = ? AND Status = 'em criação'";
+  db.query(q, [idAlunoCriador], (err, data) => {
     if (err) return res.status(500).json(err);
     return res.status(200).json(data);
   });
