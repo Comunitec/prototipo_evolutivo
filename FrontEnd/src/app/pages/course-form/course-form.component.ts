@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Alternativa, Aula, Curso, Questao, Tag } from 'src/app/interfaces/curso';
 
 type imageType = string | ArrayBuffer | null;
@@ -41,7 +42,8 @@ export class CourseFormComponent implements OnInit {
     public sanitizer: DomSanitizer,
     public dialog: MatDialog,
     public dialogTab: MatTabsModule,
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -87,6 +89,8 @@ export class CourseFormComponent implements OnInit {
 
         // Associe as tags ao curso após salvar o curso
         this.associarTagsAoCurso(idCurso);
+        
+          this.router.navigate(['/EditCourseFormComponent', idCurso]);
       },
       (error) => {
         console.error('Erro ao salvar curso:', error);

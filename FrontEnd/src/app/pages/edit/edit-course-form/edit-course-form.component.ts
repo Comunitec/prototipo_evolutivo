@@ -73,6 +73,8 @@ export class EditCourseFormComponent implements OnInit {
       console.error('Erro ao obter os dados do curso:', error);
     }
   );
+  this.curso.imagem = 'http://localhost:8800/getImagemCurso/' + idCurso;
+  this.curso.emblema = 'http://localhost:8800/getEmblemaCurso/' + idCurso;
 
   }
   
@@ -92,11 +94,11 @@ export class EditCourseFormComponent implements OnInit {
   salvarCurso() {
     this.curso.tag = this.selectedOptions;
 
+    const idCurso = this.route.snapshot.params['id'];
     // Prepare form data
     const formData = new FormData();
     formData.append('Nome', this.curso.tituloCurso);
     formData.append('Descricao', this.curso.descricaoCurso);
-    formData.append('idAlunoCriador', '5'); // ID fixo do aluno criador
 
     if (this.selectedImagemFile) {
       formData.append('Imagem', this.selectedImagemFile);
@@ -108,20 +110,21 @@ export class EditCourseFormComponent implements OnInit {
       formData.append('Certificado', this.selectedCertificadoFile);
     }
 
-    // this.http.post<any>('http://localhost:8800/addCurso', formData).subscribe(
-    //   (response) => {
-    //     console.log('Curso salvo com sucesso:', response);
-    //     // Extraia o ID do curso da resposta
-    //     const idCurso = response.idCurso;
+    this.http.post<any>(`http://localhost:8800/updateCurso/${idCurso}`, formData).subscribe(
+      (response) => {
+        console.log('Curso salvo com sucesso:', response);
+        // Extraia o ID do curso da resposta
+        const idCurso = response.idCurso;
 
-    //     // Associe as tags ao curso após salvar o curso
-    //     this.associarTagsAoCurso(idCurso);
-    //   },
-    //   (error) => {
-    //     console.error('Erro ao salvar curso:', error);
-    //   }
-    // );
+        // Associe as tags ao curso após salvar o curso
+        this.associarTagsAoCurso(idCurso);
+      },
+      (error) => {
+        console.error('Erro ao salvar curso:', error);
+      }
+    );
   }
+  
 
   associarTagsAoCurso(idCurso: number) {
     // Para cada tag selecionada, faz uma requisição para associá-la ao curso

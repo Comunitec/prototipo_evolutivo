@@ -122,6 +122,71 @@ export const addCurso = (req, res) => {
   });
 };
 
+// Rota para atualizar um curso
+export const updateCurso = (req, res) => {
+  const { idCurso } = req.params; // Obtém o ID do curso a ser atualizado
+  const { Nome, Descricao } = req.body;
+  
+  // Atualizar apenas se todos os campos necessários estiverem presentes
+  if (!Nome || !Descricao) {
+    console.error("Campos obrigatórios ausentes para atualização");
+    return res.status(400).json({ error: "Campos obrigatórios ausentes para atualização" });
+  }
+
+  // Verificar se os arquivos foram enviados corretamente
+  const { Imagem, Certificado, Emblema } = req.files;
+
+  if (!Imagem || !Certificado || !Emblema) {
+    console.error("Arquivos não enviados corretamente");
+    return res.status(400).json({ error: "Arquivos não enviados corretamente" });
+  }
+
+  // Verificar se os nomes dos arquivos estão definidos corretamente
+  const imagemName = Imagem[0].filename;
+  const certificadoName = Certificado[0].filename;
+  const emblemaName = Emblema[0].filename;
+
+  if (!imagemName || !certificadoName || !emblemaName) {
+    console.error("Nomes dos arquivos não definidos corretamente");
+    return res.status(400).json({ error: "Nomes dos arquivos não definidos corretamente" });
+  }
+
+  // Caminhos relativos para as novas imagens
+  const imagemPath = path.join('static/images/cursos', imagemName);
+  const certificadoPath = path.join('static/images/certificados', certificadoName);
+  const emblemaPath = path.join('static/images/emblemas', emblemaName);
+
+  // Obter os caminhos dos arquivos atuais associados ao curso
+  const qGetPaths = "SELECT Imagem, Certificado, Emblema FROM curso WHERE idCurso = ?";
+  db.query(qGetPaths, [idCurso], (err, rows) => {
+    if (err) {
+      console.error("Erro ao obter caminhos dos arquivos do curso:", err);
+      return res.status(500).json({ error: "Erro ao obter caminhos dos arquivos do curso" });
+    }
+
+    // Extrair os caminhos dos arquivos atuais
+    const { Imagem: currentImagemPath, Certificado: currentCertificadoPath, Emblema: currentEmblemaPath } = rows[0];
+
+    // Excluir os arquivos atuais do sistema de arquivos
+    fs.unlinkSync(currentImagemPath);
+    fs.unlinkSync(currentCertificadoPath);
+    fs.unlinkSync(currentEmblemaPath);
+
+    // Query para atualizar o curso no banco de dados
+    const qUpdateCurso = "UPDATE curso SET Nome = ?, Descricao = ?, Imagem = ?, Certificado = ?, Emblema = ? WHERE idCurso = ?";
+    const values = [Nome, Descricao, imagemPath, certificadoPath, emblemaPath, idCurso];
+
+    db.query(qUpdateCurso, values, (err, result) => {
+      if (err) {
+        console.error("Erro ao atualizar curso no banco de dados:", err);
+        return res.status(500).json({ error: "Erro ao atualizar curso no banco de dados" });
+      }
+      console.log("Curso atualizado com sucesso.");
+      return res.status(200).json({ message: "Curso atualizado com sucesso." });
+    });
+  });
+};
+//Get imagem do curso
 export const getImagemCurso = (req, res) => {
   const id = req.params.id; // ID do curso
   const q = "SELECT Imagem FROM curso WHERE idCurso = ?";
@@ -136,6 +201,38 @@ export const getImagemCurso = (req, res) => {
     }
     
     const imagePath = result[0].Imagem.toString(); // Converter para string
+    const imageAbsPath = path.join(process.cwd(), imagePath); // Caminho absoluto da imagem usando process.cwd()
+
+    console.log("Caminho absoluto da imagem:", imageAbsPath);
+
+    // Lê o arquivo de imagem do disco
+    fs.readFile(imageAbsPath, (err, data) => {
+      if (err) {
+        console.error(err);
+        return res.sendStatus(500);
+      }
+      // Envia a imagem como resposta
+      console.log("Imagem lida com sucesso.");
+      res.writeHead(200, {'Content-Type': 'image/jpeg'});
+      res.end(data);
+    });
+  });
+};
+//Get emblema do curso
+export const getEmblemaCurso = (req, res) => {
+  const id = req.params.id; // ID do curso
+  const q = "SELECT Emblema FROM curso WHERE idCurso = ?";
+
+  db.query(q, [id], (err, result) => {
+    if (err) {
+      console.error(err);
+      return res.sendStatus(500);
+    }
+    if (result.length === 0) {
+      return res.sendStatus(404);
+    }
+    
+    const imagePath = result[0].Emblema.toString(); // Converter para string
     const imageAbsPath = path.join(process.cwd(), imagePath); // Caminho absoluto da imagem usando process.cwd()
 
     console.log("Caminho absoluto da imagem:", imageAbsPath);

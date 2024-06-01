@@ -1,5 +1,5 @@
 import express from "express";
-import { addCurso, getCursos, getImagemCurso, getCursoPorId, getCursosEmCriacao, getCursosAguardandoAprovacao, getCursosAprovados } from "../controllers/curso.js";
+import { addCurso, getCursos, getImagemCurso, getCursoPorId, getCursosEmCriacao, getCursosAguardandoAprovacao, getCursosAprovados, updateCurso, getEmblemaCurso } from "../controllers/curso.js";
 import multer from 'multer';
 import path from 'path';
 import { v4 as uuidv4 } from 'uuid';
@@ -37,7 +37,19 @@ router.post("/addCurso", upload.fields([
   next();
 }, addCurso);
 
+router.post("/updateCurso/:idCurso", upload.fields([
+  { name: 'Imagem', maxCount: 1 },
+  { name: 'Certificado', maxCount: 1 },
+  { name: 'Emblema', maxCount: 1 }
+]), (req, res, next) => {
+  console.log("Handling /updateCurso route");
+  console.log("Request body:", req.body);
+  console.log("Request files:", req.files);
+  next();
+}, updateCurso);
+
 router.get("/getImagemCurso/:id", getImagemCurso);
+router.get("/getEmblemaCurso/:id", getEmblemaCurso)
 router.get("/getCursoPorId/:id", getCursoPorId);
 router.get("/getCursosEmCriacao/:idAlunoCriador", getCursosEmCriacao);
 router.get("/getCursosAguardandoAprovacao", getCursosAguardandoAprovacao);

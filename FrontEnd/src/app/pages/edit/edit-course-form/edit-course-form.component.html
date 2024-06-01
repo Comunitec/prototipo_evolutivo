@@ -44,7 +44,7 @@
             <div class="div-files">
               <!-- Seção de imagem -->
               <label>Adicionar imagem do curso</label>
-              <img src="/assets/upload.png" style="width: 140px" *ngIf="!selectedImagem" alt="" (click)="triggerFileInput('adicionarImagem')">
+              <img [src]="curso.imagem" style="width: 140px" *ngIf="!selectedImagem" alt="" (click)="triggerFileInput('adicionarImagem')">
               <input class="input-file" id="adicionarImagem" type="file" accept=".jpg, .jpeg, .png" (change)="onFileSelected($event, 'imagem')" hidden />
               <div class="image-preview" *ngIf="selectedImagem">
                 <img [src]="selectedImagem" alt="Img selecionada">
@@ -53,7 +53,7 @@
             <div class="div-files">
               <!-- Seção de emblema -->
               <label>Adicionar imagem para o emblema</label>
-              <img src="/assets/upload.png" width="140px" *ngIf="!selectedEmblema" alt="" (click)="triggerFileInput('adicionarEmblema')">
+              <img [src]="curso.emblema" width="140px" *ngIf="!selectedEmblema" alt="" (click)="triggerFileInput('adicionarEmblema')">
               <input class="input-file" id="adicionarEmblema" type="file" accept=".jpg, .jpeg, .png" (change)="onFileSelected($event, 'emblema')" hidden />
               <div class="image-preview" *ngIf="selectedEmblema">
                 <img [src]="selectedEmblema" alt="Emblema selecionado">
