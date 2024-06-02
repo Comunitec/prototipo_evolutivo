@@ -1,79 +1,84 @@
-import { Component } from '@angular/core';
-import { Aula } from 'src/app/interfaces/curso';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
-
+interface Aula {
+  Titulo: string;
+  Descricao: string;
+  LinkIncorporacao: string;
+  idCurso: string;
+  NumeroAula: number;
+}
 
 @Component({
   selector: 'app-class-form',
   templateUrl: './class-form.component.html',
   styleUrls: ['./class-form.component.css']
 })
-export class ClassFormComponent {
-  // Variáveis para gerenciamento das aulas
-  tituloAula = '';
-  descricaoAula = '';
-  linkAula = '';
-  classList: Aula[] = [];
-  editingIndex: number | null = null;
-  curso = {
-    aulas: []
-  };
+export class ClassFormComponent implements OnInit {
+  aulas: Aula[] = [];
 
-  aulas: any[] = [
-    { titulo: '', descricao: '', link: '' },
-    { titulo: '', descricao: '', link: '' },
-    { titulo: '', descricao: '', link: '' },
-    { titulo: '', descricao: '', link: '' }
-  ];
+  constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) {}
 
-
-  // Métodos para gerenciamento das aulas
-  resetClassForm() {
-    this.tituloAula = '';
-    this.descricaoAula = '';
-    this.linkAula = '';
+  ngOnInit() {
+    this.carregarAulas();
   }
 
-  saveClass() {
-    // if (this.editingIndex !== null) {
-    //   this.curso.aulas[this.editingIndex] = {
-    //     tituloAula: this.tituloAula,
-    //     descricaoAula: this.descricaoAula,
-    //     linkAula: this.linkAula,
-    //     questionario: this.questionario.map((q) => ({
-    //       questao: q.questao,
-    //       respostas: q.respostas.map((a) => ({ ...a })),
-    //     })),
-    //   };
-    //   this.editingIndex = null;
-    // } else {
-    //   this.curso.aulas.push({
-    //     tituloAula: this.tituloAula,
-    //     descricaoAula: this.descricaoAula,
-    //     linkAula: this.linkAula,
-    //     questionario: this.questionario.map((q) => ({
-    //       questao: q.questao,
-    //       respostas: q.respostas.map((a) => ({ ...a })),
-    //     })),
-    //   });
-    // }
-
-    // console.log(this.curso.aulas);
-    // this.resetClassForm();
-  }
-
-  mostraDados(aula: Aula, index: number) {
-    console.log(
-      'Título: ' + aula.tituloAula,
-      'Descrição: ' + aula.descricaoAula
+  carregarAulas(){
+    const idCurso = this.route.snapshot.params['id'];
+    this.http.get<Aula[]>(`http://localhost:8800/getAulas/${idCurso}`).subscribe(
+      (response) => {
+        console.log('Aulas do curso:', response);
+        this.aulas = response;
+      },
+      (error) => {
+        console.error('Erro ao obter aulas do curso:', error);
+      }
     );
-    this.tituloAula = aula.tituloAula;
-    this.descricaoAula = aula.descricaoAula;
-    this.linkAula = aula.linkAula;
-    this.editingIndex = index;
   }
 
-  finalizarGerenciamento() {
-    console.log('Gerenciamento do curso finalizado:', this.curso);
+  saveClass(numeroAula: number) {
+    console.log('Salvar aula com NumeroAula:', numeroAula);
+    const aulaToSave = this.aulas.find(aula => aula.NumeroAula === numeroAula);
+    if (aulaToSave) {
+      const idCurso = this.route.snapshot.params['id'];
+      this.http.put<any>(`http://localhost:8800/updateAula/${idCurso}/${numeroAula}`, aulaToSave).subscribe(
+        (response) => {
+          console.log('Aula atualizada com sucesso:', response);
+        },
+        (error) => {
+          console.error('Erro ao atualizar aula:', error);
+        }
+      );
+    }
   }
+
+  adicionarAula(){
+    const idCurso = this.route.snapshot.params['id'];
+    this.http.post<any>(`http://localhost:8800/addAula/${idCurso}`, '').subscribe(
+      (response) => {
+        console.log('Aula inserida com sucesso:', response);
+        this.carregarAulas();
+      },
+      (error) => {
+        console.error('Erro ao inserir aula:', error);
+      }
+    );
+  }
+
+  deletarAulas(){
+    const idCurso = this.route.snapshot.params['id'];
+    this.http.delete<any>(`http://localhost:8800/deleteTodasAulas/${idCurso}`).subscribe(
+      (response) => {
+        console.log('Todas as aulas foram deletadas com sucesso:', response);
+        this.carregarAulas();
+      },
+      (error) => {
+        console.error('Erro ao deletar aulas:', error);
+      }
+    );
+
+  }
+
+
 }

@@ -1,24 +1,24 @@
-<form>
-  <div class="input-group">
-    <!-- Seção de aulas -->
-    <div class="add-video" *ngFor="let aula of aulas; let i = index">
-      <label for="adicionarVideos">Preencher informações da aula {{ i + 1 }}:</label>
+<div class="container_aula">
+  <button type="button" class="save-button delete" (click)="adicionarAula()">+ Adicionar Aula</button>
+  <button type="button" class="save-button delete" (click)= "deletarAulas()">Excluir todas as aulas</button>
+  
+  <!-- Itera sobre cada aula e exibe as informações -->
+  <div class="input-group" *ngFor="let aula of aulas">
+    <div class="add-video">
+      <div class="card_aula-thumb">
+      
       <label for="tituloAula">Título da aula</label>
-      <input type="text" class="common-style" placeholder="Digite o título da aula" name="tituloAula" id="tituloAula"
-        [(ngModel)]="aula.titulo" [ngModelOptions]="{ standalone: true }" required />
+      <input type="text" class="common-style" placeholder="Digite o título da aula" name="tituloAula" id="tituloAula" required [(ngModel)]="aula.Titulo"/>
+      
       <label for="descricaoAula">Descrição da aula</label>
-      <textarea class="common-style" cols="30" rows="2" placeholder="Digite a descrição da aula" name="descricaoAula"
-        id="descricaoAula" [(ngModel)]="aula.descricao" [ngModelOptions]="{ standalone: true }"></textarea>
+      <textarea class="common-style" cols="30" rows="2" placeholder="Digite a descrição da aula" name="descricaoAula" id="descricaoAula" [(ngModel)]="aula.Descricao"></textarea>
+      
       <label for="adicionarVideo">Adicionar link do vídeo</label>
-      <input class="common-style" id="adicionarVideo" type="text" placeholder="Insira o link do vídeo"
-        [(ngModel)]="aula.link" [ngModelOptions]="{ standalone: true }" />
-        <div class="container-buttons">
-          <button type="button" class="save-button delete" >Apagar</button>
-          <button type="button" class="save-button" >Salvar</button>
-          </div>
+      <input class="common-style" id="adicionarVideo" type="text" placeholder="Insira o link do vídeo" [(ngModel)]="aula.LinkIncorporacao"/>
+      
+      <div class="container-buttons">
+        <button type="button" class="save-button" (click)="saveClass(aula.NumeroAula)">Salvar</button>
+      </div>
     </div>
-    <!-- <div class="container-buttons">
-      <button type="button" class="save-button" >Ir para questionário</button>
-      </div> -->
   </div>
-</form>
+</div>

@@ -4,7 +4,7 @@ export const addAula = (req, res) => {
     const idCurso = req.params.idCurso;
     const { Titulo, Descricao, LinkIncorporacao } = req.body;
 
-    if (!Titulo || !Descricao || !LinkIncorporacao || !idCurso) {
+    if (!idCurso) {
         return res.status(400).json({ message: 'Dados incompletos. Por favor, forneça todos os campos necessários.' });
     }
 
@@ -68,6 +68,20 @@ export const updateAula = (req, res) => {
             return res.status(200).json({ message: 'Aula atualizada com sucesso.', data });
         });
     });
+};
+
+//Delete de todas as aulas
+export const deleteTodasAulas = (req, res) => {
+    const idCurso = req.params.idCurso;
+        // Deleta todas as aulas
+        const q = `
+            DELETE FROM aula WHERE idCurso = ?
+        `;
+        db.query(q, idCurso, (err, data) => {
+            if (err) return res.status(500).json(err);
+            return res.status(200).json({ message: 'Aulas deletadas com sucesso', data });
+        });
+
 };
 
 

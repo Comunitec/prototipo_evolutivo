@@ -23,6 +23,7 @@ export class CourseFormComponent implements OnInit {
     certificado: '',
     aulas: [],
   };
+  idAluno: string | null = null;
 
   tagList: Tag[] = [];
   selectedTag: string | undefined;
@@ -48,6 +49,14 @@ export class CourseFormComponent implements OnInit {
 
   ngOnInit() {
     this.loadTags();
+    this.loadIdAluno();
+  }
+
+  loadIdAluno() {
+    this.idAluno = sessionStorage.getItem('idAluno');
+    if (!this.idAluno) {
+      console.error('ID do aluno não encontrado no sessionStorage.');
+    }
   }
 
   loadTags() {
@@ -65,11 +74,17 @@ export class CourseFormComponent implements OnInit {
   salvarCurso() {
     this.curso.tag = this.selectedOptions;
 
+      // Verifica se o idAluno está definido
+  if (this.idAluno === null) {
+    console.error('ID do aluno não está definido.');
+    return;
+  }
+
     // Prepare form data
     const formData = new FormData();
     formData.append('Nome', this.curso.tituloCurso);
     formData.append('Descricao', this.curso.descricaoCurso);
-    formData.append('idAlunoCriador', '5'); // ID fixo do aluno criador
+    formData.append('idAlunoCriador', this.idAluno); // ID fixo do aluno criador
 
     if (this.selectedImagemFile) {
       formData.append('Imagem', this.selectedImagemFile);
