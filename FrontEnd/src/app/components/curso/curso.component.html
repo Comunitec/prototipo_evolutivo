@@ -1,6 +1,6 @@
 <div class="container_curso">
   <!-- Itera sobre cada curso e exibe as informações -->
-  <div class="card_curso" *ngFor="let curso of cursos" >
+  <div class="card_curso" *ngFor="let curso of cursos" (click)="redirecionarParaRotaDetalhe(curso.idCurso)">
     <div class="card_curso-thumb">
       <img [src]="curso.Imagem" class="photo">
     </div>

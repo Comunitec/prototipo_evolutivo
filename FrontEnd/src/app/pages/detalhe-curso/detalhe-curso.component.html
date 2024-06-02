@@ -5,29 +5,29 @@
 
 <!-- Coluna do Meio (Rolável) - Feed Principal -->
 <app-middle-column>
-  <div class="container_curso">
-    <h1><b>{{ nomeCurso }} </b></h1>
+  <div class="container_curso" *ngIf="curso">
+    <h1><b>{{ curso.Nome }} </b></h1>
 
     <div class="card_curso">
       <div class="card_curso-thumb">
-        <img [src]="imagem" alt="" />
+        <img [src]="curso.Imagem" alt="Img do Curso" />
         <div class="card_descricao-tags">
-          <span *ngFor="let tag of tags">{{ tag }}</span>
+          <span *ngFor="let tag of curso.tags">{{ tag }}</span>
         </div>
         <p>
-          Curso criado por: <b>{{ nomeCriador }}</b>
+          Curso criado por: <b>{{ curso.nomeCriador }}</b>
         </p>
         <p>
-          <b>{{ finishTotal }} pessoas</b> já concluiram este curso
+          <!-- <b>{{ finishTotal }} pessoas</b> já concluiram este curso -->
         </p>
-        <p>Curso criado em: {{ dataAprovacao }}</p>
+        <p>Curso criado em: {{ curso.DataCriacao | date:'dd/MM/yyyy'  }}</p>
       </div>
 
       <div class="card_curso-descricao">
         <div class="card_descricao">Descrição:</div>
-        <div class="card_descricao-texto">{{ descricao }}</div>
+        <div class="card_descricao-texto">{{ curso.Descricao }}</div>
 
-        <button *ngIf="matricula" class="btn-matricula" (click)="openModal()">Matricular-se</button>
+        <button *ngIf="curso.matricula" class="btn-matricula" (click)="openModal()">Matricular-se</button>
         <button *ngIf="verAulas" class="btn-matricula" routerLink="/assistirAulas">Assistir aulas</button>
       </div>
     </div>
