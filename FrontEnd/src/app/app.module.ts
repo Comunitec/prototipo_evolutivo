@@ -65,7 +65,7 @@ const routes: Routes = [
   {path: 'meusCursosProfessor', component: MeusCursosProfessorComponent},
   {path: 'meusCursosAluno', component: MeusCursosAlunoComponent},
   {path: 'assistirAulas', component: AssistirAulasComponent},
-  {path: 'detalheCurso', component: DetalheCursoComponent},
+  {path: 'detalheCurso/:id', component: DetalheCursoComponent},
   {path: 'faq', component: FaqComponent},
   {path: 'ranking-page', component: RankingPageComponent},
   {path: 'staff', component: StaffComponent},

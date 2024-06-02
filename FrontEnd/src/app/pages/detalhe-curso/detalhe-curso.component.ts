@@ -1,38 +1,98 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalMatRealizadaComponent } from 'src/app/components/modal-mat-realizada/modal-mat-realizada.component';
+
+interface Curso {
+  idCurso: number;
+  Nome: string;
+  Imagem: string;
+  Certificado: string;
+  Emblema: string;
+  tags: string[];
+  Descricao: string;
+  DataCriacao: string;
+  idAlunoCriador: number;
+  nomeCriador: string;
+  matricula: boolean;
+}
 
 @Component({
   selector: 'app-detalhe-curso',
   templateUrl: './detalhe-curso.component.html',
   styleUrls: ['./detalhe-curso.component.css']
 })
-export class DetalheCursoComponent {
-  nomeCurso = "Typescript";
-  finishTotal = "35";
-  dataAprovacao = "10/10/2021";
-  nomeCriador = "Eduardo Abreu";
-  descricao = "O curso de TypeScript oferece uma  \nintrodução abrangente a essa linguagem de programação superset do JavaScript, \nabordando desde conceitos básicos até tópicos avançados. Os alunos aprenderão a criar aplicativos robustos e escaláveis, aproveitando os recursos de tipagem estática, interfaces e classes. Com ênfase na segurança e manutenibilidade do código, o curso explora como TypeScript facilita o desenvolvimento de projetos complexos, tornando-os mais legíveis e menos propensos a erros. Ao final, os participantes estarão aptos a utilizar TypeScript eficientemente em diversas aplicações, aumentando sua produtividade como desenvolvedores.";
-  imagem = "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*moJeTvW97yShLB7URRj5Kg.png";
-  tags: string[] = ["HTML", "CSS", "JS", "TS"];
-  matricula = true;
+export class DetalheCursoComponent implements OnInit {
+  curso: Curso | null = null;
   verAulas = false;
 
-
   constructor(
+    private route: ActivatedRoute,
+    private http: HttpClient,
     public dialog: MatDialog
-  ){ }
+  ) {}
+
+  ngOnInit(): void {
+    const idCurso = this.route.snapshot.paramMap.get('id');
+    if (idCurso) {
+      this.getCursoDetalhes(Number(idCurso));
+    }
+  }
+
+  getImagemCurso(idCurso: number, curso: Curso): void {
+    if (idCurso) {
+      console.log(`Setting image URL for course ${curso.Nome} with ID ${idCurso}`);
+      curso.Imagem = `http://localhost:8800/getImagemCurso/${idCurso}`;
+    } else {
+      console.error('ID do curso é undefined para curso:', curso);
+    }
+  }
+
+  getCursoDetalhes(idCurso: number): void {
+    this.http.get<Curso>(`http://localhost:8800/getCursoPorId/${idCurso}`).subscribe(
+      (curso) => {
+        this.getImagemCurso(idCurso, curso);
+        this.getNomeCriador(curso.idAlunoCriador).subscribe(
+          (data) => {
+            console.log(`Resposta da API para o aluno criador com ID ${curso.idAlunoCriador}:`, data);
+
+            curso.nomeCriador = data.Nome; // Atribuir o nome do criador ao curso
+            this.curso = curso;
+            this.verAulas = !this.curso.matricula;
+            console.log('Curso:', this.curso);
+          },
+          (error) => {
+            console.error(`Erro ao obter nome do criador para o curso ${idCurso}:`, error);
+            this.curso = curso; // Atribuir o curso mesmo se houver erro ao obter o nome do criador
+            this.verAulas = !this.curso.matricula;
+          }
+        );
+      },
+      (error) => {
+        console.error(`Erro ao obter detalhes do curso ${idCurso}:`, error);
+      }
+    );
+
+  }
+
+  getNomeCriador(idAluno: number) {
+    console.log(`Requisição para obter nome do criador com ID ${idAluno}`);
+    return this.http.get<{ Nome: string }>(`http://localhost:8800/getAlunoPorId/${idAluno}`);
+   }
 
   openModal(): void {
-    const dialogRef = this.dialog.open(ModalMatRealizadaComponent, {
-      width: '350px'
+    if (this.curso) {
+      const dialogRef = this.dialog.open(ModalMatRealizadaComponent, {
+        width: '350px'
+      });
 
-    });
-    this.matricula = false;
-    this.verAulas = true;
+      this.curso.matricula = false;
+      this.verAulas = true;
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+      });
+    }
   }
 }

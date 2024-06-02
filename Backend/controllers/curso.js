@@ -67,6 +67,7 @@ export const getCursoPorId = (req, res) => {
   });
 };
 
+
 // Rota para adicionar um curso
 export const addCurso = (req, res) => {
   const { Nome, Descricao, idAlunoCriador } = req.body;

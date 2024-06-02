@@ -149,6 +149,11 @@ export class CursoComponent implements OnInit {
     this.router.navigate(['/EditCourseFormComponent', idCurso]);
   }
 
+  redirecionarParaRotaDetalhe(idCurso: number) {
+    this.router.navigate(['/detalheCurso', idCurso]);
+
+  }
+
   getTruncatedText(text: string, limit: number): string {
     if (text.length > limit) {
       return text.substring(0, limit) + '...';

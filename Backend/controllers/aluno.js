@@ -195,3 +195,18 @@ export const getImagemAluno = (req, res) => {
     });
   });
 };
+
+
+// Get informações do aluno por ID
+export const getAlunoPorId = (req, res) => {
+  const id = req.params.id; // Supondo que o ID seja passado como um parâmetro na URL
+  
+  const q = "SELECT * FROM aluno WHERE idAluno = ?"; // Ajuste conforme o nome da sua tabela de alunos e o campo de nome
+  db.query(q, [id], (err, data) => {
+    if (err) return res.status(500).json(err);
+    if (data.length === 0) {
+      return res.status(404).json({ message: "Aluno não encontrado" });
+    }
+    return res.status(200).json(data[0]);
+  });
+};
