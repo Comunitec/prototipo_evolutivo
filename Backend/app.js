@@ -7,6 +7,8 @@ import cursoRoutes from "./routes/cursos.js";
 import tagRoutes from "./routes/tags.js"
 import alunoCursoRoutes from './routes/alunoscurso.js'
 import aulaRoutes from './routes/aulas.js'
+import questionarioRoutes from './routes/questionarios.js'
+import questoesRoutes from './routes/questoes.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -27,7 +29,9 @@ app.use("/", alunoRoutes);
 app.use("/", cursoRoutes);
 app.use("/", tagRoutes);
 app.use("/", alunoCursoRoutes);
-app.use("/", aulaRoutes)
+app.use("/", aulaRoutes);
+app.use("/", questionarioRoutes);
+app.use("/", questoesRoutes);
 
 app.listen(8800, () => {
   console.log("Server running on port 8800");
