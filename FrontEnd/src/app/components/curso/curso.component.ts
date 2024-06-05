@@ -161,4 +161,30 @@ export class CursoComponent implements OnInit {
       return text;
     }
   }
+
+  aprovarCurso(idCurso: number) {
+    this.http.put<string[]>(`http://localhost:8800/aprovarCurso/${idCurso}`, {})
+      .subscribe(
+        (response) => {
+          console.log("Curso aprovado");
+        },
+        (error) => {
+          console.error(`Erro ao salvar o curso`, error);
+        }
+      );
+  }
+
+  reprovarCurso(idCurso: number) {
+    this.http.put<string[]>(`http://localhost:8800/reprovarCurso/${idCurso}`, {})
+      .subscribe(
+        (response) => {
+          console.log("Curso reprovado");
+        },
+        (error) => {
+          console.error(`Erro ao reprovar curso`, error);
+        }
+      );
+  }
+
+
 }

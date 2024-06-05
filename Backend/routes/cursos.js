@@ -1,5 +1,5 @@
 import express from "express";
-import { addCurso, getCursos, getImagemCurso, getCursoPorId, getCursosEmCriacao, getCursosAguardandoAprovacao, getCursosAprovados, updateCurso, getEmblemaCurso } from "../controllers/curso.js";
+import { addCurso, getCursos, getImagemCurso, getCursoPorId, getCursosEmCriacao, getCursosAguardandoAprovacao, getCursosAprovados, updateCurso, getEmblemaCurso, aprovarCurso, reprovarCurso } from "../controllers/curso.js";
 import multer from 'multer';
 import path from 'path';
 import { v4 as uuidv4 } from 'uuid';
@@ -24,8 +24,6 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-router.get("/getCursos", getCursos);
-
 router.post("/addCurso", upload.fields([
   { name: 'Imagem', maxCount: 1 },
   { name: 'Certificado', maxCount: 1 },
@@ -47,7 +45,11 @@ router.post("/updateCurso/:idCurso", upload.fields([
   console.log("Request files:", req.files);
   next();
 }, updateCurso);
+router.put("/aprovarCurso/:idCurso", aprovarCurso)
+router.put("/reprovarCurso/:idCurso", reprovarCurso)
 
+//GETS
+router.get("/getCursos", getCursos);
 router.get("/getImagemCurso/:id", getImagemCurso);
 router.get("/getEmblemaCurso/:id", getEmblemaCurso)
 router.get("/getCursoPorId/:id", getCursoPorId);
