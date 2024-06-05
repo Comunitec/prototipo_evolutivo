@@ -61,6 +61,6 @@ export class GerenciarUsuariosComponent implements OnInit {
   }
 
   adicionarUsuario() {
-    // Lógica para adicionar um novo usuário
+    this.router.navigate(['/signup']);
   }
 }

@@ -12,6 +12,26 @@ export const getCursos = (_, res) => {
   });
 };
 
+//Lógica para o staff aprovar o curso
+export const aprovarCurso  = (req, res) =>{
+  const idCurso = req.params.idCurso;
+  const q = "UPDATE curso SET Status = 'aprovado' WHERE idCurso = ?";;
+  db.query(q, idCurso, (err, data) => {
+    if (err) return res.status(500).json(err);
+    return res.status(200).json(data);
+  });
+}
+
+//Lógica para o staff reprovar o curso
+export const reprovarCurso  = (req, res) =>{
+  const idCurso = req.params.idCurso;
+  const q = "UPDATE curso SET Status = 'em criação' WHERE idCurso = ?";
+  db.query(q, idCurso, (err, data) => {
+    if (err) return res.status(500).json(err);
+    return res.status(200).json(data);
+  });
+}
+
 //Get de cursos com status em criação de um determinado usuário
 export const getCursosEmCriacao = (req, res) => {
   const idAlunoCriador = req.params.idAlunoCriador;
