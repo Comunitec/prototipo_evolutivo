@@ -80,6 +80,19 @@ select {
   height: 32px;
   padding: 10px 20px;
   margin-top: 20px;
+  margin-right: 10px;
+}
+
+.enviarParaStaff-button {
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  height: 32px;
+  padding: 10px 20px;
+  margin-top: 20px;
+  margin-left: 10px;
 }
 
 .save-button:hover {
@@ -93,3 +106,14 @@ select {
   background-color: var(--hover-btn-secondary);
 }
 
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 16px;
+  color: #007BFF;
+}
+
+input:required:invalid {
+  border-color: #dc3545; /* Cor vermelha */
+}

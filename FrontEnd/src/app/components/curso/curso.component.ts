@@ -10,6 +10,7 @@ interface Curso {
   tags: string[];
   Descricao: string;
   tempId?: number; // Propriedade temporária para armazenar o ID temporário
+  Status: string;
 }
 
 @Component({
@@ -167,6 +168,7 @@ export class CursoComponent implements OnInit {
       .subscribe(
         (response) => {
           console.log("Curso aprovado");
+          this.listarCursosAguardandoAprovacao();
         },
         (error) => {
           console.error(`Erro ao salvar o curso`, error);
@@ -179,6 +181,7 @@ export class CursoComponent implements OnInit {
       .subscribe(
         (response) => {
           console.log("Curso reprovado");
+          this.listarCursosAguardandoAprovacao();
         },
         (error) => {
           console.error(`Erro ao reprovar curso`, error);

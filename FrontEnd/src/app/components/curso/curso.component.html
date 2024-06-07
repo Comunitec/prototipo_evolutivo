@@ -1,6 +1,6 @@
 <div class="container_curso">
   <!-- Itera sobre cada curso e exibe as informações -->
-  <div class="card_curso" *ngFor="let curso of cursos" (click)="redirecionarParaRotaDetalhe(curso.idCurso)">
+  <div class="card_curso" *ngFor="let curso of cursos">
     <div class="card_curso-thumb">
       <img [src]="curso.Imagem" class="photo">
     </div>
@@ -12,7 +12,9 @@
         <p *ngFor="let tag of curso.tags">{{ tag }}</p>
       </div>
       <div class="card_descricao-texto">{{ getTruncatedText(curso.Descricao, 300) }}</div>
+      <div id="statusDiv" class="status"><b>Status do curso: </b> <span id="statusText">{{ curso.Status }}</span></div>
       <div class="card_descricao-botoes">
+        <button (click)="redirecionarParaRotaDetalhe(curso.idCurso)" class="btn-visualziar">Visualizar</button>
         <button *ngIf="podeEditar" (click)="redirecionarParaRota(curso.idCurso)" class="btn-editar">Editar</button>
         <button *ngIf="podeAprovar" (click)="aprovarCurso(curso.idCurso)" class="btn-Aprovar">Aprovar</button>
         <button *ngIf="podeReprovar" (click)="reprovarCurso(curso.idCurso)" class="btn-Reprovar">Reprovar</button>

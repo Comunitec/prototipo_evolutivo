@@ -2,7 +2,7 @@ import { db } from "../db.js";
 
 export const addAula = (req, res) => {
     const idCurso = req.params.idCurso;
-    const { Titulo, Descricao, LinkIncorporacao } = req.body;
+    const { Titulo, Descricao, LinkIncorporacao, LinkFormulario } = req.body;
 
     if (!idCurso) {
         return res.status(400).json({ message: 'Dados incompletos. Por favor, forneça todos os campos necessários.' });
@@ -26,10 +26,10 @@ export const addAula = (req, res) => {
 
         // Insere a nova aula
         const insertQuery = `
-            INSERT INTO aula (Titulo, Descricao, LinkIncorporacao, idCurso, NumeroAula)
-            VALUES (?, ?, ?, ?, ?)
+            INSERT INTO aula (Titulo, Descricao, LinkIncorporacao, LinkFormulario, idCurso, NumeroAula)
+            VALUES (?, ?, ?, ?, ?, ?)
         `;
-        db.query(insertQuery, [Titulo, Descricao, LinkIncorporacao, idCurso, NumeroAula], (err, data) => {
+        db.query(insertQuery, [Titulo, Descricao, LinkIncorporacao, LinkFormulario, idCurso, NumeroAula], (err, data) => {
             if (err) return res.status(500).json(err);
             return res.status(201).json({ message: 'Aula inserida com sucesso.', data });
         });
@@ -40,7 +40,7 @@ export const addAula = (req, res) => {
 export const updateAula = (req, res) => {
     const idCurso = req.params.idCurso;
     const numeroAula = req.params.numeroAula; // Número da aula a ser atualizada
-    const { Titulo, Descricao, LinkIncorporacao } = req.body;
+    const { Titulo, Descricao, LinkIncorporacao, LinkFormulario } = req.body;
 
     if (!Titulo || !Descricao || !LinkIncorporacao || !idCurso || !numeroAula) {
         return res.status(400).json({ message: 'Dados incompletos. Por favor, forneça todos os campos necessários.' });
@@ -60,10 +60,10 @@ export const updateAula = (req, res) => {
         // Atualiza a aula
         const updateQuery = `
             UPDATE aula
-            SET Titulo = ?, Descricao = ?, LinkIncorporacao = ?
+            SET Titulo = ?, Descricao = ?, LinkIncorporacao = ?, LinkFormulario =?
             WHERE idCurso = ? AND NumeroAula = ?
         `;
-        db.query(updateQuery, [Titulo, Descricao, LinkIncorporacao, idCurso, numeroAula], (err, data) => {
+        db.query(updateQuery, [Titulo, Descricao, LinkIncorporacao, LinkFormulario, idCurso, numeroAula], (err, data) => {
             if (err) return res.status(500).json(err);
             return res.status(200).json({ message: 'Aula atualizada com sucesso.', data });
         });

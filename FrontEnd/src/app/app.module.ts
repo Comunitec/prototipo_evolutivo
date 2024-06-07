@@ -51,6 +51,10 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { ClassFormComponent } from './components/class-form/class-form.component';
 import { QuizFormComponent } from './components/quiz-form/quiz-form.component';
 import { EditCourseFormComponent } from './pages/edit/edit-course-form/edit-course-form.component';
+import { ModalSaibaMaisFormularioComponent } from './components/modal-saiba-mais-formulario/modal-saiba-mais-formulario.component';
+import { ModalAulaSalvaComponent } from './components/modal-aula-salva/modal-aula-salva.component';
+import { ModalErroAoSalvarAulaComponent } from './components/modal-erro-ao-salvar-aula/modal-erro-ao-salvar-aula.component';
+import { ModalCursoenviadoParaAprovacaoComponent } from './components/modal-cursoenviado-para-aprovacao/modal-cursoenviado-para-aprovacao.component';
 
 
 const routes: Routes = [
@@ -122,6 +126,10 @@ const routes: Routes = [
     ClassFormComponent,
     QuizFormComponent,
     EditCourseFormComponent,
+    ModalSaibaMaisFormularioComponent,
+    ModalAulaSalvaComponent,
+    ModalErroAoSalvarAulaComponent,
+    ModalCursoenviadoParaAprovacaoComponent,
 
   ],
   imports: [
