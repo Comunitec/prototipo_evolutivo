@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalConfirmacaoParaInativarComponent } from '../modal-confirmacao-para-inativar/modal-confirmacao-para-inativar.component';
 
 // Definição da interface Curso
 interface Curso {
@@ -25,8 +27,9 @@ export class CursoComponent implements OnInit {
   podeAprovar: boolean = false;
   podeReprovar: boolean = false;
   podeInativar: boolean = false;
+  PerfilDeAcesso = sessionStorage.getItem('PerfilDeAcesso');
 
-  constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) {}
+  constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private dialog: MatDialog) {}
 
   ngOnInit() {
     this.route.url.subscribe(url => {
@@ -44,10 +47,17 @@ export class CursoComponent implements OnInit {
         this.podeAprovar = true;
         this.podeReprovar = true;
         this.listarCursosAguardandoAprovacao();
-      } else if (currentRoute.includes('/home-logado') || currentRoute.includes('/o')) {
+      } else if (currentRoute.includes('/home-logado') || currentRoute.includes('/')) {
         this.listarCursosAprovados();
+        this.liberaInativar();
       }
     });
+  }
+
+  liberaInativar(){
+    if(this.PerfilDeAcesso == "Administrador"){
+      this.podeInativar = true;
+    }
   }
 
   listarCursosEmCriacao(): void {
@@ -187,6 +197,33 @@ export class CursoComponent implements OnInit {
           console.error(`Erro ao reprovar curso`, error);
         }
       );
+  }
+
+  InativarCurso(idCurso: number) {
+    this.http.put<string[]>(`http://localhost:8800/inativarCurso/${idCurso}`, {})
+      .subscribe(
+        (response) => {
+          console.log("Curso inativado");
+          this.listarCursosAprovados();
+        },
+        (error) => {
+          console.error(`Erro ao inativar curso`, error);
+        }
+      );
+  }
+
+  openModalInativar(idCurso: number) {
+    const dialogRef = this.dialog.open(ModalConfirmacaoParaInativarComponent, {
+      width: '350px',
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.InativarCurso(idCurso); // Chama o método se o usuário confirmou
+      } else {
+        console.log('Ação cancelada pelo usuário'); // Ação cancelada pelo usuário
+      }
+    });
   }
 
 
