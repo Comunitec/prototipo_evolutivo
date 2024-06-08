@@ -56,6 +56,8 @@ import { ModalAulaSalvaComponent } from './components/modal-aula-salva/modal-aul
 import { ModalErroAoSalvarAulaComponent } from './components/modal-erro-ao-salvar-aula/modal-erro-ao-salvar-aula.component';
 import { ModalCursoenviadoParaAprovacaoComponent } from './components/modal-cursoenviado-para-aprovacao/modal-cursoenviado-para-aprovacao.component';
 import { ModalConfirmacaoParaInativarComponent } from './components/modal-confirmacao-para-inativar/modal-confirmacao-para-inativar.component';
+import { ModalErroAoEditarCursoComponent } from './components/modal-erro-ao-editar-curso/modal-erro-ao-editar-curso.component';
+import { CursoEditadoComSucessoComponent } from './components/curso-editado-com-sucesso/curso-editado-com-sucesso.component';
 
 
 const routes: Routes = [
@@ -132,6 +134,8 @@ const routes: Routes = [
     ModalErroAoSalvarAulaComponent,
     ModalCursoenviadoParaAprovacaoComponent,
     ModalConfirmacaoParaInativarComponent,
+    ModalErroAoEditarCursoComponent,
+    CursoEditadoComSucessoComponent,
 
   ],
   imports: [
