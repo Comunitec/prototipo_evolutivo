@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   faHouse,
   faBookOpen,
@@ -35,27 +36,18 @@ export class MenuLateralComponent {
   Nome = sessionStorage.getItem('Nome');
   Pontos = sessionStorage.getItem('Pontuacao');
   id = sessionStorage.getItem('idAluno');
-  imagem = this.url+this.id
+  imagem = this.url + this.id;
 
   submenuOpen: boolean = true;
 
-
-  // ngOnInit(){
-  // fetch(this.url + this.id)
-  // .then(data => {
-  //   this.imagem = data;
-  //     console.log(data);  // Imprimindo a resposta no console
-
-  // })
-  // .catch(error => {
-  //     console.error('Erro ao fazer a solicitação:', error);
-  // });
-  // }
-
-
-
+  constructor(private router: Router) {}
 
   toggleSubmenus() {
     this.submenuOpen = !this.submenuOpen;
+  }
+
+  sair() {
+    sessionStorage.clear();
+    this.router.navigate(['/']); 
   }
 }

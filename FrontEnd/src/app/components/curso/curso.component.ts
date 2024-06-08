@@ -27,6 +27,7 @@ export class CursoComponent implements OnInit {
   podeAprovar: boolean = false;
   podeReprovar: boolean = false;
   podeInativar: boolean = false;
+  podeVisualizar: boolean = true;
   PerfilDeAcesso = sessionStorage.getItem('PerfilDeAcesso');
 
   constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private dialog: MatDialog) {}
@@ -47,9 +48,12 @@ export class CursoComponent implements OnInit {
         this.podeAprovar = true;
         this.podeReprovar = true;
         this.listarCursosAguardandoAprovacao();
-      } else if (currentRoute.includes('/home-logado') || currentRoute.includes('/')) {
+      } else if (currentRoute.includes('/home-logado')) {
         this.listarCursosAprovados();
         this.liberaInativar();
+      } else if(currentRoute.includes('/')){
+        this.listarCursosAprovados();
+        this.podeVisualizar = false;
       }
     });
   }

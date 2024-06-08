@@ -24,10 +24,23 @@ interface RankingItem {
 })
 export class RankingPageComponent implements OnInit {
   rankingItems: RankingItem[] = [];
+  podeVerMenuLateral: boolean = false;
 
   constructor(private http: HttpClient) {}
 
+  isLoggedIn(): boolean {
+    return !!sessionStorage.getItem('idAluno');
+  }
+
+  carregarMenuLateral(){
+    if (this.isLoggedIn()) {
+      this.podeVerMenuLateral = true;
+    }
+  }
+
+
   ngOnInit(): void {
+    this.carregarMenuLateral();
     const apiUrl = 'http://localhost:8800/ranking'; // URL correta da API
     this.http.get<Aluno[]>(apiUrl).pipe(
       map(alunos => {
