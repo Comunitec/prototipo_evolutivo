@@ -1,38 +1,83 @@
-import { Component } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ModalWQuestoesComponent } from 'src/app/components/modal-wquestoes/modal-wquestoes.component';
+
+interface Aula {
+  idAula: number;
+  Titulo: string | null;
+  Descricao: string | null;
+  LinkIncorporacao: string | null;
+  idCurso: number;
+  NumeroAula: number;
+  LinkFormulario: string | null;
+  SafeLinkIncorporacao?: SafeResourceUrl | null; // Adicionamos um campo opcional para a URL segura
+}
+
+interface Curso {
+  idCurso: number;
+  Nome: string;
+  Imagem?: string; // Adicionamos um campo opcional para a URL da imagem
+}
 
 @Component({
   selector: 'app-assistir-aulas',
   templateUrl: './assistir-aulas.component.html',
-  styleUrls: ['./assistir-aulas.component.css'],
+  styleUrls: ['./assistir-aulas.component.css']
 })
-export class AssistirAulasComponent {
+export class AssistirAulasComponent implements OnInit {
+  aulas: Aula[] = [];
+  nomeCurso: string = '';
+  idCurso: number;
+
   constructor(
-    public sanitizer: DomSanitizer,
-    public dialog: MatDialog
-  ){}
+    private route: ActivatedRoute,
+    private http: HttpClient,
+    public dialog: MatDialog,
+    private sanitizer: DomSanitizer
+  ) {
+    this.idCurso = Number(this.route.snapshot.paramMap.get('id'));
+    console.log('ID do curso:', this.idCurso);
+  }
 
+  ngOnInit(): void {
+    if (this.idCurso) {
+      this.getCurso(this.idCurso);
+      this.getAulas(this.idCurso);
+    }
+  }
 
-  tituloAula1 = "Introdução ao Typescript";
-  tituloAula2 = "Funções do Typescript ";
-  tituloAula3 = "Typescript na prática";
-  tituloAula4 = "Typescript no mercado de trabalho";
+  getCurso(idCurso: number): void {
+    this.http.get<Curso>(`http://localhost:8800/getCursoPorId/${idCurso}`).subscribe(
+      (curso) => {
+        this.nomeCurso = curso.Nome;
+      },
+      (error) => {
+        console.error(`Erro ao obter detalhes do curso ${idCurso}:`, error);
+      }
+    );
+  }
 
-  descricao1 = "Nessa aula você verá os pré requisitos para utilizar o Angular";
-  descricao2 = "Nessa aula você verá as principais funções do Angular que serão utilizadas no decorrer do curso";
-  descricao3 = "Nessa aula você verá Typescript na prática";
-  descricao4 = "Nessa aula você verá Typescript no mercado de trabalho";
-
-  Aula1Url = "https://www.youtube.com/embed/EF7KmZ1VNPM?si=0pc3HOjf3P6oRpbp"
-  Aula1Web = this.sanitizer.bypassSecurityTrustResourceUrl(this.Aula1Url)
-
+  getAulas(idCurso: number): void {
+    this.http.get<Aula[]>(`http://localhost:8800/getAulas/${idCurso}`).subscribe(
+      (data: Aula[]) => {
+        this.aulas = data.map(aula => ({
+          ...aula,
+          SafeLinkIncorporacao: aula.LinkIncorporacao ? this.sanitizer.bypassSecurityTrustResourceUrl(aula.LinkIncorporacao) : null
+        }));
+        console.log('Aulas:', this.aulas);
+      },
+      (error) => {
+        console.error(`Erro ao obter aulas para o curso ${idCurso}:`, error);
+      }
+    );
+  }
 
   openModal(): void {
     const dialogRef = this.dialog.open(ModalWQuestoesComponent, {
-      width: '500px',
-
+      width: '500px'
     });
 
     dialogRef.afterClosed().subscribe(result => {

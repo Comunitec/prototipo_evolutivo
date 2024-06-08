@@ -28,7 +28,7 @@
         <div class="card_descricao-texto">{{ curso.Descricao }}</div>
 
         <button *ngIf="curso.matricula" class="btn-matricula" (click)="openModal()">Matricular-se</button>
-        <button *ngIf="verAulas" class="btn-matricula" routerLink="/assistirAulas">Assistir aulas</button>
+        <button *ngIf="verAulas" class="btn-matricula" [routerLink]="['/assistirAulas', curso.idCurso]">Assistir aulas</button>
       </div>
     </div>
   </div>
