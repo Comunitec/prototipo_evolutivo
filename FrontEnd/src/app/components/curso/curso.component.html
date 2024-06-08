@@ -18,7 +18,7 @@
         <button *ngIf="podeEditar" (click)="redirecionarParaRota(curso.idCurso)" class="btn-editar">Editar</button>
         <button *ngIf="podeAprovar" (click)="aprovarCurso(curso.idCurso)" class="btn-Aprovar">Aprovar</button>
         <button *ngIf="podeReprovar" (click)="reprovarCurso(curso.idCurso)" class="btn-Reprovar">Reprovar</button>
-        <button *ngIf="podeInativar" class="btn-Inativar">Inativar</button>
+        <button *ngIf="podeInativar" (click)="openModalInativar(curso.idCurso)" class="btn-Inativar">Inativar</button>
         <button *ngIf="podeExcluir" class="btn-excluir">Excluir</button>
       </div>
     </div>

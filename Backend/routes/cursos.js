@@ -12,6 +12,7 @@ import {
   aprovarCurso,
   reprovarCurso,
   enviarParaAprovacao,
+  inativarCurso,
 } from "../controllers/curso.js";
 import multer from "multer";
 import path from "path";
@@ -70,7 +71,8 @@ router.post(
 );
 router.put("/aprovarCurso/:idCurso", aprovarCurso);
 router.put("/reprovarCurso/:idCurso", reprovarCurso);
-router.put("/enviarParaAprovacao/:idCurso", enviarParaAprovacao)
+router.put("/enviarParaAprovacao/:idCurso", enviarParaAprovacao);
+router.put("/inativarCurso/:idCurso", inativarCurso);
 
 //GETS
 router.get("/getCursos", getCursos);

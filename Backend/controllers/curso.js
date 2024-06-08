@@ -23,9 +23,9 @@ export const enviarParaAprovacao  = (req, res) =>{
 }
 
 //Lógica para o staff aprovar o curso
-export const aprovarCurso  = (req, res) =>{
+export const aprovarCurso = (req, res) => {
   const idCurso = req.params.idCurso;
-  const q = "UPDATE curso SET Status = 'aprovado' WHERE idCurso = ?";;
+  const q = "UPDATE curso SET Status = 'aprovado', DataCriacao = sysdate() WHERE idCurso = ?";
   db.query(q, idCurso, (err, data) => {
     if (err) return res.status(500).json(err);
     return res.status(200).json(data);
@@ -42,11 +42,21 @@ export const reprovarCurso  = (req, res) =>{
   });
 }
 
+//Lógica para o administrador inativar o curso
+export const inativarCurso  = (req, res) =>{
+  const idCurso = req.params.idCurso;
+  const q = "UPDATE curso SET Status = 'inativo' WHERE idCurso = ?";
+  db.query(q, idCurso, (err, data) => {
+    if (err) return res.status(500).json(err);
+    return res.status(200).json(data);
+  });
+}
+
 //Get de cursos com status em criação de um determinado usuário
 export const getCursosEmCriacao = (req, res) => {
   const idAlunoCriador = req.params.idAlunoCriador;
 
-  const q = "SELECT * FROM curso WHERE idAlunoCriador = ? AND (Status = 'em criação' OR Status = 'reprovado')";
+  const q = "SELECT * FROM curso WHERE idAlunoCriador = ? AND (Status = 'em criação' OR Status = 'reprovado' OR Status = 'inativo')";
   db.query(q, [idAlunoCriador], (err, data) => {
     if (err) return res.status(500).json(err);
     return res.status(200).json(data);
