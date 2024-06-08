@@ -1,6 +1,6 @@
   <!-- Coluna Esquerda (Fixa) - Ranking -->
-  <app-left-column>
-    <app-menu-lateral></app-menu-lateral>
+  <app-left-column> 
+    <app-menu-lateral *ngIf="podeVerMenuLateral"></app-menu-lateral>
   </app-left-column>
   
   <!-- Coluna do Meio (Rolável) - Feed Principal -->

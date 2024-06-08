@@ -5,6 +5,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
 import { Alternativa, Aula, Curso, Questao, Tag } from 'src/app/interfaces/curso';
 import { ActivatedRoute } from '@angular/router';
+import { ModalErroAoEditarCursoComponent } from 'src/app/components/modal-erro-ao-editar-curso/modal-erro-ao-editar-curso.component';
+import { CursoEditadoComSucessoComponent } from 'src/app/components/curso-editado-com-sucesso/curso-editado-com-sucesso.component';
 
 type imageType = string | ArrayBuffer | null;
 
@@ -113,6 +115,7 @@ export class EditCourseFormComponent implements OnInit {
     this.http.post<any>(`http://localhost:8800/updateCurso/${idCurso}`, formData).subscribe(
       (response) => {
         console.log('Curso salvo com sucesso:', response);
+        this.openModalCursoEditadoComSucesso();
         // Extraia o ID do curso da resposta
         const idCurso = response.idCurso;
 
@@ -121,6 +124,7 @@ export class EditCourseFormComponent implements OnInit {
       },
       (error) => {
         console.error('Erro ao salvar curso:', error);
+        this.openModalErroAoEditarCurso();
       }
     );
   }
@@ -187,5 +191,17 @@ export class EditCourseFormComponent implements OnInit {
     if (input) {
       input.click();
     }
+  }
+
+  openModalErroAoEditarCurso(): void {
+    const dialogRef = this.dialog.open(ModalErroAoEditarCursoComponent, {
+      width: '350px',
+    });
+  }
+
+  openModalCursoEditadoComSucesso(): void {
+    const dialogRef = this.dialog.open(CursoEditadoComSucessoComponent, {
+      width: '350px',
+    });
   }
 }

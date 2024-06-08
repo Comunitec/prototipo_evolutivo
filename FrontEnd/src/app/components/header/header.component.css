@@ -41,3 +41,7 @@ nav a {
     color: #fff;
     font-weight: bold;
 }
+
+.cursos-link {
+  cursor: pointer; /* Define o cursor como ponteiro (dedo) */
+}
