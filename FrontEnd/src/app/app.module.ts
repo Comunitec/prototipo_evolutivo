@@ -71,7 +71,7 @@ const routes: Routes = [
   { path: 'perfil', component: PerfilComponent},
   {path: 'meusCursosProfessor', component: MeusCursosProfessorComponent},
   {path: 'meusCursosAluno', component: MeusCursosAlunoComponent},
-  {path: 'assistirAulas', component: AssistirAulasComponent},
+  {path: 'assistirAulas/:id', component: AssistirAulasComponent},
   {path: 'detalheCurso/:id', component: DetalheCursoComponent},
   {path: 'faq', component: FaqComponent},
   {path: 'ranking-page', component: RankingPageComponent},
