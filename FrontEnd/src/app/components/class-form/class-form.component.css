@@ -111,9 +111,16 @@ select {
   display: inline-block;
   cursor: pointer;
   font-size: 16px;
-  color: #007BFF;
+  text-decoration: underline;
 }
 
 input:required:invalid {
   border-color: #dc3545; /* Cor vermelha */
+}
+
+.aviso {
+  padding: 10px; /* Espaçamento interno */
+  border-radius: 5px; /* Cantos arredondados */
+  margin-bottom: 10px; /* Espaço abaixo do aviso */
+  margin-top: 10px;
 }

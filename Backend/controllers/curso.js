@@ -291,3 +291,15 @@ export const getEmblemaCurso = (req, res) => {
     });
   });
 };
+
+//Rota para deletar curso
+export const deleteCurso = (req, res) => {
+  const idCurso = req.params.idCurso;
+
+  const q = `DELETE FROM curso WHERE idCurso = ?`; // Query corrigida
+
+  db.query(q, [idCurso], (err, data) => { // Coloque idCurso dentro de um array
+    if (err) return res.status(500).json(err);
+    return res.status(200).json({ message: 'Curso deletado com sucesso', data });
+  });
+};

@@ -58,6 +58,9 @@ import { ModalCursoenviadoParaAprovacaoComponent } from './components/modal-curs
 import { ModalConfirmacaoParaInativarComponent } from './components/modal-confirmacao-para-inativar/modal-confirmacao-para-inativar.component';
 import { ModalErroAoEditarCursoComponent } from './components/modal-erro-ao-editar-curso/modal-erro-ao-editar-curso.component';
 import { CursoEditadoComSucessoComponent } from './components/curso-editado-com-sucesso/curso-editado-com-sucesso.component';
+import { ModalCursoCriadoComponent } from './components/modal-curso-criado/modal-curso-criado.component';
+import { ModalSaibaMaisVideoComponent } from './components/modal-saiba-mais-video/modal-saiba-mais-video.component';
+import { ModalDeletarCursoComponent } from './components/modal-deletar-curso/modal-deletar-curso.component';
 
 
 const routes: Routes = [
@@ -136,6 +139,9 @@ const routes: Routes = [
     ModalConfirmacaoParaInativarComponent,
     ModalErroAoEditarCursoComponent,
     CursoEditadoComSucessoComponent,
+    ModalCursoCriadoComponent,
+    ModalSaibaMaisVideoComponent,
+    ModalDeletarCursoComponent,
 
   ],
   imports: [

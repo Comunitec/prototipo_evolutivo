@@ -15,6 +15,8 @@
     Enviar curso para aprovação dos Staff
   </button>
 
+  <p class="aviso">Adicione 4 aulas, após isso o botão "Enviar curso para aprovação dos Staff" estará disponível para que você submeta seu curso para aprovação.</p>
+
   <!-- Itera sobre cada aula e exibe as informações -->
   <div class="input-group" *ngFor="let aula of aulas">
     <div class="add-video">
@@ -50,8 +52,9 @@
           placeholder="Insira o link do vídeo"
           [(ngModel)]="aula.LinkIncorporacao"
         />
+        <span class="tooltip" (click)="openModalSaibaMaisVideo()">Saiba mais</span>
 
-        <label for="adicionarVideo">Adicionar link do formulário</label>
+        <label for="adicionarFormulario">Adicionar link do formulário</label>
         <input
           class="common-style"
           id="adicionarFormulario"
@@ -59,7 +62,7 @@
           placeholder="Insira o link do formulário"
           [(ngModel)]="aula.LinkFormulario"
         />
-        <span class="tooltip" (click)="openModal()">Saiba mais sobre o link do formulário</span>
+        <span class="tooltip" (click)="openModal()">Saiba mais</span>
 
         <div class="container-buttons">
           <button

@@ -55,3 +55,15 @@ export const getTagsPorCurso = (req, res) => {
     return res.status(200).json(tags);
   });
 };
+
+//Deletar todas as tags vinculadas a um curso
+export const deleteTags = (req, res) => {
+  const idCurso = req.params.idCurso;
+
+  const q = `DELETE FROM tagCurso WHERE idCurso = ?`;
+
+  db.query(q, [idCurso], (err, data) => { 
+    if (err) return res.status(500).json(err);
+    return res.status(200).json({ message: 'O vinculo entre o curso e as tags foi deletado', data });
+  });
+};
