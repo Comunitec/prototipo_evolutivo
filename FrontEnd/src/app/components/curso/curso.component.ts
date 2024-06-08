@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalConfirmacaoParaInativarComponent } from '../modal-confirmacao-para-inativar/modal-confirmacao-para-inativar.component';
+import { ModalDeletarCursoComponent } from '../modal-deletar-curso/modal-deletar-curso.component';
 
 // Definição da interface Curso
 interface Curso {
@@ -230,5 +231,61 @@ export class CursoComponent implements OnInit {
     });
   }
 
+  openModalDeletar(idCurso: number) {
+    const dialogRef = this.dialog.open(ModalDeletarCursoComponent, {
+      width: '350px',
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.deletarCurso(idCurso); // Chama o método se o usuário confirmou
+      } else {
+        console.log('Ação cancelada pelo usuário'); // Ação cancelada pelo usuário
+      }
+    });
+  }
+
+
+  deletarCurso(idCurso: number){
+    this.deletarVinculosDeTags(idCurso);
+    this.deletarAulas(idCurso);
+    
+    this.http.delete<any[]>(`http://localhost:8800/deleteCurso/${idCurso}`)
+    .subscribe(
+      (response) => {
+        console.log("Curso deletado");
+        this.listarCursosEmCriacao();
+      },
+      (error) => {
+        console.error(`Erro ao reprovar curso`, error);
+      }
+    );
+  }
+
+  deletarAulas(idCurso: number) {
+    this.http
+      .delete<any>(`http://localhost:8800/deleteTodasAulas/${idCurso}`)
+      .subscribe(
+        (response) => {
+          console.log('Todas as aulas foram deletadas com sucesso:', response);
+        },
+        (error) => {
+          console.error('Erro ao deletar aulas:', error);
+        }
+      );
+  }
+
+  deletarVinculosDeTags(idCurso: number) {
+    this.http
+      .delete<any>(`http://localhost:8800/deleteTags/${idCurso}`)
+      .subscribe(
+        (response) => {
+          console.log('Todas as tags vinculadas ao curso foram deletadas com sucesso:', response);
+        },
+        (error) => {
+          console.error('Erro ao deletar as tags vinculadas ao curso:', error);
+        }
+      );
+  }
 
 }

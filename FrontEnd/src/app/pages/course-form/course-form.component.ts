@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Alternativa, Aula, Curso, Questao, Tag } from 'src/app/interfaces/curso';
+import { ModalCursoCriadoComponent } from 'src/app/components/modal-curso-criado/modal-curso-criado.component';
 
 type imageType = string | ArrayBuffer | null;
 
@@ -99,6 +100,7 @@ export class CourseFormComponent implements OnInit {
     this.http.post<any>('http://localhost:8800/addCurso', formData).subscribe(
       (response) => {
         console.log('Curso salvo com sucesso:', response);
+        this.openModalCursoCriado();
         // Extraia o ID do curso da resposta
         const idCurso = response.idCurso;
 
@@ -174,5 +176,10 @@ export class CourseFormComponent implements OnInit {
     if (input) {
       input.click();
     }
+  }
+  openModalCursoCriado(): void {
+    const dialogRef = this.dialog.open(ModalCursoCriadoComponent, {
+      width: '350px',
+    });
   }
 }

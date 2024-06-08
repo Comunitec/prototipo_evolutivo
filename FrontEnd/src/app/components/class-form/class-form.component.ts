@@ -6,6 +6,7 @@ import { ModalSaibaMaisFormularioComponent } from '../modal-saiba-mais-formulari
 import { ModalAulaSalvaComponent } from '../modal-aula-salva/modal-aula-salva.component';
 import { ModalErroAoSalvarAulaComponent } from '../modal-erro-ao-salvar-aula/modal-erro-ao-salvar-aula.component';
 import { ModalCursoenviadoParaAprovacaoComponent } from '../modal-cursoenviado-para-aprovacao/modal-cursoenviado-para-aprovacao.component';
+import { ModalSaibaMaisVideoComponent } from '../modal-saiba-mais-video/modal-saiba-mais-video.component';
 
 interface Aula {
   Titulo: string;
@@ -114,6 +115,12 @@ export class ClassFormComponent implements OnInit {
 
   openModal(): void {
     const dialogRef = this.dialog.open(ModalSaibaMaisFormularioComponent, {
+      width: '350px',
+    });
+  }
+
+  openModalSaibaMaisVideo(){
+    const dialogRef = this.dialog.open(ModalSaibaMaisVideoComponent, {
       width: '350px',
     });
   }
