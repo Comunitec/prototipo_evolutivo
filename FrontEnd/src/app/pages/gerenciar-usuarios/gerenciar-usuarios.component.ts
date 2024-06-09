@@ -3,12 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { faEdit, faTrash, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { MatDialog } from '@angular/material/dialog';
+import { ModalEditarUsuarioComponent } from 'src/app/components/modal-editar-usuario/modal-editar-usuario.component';
 import { ModalExcluirContaComponent } from 'src/app/components/modal-excluir-conta/modal-excluir-conta.component';
 
 interface Usuario {
   idAluno: number;
   Nome: string;
   Email: string;
+  Pontuacao: number; // Adicionando a propriedade Pontuacao
   photoUrl?: string; // Adicionando a propriedade photoUrl
 }
 
@@ -43,8 +45,21 @@ export class GerenciarUsuariosComponent implements OnInit {
     );
   }
 
-  editarUsuario(id: number) {
-    this.router.navigate(['/editar-usuario', id]);
+  editarUsuario(idAluno: number) { // Alterado o parâmetro para idAluno
+    const usuario = this.usuarios.find(usuario => usuario.idAluno === idAluno);
+    const dialogRef = this.dialog.open(ModalEditarUsuarioComponent, {
+      width: '50%',
+      data: { usuario } // Passa o objeto de usuário para o modal
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('Usuário editado:', result);
+        // Adicione aqui a lógica para atualizar os dados do usuário após a edição
+      } else {
+        console.log('Edição de usuário cancelada');
+      }
+    });
   }
 
   openModal(id: number): void {

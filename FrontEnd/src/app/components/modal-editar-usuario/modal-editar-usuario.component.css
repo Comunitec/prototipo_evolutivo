@@ -1,0 +1,238 @@
+*{
+  margin: 0;
+}
+
+.titulo-pagina{
+  display: flex;
+  flex-direction: row;
+  padding: 30px;
+  align-items: center;
+  justify-content: center;
+  color: #3a3a3a;
+}
+
+.titulo-pagina > i {
+  font-size: 20px;
+  padding-right: 10px;
+}
+
+
+h1{
+  margin: 0;
+  font-weight: bold;
+  text-align: center;
+}
+
+
+.container_dados-cadastrais {
+  background-color: #EDEDED;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2%;
+  padding: 20px 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card_perfil{
+  width: 65%;
+  height: 150px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.card_perfil-foto{
+  width: 70%;
+  height: 100%;
+  max-width: 150px;
+  max-height: 150px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card_perfil-foto > img{
+  width: 90%;
+  height: 90%;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.input-icon {
+  position: absolute;
+  bottom: 5%;
+  left: 55%;
+  background-color: #898989;
+  border-radius: 50%;
+  padding: 12px;
+  border:1px solid #ffffff;
+  font-size: 25px;
+  cursor: pointer;
+}
+.input-icon .icone-foto {
+  width: 25%;
+  height: 25%;
+  border-radius: 50%;
+}
+.input-icon input[type="file"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.card_pontuacao{
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  width: 50%;
+  background-color: #d9d9d9;
+  border-radius: 5px;
+  box-shadow: 1px 3px 4px -2px #898989;
+  margin: 0 10px;
+  align-items: center;
+}
+
+.ranking{
+  color: #720101;
+  font-weight: bold;
+  margin: 0;
+  width: 90%;
+  text-align: center;
+  border-bottom: 2px solid #720101;
+
+}
+.titulo{
+  font-weight: bold;
+}
+
+.pontos{
+  font-size: large;
+  font-weight: bold;
+  color: #990000;
+}
+
+
+.card_pontuacao-comunicoins, .card_pontuacao-emblemas{
+  text-align: center;
+  height: 33%;
+  width: 100%;
+  padding: 5px;
+}
+
+.card_pontuacao-comunicoins{
+  padding-top: 10px;
+}
+
+.emblemas > img{
+  max-width: 20px;
+  max-height: 20px;
+  padding: 5px 2px 0 2px;
+}
+
+.card_dados_cadastrais{
+  padding-top: 10px;
+  width: 80%;
+}
+
+
+.card_dados_cadastrais-linha2{
+  padding: 10px 0;
+  display: flex;
+  flex-direction: row;
+}
+
+.card_e-mail{
+  width: 80%;
+}
+
+.card_data-nascimento{
+  padding-left: 35px;
+}
+
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"] {
+  display: flex;
+  width: 100%;
+  height: 16px;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  background-color: #d9d9d9;
+  box-shadow: 1px 3px 4px -2px #898989;
+  font-size: 14px;
+}
+
+.card_senha{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  padding-top: 10px;
+}
+
+.card_senha > a {
+  padding-left: 5px;
+
+}
+
+.card_senha:hover{
+  color: #3a3a3a;
+  cursor: pointer;
+}
+
+.container_btn{
+  margin: 0;
+}
+
+.container_btn{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+button {
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  height: 32px;
+  padding: 10px 20px;
+  margin: 15px 5px 5px 5px;
+  width: 120px;
+}
+
+.btn-salvar{
+  background-color: #990000;
+  transition: background-color 0.2s;
+}
+
+button.btn-salvar:hover {
+  background-color: #720101;
+}
+
+.excluir{
+  text-align: center;
+  font-weight: bold;
+  color: #990000;
+}
+
+.excluir:hover {
+ color: #720101;
+ cursor: pointer;
+}

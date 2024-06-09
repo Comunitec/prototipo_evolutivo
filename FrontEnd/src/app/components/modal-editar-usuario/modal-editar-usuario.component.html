@@ -1,0 +1,59 @@
+<form action="">
+  <div class="container_dados-cadastrais">
+
+    <div class="card_perfil">
+      <div class="card_perfil-foto">
+        <img [src]="usuario.photoUrl" alt="">
+        <label for="input-foto" class="input-icon">
+          <i class="icone-foto"><fa-icon [icon]="faCamera"></fa-icon></i>
+          <input type="file" id="input-foto" accept="image/*" style="display: none;" >
+        </label>
+      </div>
+      <div class="card_pontuacao">
+        <h3 class="ranking">RANKING ATUAL:</h3>
+        <div class="card_pontuacao-comunicoins">
+          <span class="titulo">Pontuação: </span>
+          <span class="pontos">{{ usuario.Pontuacao }}</span> Comunicoins
+        </div>
+        <div class="card_pontuacao-emblemas">
+          <span class="titulo">Emblemas adquiridos: </span>
+          <br>
+          <div class="emblemas">
+            <!--img *ngFor="let emblema of usuario.e" [src]="emblema" alt=""-->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card_dados_cadastrais">
+      <div class="card_dados_cadastrais-linha1">
+        <label for="">Nome</label>
+        <input type="text" [(ngModel)]="usuario.Nome" name="nome">
+      </div>
+
+      <div class="card_dados_cadastrais-linha2">
+        <div class="card_e-mail">
+          <label for="">Email</label>
+          <input type="email" [(ngModel)]="usuario.Email" name="email">
+        </div>
+        <div class="card_data-nascimento">
+          <label for="">Data Nascimento</label>
+          <input type="date" [(ngModel)]="usuario.DataNasc" name="dataNascimento">
+        </div>
+      </div>
+
+      <div class="card_senha">
+        <fa-icon [icon]="faKey"></fa-icon>
+        <a (click)="openModal()">Alterar senha</a>
+      </div>
+      <div class="container_btn">
+        <button class="btn-salvar"><fa-icon [icon]="faFloppyDisk"></fa-icon> Salvar</button>
+      </div>
+
+      <br><br><br><br><br>
+      <div class="excluir"><fa-icon [icon]="faTrash"></fa-icon> Excluir Conta</div>
+
+    </div>
+
+  </div>
+</form>

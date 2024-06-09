@@ -10,6 +10,8 @@ export class ModalAlterarSenhaComponent {
   senhaAtual: string = '';
   novaSenha: string = '';
   confirmarNovaSenha: string = '';
+  senha: string = '';
+  senhaVisivel: boolean = false;
 
   constructor(public dialogRef: MatDialogRef<ModalAlterarSenhaComponent>) { }
 

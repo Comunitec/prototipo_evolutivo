@@ -6,17 +6,34 @@
   align-items: center;
 }
 
+.titulo-pagina{
+  display: flex;
+  flex-direction: row;
+  padding: 30px;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.titulo-pagina > i {
+  font-size: 20px;
+  padding-right: 10px;
+  color: goldenrod;
+}
+
+
 h1{
-  text-align: center;
+  margin: 0;
   font-weight: bold;
-  padding: 50px ;
+  text-align: center;
 }
 
 table {
   align-items: center;
-  margin: 10px 50px;
-  border-collapse: collapse; /* Colapsa as bordas das células */
+  margin: 10px 30px;
+  border-collapse: collapse;
   text-align: center;
+  box-shadow: 1px 3px 4px -2px #898989;
 }
 
 th{
@@ -28,7 +45,7 @@ td, th {
 }
 
 td, th:not(:last-child) {
-  border-right: none; /* Remove a borda direita das células, exceto a última célula */
+  border-right: none;
 }
 
 th {
