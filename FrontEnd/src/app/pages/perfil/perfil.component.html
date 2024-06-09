@@ -4,25 +4,36 @@
 
 
 <app-middle-column>
+  <div class="titulo-pagina">
+    <h1>GERENCIAR PERFIL</h1>
+    <i class="fa-layers center-icon"><fa-icon [icon]="faUser"></fa-icon></i>
+  </div>
 
-  <h1>Gerenciar Pefil</h1>
   <div class="container_dados-cadastrais">
 
     <div class="card_perfil">
       <div class="card_perfil-foto">
-        <img src="https://portal.fidelis.edu.br/wp-content/uploads/2020/10/perfil.jpg" alt="">
+        <img [src]= "imagem" alt="">
         <label for="input-foto" class="input-icon">
           <i class="icone-foto"><fa-icon [icon]="faCamera"></fa-icon></i>
-          <input type="file" id="input-foto" accept="image/*" style="display: none;" disabled> <!-- input de imagem oculto -->
+          <input type="file" id="input-foto" accept="image/*" style="display: none;" > <!-- input de imagem oculto -->
         </label>
       </div>
       <div class="card_pontuacao">
-        <div class="card_pontuacao-posicao">Ranking: 20º lugar</div>
-        <div class="card_pontuacao-comunicoins">Pontuação: 100 Comunicoins</div>
-        <div class="card_pontuacao-emblemas">Emblemas adquiridos:
-          <i class="icone-foto"><fa-icon [icon]="faCamera"></fa-icon></i>
-          <i class="icone-foto"><fa-icon [icon]="faCamera"></fa-icon></i>
-          <i class="icone-foto"><fa-icon [icon]="faCamera"></fa-icon></i>
+        <h3 class="ranking">RANKING:</h3>
+        <div class="card_pontuacao-comunicoins">
+          <span class="titulo">Pontuação: </span>
+          <span class="pontos">{{Pontos}}</span> Comunicoins
+        </div>
+        <div class="card_pontuacao-emblemas">
+          <span class="titulo">Emblemas adquiridos: </span>
+          <br>
+          <div class="emblemas">
+            <img src="https://cdn.pixabay.com/photo/2014/03/25/16/25/award-297024_1280.png" alt="">
+            <img src="https://cdn.pixabay.com/photo/2014/03/25/16/25/award-297024_1280.png" alt="">
+            <img src="https://cdn.pixabay.com/photo/2014/03/25/16/25/award-297024_1280.png" alt="">
+            <img src="https://cdn.pixabay.com/photo/2014/03/25/16/25/award-297024_1280.png" alt="">
+          </div>
         </div>
       </div>
     </div>
@@ -30,22 +41,21 @@
 
 
     <div class="card_dados_cadastrais">
-
-        <div class="card_dados_cadastrais-linha1">
-          <label for="">Nome completo</label>
-          <input type="text" disabled>
-        </div>
+      <div class="card_dados_cadastrais-linha1">
+        <label for="">Nome</label>
+        <input type="text" [value]="Nome">
+      </div>
 
       <div class="card_dados_cadastrais-linha2">
 
         <div class="card_e-mail">
-          <label for="">E-mail</label>
-          <input type="email" disabled>
+          <label for="">Email</label>
+          <input type="email" [value]="Email">
         </div>
 
         <div class="card_data-nascimento">
-          <label for="">Data de nascimento</label>
-          <input type="date" disabled>
+          <label for="">Data Nascimento</label>
+          <input type="date" [value]="DataNasc">
         </div>
 
       </div>
@@ -56,20 +66,12 @@
         <a (click)="openModal()">Altere sua senha</a>
       </div>
       <div class="container_btn">
-        <div class="card_edicao" *ngIf="!editando">
-          <div class="card_edicao-editar">
-            <button class="btn-editar" (click)="habilitarEdicao()"> <fa-icon [icon]="faEdit"></fa-icon> Editar Dados</button>
-          </div>
-        </div>
-        <div class="card_edicao" *ngIf="editando">
-          <div class="card_edicao-salvar">
-            <button class="btn-salvar"><fa-icon [icon]="faFloppyDisk"></fa-icon> Salvar</button>
-            <button class="btn-cancelar"><fa-icon [icon]="faXmark"></fa-icon> Cancelar</button>
-          </div>
-        </div>
-        <br><br><br><br><br><br>
-        <div class="excluir"><fa-icon [icon]="faTrash"></fa-icon> Excluir Conta</div>
+        <button class="btn-salvar"><fa-icon [icon]="faFloppyDisk"></fa-icon> Salvar</button>
       </div>
+
+      <br><br><br><br><br>
+      <div class="excluir"><fa-icon [icon]="faTrash"></fa-icon> Excluir Conta</div>
+
     </div>
 
   </div>

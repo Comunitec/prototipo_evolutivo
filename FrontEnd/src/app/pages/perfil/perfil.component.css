@@ -1,20 +1,39 @@
 *{
   margin: 0;
 }
+.titulo-pagina{
+  display: flex;
+  flex-direction: row;
+  padding: 30px;
+  align-items: center;
+  justify-content: center;
+  color: #3a3a3a;
+}
+
+.titulo-pagina > i {
+  font-size: 20px;
+  padding-right: 10px;
+}
+
 
 h1{
-  margin: 20px;
-  padding-bottom: 10px;
+  margin: 0;
   font-weight: bold;
   text-align: center;
 }
 
+
 .container_dados-cadastrais {
+  background-color: #EDEDED;
+  width: 70%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  border-radius: 2%;
+  padding: 20px 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .card_perfil{
@@ -40,6 +59,7 @@ h1{
   width: 90%;
   height: 90%;
   border-radius: 50%;
+  border: 2px solid white;
 }
 
 input[type="file"] {
@@ -75,30 +95,66 @@ input[type="file"] {
 .card_pontuacao{
   display: flex;
   flex-direction: column;
-  padding: 10px;
-  height: 70;
-  width: 70%;
-  font-weight: bold;
-
+  padding: 5px;
+  width: 50%;
+  background-color: #d9d9d9;
+  border-radius: 5px;
+  box-shadow: 1px 3px 4px -2px #898989;
+  margin: 0 10px;
+  align-items: center;
 }
 
-.card_pontuacao-posicao, .card_pontuacao-comunicoins, .card_pontuacao-emblemas{
+.ranking{
+  color:#3a3a3a, ;
+  font-weight: bold;
+  margin: 0;
+  width: 90%;
+  text-align: center;
+  border-bottom: 2px solid #720101;
+
+}
+.titulo{
+  font-weight: bold;
+}
+
+.pontos{
+  font-size: large;
+  font-weight: bold;
+  color: #990000;
+}
+
+
+.card_pontuacao-comunicoins, .card_pontuacao-emblemas{
+  text-align: center;
   height: 33%;
   width: 100%;
+  padding: 5px;
+}
+
+.card_pontuacao-comunicoins{
+  padding-top: 10px;
+}
+
+.emblemas > img{
+  max-width: 20px;
+  max-height: 20px;
+  padding: 5px 2px 0 2px;
 }
 
 .card_dados_cadastrais{
   padding-top: 10px;
+  width: 80%;
 }
 
-.card_dados_cadastrais-linha1 > input{
-  width: 97%;
-}
 
 .card_dados_cadastrais-linha2{
   padding: 10px 0;
   display: flex;
   flex-direction: row;
+}
+
+.card_e-mail{
+  width: 80%;
 }
 
 .card_data-nascimento{
@@ -111,7 +167,7 @@ input[type="email"],
 input[type="password"],
 input[type="date"] {
   display: flex;
-  width: 200px;
+  width: 100%;
   height: 16px;
   padding: 10px;
   border-radius: 8px;
@@ -120,15 +176,7 @@ input[type="date"] {
   box-shadow: 1px 3px 4px -2px #898989;
   font-size: 14px;
 }
-input[type="email"]{
-  width: 350px;
-  max-width: 100%;
 
-}
-
-input[type="text"]{
-  width: 600px;
-}
 .card_senha{
   display: flex;
   flex-direction: row;
@@ -147,6 +195,16 @@ input[type="text"]{
   cursor: pointer;
 }
 
+.container_btn{
+  margin: 0;
+}
+
+.container_btn{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
 
 button {
   color: white;
@@ -155,28 +213,21 @@ button {
   cursor: pointer;
   height: 32px;
   padding: 10px 20px;
-  margin: 35px;
-
-
-}
-.card_edicao-salvar{
-  width: 100%;
+  margin: 15px 5px 5px 5px;
+  width: 120px;
 }
 
-.btn-cancelar {
+.btn-salvar{
   background-color: #990000;
-  width: 160px;
   transition: background-color 0.2s;
 }
 
-.btn-editar , .btn-salvar{
-  padding: 10px 30px;
-  background-color: #666666;
-  transition: background-color 0.2s;
-  width: 160px;
-
+button.btn-salvar:hover {
+  background-color: #720101;
 }
+
 .excluir{
+  text-align: center;
   font-weight: bold;
   color: #990000;
 }
@@ -184,24 +235,4 @@ button {
 .excluir:hover {
  color: #720101;
  cursor: pointer;
-}
-
-button.btn-cancelar:hover {
-  background-color: #720101;
-
-}
-
-button.btn-editar:hover {
-  background-color: #3a3a3a;
-}
-
-button.btn-salvar:hover {
-  background-color: #3a3a3a;
-}
-
-.container_btn{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
