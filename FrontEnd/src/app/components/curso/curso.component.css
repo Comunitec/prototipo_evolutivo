@@ -114,3 +114,80 @@
     margin-bottom: 8px; /* Reduzir espaço entre os cards */
   }
 }
+/* Estilos para os campos de pesquisa */
+.filter-container {
+  display: flex;
+  flex-direction: row; /* Alterado para linha para alinhar os elementos horizontalmente */
+  align-items: center; /* Centraliza verticalmente os elementos */
+  justify-content: flex-end; /* Mover todos os elementos para a direita */
+  margin-bottom: 20px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  padding: 8px 12px; /* Reduzido para diminuir o tamanho da caixa */
+}
+
+.filter-container span {
+  font-size: 18px; /* Reduzido o tamanho da fonte */
+  margin-right: 8px; /* Adiciona espaçamento entre o texto e os outros elementos */
+  font-weight: bold; /* Deixa o texto em negrito para destacá-lo */
+}
+
+.filter-container select,
+.filter-container input[type="text"] {
+  flex: 1; /* Alterado para o elemento preencher todo o espaço disponível */
+  padding: 10px; /* Reduzido para diminuir o tamanho da caixa */
+  font-size: 14px; /* Reduzido o tamanho da fonte */
+  border-radius: 5px;
+  margin-right: 8px; /* Adiciona um espaçamento entre os elementos */
+}
+
+.filter-container button {
+  padding: 10px 18px; /* Reduzido para diminuir o tamanho do botão */
+  font-size: 14px; /* Reduzido o tamanho da fonte */
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-left: 8px; /* Adiciona um espaçamento entre os elementos */
+}
+
+.filter-container button:hover {
+  background-color: var(--hover-btn-primary);
+}
+
+/* Estilos responsivos */
+@media screen and (max-width: 768px) {
+  .filter-container {
+      flex-direction: column; /* Alterado para coluna para empilhar os elementos verticalmente em telas menores */
+      align-items: stretch; /* Alterado para esticar os elementos verticalmente */
+  }
+
+  .filter-container span {
+      margin-bottom: 8px; /* Adiciona espaçamento inferior entre o texto e os outros elementos em telas menores */
+  }
+
+  .filter-container select,
+  .filter-container input[type="text"] {
+      margin-right: 0; /* Remove o espaçamento entre os elementos em telas menores */
+      margin-bottom: 8px; /* Adiciona espaçamento inferior entre os elementos em telas menores */
+  }
+
+  .filter-container button {
+      margin-right: 0; /* Remove o espaçamento entre os elementos em telas menores */
+  }
+}
+
+.common-style {
+  display: flex;
+  padding: 8px; /* Reduzido para diminuir o tamanho da caixa */
+  border-radius: 8px;
+  border: none;
+  background-color: #d9d9d9;
+  box-shadow: 1px 3px 4px -2px #898989;
+  font-size: 14px; /* Reduzido o tamanho da fonte */
+}
+
+.common-style:focus {
+outline: none;
+}
