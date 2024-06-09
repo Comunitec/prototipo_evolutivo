@@ -61,6 +61,7 @@ import { CursoEditadoComSucessoComponent } from './components/curso-editado-com-
 import { ModalCursoCriadoComponent } from './components/modal-curso-criado/modal-curso-criado.component';
 import { ModalSaibaMaisVideoComponent } from './components/modal-saiba-mais-video/modal-saiba-mais-video.component';
 import { ModalDeletarCursoComponent } from './components/modal-deletar-curso/modal-deletar-curso.component';
+import { ModalEditarUsuarioComponent } from './components/modal-editar-usuario/modal-editar-usuario.component';
 
 
 const routes: Routes = [
@@ -85,6 +86,8 @@ const routes: Routes = [
   {path: 'gerenciar-usuarios', component: GerenciarUsuariosComponent},
   {path: 'excluir-conta', component: ModalExcluirContaComponent},
   {path: 'EditCourseFormComponent/:id', component: EditCourseFormComponent},
+  { path: 'editar-usuario', component: ModalEditarUsuarioComponent},
+
 
 
 ];
@@ -142,6 +145,7 @@ const routes: Routes = [
     ModalCursoCriadoComponent,
     ModalSaibaMaisVideoComponent,
     ModalDeletarCursoComponent,
+    ModalEditarUsuarioComponent,
 
   ],
   imports: [

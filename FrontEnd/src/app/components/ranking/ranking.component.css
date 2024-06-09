@@ -1,12 +1,27 @@
 .card-ranking {
-  padding: 2px;
+  padding: 5px;
   padding-left: 5px;
-  max-width: 210px;
   margin: 3px;
 }
 
+.titulo-pagina{
+  margin: 1rem;
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.titulo-pagina > i {
+  font-size: large;
+  padding-right: 10px;
+  color: goldenrod;
+}
 
 h2 {
+  margin: 0;
   font-size: large;
   font-weight: bold;
   text-align: center;
@@ -17,11 +32,12 @@ h2 {
 .ranking-item {
   display: flex;
   align-items: center;
-  margin-bottom: 1rem;
+  padding: 8px;
+  border-top: 1px solid rgb(217, 217, 217);;
 }
 
 .ranking-item span {
-  padding: 2px 3px;
+  padding: 3px;
   font-weight: bold;
 }
 
@@ -30,19 +46,7 @@ h2 {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  margin: 0.5rem;
-}
-
-.first-place img {
-  border: 2px solid gold; /* Cor da borda para o primeiro lugar */
-}
-
-.second-place img {
-  border: 2px solid silver; /* Cor da borda para o segundo lugar */
-}
-
-.third-place img {
-  border: 2px solid #cd7f32; /* Cor da borda para o terceiro lugar */
+  margin: 10px 5px;
 }
 
 .dados {

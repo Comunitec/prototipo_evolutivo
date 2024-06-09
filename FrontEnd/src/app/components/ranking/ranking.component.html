@@ -1,5 +1,8 @@
 <div class="card-ranking">
-  <h2>RANKING</h2>
+  <div class="titulo-pagina">
+    <i class="fa-layers center-icon"><fa-icon [icon]="faTrophy"></fa-icon></i>
+    <h2>RANKING</h2>
+  </div>
 
   <div *ngFor="let item of rankingItems; let i = index">
     <div *ngIf="i < 5" class="ranking-item" [ngClass]="getBorderClass(i)">
@@ -11,5 +14,5 @@
       </div>
     </div>
   </div>
-  <a routerLink="/ranking-page">ver mais...</a>
+  <a routerLink="/ranking-page" style="text-decoration: none;">ver mais...</a>
 </div>

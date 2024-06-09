@@ -1,39 +1,48 @@
-import { Component, OnInit } from '@angular/core';
+import { MatDialogRef , MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { Component, Inject, OnInit } from '@angular/core';
 import { faTrash, faCamera, faFloppyDisk, faKey, faUser } from '@fortawesome/free-solid-svg-icons';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalAlterarSenhaComponent } from 'src/app/components/modal-alterar-senha/modal-alterar-senha.component';
 
+interface Usuario {
+  idAluno: number;
+  Nome: string;
+  Email: string;
+  DataNasc: string;
+  photoUrl?: string;
+  Pontuacao: number;
+}
+
 @Component({
-  selector: 'app-perfil',
-  templateUrl: './perfil.component.html',
-  styleUrls: ['./perfil.component.css']
+  selector: 'app-modal-editar-usuario',
+  templateUrl: './modal-editar-usuario.component.html',
+  styleUrls: ['./modal-editar-usuario.component.css']
 })
-export class PerfilComponent implements OnInit {
+export class ModalEditarUsuarioComponent implements OnInit {
   faTrash = faTrash;
   faCamera = faCamera;
   faFloppyDisk = faFloppyDisk;
   faKey = faKey;
   faUser = faUser;
 
-  emblemas: string[] = [];
+  usuario: Usuario;
 
-  url = "http://localhost:8800/imagem/";
-  Nome = sessionStorage.getItem('Nome');
-  Pontos = sessionStorage.getItem('Pontuacao');
-  id = sessionStorage.getItem('idAluno');
-  imagem = this.url + this.id;
-  Email = sessionStorage.getItem('Email');
-  DataNasc = '';
-
-  constructor(private dialog: MatDialog) { }
+  constructor(
+    private dialogRef: MatDialogRef<ModalEditarUsuarioComponent>,
+    @Inject(MAT_DIALOG_DATA) private data: { usuario: Usuario },
+    private dialog: MatDialog
+  ) {
+    this.usuario = data.usuario; // Recebe os dados do usuário passados para o modal
+  }
 
   ngOnInit() {
     const dataNasc = sessionStorage.getItem('DataNasc');
     if (dataNasc) {
       // Converter a data para o formato ISO 8601 (yyyy-mm-dd)
-      this.DataNasc = new Date(dataNasc).toISOString().substring(0, 10);
+      this.usuario.DataNasc = new Date(dataNasc).toISOString().substring(0, 10);
     }
   }
+
   openModal(): void {
     const dialogRef = this.dialog.open(ModalAlterarSenhaComponent, {
       width: '360px'

@@ -82,7 +82,16 @@ a{
   color: var(--secondary-color);
   cursor: pointer;
 }
+
+.edit:hover{
+  color: #3a3a3a;
+}
+
 .delete{
   color: var(--primary-color);
   cursor: pointer;
+}
+
+.delete:hover{
+  color:  #720101;
 }
