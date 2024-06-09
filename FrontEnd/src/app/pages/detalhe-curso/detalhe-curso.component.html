@@ -20,15 +20,19 @@
         <p>
           <!-- <b>{{ finishTotal }} pessoas</b> já concluiram este curso -->
         </p>
-        <p>Curso criado em: {{ curso.DataCriacao | date:'dd/MM/yyyy'  }}</p>
+        <p>Curso criado em: {{ curso.DataCriacao | date:'dd/MM/yyyy' }}</p>
       </div>
 
       <div class="card_curso-descricao">
         <div class="card_descricao">Descrição:</div>
         <div class="card_descricao-texto">{{ curso.Descricao }}</div>
 
-        <button *ngIf="curso.matricula" class="btn-matricula" (click)="openModal()">Matricular-se</button>
-        <button *ngIf="verAulas" class="btn-matricula" [routerLink]="['/assistirAulas', curso.idCurso]">Assistir aulas</button>
+        <div class="card_btn">
+          <button *ngIf="!isAlunoCriador && !curso.matricula" class="btn-matricula" (click)="openModal()">Matricular-se</button>
+          <button *ngIf="!isAlunoCriador && curso.matricula" class="btn-matricula" (click)="desmatricularAluno()">Desmatricular-se</button>
+          <button *ngIf="isAlunoCriador || curso.matricula" class="btn-matricula" [routerLink]="['/assistirAulas', curso.idCurso]">Assistir aulas</button>
+
+        </div>
       </div>
     </div>
   </div>

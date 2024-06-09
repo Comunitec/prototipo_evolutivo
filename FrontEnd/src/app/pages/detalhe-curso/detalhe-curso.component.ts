@@ -26,6 +26,9 @@ interface Curso {
 export class DetalheCursoComponent implements OnInit {
   curso: Curso | null = null;
   verAulas = false;
+  idAlunoLogado = sessionStorage.getItem('idAluno');
+  isAlunoCriador: boolean = false;
+  idAlunoCurso: number | null = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -61,6 +64,12 @@ export class DetalheCursoComponent implements OnInit {
             this.curso = curso;
             this.verAulas = !this.curso.matricula;
             console.log('Curso:', this.curso);
+
+            // Verifica se o aluno logado é o criador do curso
+            this.isAlunoCriador = Number(this.idAlunoLogado) === curso.idAlunoCriador;
+
+            // Verifica a matrícula do aluno logado no curso
+            this.verificarMatricula(Number(this.idAlunoLogado), curso.idCurso);
           },
           (error) => {
             console.error(`Erro ao obter nome do criador para o curso ${idCurso}:`, error);
@@ -73,24 +82,70 @@ export class DetalheCursoComponent implements OnInit {
         console.error(`Erro ao obter detalhes do curso ${idCurso}:`, error);
       }
     );
-
   }
 
   getNomeCriador(idAluno: number) {
     console.log(`Requisição para obter nome do criador com ID ${idAluno}`);
     return this.http.get<{ Nome: string }>(`http://localhost:8800/getAlunoPorId/${idAluno}`);
-   }
+  }
+
+  verificarMatricula(idAluno: number, idCurso: number): void {
+    this.http.get<{ matriculado: boolean }>(`http://localhost:8800/verificarMatricula/${idAluno}/${idCurso}`).subscribe(
+      (response) => {
+        if (this.curso) {
+          this.curso.matricula = response.matriculado;
+        }
+      },
+      (error) => {
+        console.error('Erro ao verificar matrícula:', error);
+      }
+    );
+  }
+
+  matricularAluno(): void {
+    if (!this.curso || !this.idAlunoLogado) return;
+
+    const matriculaData = { idAluno: Number(this.idAlunoLogado), idCurso: this.curso.idCurso };
+
+    this.http.post<{ idAlunoCurso: number }>('http://localhost:8800/matricularAluno', matriculaData).subscribe(
+      (response) => {
+        console.log('Matrícula realizada com sucesso - RESPONSE:', response);
+        this.curso!.matricula = true;
+        this.idAlunoCurso = response.idAlunoCurso; // Armazena o idAlunoCurso
+      },
+      (error) => {
+        console.error('Erro ao matricular aluno:', error);
+      }
+    );
+  }
+
+  desmatricularAluno(): void {
+    if (!this.curso || !this.idAlunoLogado) return;
+
+    const matriculaData = { idAluno: Number(this.idAlunoLogado), idCurso: this.curso.idCurso };
+
+    this.http.delete('http://localhost:8800/desmatricularAluno', { body: matriculaData }).subscribe(
+      (response) => {
+        console.log('Desmatrícula realizada com sucesso:', response);
+        this.curso!.matricula = false;
+      },
+      (error) => {
+        console.error('Erro ao desmatricular aluno:', error);
+      }
+    );
+  }
 
   openModal(): void {
+    this.matricularAluno();
     if (this.curso) {
       const dialogRef = this.dialog.open(ModalMatRealizadaComponent, {
         width: '350px'
       });
 
-      this.curso.matricula = false;
-      this.verAulas = true;
-
       dialogRef.afterClosed().subscribe(result => {
+        if (result === 'confirm') {
+          this.matricularAluno();
+        }
         console.log('The dialog was closed');
       });
     }
