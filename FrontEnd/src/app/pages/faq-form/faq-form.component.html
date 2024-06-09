@@ -1,0 +1,26 @@
+<!-- Formulário para adicionar uma nova FAQ -->
+<!-- Coluna Esquerda (Fixa) - Menu Lateral -->
+<app-left-column>
+    <app-menu-lateral></app-menu-lateral>
+  </app-left-column>
+  
+  <!-- Coluna do Meio (Rolável) - Feed Principal -->
+  <app-middle-column>
+    <form (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+      <div class="input-group">
+        <label for="faqPergunta">Pergunta</label>
+        <input class="common-style" name="faqPergunta" type="text" [(ngModel)]="novaPergunta" id="faqPergunta" placeholder="Digite a pergunta" required />
+  
+        <label for="faqResposta">Resposta</label>
+        <input class="common-style" name="faqResposta" type="text" [(ngModel)]="novaResposta" id="faqResposta" placeholder="Digite a resposta" required />
+  
+        <div style="margin-top: 30px; display: flex; justify-content: center; gap: 60px">
+          <button type="button" class="save-button back" routerLink="/faq">Voltar</button>
+          <button type="submit" class="save-button">Salvar FAQ</button>
+        </div>
+      </div>
+    </form>
+  </app-middle-column>
+  
+  <app-right-column></app-right-column>
+  

@@ -1,99 +1,30 @@
-  <!-- Coluna Esquerda (Fixa) - Ranking -->
-  <app-left-column> 
-    <app-menu-lateral *ngIf="podeVerMenuLateral"></app-menu-lateral>
-  </app-left-column>
-  
-  <!-- Coluna do Meio (Rolável) - Feed Principal -->
-  <app-middle-column>
-    <body>
+<!-- Coluna Esquerda (Fixa) - Menu Lateral -->
+<app-left-column>
+  <app-menu-lateral *ngIf="podeVerMenuLateral"></app-menu-lateral>
+</app-left-column>
+
+<!-- Coluna do Meio (Rolável) - Conteúdo Principal -->
+<app-middle-column>
   <br><br><br>
   <h1>Perguntas frequentes</h1>
+  <button routerLink="/FaqFormComponent" class="save-button" *ngIf="podeAdicionarEDeletar">Adicionar Pergunta</button>
   <br><br>
-    <mat-accordion>
-        <mat-expansion-panel class="matExpansion">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              "Como faço para fazer para me matricular num curso?"
-            </mat-panel-title>
-            <mat-panel-description>
-            
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <p> Siga tal coisa</p>
-          
-        </mat-expansion-panel>
+  <mat-accordion>
+    <mat-expansion-panel class="matExpansion" *ngFor="let faq of faqs">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{ faq.Pergunta }}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>{{ faq.Resposta }}</p>
+      <button (click)="deletarFaq(faq.idFaq)" class="save-button" *ngIf="podeAdicionarEDeletar" >Deletar</button>
+    </mat-expansion-panel>
+    <br>
+  </mat-accordion>
+  <footer>
+    <p class="rodape">Para enviar suas dúvidas contacte algum dos seguintes emails:</p>
+    <p class="rodape">nicolau.wojcieszuk@fatec.sp.gov.br | nicolau.wojcieszuk@fatec.sp.gov.br | nicolau.wojcieszuk@fatec.sp.gov.br | nicolau.wojcieszuk@fatec.sp.gov.br |</p>
+  </footer>
+</app-middle-column>
 
-        <br>
-
-        <mat-expansion-panel class="matExpansion">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-                "Como faço para criar um curso?"
-            </mat-panel-title>
-            <mat-panel-description>
-                
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <p>Siga tal coisa</p>
-
-        </mat-expansion-panel>
-
-        <br>
-
-        <mat-expansion-panel class="matExpansion">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-                "Existe algum material de apoio?"
-            </mat-panel-title>
-            <mat-panel-description>
-                
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <p>Siga tal coisa</p>
-
-        </mat-expansion-panel>
-
-        <br>
-
-        <mat-expansion-panel class="matExpansion">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-                "O que posso fazer com os pontos que ganho quando concluo um curso?"
-            </mat-panel-title>
-            <mat-panel-description>
-                
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <p class="rodape">Siga tal coisa</p>
-
-        </mat-expansion-panel>
-
-        <br>
-
-        <mat-expansion-panel class="matExpansion">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-                "O que recebo ao concluir um curso?"
-            </mat-panel-title>
-            <mat-panel-description>
-                
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <p class="rodape">Siga tal coisa</p>
-
-        </mat-expansion-panel>
-
-      </mat-accordion>
-      <footer>
-        <p class="rodape">Para enviar suas dúvidas contacte algum dos seguintes emails:</p>
-        <p class="rodape">nicolau.wojcieszuk@fatec.sp.gov.br | nicolau.wojcieszuk@fatec.sp.gov.br | nicolau.wojcieszuk@fatec.sp.gov.br | nicolau.wojcieszuk@fatec.sp.gov.br |</p>
-        
-
-        
-    </footer>
-
-</body>
-      
-  </app-middle-column>
-
-  <app-right-column></app-right-column>
+<app-right-column></app-right-column>
