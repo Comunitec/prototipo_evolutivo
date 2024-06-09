@@ -8,6 +8,7 @@
 
 .matExpansion.mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:hover:not([aria-disabled=true]){
     background-color: rgb(196, 196, 196);
+
 }
 h1{
     font-weight: bold;
@@ -35,13 +36,14 @@ h1{
 }
 
 mat-accordion{
-  padding: 20px 100px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 div{
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 }
 

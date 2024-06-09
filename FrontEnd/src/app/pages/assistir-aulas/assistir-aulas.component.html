@@ -3,13 +3,11 @@
 </app-left-column>
 
 <app-middle-column>
-  <h1>{{nomeCurso}}</h1>
+  <h1>{{ nomeCurso }}</h1>
   <mat-accordion>
     <mat-expansion-panel *ngFor="let aula of aulas; let i = index" [disabled]="!aula.Titulo" class="matExpansion">
       <mat-expansion-panel-header>
-        <mat-panel-title>
-          Aula {{ i + 1 }}
-        </mat-panel-title>
+        <mat-panel-title> Aula {{ i + 1 }} </mat-panel-title>
         <mat-panel-description>
           {{ aula.Titulo || 'Título não disponível' }}
         </mat-panel-description>
@@ -18,9 +16,14 @@
       <iframe *ngIf="aula.SafeLinkIncorporacao" class="iframeElement" width="560" height="315" [src]="aula.SafeLinkIncorporacao" frameborder="0"
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
         referrerpolicy="strict-origin-when-cross-origin"></iframe>
-      <button *ngIf="aula.LinkFormulario" class="btn" (click)="openModal()">Acessar questionário</button>
+      <div>
+        <button *ngIf="aula.LinkFormulario" class="btn" (click)="openModal(aula.LinkFormulario, aula.idAula, aula.idCurso)">Acessar questionário</button>
+      </div>
     </mat-expansion-panel>
   </mat-accordion>
+  <div *ngIf="finalizarCursoVisivel">
+    <button class="btn">Finalizar curso</button>
+  </div>
 </app-middle-column>
 
 <app-right-column></app-right-column>
