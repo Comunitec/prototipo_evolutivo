@@ -62,7 +62,7 @@ import { ModalCursoCriadoComponent } from './components/modal-curso-criado/modal
 import { ModalSaibaMaisVideoComponent } from './components/modal-saiba-mais-video/modal-saiba-mais-video.component';
 import { ModalDeletarCursoComponent } from './components/modal-deletar-curso/modal-deletar-curso.component';
 import { ModalEditarUsuarioComponent } from './components/modal-editar-usuario/modal-editar-usuario.component';
-
+import { FaqFormComponent } from './pages/faq-form/faq-form.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -87,6 +87,7 @@ const routes: Routes = [
   {path: 'excluir-conta', component: ModalExcluirContaComponent},
   {path: 'EditCourseFormComponent/:id', component: EditCourseFormComponent},
   { path: 'editar-usuario', component: ModalEditarUsuarioComponent},
+  {path: 'FaqFormComponent', component: FaqFormComponent},
 
 
 
@@ -146,6 +147,7 @@ const routes: Routes = [
     ModalSaibaMaisVideoComponent,
     ModalDeletarCursoComponent,
     ModalEditarUsuarioComponent,
+    FaqFormComponent,
 
   ],
   imports: [

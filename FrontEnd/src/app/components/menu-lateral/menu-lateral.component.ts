@@ -34,6 +34,7 @@ export class MenuLateralComponent {
 
   url = "http://localhost:8800/imagem/";
   Nome = sessionStorage.getItem('Nome');
+  PerfilDeAcesso = sessionStorage.getItem('PerfilDeAcesso');
   Pontos = sessionStorage.getItem('Pontuacao');
   id = sessionStorage.getItem('idAluno');
   imagem = this.url + this.id;
