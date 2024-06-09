@@ -44,7 +44,7 @@ export class AssistirAulasComponent implements OnInit {
     private sanitizer: DomSanitizer
   ) {
     this.idCurso = Number(this.route.snapshot.paramMap.get('id'));
-    console.log('ID do curso:', this.idCurso);
+    // console.log('ID do curso:', this.idCurso);
   }
 
   ngOnInit(): void {
@@ -59,7 +59,7 @@ export class AssistirAulasComponent implements OnInit {
       (curso) => {
         this.nomeCurso = curso.Nome;
         this.idAlunoCriador = curso.idAlunoCriador;
-        console.log('Curso:', curso);
+        // console.log('Curso:', curso);
 
         // Verifica se o aluno logado é o criador do curso
         this.isAlunoCriador = Number(this.idAlunoLogado) === this.idAlunoCriador;
@@ -110,8 +110,8 @@ export class AssistirAulasComponent implements OnInit {
       });
 
       dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
-        if (result === 'finalizado') {
+        // console.log('The dialog was closed');
+        if (result === 'concluido') {
           this.marcarQuestionarioComoFinalizado(idAula);
         }
       });
@@ -122,6 +122,7 @@ export class AssistirAulasComponent implements OnInit {
 
   marcarQuestionarioComoFinalizado(idAula: number): void {
     const aula = this.aulas.find(a => a.idAula === idAula);
+    console.log('Aula:', aula);
     if (aula) {
       aula.questionarioFinalizado = true;
       this.verificarSeTodosQuestionariosFinalizados();
