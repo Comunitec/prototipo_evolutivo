@@ -1,54 +1,43 @@
-import { Component } from '@angular/core';
-import { faEdit, faTrash, faCamera, faFloppyDisk, faXmark, faKey } from '@fortawesome/free-solid-svg-icons';
-import { HttpClient } from '@angular/common/http';
-import { MatDialog } from '@angular/material/dialog'; // Importe o MatDialog
+import { Component, OnInit } from '@angular/core';
+import { faTrash, faCamera, faFloppyDisk, faKey, faUser } from '@fortawesome/free-solid-svg-icons';
+import { MatDialog } from '@angular/material/dialog';
 import { ModalAlterarSenhaComponent } from 'src/app/components/modal-alterar-senha/modal-alterar-senha.component';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
   styleUrls: ['./perfil.component.css']
 })
-export class PerfilComponent {
-  faEdit = faEdit;
+export class PerfilComponent implements OnInit {
   faTrash = faTrash;
   faCamera = faCamera;
   faFloppyDisk = faFloppyDisk;
-  faXmark = faXmark;
   faKey = faKey;
-  editando: boolean = false;
+  faUser = faUser;
 
-  // Dados fictícios do perfil
-  ranking: number = 20;
-  pontuacao: number = 100;
-  emblemas: string[] = ['Emblema 1', 'Emblema 2', 'Emblema 3'];
+  emblemas: string[] = [];
 
-  constructor(private http: HttpClient, private dialog: MatDialog) { }
+  url = "http://localhost:8800/imagem/";
+  Nome = sessionStorage.getItem('Nome');
+  Pontos = sessionStorage.getItem('Pontuacao');
+  id = sessionStorage.getItem('idAluno');
+  imagem = this.url + this.id;
+  Email = sessionStorage.getItem('Email');
+  DataNasc = '';
+
+  constructor(private dialog: MatDialog) { }
 
   ngOnInit() {
-    // Aqui você pode buscar os dados do perfil do backend quando a API estiver pronta
-    // this.http.get('url-do-backend').subscribe(data => {
-    //   this.ranking = data.ranking;
-    //   this.pontuacao = data.pontuacao;
-    //   this.emblemas = data.emblemas;
-    // });
+    const dataNasc = sessionStorage.getItem('DataNasc');
+    if (dataNasc) {
+      // Converter a data para o formato ISO 8601 (yyyy-mm-dd)
+      this.DataNasc = new Date(dataNasc).toISOString().substring(0, 10);
+    }
   }
-
-  habilitarEdicao(): void {
-    const inputs = document.querySelectorAll<HTMLInputElement>(".card_dados_cadastrais input");
-    inputs.forEach(input => {
-      input.removeAttribute("disabled");
-    });
-
-    const inputFile = document.getElementById("input-foto") as HTMLInputElement;
-    inputFile.removeAttribute("disabled");
-
-    this.editando = true;
-  }
-
   openModal(): void {
     const dialogRef = this.dialog.open(ModalAlterarSenhaComponent, {
-      width: '350px'
+      width: '360px'
     });
 
     dialogRef.afterClosed().subscribe(result => {

@@ -48,6 +48,6 @@ export class MenuLateralComponent {
 
   sair() {
     sessionStorage.clear();
-    this.router.navigate(['/']); 
+    this.router.navigate(['/']);
   }
 }
