@@ -1,6 +1,13 @@
+<!-- Campo de pesquisa -->
+<div class="filter-container search-container">
+  <input class="common-style" type="text" placeholder="Pesquisar cursos..." [(ngModel)]="termoPesquisa" (keyup.enter)="pesquisar()">
+  <button class="common-style" (click)="pesquisar()">Pesquisar</button>
+</div>
+
+
 <div class="container_curso">
-  <!-- Itera sobre cada curso e exibe as informações -->
-  <div class="card_curso" *ngFor="let curso of cursos">
+  <!-- Itera sobre cada curso filtrado e exibe as informações -->
+  <div class="card_curso" *ngFor="let curso of cursosFiltrados">
     <div class="card_curso-thumb">
       <img [src]="curso.Imagem" class="photo">
     </div>
@@ -19,7 +26,7 @@
         <button *ngIf="podeAprovar" (click)="aprovarCurso(curso.idCurso)" class="btn-Aprovar">Aprovar</button>
         <button *ngIf="podeReprovar" (click)="reprovarCurso(curso.idCurso)" class="btn-Reprovar">Reprovar</button>
         <button *ngIf="podeInativar" (click)="openModalInativar(curso.idCurso)" class="btn-Inativar">Inativar</button>
-        <button *ngIf="podeExcluir" (click)="openModalDeletar(curso.idCurso)" class="btn-excluir" >Excluir</button>
+        <button *ngIf="podeExcluir" (click)="openModalDeletar(curso.idCurso)" class="btn-excluir">Excluir</button>
       </div>
     </div>
   </div>
