@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { PesquisaService } from '../../pesquisa.service'; // Verifique o caminho de importação aqui
+import { Curso } from '../../components/curso/curso.component'; // Verifique o caminho de importação aqui
 
 @Component({
   selector: 'app-home-logado',
@@ -7,4 +9,16 @@ import { Component } from '@angular/core';
 })
 export class HomeLogadoComponent {
 
+  termoPesquisa: string = ''; // Termo de pesquisa
+  cursos: Curso[] = [];
+  cursosFiltrados: Curso[] = [];
+
+  constructor(private pesquisaService: PesquisaService) {}
+
+  pesquisarCursos() {
+    console.log('Termo de pesquisa:', this.termoPesquisa);
+    console.log('Cursos antes da pesquisa:', this.cursos);
+    this.cursosFiltrados = this.pesquisaService.pesquisarCursos(this.cursos, this.termoPesquisa);
+    console.log('Cursos após a pesquisa:', this.cursosFiltrados);
+  }
 }

@@ -9,6 +9,8 @@ import alunoCursoRoutes from './routes/alunoscurso.js'
 import aulaRoutes from './routes/aulas.js'
 import questionarioRoutes from './routes/questionarios.js'
 import questoesRoutes from './routes/questoes.js'
+import alunoCursoAulaRoutes from './routes/alunocursoaula.js'; 
+import faqRoutes from "./routes/faqs.js"
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -32,6 +34,8 @@ app.use("/", alunoCursoRoutes);
 app.use("/", aulaRoutes);
 app.use("/", questionarioRoutes);
 app.use("/", questoesRoutes);
+app.use("/", alunoCursoAulaRoutes); 
+app.use("/", faqRoutes);
 
 app.listen(8800, () => {
   console.log("Server running on port 8800");

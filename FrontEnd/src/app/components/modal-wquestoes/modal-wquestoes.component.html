@@ -1,18 +1,10 @@
 <h1>Questionário</h1>
 <form (ngSubmit)="finalizarQuestionario()">
-    <h3>{{ currentQuestionIndex + 1 }}. {{ questionario[currentQuestionIndex].questao }}</h3>
-    <mat-radio-group
-
-     >
-      <mat-radio-button *ngFor="let resposta of questionario[currentQuestionIndex].respostas" [value]="resposta.textoAlternativa">
-        {{ resposta.textoAlternativa }}
-      </mat-radio-button>
-    </mat-radio-group>
+    <p>Após assistir a aula realize o questionário no link abaixo para verificar seu aprendizado. Caso seja satisfatório clique na opção finalizar.</p>
+    <a style="text-align: center;" [href]="data.linkFormulario" >Questionário</a>
 
     <div class="navigation-buttons">
-      <button class="btn nav" mat-button type="button" (click)="prevQuestion()" [disabled]="currentQuestionIndex === 0"><fa-icon [icon]="faArrowLeft"></fa-icon></button>
-      <button class="btn cancel" mat-button type="button" (click)="cancel()">Cancelar</button>
-      <button class="btn" mat-button type="button" (click)="finalizarQuestionario()" [disabled]="!isLastQuestion()">Finalizar</button>
-      <button class="btn nav" mat-button type="button" (click)="nextQuestion()" [disabled]="isLastQuestion()"><fa-icon [icon]="faArrowRight"></fa-icon></button>
+      <button class="btn cancel" mat-button type="button" (click)="cancel()">Fechar</button>
+      <button *ngIf="!questionarioFinalizado" class="btn" mat-button type="submit">Finalizar</button>
     </div>
 </form>

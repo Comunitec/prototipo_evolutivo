@@ -92,3 +92,9 @@ p{margin: 0;}
   background-color: var(--secondary-color);
   cursor: pointer;
 }
+
+.card_btn{
+  display: flex;
+  justify-content: space-around;
+
+}

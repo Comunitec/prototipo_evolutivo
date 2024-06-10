@@ -17,3 +17,7 @@
     background-color: var(--secondary-color);
     cursor: pointer;
 }
+
+p {
+  text-align: justify;
+}
