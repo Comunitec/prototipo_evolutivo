@@ -9,7 +9,9 @@
 .matExpansion.mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:hover:not([aria-disabled=true]){
     background-color: rgb(196, 196, 196);
 }
-  
+  .matExpansion{
+    margin: 0 70px;
+  }
 
 h1 {
     text-align: center;
@@ -20,18 +22,22 @@ h1 {
 }
 
 .rodape{
-    font-size: 12px;
+    font-size: 10px;
 }
 
 footer {
-    background-color: #333;
+    background-color: var( --secondary-color);
     color: #fff;
     text-align: center;
-    padding: 20px;
+    padding: 10px;
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
+    height: 30px;
+}
+footer p{
+  margin: 0;
 }
 
 body {
