@@ -4,7 +4,7 @@
     <a style="text-align: center;" [href]="data.linkFormulario" >Questionário</a>
 
     <div class="navigation-buttons">
-      <button class="btn cancel" mat-button type="button" (click)="cancel()">Cancelar</button>
-      <button class="btn" mat-button type="button" (click)="finalizarQuestionario()">Finalizar</button>
+      <button class="btn cancel" mat-button type="button" (click)="cancel()">Fechar</button>
+      <button *ngIf="!questionarioFinalizado" class="btn" mat-button type="submit">Finalizar</button>
     </div>
 </form>

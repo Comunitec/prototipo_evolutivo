@@ -17,7 +17,7 @@
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
         referrerpolicy="strict-origin-when-cross-origin"></iframe>
       <div>
-        <button *ngIf="aula.LinkFormulario" class="btn" (click)="openModal(aula.LinkFormulario, aula.idAula, aula.idCurso)">Acessar questionário</button>
+        <button *ngIf="aula.LinkFormulario" class="btn" (click)="openModal(aula.LinkFormulario, aula.idAula, aula.idCurso)" [disabled]="aula.questionarioFinalizado">Acessar questionário</button>
       </div>
     </mat-expansion-panel>
   </mat-accordion>

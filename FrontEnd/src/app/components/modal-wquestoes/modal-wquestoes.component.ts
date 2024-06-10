@@ -8,11 +8,15 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./modal-wquestoes.component.css']
 })
 export class ModalWQuestoesComponent {
+  questionarioFinalizado: boolean;
+
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: { linkFormulario: string, idAula: number, idCurso: number, idAlunoCurso: number | null },
+    @Inject(MAT_DIALOG_DATA) public data: { linkFormulario: string, idAula: number, idCurso: number, idAlunoCurso: number | null, questionarioFinalizado: boolean },
     public dialogRef: MatDialogRef<ModalWQuestoesComponent>,
     private http: HttpClient
-  ) {}
+  ) {
+    this.questionarioFinalizado = data.questionarioFinalizado;
+  }
 
   finalizarQuestionario() {
     if (this.data.idAlunoCurso === null) {
@@ -25,13 +29,12 @@ export class ModalWQuestoesComponent {
       idAula: this.data.idAula,
       status: 'concluido'
     };
-    console.log('alunocursoaulaData:', alunocursoaulaData);
 
     this.http.post('http://localhost:8800/finalizarQuestionario', alunocursoaulaData).subscribe(
       (response) => {
-        console.log("idAlunoCurso:", this.data.idAlunoCurso);
         console.log('Questionário finalizado com sucesso:', response);
-        this.dialogRef.close();
+        this.questionarioFinalizado = true;
+        this.dialogRef.close('concluido');
       },
       (error) => {
         console.error('Erro ao finalizar questionário:', error);
