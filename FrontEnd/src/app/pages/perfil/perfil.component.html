@@ -43,19 +43,19 @@
     <div class="card_dados_cadastrais">
       <div class="card_dados_cadastrais-linha1">
         <label for="">Nome</label>
-        <input type="text" [value]="Nome">
+        <input type="text" [(ngModel)]="Nome" placeholder="Nome">
       </div>
 
       <div class="card_dados_cadastrais-linha2">
 
         <div class="card_e-mail">
           <label for="">Email</label>
-          <input type="email" [value]="Email">
+          <input type="email" [(ngModel)]="Email" placeholder="Email">
         </div>
 
         <div class="card_data-nascimento">
           <label for="">Data Nascimento</label>
-          <input type="date" [value]="DataNasc">
+          <input type="date" [(ngModel)]="DataNasc" placeholder="DataNasc">
         </div>
 
       </div>
@@ -66,7 +66,7 @@
         <a (click)="openModal()">Altere sua senha</a>
       </div>
       <div class="container_btn">
-        <button class="btn-salvar"><fa-icon [icon]="faFloppyDisk"></fa-icon> Salvar</button>
+        <button class="btn-salvar" (click)="atualizarPerfil()"><fa-icon [icon]="faFloppyDisk"></fa-icon> Salvar</button>
       </div>
 
       <br><br><br><br><br>

@@ -210,3 +210,20 @@ export const getAlunoPorId = (req, res) => {
     return res.status(200).json(data[0]);
   });
 };
+
+export const updateAluno = (req, res) => {
+  const id = req.params.id;
+  const { Nome, Email } = req.body;
+
+  const q = "UPDATE aluno SET Nome = ?, Email = ? WHERE idAluno = ?";
+  
+  db.query(q, [Nome, Email, id], (err, result) => {
+    if (err) {
+      console.error("Erro ao atualizar aluno:", err);
+      return res.sendStatus(500);
+    }
+
+    console.log("Resultado da atualização:", result);
+    return res.status(200).json({ message: "Aluno atualizado com sucesso." });
+  });
+};

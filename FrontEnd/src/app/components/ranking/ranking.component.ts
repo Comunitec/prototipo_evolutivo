@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { faTrophy } from '@fortawesome/free-solid-svg-icons';
+import { faRankingStar, faTrophy} from '@fortawesome/free-solid-svg-icons';
 
 interface Aluno {
   idAluno: number; // Adicionamos o campo para o ID real do aluno
@@ -24,6 +24,7 @@ interface RankingItem {
   styleUrls: ['./ranking.component.css']
 })
 export class RankingComponent implements OnInit {
+  faRankingStar = faRankingStar;
   faTrophy = faTrophy;
   rankingItems: RankingItem[] = [];
 

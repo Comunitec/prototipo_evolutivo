@@ -1,5 +1,5 @@
 import express from "express";
-import { addAluno, deleteAluno, getAlunos, getImagemAluno, getAlunosRanking, authLogin, rotaPrivada, checkToken, getAlunoPorId } from "../controllers/aluno.js";
+import { addAluno, deleteAluno, getAlunos, getImagemAluno, getAlunosRanking, authLogin, rotaPrivada, checkToken, getAlunoPorId, updateAluno } from "../controllers/aluno.js";
 import multer from 'multer';
 import path from 'path';
 import { v4 as uuidv4 } from 'uuid';
@@ -26,5 +26,6 @@ router.delete('/deleteAluno/:id', deleteAluno);
 router.post("/login", authLogin);
 router.get("/user/:id", checkToken ,rotaPrivada);
 router.get('/getAlunoPorId/:id', getAlunoPorId);
+router.put('/updateAluno/:id', updateAluno);
 
 export default router;
