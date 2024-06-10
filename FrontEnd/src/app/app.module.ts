@@ -63,6 +63,7 @@ import { ModalSaibaMaisVideoComponent } from './components/modal-saiba-mais-vide
 import { ModalDeletarCursoComponent } from './components/modal-deletar-curso/modal-deletar-curso.component';
 import { ModalEditarUsuarioComponent } from './components/modal-editar-usuario/modal-editar-usuario.component';
 import { FaqFormComponent } from './pages/faq-form/faq-form.component';
+import { ModalCursoFinalizadoComponent } from './components/modal-curso-finalizado/modal-curso-finalizado.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -148,6 +149,7 @@ const routes: Routes = [
     ModalDeletarCursoComponent,
     ModalEditarUsuarioComponent,
     FaqFormComponent,
+    ModalCursoFinalizadoComponent,
 
   ],
   imports: [
