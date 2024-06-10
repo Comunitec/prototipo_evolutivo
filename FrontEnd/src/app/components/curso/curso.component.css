@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column; /* Alterado para exibir os cards um abaixo do outro */
   align-items: stretch;
-  padding: 16px;
+  padding: 16px 70px;
 }
 
 .card_curso {
