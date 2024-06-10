@@ -78,7 +78,6 @@ export class AssistirAulasComponent implements OnInit {
           SafeLinkIncorporacao: aula.LinkIncorporacao ? this.sanitizer.bypassSecurityTrustResourceUrl(this.formatYouTubeUrl(aula.LinkIncorporacao)) : null,
           questionarioFinalizado: false // Inicializa como não finalizado
         }));
-        console.log('Aulas:', this.aulas);
       },
       (error) => {
         console.error(`Erro ao obter aulas para o curso ${idCurso}:`, error);
@@ -118,6 +117,22 @@ export class AssistirAulasComponent implements OnInit {
     } catch (error) {
       console.error('Erro ao abrir modal:', error);
     }
+  }
+  checkFinalizados(): void {
+    this.aulas.forEach(aula => {
+      const alunocursoaulaData = {
+        idAlunocurso: Number(this.idAlunoLogado),
+        idAula: aula.idAula,
+      };
+      this.http.post<{ finalizado: boolean }>(`http://localhost:8800/checkFinalizado`, alunocursoaulaData).subscribe(
+        (response) => {
+          aula.questionarioFinalizado = response.finalizado;
+        },
+        (error) => {
+          console.error('Erro ao verificar questionário finalizado:', error);
+        }
+      );
+    });
   }
 
   marcarQuestionarioComoFinalizado(idAula: number): void {
