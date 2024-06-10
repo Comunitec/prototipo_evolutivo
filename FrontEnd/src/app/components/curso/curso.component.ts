@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { PesquisaService } from '../../pesquisa.service';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalConfirmacaoParaInativarComponent } from '../modal-confirmacao-para-inativar/modal-confirmacao-para-inativar.component';
 import { ModalDeletarCursoComponent } from '../modal-deletar-curso/modal-deletar-curso.component';
 
 // Definição da interface Curso
-interface Curso {
+export interface Curso {
   idCurso: number;
   Nome: string;
-  Imagem: string; // Adicionamos o campo para a URL da imagem do curso
+  Imagem: string;
   tags: string[];
   Descricao: string;
-  tempId?: number; // Propriedade temporária para armazenar o ID temporário
+  tempId?: number;
   Status: string;
 }
 
@@ -23,6 +24,7 @@ interface Curso {
 })
 export class CursoComponent implements OnInit {
   cursos: Curso[] = [];
+  cursosFiltrados: Curso[] = [];
   podeEditar: boolean = false;
   podeExcluir: boolean = false;
   podeAprovar: boolean = false;
@@ -30,22 +32,20 @@ export class CursoComponent implements OnInit {
   podeInativar: boolean = false;
   podeVisualizar: boolean = true;
   PerfilDeAcesso = sessionStorage.getItem('PerfilDeAcesso');
+  termoPesquisa: string = '';
 
-  constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private dialog: MatDialog) {}
+  constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private dialog: MatDialog, private pesquisaService: PesquisaService) {}
 
   ngOnInit() {
     this.route.url.subscribe(url => {
       const currentRoute = this.router.url;
       if (currentRoute.includes('/meusCursosAluno')) {
         this.listarCursosMatriculados();
-        // Defina as permissões para alunos
       } else if (currentRoute.includes('/meusCursosProfessor')) {
-        // Defina as permissões para professores
         this.podeEditar = true;
         this.podeExcluir = true;
         this.listarCursosEmCriacao();
       } else if (currentRoute.includes('/staff')) {
-        // Defina as permissões para o staff
         this.podeAprovar = true;
         this.podeReprovar = true;
         this.listarCursosAguardandoAprovacao();
@@ -73,6 +73,7 @@ export class CursoComponent implements OnInit {
           (data) => {
             console.log('Cursos em criação:', data);
             this.cursos = data;
+            this.cursosFiltrados = data;
             this.carregarDadosExtras();
           },
           (error) => {
@@ -88,6 +89,7 @@ export class CursoComponent implements OnInit {
         (data) => {
           console.log('Cursos aguardando aprovação:', data);
           this.cursos = data;
+          this.cursosFiltrados = data;
           this.carregarDadosExtras();
         },
         (error) => {
@@ -102,6 +104,7 @@ export class CursoComponent implements OnInit {
         (data) => {
           console.log('Cursos aprovados:', data);
           this.cursos = data;
+          this.cursosFiltrados = data;
           this.carregarDadosExtras();
         },
         (error) => {
@@ -116,12 +119,13 @@ export class CursoComponent implements OnInit {
       this.http.get<Curso[]>(`http://localhost:8800/getCursosMatriculados/${idUsuario}`)
         .subscribe(
           (data) => {
-            console.log('Cursos em criação:', data);
+            console.log('Cursos matriculados:', data);
             this.cursos = data;
+            this.cursosFiltrados = data;
             this.carregarDadosExtras();
           },
           (error) => {
-            console.error('Erro ao obter cursos em criação:', error);
+            console.error('Erro ao obter cursos matriculados:', error);
           }
         );
     }
@@ -167,7 +171,6 @@ export class CursoComponent implements OnInit {
 
   redirecionarParaRotaDetalhe(idCurso: number) {
     this.router.navigate(['/detalheCurso', idCurso]);
-
   }
 
   getTruncatedText(text: string, limit: number): string {
@@ -224,9 +227,9 @@ export class CursoComponent implements OnInit {
   
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.InativarCurso(idCurso); // Chama o método se o usuário confirmou
+        this.InativarCurso(idCurso);
       } else {
-        console.log('Ação cancelada pelo usuário'); // Ação cancelada pelo usuário
+        console.log('Ação cancelada pelo usuário');
       }
     });
   }
@@ -238,54 +241,62 @@ export class CursoComponent implements OnInit {
   
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.deletarCurso(idCurso); // Chama o método se o usuário confirmou
+        this.deletarCurso(idCurso);
       } else {
-        console.log('Ação cancelada pelo usuário'); // Ação cancelada pelo usuário
+        console.log('Ação cancelada pelo usuário');
       }
     });
   }
 
-
-  deletarCurso(idCurso: number){
+  deletarCurso(idCurso: number) {
     this.deletarVinculosDeTags(idCurso);
     this.deletarAulas(idCurso);
     
     this.http.delete<any[]>(`http://localhost:8800/deleteCurso/${idCurso}`)
-    .subscribe(
-      (response) => {
-        console.log("Curso deletado");
-        this.listarCursosEmCriacao();
-      },
-      (error) => {
-        console.error(`Erro ao reprovar curso`, error);
-      }
-    );
+      .subscribe(
+        (response) => {
+          console.log("Curso deletado");
+          this.listarCursosEmCriacao();
+        },
+        (error) => {
+          console.error(`Erro ao reprovar curso`, error);
+        }
+      );
   }
 
   deletarAulas(idCurso: number) {
-    this.http
-      .delete<any>(`http://localhost:8800/deleteTodasAulas/${idCurso}`)
+    this.http.delete<any>(`http://localhost:8800/deleteTodasAulas/${idCurso}`)
       .subscribe(
         (response) => {
-          console.log('Todas as aulas foram deletadas com sucesso:', response);
+          console.log('Todas as aulas foram deletadas');
         },
         (error) => {
-          console.error('Erro ao deletar aulas:', error);
+          console.error('Erro ao deletar as aulas:', error);
         }
       );
   }
 
   deletarVinculosDeTags(idCurso: number) {
-    this.http
-      .delete<any>(`http://localhost:8800/deleteTags/${idCurso}`)
+    this.http.delete<any>(`http://localhost:8800/deleteVinculoTagCurso/${idCurso}`)
       .subscribe(
         (response) => {
-          console.log('Todas as tags vinculadas ao curso foram deletadas com sucesso:', response);
+          console.log('Todos os vínculos de tags foram deletados');
         },
         (error) => {
-          console.error('Erro ao deletar as tags vinculadas ao curso:', error);
+          console.error('Erro ao deletar os vínculos de tags:', error);
         }
       );
   }
 
+  pesquisar() {
+    const termo = this.termoPesquisa.trim().toLowerCase();
+    if (termo) {
+      this.cursosFiltrados = this.cursos.filter(curso => 
+        curso.Nome.toLowerCase().includes(termo) ||
+        curso.tags.some(tag => tag.toLowerCase().includes(termo))
+      );
+    } else {
+      this.cursosFiltrados = [...this.cursos];
+    }
+  }
 }
