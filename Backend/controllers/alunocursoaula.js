@@ -56,3 +56,23 @@ export const checkFinalizado = (req, res) => {
     return res.status(200).json({ finalizado: results.length > 0 });
   });
 };
+
+export const countAulasConcluidas = (req, res) => {
+  const { idAluno, idCurso } = req.params;
+
+  const query = `
+    SELECT COUNT(*) AS total
+    FROM alunocursoaula AS aca
+    INNER JOIN alunocurso AS ac ON aca.idAlunoCurso = ac.idAlunoCurso
+    INNER JOIN aula AS a ON aca.idAula = a.idAula
+    WHERE ac.idAluno = ? AND ac.idCurso = ? AND aca.status = 'concluido'
+  `;
+
+  db.query(query, [idAluno, idCurso], (err, results) => {
+    if (err) return res.status(500).json(err);
+
+    // Retorna o total de aulas concluídas
+    const totalAulasConcluidas = results[0].total;
+    return res.status(200).json({ totalAulasConcluidas });
+  });
+};

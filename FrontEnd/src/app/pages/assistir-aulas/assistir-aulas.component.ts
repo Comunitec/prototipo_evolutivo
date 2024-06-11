@@ -52,6 +52,7 @@ export class AssistirAulasComponent implements OnInit {
       this.getCurso(this.idCurso);
       this.getAulas(this.idCurso);
     }
+    this.verificarSeTodosQuestionariosFinalizados();
   }
 
   getCurso(idCurso: number): void {
@@ -143,8 +144,19 @@ export class AssistirAulasComponent implements OnInit {
   }
 
   verificarSeTodosQuestionariosFinalizados(): void {
-    this.finalizarCursoVisivel = this.aulas.every(aula => aula.questionarioFinalizado);
+    const idCurso = this.route.snapshot.params['id'];
+    const idAluno = this.idAlunoLogado;
+    this.http.get<{ totalAulasConcluidas: number }>(`http://localhost:8800/countAulasConcluidas/${idAluno}/${idCurso}`).subscribe(
+      (response) => {
+        // Se o total de aulas concluídas for 4, define finalizarCursoVisivel como true
+        this.finalizarCursoVisivel = response.totalAulasConcluidas === 4;
+      },
+      (error) => {
+        console.error('Erro ao verificar o número de aulas concluídas:', error);
+      }
+    );
   }
+  
 
   finalizarCurso(): void {
     const idAluno = Number(this.idAlunoLogado);
