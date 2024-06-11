@@ -1,0 +1,30 @@
+
+.btn{
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  position: relative;
+  margin-top: 10px;
+  background-color: var(--primary-color);
+  display: flex;
+  justify-content: center;
+  width: fit-content;
+}
+
+.btn:hover {
+  background-color: var( --hover-btn-primary);
+  cursor: pointer;
+}
+
+.custom-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.custom-modal-actions {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}

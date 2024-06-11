@@ -211,6 +211,7 @@ export const getAlunoPorId = (req, res) => {
   });
 };
 
+// Get informações do aluno por ID atualizar dados aluno
 export const updateAluno = (req, res) => {
   const id = req.params.id;
   const { Nome, Email } = req.body;

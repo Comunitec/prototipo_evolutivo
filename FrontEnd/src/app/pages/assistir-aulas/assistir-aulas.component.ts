@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ModalWQuestoesComponent } from 'src/app/components/modal-wquestoes/modal-wquestoes.component';
+import { ModalCursoFinalizadoComponent } from 'src/app/components/modal-curso-finalizado/modal-curso-finalizado.component';
 
 interface Aula {
   idAula: number;
@@ -44,7 +45,6 @@ export class AssistirAulasComponent implements OnInit {
     private sanitizer: DomSanitizer
   ) {
     this.idCurso = Number(this.route.snapshot.paramMap.get('id'));
-    // console.log('ID do curso:', this.idCurso);
   }
 
   ngOnInit(): void {
@@ -52,6 +52,7 @@ export class AssistirAulasComponent implements OnInit {
       this.getCurso(this.idCurso);
       this.getAulas(this.idCurso);
     }
+    this.verificarSeTodosQuestionariosFinalizados();
   }
 
   getCurso(idCurso: number): void {
@@ -59,9 +60,6 @@ export class AssistirAulasComponent implements OnInit {
       (curso) => {
         this.nomeCurso = curso.Nome;
         this.idAlunoCriador = curso.idAlunoCriador;
-        // console.log('Curso:', curso);
-
-        // Verifica se o aluno logado é o criador do curso
         this.isAlunoCriador = Number(this.idAlunoLogado) === this.idAlunoCriador;
       },
       (error) => {
@@ -76,8 +74,9 @@ export class AssistirAulasComponent implements OnInit {
         this.aulas = data.map(aula => ({
           ...aula,
           SafeLinkIncorporacao: aula.LinkIncorporacao ? this.sanitizer.bypassSecurityTrustResourceUrl(this.formatYouTubeUrl(aula.LinkIncorporacao)) : null,
-          questionarioFinalizado: false // Inicializa como não finalizado
+          questionarioFinalizado: false
         }));
+        this.checkFinalizados(); // Verifica se os questionários foram finalizados
       },
       (error) => {
         console.error(`Erro ao obter aulas para o curso ${idCurso}:`, error);
@@ -109,7 +108,6 @@ export class AssistirAulasComponent implements OnInit {
       });
 
       dialogRef.afterClosed().subscribe(result => {
-        // console.log('The dialog was closed');
         if (result === 'concluido') {
           this.marcarQuestionarioComoFinalizado(idAula);
         }
@@ -118,6 +116,7 @@ export class AssistirAulasComponent implements OnInit {
       console.error('Erro ao abrir modal:', error);
     }
   }
+
   checkFinalizados(): void {
     this.aulas.forEach(aula => {
       const alunocursoaulaData = {
@@ -127,6 +126,7 @@ export class AssistirAulasComponent implements OnInit {
       this.http.post<{ finalizado: boolean }>(`http://localhost:8800/checkFinalizado`, alunocursoaulaData).subscribe(
         (response) => {
           aula.questionarioFinalizado = response.finalizado;
+          this.verificarSeTodosQuestionariosFinalizados();
         },
         (error) => {
           console.error('Erro ao verificar questionário finalizado:', error);
@@ -137,7 +137,6 @@ export class AssistirAulasComponent implements OnInit {
 
   marcarQuestionarioComoFinalizado(idAula: number): void {
     const aula = this.aulas.find(a => a.idAula === idAula);
-    console.log('Aula:', aula);
     if (aula) {
       aula.questionarioFinalizado = true;
       this.verificarSeTodosQuestionariosFinalizados();
@@ -145,6 +144,43 @@ export class AssistirAulasComponent implements OnInit {
   }
 
   verificarSeTodosQuestionariosFinalizados(): void {
-    this.finalizarCursoVisivel = this.aulas.every(aula => aula.questionarioFinalizado);
+    const idCurso = this.route.snapshot.params['id'];
+    const idAluno = this.idAlunoLogado;
+    this.http.get<{ totalAulasConcluidas: number }>(`http://localhost:8800/countAulasConcluidas/${idAluno}/${idCurso}`).subscribe(
+      (response) => {
+        // Se o total de aulas concluídas for 4, define finalizarCursoVisivel como true
+        this.finalizarCursoVisivel = response.totalAulasConcluidas === 4;
+      },
+      (error) => {
+        console.error('Erro ao verificar o número de aulas concluídas:', error);
+      }
+    );
+  }
+  
+
+  finalizarCurso(): void {
+    const idAluno = Number(this.idAlunoLogado);
+    const idCurso = this.idCurso;
+    const status = 'concluido';
+
+    const alunocursoData = {
+      idAluno,
+      idCurso,
+      status
+    };
+
+    this.http.post(`http://localhost:8800/finalizarCurso`, alunocursoData).subscribe(
+      (response) => {
+        console.log('Curso finalizado com sucesso:', response);
+          // Open the modal here
+          this.dialog.open(ModalCursoFinalizadoComponent, {
+            width: '400px',
+            data: { message: 'Curso finalizado com sucesso!' }
+          });
+      },
+      (error) => {
+        console.error('Erro ao finalizar o curso:', error);
+      }
+    );
   }
 }

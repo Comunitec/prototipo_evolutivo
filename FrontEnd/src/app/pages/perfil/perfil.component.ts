@@ -6,6 +6,7 @@ import { AtualizarPerfilService } from 'src/app/services/atualizar-perfil.servic
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient } from '@angular/common/http';
 
+
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
@@ -21,14 +22,14 @@ export class PerfilComponent implements OnInit {
   emblemas: string[] = [];
 
   url = "http://localhost:8800/imagem/";
-  Nome = sessionStorage.getItem('Nome');
-  Pontos = sessionStorage.getItem('Pontuacao');
-  id = sessionStorage.getItem('idAluno');
+  Nome: string | null = sessionStorage.getItem('Nome');
+  Pontos: string | null = sessionStorage.getItem('Pontuacao');
+  id: string | null = sessionStorage.getItem('idAluno');
   imagem: string = this.id ? this.url + this.id : '';
-  Email = sessionStorage.getItem('Email');
+  Email: string | null = sessionStorage.getItem('Email');
   DataNasc = '';
 
-  constructor(private http: HttpClient,private dialog: MatDialog, private atualizarPerfilService: AtualizarPerfilService, private snackBar: MatSnackBar) { }
+  constructor(private http: HttpClient, private dialog: MatDialog, private atualizarPerfilService: AtualizarPerfilService, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     const dataNasc = sessionStorage.getItem('DataNasc');
@@ -48,15 +49,31 @@ export class PerfilComponent implements OnInit {
     };
 
     this.http.put<string[]>(`http://localhost:8800/updateAluno/${id}`, userData)
-        .subscribe(
-          (response) => {
-            console.log("Aluno atualizado com sucesso!!!");
-            window.location.reload();
-          },
-          (error) => {
-            console.error(`Erro na atualização do aluno.`, error);
-          }
-        );
+      .subscribe(
+        (response) => {
+          console.log("Aluno atualizado com sucesso!!!");
+          this.snackBar.open('Perfil atualizado com sucesso!', 'Fechar', {
+            duration: 3000,
+          });
+
+          const updatedData = {
+            Nome: this.Nome,
+            Email: this.Email,
+            Pontuacao: this.Pontos,
+            idAluno: this.id,
+            DataNasc: this.DataNasc
+          };
+
+          // Atualize o serviço com os novos valores
+          this.atualizarPerfilService.changeAluno(updatedData);
+        },
+        (error) => {
+          console.error('Erro na atualização do aluno.', error);
+          this.snackBar.open('Erro ao atualizar o perfil.', 'Fechar', {
+            duration: 3000,
+          });
+        }
+      );
   }
 
   openModal(): void {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   faHouse,
@@ -13,13 +13,14 @@ import {
   faChevronDown,
   faUserTie
 } from '@fortawesome/free-solid-svg-icons';
+import { AtualizarPerfilService } from 'src/app/services/atualizar-perfil.service';
 
 @Component({
   selector: 'app-menu-lateral',
   templateUrl: './menu-lateral.component.html',
   styleUrls: ['./menu-lateral.component.css']
 })
-export class MenuLateralComponent {
+export class MenuLateralComponent implements OnInit {
   faHouse = faHouse;
   faUser = faUser;
   faBookOpen = faBookOpen;
@@ -41,7 +42,16 @@ export class MenuLateralComponent {
 
   submenuOpen: boolean = true;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private atualizarPerfilService: AtualizarPerfilService) {}
+
+  ngOnInit() {
+    this.atualizarPerfilService.currentAluno.subscribe(aluno => {
+      this.Nome = aluno.Nome;
+      this.Pontos = aluno.Pontuacao;
+      this.id = aluno.idAluno;
+      this.imagem = this.url + this.id;
+    });
+  }
 
   toggleSubmenus() {
     this.submenuOpen = !this.submenuOpen;

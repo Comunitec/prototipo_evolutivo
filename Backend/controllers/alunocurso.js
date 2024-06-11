@@ -102,3 +102,18 @@ export const getCursosMatriculados = (req, res) => {
     return res.status(200).json(data);
   });
 };
+
+export const finalizarCurso = (req, res) => {
+  const { status, idAluno, idCurso  } = req.body;
+
+  const q = `
+    UPDATE alunocurso
+    SET status = ?
+    WHERE idAluno = ? AND idCurso = ?
+  `;
+
+  db.query(q, [status, idAluno, idCurso  ], (err, data) => {
+    if (err) return res.status(500).json(err);
+    return res.status(200).json({ message: 'Curso finalizado com sucesso.' });
+  });
+};

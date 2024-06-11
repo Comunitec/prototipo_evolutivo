@@ -62,8 +62,13 @@ import { ModalCursoCriadoComponent } from './components/modal-curso-criado/modal
 import { ModalSaibaMaisVideoComponent } from './components/modal-saiba-mais-video/modal-saiba-mais-video.component';
 import { ModalDeletarCursoComponent } from './components/modal-deletar-curso/modal-deletar-curso.component';
 import { ModalEditarUsuarioComponent } from './components/modal-editar-usuario/modal-editar-usuario.component';
+<<<<<<< HEAD
 import { AtualizarPerfilService } from './services/atualizar-perfil.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';import { FaqFormComponent } from './pages/faq-form/faq-form.component';
+=======
+import { FaqFormComponent } from './pages/faq-form/faq-form.component';
+import { ModalCursoFinalizadoComponent } from './components/modal-curso-finalizado/modal-curso-finalizado.component';
+>>>>>>> 169511434c9f632e2a7acbef2108c4929fbc6191
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -149,6 +154,7 @@ const routes: Routes = [
     ModalDeletarCursoComponent,
     ModalEditarUsuarioComponent,
     FaqFormComponent,
+    ModalCursoFinalizadoComponent,
 
   ],
   imports: [
