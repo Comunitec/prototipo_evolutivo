@@ -45,6 +45,7 @@ export class PerfilComponent implements OnInit {
       Nome: this.Nome,
       Email: this.Email,
       DataNasc: this.DataNasc,
+
     };
 
     this.http.put<string[]>(`http://localhost:8800/updateAluno/${id}`, userData)
@@ -76,8 +77,10 @@ export class PerfilComponent implements OnInit {
   }
 
   openModal(): void {
+    const id = sessionStorage.getItem('idAluno');
     const dialogRef = this.dialog.open(ModalAlterarSenhaComponent, {
-      width: '360px'
+      width: '360px',
+      data: { idAluno: id }
     });
 
     dialogRef.afterClosed().subscribe(result => {
