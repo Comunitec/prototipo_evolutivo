@@ -216,22 +216,12 @@ export const updateAluno = (req, res) => {
   const id = req.params.id;
   const { Nome, Email, DataNasc } = req.body;
 
-  // Verifique se uma imagem foi enviada
-  if (!req.file) {
-    return res.status(400).json({ error: "Foto não enviada" });
-  }
+  // Log para imprimir o valor da data de nascimento
+  console.log("Data de nascimento recebida:", DataNasc);
 
-  // Caminho do arquivo da imagem
-  const imagePath = req.file.path;
-
-  // Query para atualizar os dados do aluno, incluindo a imagem
-  const q = "UPDATE aluno SET Nome = ?, Email = ?, DataNasc = ?, Foto = ? WHERE idAluno = ?";
+  const q = "UPDATE aluno SET Nome = ?, Email = ?, DataNasc = ? WHERE idAluno = ?";
   
-  // Valores para a query
-  const values = [Nome, Email, DataNasc, imagePath, id];
-
-  // Executa a query
-  db.query(q, values, (err, result) => {
+  db.query(q, [Nome, Email, DataNasc, id], (err, result) => {
     if (err) {
       console.error("Erro ao atualizar aluno:", err);
       return res.sendStatus(500);
