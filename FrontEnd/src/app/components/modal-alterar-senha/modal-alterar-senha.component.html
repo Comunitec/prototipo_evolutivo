@@ -2,15 +2,30 @@
 <form>
   <div>
     <label for="senhaAtual">Senha Atual</label>
-    <input type="password" id="senhaAtual" [(ngModel)]="senhaAtual" name="senhaAtual">
+    <div class="senha-input">
+      <input type="{{ senhaVisivelAtual ? 'text' : 'password' }}" id="senhaAtual" [(ngModel)]="senhaAtual" name="senhaAtual">
+      <button mat-icon-button class="toggle-password-button" (click)="toggleVisibilidadeSenha('atual')">
+        <mat-icon>{{ senhaVisivelAtual ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
+    </div>
   </div>
   <div>
     <label for="novaSenha">Nova Senha</label>
-    <input type="password" id="novaSenha" [(ngModel)]="novaSenha" name="novaSenha">
+    <div class="senha-input">
+      <input type="{{ senhaVisivelNova ? 'text' : 'password' }}" id="novaSenha" [(ngModel)]="novaSenha" name="novaSenha">
+      <button mat-icon-button class="toggle-password-button" (click)="toggleVisibilidadeSenha('nova')">
+        <mat-icon>{{ senhaVisivelNova ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
+    </div>
   </div>
   <div>
     <label for="confirmarNovaSenha">Confirmar Nova Senha</label>
-    <input type="password" id="confirmarNovaSenha" [(ngModel)]="confirmarNovaSenha" name="confirmarNovaSenha">
+    <div class="senha-input">
+      <input type="{{ senhaVisivelConfirmarNova ? 'text' : 'password' }}" id="confirmarNovaSenha" [(ngModel)]="confirmarNovaSenha" name="confirmarNovaSenha">
+      <button mat-icon-button class="toggle-password-button" (click)="toggleVisibilidadeSenha('confirmarNova')">
+        <mat-icon>{{ senhaVisivelConfirmarNova ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
+    </div>
   </div>
   <div class="buttons">
     <button type="button" mat-button (click)="salvar()">Salvar</button>

@@ -64,6 +64,10 @@ import { ModalDeletarCursoComponent } from './components/modal-deletar-curso/mod
 import { ModalEditarUsuarioComponent } from './components/modal-editar-usuario/modal-editar-usuario.component';
 import { FaqFormComponent } from './pages/faq-form/faq-form.component';
 import { ModalCursoFinalizadoComponent } from './components/modal-curso-finalizado/modal-curso-finalizado.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { RankingService } from './services/ranking.service';
+import { AtualizarPerfilService } from './services/atualizar-perfil.service';
+import { MatIconModule } from '@angular/material/icon';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -162,9 +166,11 @@ const routes: Routes = [
     MatDialogModule,
     MatExpansionModule,
     MatRadioModule,
-    MatTabsModule
+    MatTabsModule,
+    MatSnackBarModule,
+    MatIconModule
   ],
-  providers: [],
+  providers: [RankingService, AtualizarPerfilService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

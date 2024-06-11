@@ -45,7 +45,8 @@ export class ModalEditarUsuarioComponent implements OnInit {
 
   openModal(): void {
     const dialogRef = this.dialog.open(ModalAlterarSenhaComponent, {
-      width: '360px'
+      width: '360px',
+      data: { idAluno: this.usuario.idAluno } // Passando o ID do usuário para o modal
     });
 
     dialogRef.afterClosed().subscribe(result => {
