@@ -2,20 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { faRankingStar, faTrophy} from '@fortawesome/free-solid-svg-icons';
+import { faRankingStar, faTrophy } from '@fortawesome/free-solid-svg-icons';
+import { RankingService } from 'src/app/services/ranking.service';
 
 interface Aluno {
-  idAluno: number; // Adicionamos o campo para o ID real do aluno
+  idAluno: number;
   Nome: string;
   Pontuacao: number;
-  position: number; // Inclui a posição do aluno no ranking
+  position: number;
 }
 
 interface RankingItem {
   position: number;
   name: string;
   points: number;
-  photo: string; // Adiciona o campo para a foto do aluno
+  photo: string;
 }
 
 @Component({
@@ -28,24 +29,28 @@ export class RankingComponent implements OnInit {
   faTrophy = faTrophy;
   rankingItems: RankingItem[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private rankingService: RankingService) {}
 
   ngOnInit(): void {
     this.getTopRanking().subscribe(data => {
+      this.rankingService.updateRanking(data);
+    });
+
+    this.rankingService.getRanking().subscribe(data => {
       this.rankingItems = data;
     });
   }
 
   getTopRanking(): Observable<RankingItem[]> {
-    const apiUrl = 'http://localhost:8800/ranking'; // URL correta da API
+    const apiUrl = 'http://localhost:8800/ranking';
     return this.http.get<Aluno[]>(apiUrl).pipe(
       map(alunos => {
-        console.log(alunos); // Verifique os dados recebidos no console
+        console.log(alunos);
         return alunos.map(aluno => ({
           position: aluno.position,
           name: aluno.Nome,
           points: aluno.Pontuacao,
-          photo: `http://localhost:8800/imagem/${aluno.idAluno}` // URL da foto do aluno usando o ID real
+          photo: `http://localhost:8800/imagem/${aluno.idAluno}`
         }));
       })
     );

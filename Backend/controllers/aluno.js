@@ -214,11 +214,24 @@ export const getAlunoPorId = (req, res) => {
 // Get informações do aluno por ID atualizar dados aluno
 export const updateAluno = (req, res) => {
   const id = req.params.id;
-  const { Nome, Email } = req.body;
+  const { Nome, Email, DataNasc } = req.body;
 
-  const q = "UPDATE aluno SET Nome = ?, Email = ? WHERE idAluno = ?";
+  // Verifique se uma imagem foi enviada
+  if (!req.file) {
+    return res.status(400).json({ error: "Foto não enviada" });
+  }
+
+  // Caminho do arquivo da imagem
+  const imagePath = req.file.path;
+
+  // Query para atualizar os dados do aluno, incluindo a imagem
+  const q = "UPDATE aluno SET Nome = ?, Email = ?, DataNasc = ?, Foto = ? WHERE idAluno = ?";
   
-  db.query(q, [Nome, Email, id], (err, result) => {
+  // Valores para a query
+  const values = [Nome, Email, DataNasc, imagePath, id];
+
+  // Executa a query
+  db.query(q, values, (err, result) => {
     if (err) {
       console.error("Erro ao atualizar aluno:", err);
       return res.sendStatus(500);
@@ -226,5 +239,43 @@ export const updateAluno = (req, res) => {
 
     console.log("Resultado da atualização:", result);
     return res.status(200).json({ message: "Aluno atualizado com sucesso." });
+  });
+};
+
+// Rota para recuperar a senha atual do aluno por ID
+export const getSenhaAtual = (req, res) => {
+  const id = req.params.id; // ID do aluno
+  const q = "SELECT Senha FROM aluno WHERE idAluno = ?";
+
+  db.query(q, [id], (err, result) => {
+    if (err) {
+      console.error(err);
+      return res.sendStatus(500);
+    }
+    if (result.length === 0) {
+      return res.sendStatus(404);
+    }
+    
+    const senhaAtual = result[0].Senha;
+
+    // Retorna a senha atual como resposta
+    return res.status(200).json({ senhaAtual });
+  });
+};
+
+export const atualizarSenha = (req, res) => {
+  const id = req.params.id;
+  const novaSenha = req.body.novaSenha; // A nova senha enviada pelo front-end
+
+  const q = "UPDATE aluno SET Senha = ? WHERE idAluno = ?";
+  
+  db.query(q, [novaSenha, id], (err, result) => {
+    if (err) {
+      console.error("Erro ao atualizar senha:", err);
+      return res.sendStatus(500);
+    }
+
+    console.log("Senha atualizada com sucesso:", result);
+    return res.status(200).json({ message: "Senha atualizada com sucesso." });
   });
 };

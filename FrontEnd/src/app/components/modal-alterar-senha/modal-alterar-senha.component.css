@@ -60,3 +60,24 @@ button[mat-button].cancel {
 button[mat-button].cancel:hover {
   background-color:  #720101;
 }
+
+.toggle-password-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  width: 5px;
+}
+
+
+
+
+.senha-input {
+  position: relative;
+}
+
+.senha-input button {
+  position: absolute;
+  right: 0px;
+  top: 50%;
+  transform: translateY(-50%);
+}

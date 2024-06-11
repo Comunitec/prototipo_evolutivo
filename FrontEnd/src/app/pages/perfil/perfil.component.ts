@@ -44,8 +44,7 @@ export class PerfilComponent implements OnInit {
     const userData = {
       Nome: this.Nome,
       Email: this.Email,
-      //DataNasc: this.DataNasc,
-      // Outros campos que deseja atualizar...
+      DataNasc: this.DataNasc,
     };
 
     this.http.put<string[]>(`http://localhost:8800/updateAluno/${id}`, userData)
@@ -59,13 +58,13 @@ export class PerfilComponent implements OnInit {
           const updatedData = {
             Nome: this.Nome,
             Email: this.Email,
-            Pontuacao: this.Pontos,
+            DataNasc: this.DataNasc,
             idAluno: this.id,
-            DataNasc: this.DataNasc
           };
 
           // Atualize o serviço com os novos valores
           this.atualizarPerfilService.changeAluno(updatedData);
+
         },
         (error) => {
           console.error('Erro na atualização do aluno.', error);
