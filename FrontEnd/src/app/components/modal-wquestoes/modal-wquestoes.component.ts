@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material/dialog'; // Importe o MatDialog aqui
 import { HttpClient } from '@angular/common/http';
+import { ModalAulaJaEstaFinalizadaComponent } from '../modal-aula-ja-esta-finalizada/modal-aula-ja-esta-finalizada.component';
 
 @Component({
   selector: 'app-modal-wquestoes',
@@ -13,7 +14,8 @@ export class ModalWQuestoesComponent {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { linkFormulario: string, idAula: number, idCurso: number, idAlunoCurso: number | null, questionarioFinalizado: boolean },
     public dialogRef: MatDialogRef<ModalWQuestoesComponent>,
-    private http: HttpClient
+    private http: HttpClient,
+    private dialog: MatDialog // Injete o MatDialog aqui
   ) {
     this.questionarioFinalizado = data.questionarioFinalizado;
   }
@@ -38,8 +40,15 @@ export class ModalWQuestoesComponent {
       },
       (error) => {
         console.error('Erro ao finalizar questionário:', error);
+        this.openModalAulaJaFinalizada();
       }
     );
+  }
+  
+  openModalAulaJaFinalizada(): void {
+    const dialogRef = this.dialog.open(ModalAulaJaEstaFinalizadaComponent, {
+      width: '350px',
+    });
   }
 
   cancel() {

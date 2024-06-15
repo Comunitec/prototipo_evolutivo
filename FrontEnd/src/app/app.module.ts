@@ -68,6 +68,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RankingService } from './services/ranking.service';
 import { AtualizarPerfilService } from './services/atualizar-perfil.service';
 import { MatIconModule } from '@angular/material/icon';
+import { ModalAulaJaEstaFinalizadaComponent } from './components/modal-aula-ja-esta-finalizada/modal-aula-ja-esta-finalizada.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -93,6 +94,7 @@ const routes: Routes = [
   {path: 'EditCourseFormComponent/:id', component: EditCourseFormComponent},
   { path: 'editar-usuario', component: ModalEditarUsuarioComponent},
   {path: 'FaqFormComponent', component: FaqFormComponent},
+  
 
 
 
@@ -154,6 +156,7 @@ const routes: Routes = [
     ModalEditarUsuarioComponent,
     FaqFormComponent,
     ModalCursoFinalizadoComponent,
+    ModalAulaJaEstaFinalizadaComponent,
 
   ],
   imports: [

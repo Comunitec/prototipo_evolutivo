@@ -104,16 +104,78 @@ export const getCursosMatriculados = (req, res) => {
 };
 
 export const finalizarCurso = (req, res) => {
-  const { status, idAluno, idCurso  } = req.body;
+  const { status, idAluno, idCurso } = req.body;
+
+  // Query para obter a pontuação atual do aluno
+  const qPontuacao = `
+    SELECT Pontuacao
+    FROM aluno
+    WHERE idAluno = ?
+  `;
+
+  db.query(qPontuacao, [idAluno], (err, result) => {
+    if (err) {
+      return res.status(500).json(err);
+    }
+
+    if (result.length === 0) {
+      return res.status(404).json({ message: 'Aluno não encontrado.' });
+    }
+
+    const pontuacaoAtual = result[0].Pontuacao;
+    const pontosParaAdicionar = 100;
+    const novaPontuacao = pontuacaoAtual + pontosParaAdicionar;
+
+    // Query para atualizar a pontuação do aluno
+    const qAtualizarPontuacao = `
+      UPDATE aluno
+      SET Pontuacao = ?
+      WHERE idAluno = ?
+    `;
+
+    db.query(qAtualizarPontuacao, [novaPontuacao, idAluno], (err, data) => {
+      if (err) {
+        return res.status(500).json(err);
+      }
+
+      // Agora atualize o status do curso para finalizado
+      const qAtualizarStatusCurso = `
+        UPDATE alunocurso
+        SET status = ?
+        WHERE idAluno = ? AND idCurso = ?
+      `;
+
+      db.query(qAtualizarStatusCurso, [status, idAluno, idCurso], (err, data) => {
+        if (err) {
+          return res.status(500).json(err);
+        }
+
+        return res.status(200).json({ message: 'Curso finalizado com sucesso.' });
+      });
+    });
+  });
+};
+
+// Função para obter o status de um aluno em um curso específico
+export const getStatusAlunoCurso = (req, res) => {
+  const idAluno = req.params.idAluno;
+  const idCurso = req.params.idCurso;
 
   const q = `
-    UPDATE alunocurso
-    SET status = ?
+    SELECT status
+    FROM alunocurso
     WHERE idAluno = ? AND idCurso = ?
   `;
 
-  db.query(q, [status, idAluno, idCurso  ], (err, data) => {
-    if (err) return res.status(500).json(err);
-    return res.status(200).json({ message: 'Curso finalizado com sucesso.' });
+  db.query(q, [idAluno, idCurso], (err, data) => {
+    if (err) {
+      console.error('Erro ao obter status do aluno no curso:', err);
+      return res.status(500).json({ error: 'Erro ao obter status do aluno no curso.' });
+    }
+    if (data.length > 0) {
+      return res.status(200).json({ status: data[0].status });
+    } else {
+      return res.status(404).json({ message: 'Registro não encontrado.' });
+    }
   });
 };
