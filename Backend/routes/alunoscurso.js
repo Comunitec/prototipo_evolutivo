@@ -1,5 +1,13 @@
 import express from "express";
-import { getCursosMatriculados, matricularAluno, desmatricularAluno, getIdAlunoCurso, verificarMatricula, finalizarCurso } from "../controllers/alunocurso.js";
+import {
+  getCursosMatriculados,
+  matricularAluno,
+  desmatricularAluno,
+  getIdAlunoCurso,
+  verificarMatricula,
+  finalizarCurso,
+  getStatusAlunoCurso
+} from "../controllers/alunocurso.js";
 
 const router = express.Router();
 
@@ -15,7 +23,10 @@ router.get("/getIdAlunoCurso/:idAluno/:idCurso", getIdAlunoCurso);
 // Rota para verificar a matrícula de um aluno em um curso
 router.get("/verificarMatricula/:idAluno/:idCurso", verificarMatricula);
 
-router.post("/finalizarCurso", finalizarCurso)
+// Rota para obter o status de um aluno em determinado curso
+router.get('/getStatusAlunoCurso/:idCurso/:idAluno', getStatusAlunoCurso)
 
+// Rota para finalizar o curso
+router.post("/finalizarCurso", finalizarCurso);
 
 export default router;

@@ -21,9 +21,10 @@
       </div>
     </mat-expansion-panel>
   </mat-accordion>
-  <div *ngIf="finalizarCursoVisivel">
+  <div *ngIf="finalizarCursoVisivel && !statusAlunoCurso">
     <button class="btn" (click)="finalizarCurso()">Finalizar curso</button>
   </div>
+  <h2 *ngIf="statusAlunoCurso">Você finalizou esse curso</h2>
 </app-middle-column>
 
 <app-right-column></app-right-column>
