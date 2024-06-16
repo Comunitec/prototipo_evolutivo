@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { faEdit, faTrash, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faTrash, IconDefinition, faUserGear } from '@fortawesome/free-solid-svg-icons';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalEditarUsuarioComponent } from 'src/app/components/modal-editar-usuario/modal-editar-usuario.component';
 import { ModalExcluirContaComponent } from 'src/app/components/modal-excluir-conta/modal-excluir-conta.component';
@@ -23,6 +23,7 @@ export class GerenciarUsuariosComponent implements OnInit {
   usuarios: Usuario[] = [];
   faEdit: IconDefinition = faEdit;
   faTrash: IconDefinition = faTrash;
+  faUserGear: IconDefinition = faUserGear;
 
   constructor(private http: HttpClient, private router: Router, private dialog: MatDialog) {}
 
@@ -78,4 +79,5 @@ export class GerenciarUsuariosComponent implements OnInit {
   adicionarUsuario() {
     this.router.navigate(['/signup']);
   }
-}
+  pesquisarUsuario(){}
+  }

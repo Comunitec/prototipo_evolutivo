@@ -2,16 +2,17 @@
 <app-left-column>
     <app-menu-lateral></app-menu-lateral>
   </app-left-column>
-  
+
   <!-- Coluna do Meio (Rolável) - Feed Principal -->
-  <app-middle-column>
-    
-<h1>Meus Cursos Professor<i class="fa-layers center-icon"><fa-icon [icon]="faChalkboardTeacher"></fa-icon></i></h1>
-<div class="adicionar">
-  <button class="btn-adicionarCurso" routerLink="/courseForm" >+ Adicionar Curso</button>
-</div>
-<app-curso></app-curso>
-  </app-middle-column>
-  <app-right-column>
-    <app-ranking></app-ranking>
-  </app-right-column>
+<app-middle-column>
+  <div class="titulo-pagina">
+    <h1 class="titulo_meus-cursos">CURSOS - PROFESSOR</h1>
+    <i class="fa-layers center-icon"><fa-icon [icon]="faChalkboardTeacher"></fa-icon></i>
+  </div>
+  <app-curso></app-curso>
+
+</app-middle-column>
+
+<app-right-column>
+  <app-ranking></app-ranking>
+</app-right-column>

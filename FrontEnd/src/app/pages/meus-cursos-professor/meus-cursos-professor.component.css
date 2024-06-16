@@ -1,25 +1,22 @@
-.adicionar > button {
-    margin-left: 10px;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    float: right;
+.titulo-pagina{
+  display: flex;
+  flex-direction: row;
+  padding: 30px;
+  align-items: center;
+  justify-content: center;
+  color: var(--hover-btn-secondary);
+  gap: 10px;
 
-  }
-
-.adicionar{
-  padding: 10px 20px;
 }
-  .btn-adicionarCurso {
-    background-color: var(--primary-color);
-  }
 
-  .btn-adicionarCurso:hover {
-    background-color: var(--hover-btn-primary);
-  }
+.titulo-pagina > i {
+  font-size: 20px;
+}
 
-  h1{
-    margin: 20px;
-    text-align: center;
-  }
+.titulo_meus-cursos{
+  margin: 0;
+  font-weight: bold;
+  text-align: center;
+}
+
+

@@ -1,18 +1,65 @@
-.container{
-  padding: 20px 40px;
-  text-align: center;
-}
-.search{
+.titulo-pagina{
   display: flex;
+  flex-direction: row;
+  padding: 30px;
   align-items: center;
   justify-content: center;
-  gap: 20px;
-  margin-bottom: 20px;
+  color: var(--hover-btn-secondary);
+  gap: 10px;
 
 }
-input{
-  width: 500px;
+
+.titulo-pagina > i {
+  font-size: 20px;
 }
+
+
+h1{
+  margin: 0;
+  font-weight: bold;
+  text-align: center;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+  background-color: #fff;
+  padding: 8px 12px;
+}
+
+.search span {
+  font-size: 18px;
+  margin-right: 8px;
+  font-weight: bold;
+}
+
+.search input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 5px;
+  margin-right: 8px;
+  border: 1px solid #ccc; /* Adicionei uma borda para destacar o input */
+}
+
+.search button {
+  padding: 10px 18px;
+  font-size: 14px;
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-left: 8px; /* Adicionei um espaçamento entre o input e o botão */
+}
+
+.search button:hover {
+  background-color: var(--hover-btn-primary);
+}
+
+
 .common-style {
       /* display: flex; */
       padding: 10px;
@@ -32,14 +79,13 @@ outline: none;
   border-radius: 8px;
   cursor: pointer;
   padding: 10px 20px;
-  margin-left: 95px;
 }
 
 .container-usuarios{
     display: flex;
       flex-wrap: wrap;/* align-items: center; */
     justify-content: center;
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 .usuario{
