@@ -33,6 +33,7 @@ export class CursoComponent implements OnInit {
   podeVisualizar: boolean = true;
   PerfilDeAcesso = sessionStorage.getItem('PerfilDeAcesso');
   termoPesquisa: string = '';
+  exibirBotaoAdicionar: boolean = false;
 
   constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private dialog: MatDialog, private pesquisaService: PesquisaService) {}
 
@@ -45,6 +46,7 @@ export class CursoComponent implements OnInit {
         this.podeEditar = true;
         this.podeExcluir = true;
         this.listarCursosEmCriacao();
+        this.exibirBotaoAdicionar = true;
       } else if (currentRoute.includes('/staff')) {
         this.podeAprovar = true;
         this.podeReprovar = true;
@@ -224,7 +226,7 @@ export class CursoComponent implements OnInit {
     const dialogRef = this.dialog.open(ModalConfirmacaoParaInativarComponent, {
       width: '350px',
     });
-  
+
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.InativarCurso(idCurso);
@@ -238,7 +240,7 @@ export class CursoComponent implements OnInit {
     const dialogRef = this.dialog.open(ModalDeletarCursoComponent, {
       width: '350px',
     });
-  
+
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.deletarCurso(idCurso);
@@ -251,7 +253,7 @@ export class CursoComponent implements OnInit {
   deletarCurso(idCurso: number) {
     this.deletarVinculosDeTags(idCurso);
     this.deletarAulas(idCurso);
-    
+
     this.http.delete<any[]>(`http://localhost:8800/deleteCurso/${idCurso}`)
       .subscribe(
         (response) => {
@@ -291,7 +293,7 @@ export class CursoComponent implements OnInit {
   pesquisar() {
     const termo = this.termoPesquisa.trim().toLowerCase();
     if (termo) {
-      this.cursosFiltrados = this.cursos.filter(curso => 
+      this.cursosFiltrados = this.cursos.filter(curso =>
         curso.Nome.toLowerCase().includes(termo) ||
         curso.tags.some(tag => tag.toLowerCase().includes(termo))
       );

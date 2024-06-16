@@ -3,14 +3,17 @@
 </app-left-column>
 
 <app-middle-column>
+  <div class="titulo-pagina">
+    <h1>GERENCIAR USUÁRIOS</h1>
+    <i class="fa-layers center-icon"><fa-icon [icon]="faUserGear"></fa-icon></i>
+  </div>
   <div class="container">
-    <h2>Gerenciar Usuários</h2>
-    <h3>Usuários cadastrados na comunitec</h3>
     <div class="search">
-      <span>Pesquisar:</span>
       <input class="common-style" type="text" placeholder="Pesquisar usuário por nome ou e-mail">
+      <button class="common-style" (click)="pesquisarUsuario()">Pesquisar</button>
       <button class="btn-add" (click)="adicionarUsuario()">Adicionar Usuário</button>
     </div>
+
     <div class="container-usuarios">
       <div class="usuario" *ngFor="let usuario of usuarios">
         <img [src]="usuario.photoUrl || 'https://www.w3schools.com/howto/img_avatar.png'" alt="Avatar" class="avatar">
@@ -26,4 +29,6 @@
   </div>
 </app-middle-column>
 
-<app-right-column></app-right-column>
+<app-right-column>
+  <app-ranking></app-ranking>
+</app-right-column>

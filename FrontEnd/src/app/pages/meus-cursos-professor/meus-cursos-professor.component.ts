@@ -8,5 +8,6 @@ import {faChalkboardTeacher} from '@fortawesome/free-solid-svg-icons';
 })
 export class MeusCursosProfessorComponent {
   faChalkboardTeacher = faChalkboardTeacher;
+  exibirBotaoAdicionar: boolean = true;
 
 }

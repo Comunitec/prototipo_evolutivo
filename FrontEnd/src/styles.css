@@ -22,6 +22,27 @@
   appearance: none;
 }
 
+.titulo-pagina{
+  display: flex;
+  flex-direction: row;
+  padding: 30px;
+  align-items: center;
+  justify-content: center;
+  color: var(--hover-btn-secondary);
+  gap: 10px;
+
+}
+
+.titulo-pagina > i {
+  font-size: 20px;
+}
+
+h1{
+  margin: 0;
+  font-weight: bold;
+  text-align: center;
+}
+
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

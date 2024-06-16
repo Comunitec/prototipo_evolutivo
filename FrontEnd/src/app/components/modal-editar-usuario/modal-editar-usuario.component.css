@@ -225,14 +225,3 @@ button {
 button.btn-salvar:hover {
   background-color: #720101;
 }
-
-.excluir{
-  text-align: center;
-  font-weight: bold;
-  color: #990000;
-}
-
-.excluir:hover {
- color: #720101;
- cursor: pointer;
-}

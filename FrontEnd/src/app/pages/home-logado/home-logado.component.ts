@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { PesquisaService } from '../../pesquisa.service'; // Verifique o caminho de importação aqui
 import { Curso } from '../../components/curso/curso.component'; // Verifique o caminho de importação aqui
+import { faSearch} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-home-logado',
@@ -8,6 +9,7 @@ import { Curso } from '../../components/curso/curso.component'; // Verifique o c
   styleUrls: ['./home-logado.component.css']
 })
 export class HomeLogadoComponent {
+  faSearch = faSearch;
 
   termoPesquisa: string = ''; // Termo de pesquisa
   cursos: Curso[] = [];

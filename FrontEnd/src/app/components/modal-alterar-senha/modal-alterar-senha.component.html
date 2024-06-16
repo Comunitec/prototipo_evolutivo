@@ -3,7 +3,7 @@
   <div>
     <label for="senhaAtual">Senha Atual</label>
     <div class="senha-input">
-      <input type="{{ senhaVisivelAtual ? 'text' : 'password' }}" id="senhaAtual" [(ngModel)]="senhaAtual" name="senhaAtual">
+      <input type="{{ senhaVisivelAtual ? 'text' : 'password' }}" id="senhaAtual" [(ngModel)]="senhaAtual" name="senhaAtual" disabled>
       <button mat-icon-button class="toggle-password-button" (click)="toggleVisibilidadeSenha('atual')">
         <mat-icon>{{ senhaVisivelAtual ? 'visibility_off' : 'visibility' }}</mat-icon>
       </button>

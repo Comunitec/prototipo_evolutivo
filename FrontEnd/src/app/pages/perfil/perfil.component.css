@@ -7,21 +7,20 @@
   padding: 30px;
   align-items: center;
   justify-content: center;
-  color: #3a3a3a;
+  color: var(--hover-btn-secondary);
+  gap: 10px;
+
 }
 
 .titulo-pagina > i {
   font-size: 20px;
-  padding-right: 10px;
 }
-
 
 h1{
   margin: 0;
   font-weight: bold;
   text-align: center;
 }
-
 
 .container_dados-cadastrais {
   background-color: #EDEDED;
@@ -105,12 +104,12 @@ input[type="file"] {
 }
 
 .ranking{
-  color:#3a3a3a, ;
+  color: var(--hover-btn-secondary);
   font-weight: bold;
   margin: 0;
   width: 90%;
   text-align: center;
-  border-bottom: 2px solid #720101;
+  border-bottom: 2px solid var(--primary-color);
 
 }
 .titulo{
@@ -120,7 +119,7 @@ input[type="file"] {
 .pontos{
   font-size: large;
   font-weight: bold;
-  color: #990000;
+  color: var(--primary-color);
 }
 
 
@@ -191,7 +190,7 @@ input[type="date"] {
 }
 
 .card_senha:hover{
-  color: #3a3a3a;
+  color: var(--hover-btn-secondary);
   cursor: pointer;
 }
 
@@ -204,6 +203,7 @@ input[type="date"] {
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  padding: 10px;
 }
 
 button {
@@ -213,26 +213,25 @@ button {
   cursor: pointer;
   height: 32px;
   padding: 10px 20px;
-  margin: 15px 5px 5px 5px;
-  width: 120px;
+  width: var(--button-width);
 }
 
 .btn-salvar{
-  background-color: #990000;
+  background-color: var(--primary-color);
   transition: background-color 0.2s;
 }
 
 button.btn-salvar:hover {
-  background-color: #720101;
+  background-color: var(--hover-btn-primary);
 }
 
 .excluir{
   text-align: center;
   font-weight: bold;
-  color: #990000;
+  color: var(--secondary-color);
 }
 
 .excluir:hover {
- color: #720101;
+ color: var(--hover-btn-secondary);
  cursor: pointer;
 }

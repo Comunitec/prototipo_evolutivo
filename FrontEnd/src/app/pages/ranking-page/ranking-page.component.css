@@ -12,22 +12,20 @@
   padding: 30px;
   align-items: center;
   justify-content: center;
+  color: var(--hover-btn-secondary);
+  gap: 10px;
 
 }
 
 .titulo-pagina > i {
   font-size: 20px;
-  padding-right: 10px;
-  color: goldenrod;
 }
-
 
 h1{
   margin: 0;
   font-weight: bold;
   text-align: center;
 }
-
 table {
   align-items: center;
   margin: 10px 30px;
