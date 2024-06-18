@@ -5,13 +5,16 @@ import { faEdit, faTrash, IconDefinition, faUserGear } from '@fortawesome/free-s
 import { MatDialog } from '@angular/material/dialog';
 import { ModalEditarUsuarioComponent } from 'src/app/components/modal-editar-usuario/modal-editar-usuario.component';
 import { ModalExcluirContaComponent } from 'src/app/components/modal-excluir-conta/modal-excluir-conta.component';
+import { FormControl } from '@angular/forms';
+import { debounceTime } from 'rxjs/operators';
+import { SignupFormComponent } from 'src/app/components/signup-form/signup-form.component';
 
 interface Usuario {
   idAluno: number;
   Nome: string;
   Email: string;
-  Pontuacao: number; // Adicionando a propriedade Pontuacao
-  photoUrl?: string; // Adicionando a propriedade photoUrl
+  Pontuacao: number;
+  photoUrl?: string;
 }
 
 @Component({
@@ -21,6 +24,8 @@ interface Usuario {
 })
 export class GerenciarUsuariosComponent implements OnInit {
   usuarios: Usuario[] = [];
+  filteredUsuarios: Usuario[] = [];
+  searchControl: FormControl = new FormControl('');
   faEdit: IconDefinition = faEdit;
   faTrash: IconDefinition = faTrash;
   faUserGear: IconDefinition = faUserGear;
@@ -29,6 +34,12 @@ export class GerenciarUsuariosComponent implements OnInit {
 
   ngOnInit() {
     this.carregarUsuarios();
+
+    this.searchControl.valueChanges.pipe(
+      debounceTime(300) // Espera 300ms após o último evento de digitação
+    ).subscribe(value => {
+      this.filterUsuarios(value);
+    });
   }
 
   carregarUsuarios() {
@@ -39,6 +50,7 @@ export class GerenciarUsuariosComponent implements OnInit {
           ...usuario,
           photoUrl: `http://localhost:8800/imagem/${usuario.idAluno}`
         }));
+        this.filteredUsuarios = this.usuarios; // Inicializa a lista filtrada
       },
       error => {
         console.error('Erro ao carregar usuários:', error);
@@ -46,17 +58,28 @@ export class GerenciarUsuariosComponent implements OnInit {
     );
   }
 
-  editarUsuario(idAluno: number) { // Alterado o parâmetro para idAluno
+  filterUsuarios(searchTerm: string) {
+    if (!searchTerm) {
+      this.filteredUsuarios = this.usuarios;
+    } else {
+      searchTerm = searchTerm.toLowerCase();
+      this.filteredUsuarios = this.usuarios.filter(usuario =>
+        usuario.Nome.toLowerCase().includes(searchTerm) ||
+        usuario.Email.toLowerCase().includes(searchTerm)
+      );
+    }
+  }
+
+  editarUsuario(idAluno: number) {
     const usuario = this.usuarios.find(usuario => usuario.idAluno === idAluno);
     const dialogRef = this.dialog.open(ModalEditarUsuarioComponent, {
       width: '50%',
-      data: { usuario } // Passa o objeto de usuário para o modal
+      data: { usuario }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         console.log('Usuário editado:', result);
-        // Adicione aqui a lógica para atualizar os dados do usuário após a edição
       } else {
         console.log('Edição de usuário cancelada');
       }
@@ -66,7 +89,7 @@ export class GerenciarUsuariosComponent implements OnInit {
   openModal(id: number): void {
     const dialogRef = this.dialog.open(ModalExcluirContaComponent, {
       width: '450px',
-      data: { idAluno: id } // Passa o ID do usuário para o modal
+      data: { idAluno: id }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -79,5 +102,15 @@ export class GerenciarUsuariosComponent implements OnInit {
   adicionarUsuario() {
     this.router.navigate(['/signup']);
   }
-  pesquisarUsuario(){}
+
+  openCadastroModal(): void {
+    const dialogRef = this.dialog.open(SignupFormComponent, {
+      width: '70%' // Defina o tamanho do modal conforme necessário
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('O modal de cadastro foi fechado');
+      // Adicione aqui a lógica para recarregar a lista de usuários após adicionar um novo usuário, se necessário
+    });
   }
+}

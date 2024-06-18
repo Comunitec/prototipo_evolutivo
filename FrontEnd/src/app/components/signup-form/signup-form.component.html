@@ -1,0 +1,56 @@
+<div class="signup-container">
+  <div class="signup-box">
+    <form (ngSubmit)="enviarRegistro()">
+      <div class="input-group imagem">
+        <label>Adicionar imagem de perfil</label>
+        <img src="https://portal.fidelis.edu.br/wp-content/uploads/2020/10/perfil.jpg"
+          style="width: 140px; border-radius: 50%;" *ngIf="!selectedImagem" alt="Clique para adicionar"
+          (click)="triggerFileInput('adicionarImagem')">
+        <input class="input-file" id="adicionarImagem" type="file" accept=".jpg, .jpeg, .png"
+          (change)="onFileSelected($event)" hidden />
+        <div class="image-preview" *ngIf="selectedImagem">
+          <img [src]="selectedImagem" alt="Imagem selecionada">
+        </div>
+      </div>
+
+      <div class="inputs">
+        <div >
+          <div class="input-group">
+            <label for="name">Nome Completo</label>
+            <input name="name" type="text" id="name" [(ngModel)]="Nome" placeholder="Digite seu nome completo"
+              required />
+          </div>
+          <div class="input-group">
+            <label for="birthdate">Data de Nascimento</label>
+            <input type="date" id="birthdate" name="birthdate" required [(ngModel)]="DataNasc" />
+          </div>
+          <div class="input-group">
+            <label for="email">E-mail</label>
+            <input [(ngModel)]="Email" name="email" type="email" id="email" placeholder="Digite seu e-mail"
+              required />
+            <p>*Obs: o email utilizado para criar a conta deve ser do domínio fatec.sp.gov.br</p>
+          </div>
+        </div>
+
+
+        <div >
+          <div class="input-group">
+            <label for="password">Senha</label>
+            <input [(ngModel)]="Senha" name="password" type="password" id="password" placeholder="Digite sua senha"
+              required />
+          </div>
+
+          <div class="input-group">
+            <label for="confirmPassword">Confirmação de Senha</label>
+            <input type="password" id="confirmPassword" placeholder="Confirme sua senha" name="confirmPassword"
+              required />
+          </div>
+
+          <div class="input-group btns">
+            <button class="back-button" [routerLink]="'/'" id="backButton">Voltar</button>
+            <button type="submit" class="signup-button">Criar conta</button>
+          </div>
+        </div>
+      </div>
+    </form>
+</div>

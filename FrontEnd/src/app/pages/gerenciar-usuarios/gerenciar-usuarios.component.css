@@ -14,7 +14,8 @@
 }
 
 
-h1{
+
+h1 {
   margin: 0;
   font-weight: bold;
   text-align: center;
@@ -43,35 +44,18 @@ h1{
   margin-right: 8px;
   border: 1px solid #ccc; /* Adicionei uma borda para destacar o input */
 }
-
-.search button {
-  padding: 10px 18px;
-  font-size: 14px;
-  background-color: var(--primary-color);
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  margin-left: 8px; /* Adicionei um espaçamento entre o input e o botão */
-}
-
-.search button:hover {
-  background-color: var(--hover-btn-primary);
-}
-
-
 .common-style {
-      /* display: flex; */
-      padding: 10px;
-      border-radius: 8px;
-      border: none;
-      background-color: #d9d9d9;
-      box-shadow: 1px 3px 4px -2px #898989;
-      /* font-size: 16px; */
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  background-color: #d9d9d9;
+  box-shadow: 1px 3px 4px -2px #898989;
 }
+
 .common-style:focus {
-outline: none;
+  outline: none;
 }
+
 .btn-add {
   background-color: var(--primary-color);
   color: white;
@@ -81,63 +65,210 @@ outline: none;
   padding: 10px 20px;
 }
 
-.container-usuarios{
-    display: flex;
-      flex-wrap: wrap;/* align-items: center; */
-    justify-content: center;
-    margin-top: 20px;
+.container-usuarios {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
 }
 
-.usuario{
+.usuario {
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
   padding: 20px 10px;
-  margin: 20px;
+  margin: 8px;
   margin-bottom: 10px;
   border-radius: 8px;
   background-color: var(--back-menu);
   box-shadow: var(--box-shadow);
-
-  max-width: 170px;
-  min-width: 170px;
+  max-width: 190px;
+  min-width: 190px;
 }
-p{
+
+p {
   font-size: 10px;
   margin: 0;
 }
 
-img{
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    margin-bottom: 20px;
+img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  border: 1px solid white;
 }
 
-.container-icons{
+.container-icons {
   display: flex;
   margin-top: 10px;
   gap: 40px;
 }
-a{
-    font-size: 25px;
+
+a {
+  font-size: 25px;
 }
 
-.edit{
+.edit {
   color: var(--secondary-color);
   cursor: pointer;
 }
 
-.edit:hover{
+.edit:hover {
   color: #3a3a3a;
 }
 
-.delete{
+.delete {
   color: var(--primary-color);
   cursor: pointer;
 }
 
-.delete:hover{
-  color:  #720101;
+.delete:hover {
+  color: #720101;
+}
+
+.custom-stepper .mat-horizontal-stepper-header-container {
+  display: none;
+}
+
+.custom-stepper .mat-step-header {
+  display: none;
+}
+
+/*Sign-UP*/
+
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup-container img {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  padding: 5px;
+}
+
+.signup-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 20px;
+  text-align: left;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%; /* Ajuste conforme necessário */
+}
+
+.inputs {
+  display: flex;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.inputs {
+  display: flex;
+  gap: 25px;
+}
+
+.imagem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0;
+  flex-direction: column;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+input[type="file"] {
+  width: 400px;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  background-color: #d9d9d9;
+  box-shadow: 1px 3px 4px -2px #898989;
+}
+
+.input-group-btns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.back-button, .signup-button {
+  margin-top: 50px;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  height: 32px;
+  padding: 10px 20px;
+  width: var(--button-width);
+}
+
+button.signup-button {
+  background-color: var(--primary-color);
+}
+
+button.back-button {
+  background-color: var(--secondary-color);
+  transition: background-color 0.2s;
+}
+
+button.signup-button:hover {
+  background-color: var(--hover-btn-primary);
+}
+
+button.back-button:hover {
+  background: var(--hover-btn-secondary);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+.img-signup {
+  display: flex;
+  justify-content: center;
+  margin-top: 0;
+}
+
+.image-preview img {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  padding: 5px;
+}
+
+.btns {
+  display: flex;
+  justify-content: space-evenly;
+  padding-top: 30px;
 }

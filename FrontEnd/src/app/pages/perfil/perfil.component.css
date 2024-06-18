@@ -69,10 +69,10 @@ input[type="file"] {
   position: absolute;
   bottom: 5%;
   left: 55%;
-  background-color: #898989;
+  background-color: #d9d9d9;
   border-radius: 50%;
   padding: 12px;
-  border:1px solid #ffffff;
+  border:1px solid white;
   font-size: 25px;
   cursor: pointer;
 }
@@ -95,7 +95,7 @@ input[type="file"] {
   display: flex;
   flex-direction: column;
   padding: 5px;
-  width: 50%;
+  width: 60%;
   background-color: #d9d9d9;
   border-radius: 5px;
   box-shadow: 1px 3px 4px -2px #898989;
@@ -182,6 +182,7 @@ input[type="date"] {
   align-items: center;
   justify-content: left;
   padding-top: 10px;
+  color: var(--primary-color);
 }
 
 .card_senha > a {
@@ -190,7 +191,7 @@ input[type="date"] {
 }
 
 .card_senha:hover{
-  color: var(--hover-btn-secondary);
+  color: var(--hover-btn-primary);
   cursor: pointer;
 }
 

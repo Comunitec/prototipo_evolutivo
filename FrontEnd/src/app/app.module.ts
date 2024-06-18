@@ -69,6 +69,8 @@ import { RankingService } from './services/ranking.service';
 import { AtualizarPerfilService } from './services/atualizar-perfil.service';
 import { MatIconModule } from '@angular/material/icon';
 import { ModalAulaJaEstaFinalizadaComponent } from './components/modal-aula-ja-esta-finalizada/modal-aula-ja-esta-finalizada.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SignupFormComponent } from './components/signup-form/signup-form.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -94,7 +96,7 @@ const routes: Routes = [
   {path: 'EditCourseFormComponent/:id', component: EditCourseFormComponent},
   { path: 'editar-usuario', component: ModalEditarUsuarioComponent},
   {path: 'FaqFormComponent', component: FaqFormComponent},
-  
+
 
 
 
@@ -157,6 +159,7 @@ const routes: Routes = [
     FaqFormComponent,
     ModalCursoFinalizadoComponent,
     ModalAulaJaEstaFinalizadaComponent,
+    SignupFormComponent,
 
   ],
   imports: [
@@ -171,7 +174,8 @@ const routes: Routes = [
     MatRadioModule,
     MatTabsModule,
     MatSnackBarModule,
-    MatIconModule
+    MatIconModule,
+    ReactiveFormsModule
   ],
   providers: [RankingService, AtualizarPerfilService],
   bootstrap: [AppComponent]
