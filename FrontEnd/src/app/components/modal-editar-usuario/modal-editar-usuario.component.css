@@ -70,7 +70,7 @@ input[type="file"] {
   position: absolute;
   bottom: 5%;
   left: 55%;
-  background-color: #898989;
+  background-color: var(--back-menu);
   border-radius: 50%;
   padding: 12px;
   border:1px solid #ffffff;
@@ -81,6 +81,7 @@ input[type="file"] {
   width: 25%;
   height: 25%;
   border-radius: 50%;
+
 }
 .input-icon input[type="file"] {
   position: absolute;
@@ -96,7 +97,7 @@ input[type="file"] {
   display: flex;
   flex-direction: column;
   padding: 5px;
-  width: 50%;
+  width: 70%;
   background-color: #d9d9d9;
   border-radius: 5px;
   box-shadow: 1px 3px 4px -2px #898989;
@@ -105,7 +106,6 @@ input[type="file"] {
 }
 
 .ranking{
-  color: #720101;
   font-weight: bold;
   margin: 0;
   width: 90%;
@@ -183,15 +183,17 @@ input[type="date"] {
   align-items: center;
   justify-content: left;
   padding-top: 10px;
+  color: var(--primary-color);
 }
 
 .card_senha > a {
   padding-left: 5px;
 
+
 }
 
 .card_senha:hover{
-  color: #3a3a3a;
+  color: var(--hover-btn-primary);
   cursor: pointer;
 }
 
@@ -218,10 +220,10 @@ button {
 }
 
 .btn-salvar{
-  background-color: #990000;
+  background-color: var(--primary-color);
   transition: background-color 0.2s;
 }
 
 button.btn-salvar:hover {
-  background-color: #720101;
+  background-color: var(--hover-btn-primary);
 }

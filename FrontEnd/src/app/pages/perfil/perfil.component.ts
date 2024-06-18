@@ -5,7 +5,7 @@ import { ModalAlterarSenhaComponent } from 'src/app/components/modal-alterar-sen
 import { AtualizarPerfilService } from 'src/app/services/atualizar-perfil.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient } from '@angular/common/http';
-
+import { ModalExcluirContaComponent } from 'src/app/components/modal-excluir-conta/modal-excluir-conta.component';
 
 @Component({
   selector: 'app-perfil',
@@ -92,4 +92,23 @@ export class PerfilComponent implements OnInit {
       }
     });
   }
+
+  openModalExcluir(): void {
+    // Aqui, você deve abrir o modal de exclusão
+    const dialogRef = this.dialog.open(ModalExcluirContaComponent, {
+      width: '450px',
+      data: { idAluno: this.id } // Passa o id do aluno para o modal, se necessário
+    });
+
+    // Lida com o fechamento do modal
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'confirmado') {
+        // Redireciona para a página de login após a exclusão
+        window.location.href = '/login'; // Isso fará o redirecionamento para a página de login
+      } else {
+        console.log('Exclusão de conta cancelada');
+      }
+    });
+  }
 }
+
