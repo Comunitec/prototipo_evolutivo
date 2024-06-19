@@ -105,12 +105,14 @@ export class GerenciarUsuariosComponent implements OnInit {
 
   openCadastroModal(): void {
     const dialogRef = this.dialog.open(SignupFormComponent, {
-      width: '70%' // Defina o tamanho do modal conforme necessário
+      width: '70%', // Defina o tamanho do modal conforme necessário
+      data: { origem: 'modal' } // Passar a origem como parâmetro
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('O modal de cadastro foi fechado');
-      // Adicione aqui a lógica para recarregar a lista de usuários após adicionar um novo usuário, se necessário
+      this.carregarUsuarios(); // Recarregar a lista de usuários após fechar o modal, se necessário
     });
   }
+
 }

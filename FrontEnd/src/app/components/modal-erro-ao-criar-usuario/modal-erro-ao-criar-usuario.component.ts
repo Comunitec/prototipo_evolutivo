@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+
 @Component({
   selector: 'app-modal-erro-ao-criar-usuario',
   templateUrl: './modal-erro-ao-criar-usuario.component.html',
@@ -7,7 +8,8 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class ModalErroAoCriarUsuarioComponent {
   constructor(
-    public dialogRef: MatDialogRef<ModalErroAoCriarUsuarioComponent >,
+    public dialogRef: MatDialogRef<ModalErroAoCriarUsuarioComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: { message: string }
   ) { }
 
   closeModal(): void {
