@@ -7,27 +7,29 @@
 <app-middle-column>
 
   <div class="container_curso">
-    <h1><b>Parabéns!</b> Você finalizou o curso: {{ nomeCurso }}</h1>
+    <h1><b>Parabéns!</b> Você finalizou este curso:</h1>
 
     <div class="card_curso">
 
-        <img [src]="imagem" alt="" />
+        <img [src]="imagem" alt="Img do Curso" />
 
 
       <div class="card_curso-descricao">
-        <div class="card_descricao-texto">
+        <div class="card_descricao-texto" *ngIf="certificado">
           <b> {{ pontos }} pontos</b> obtidos por concluir este curso <br><br>
           <p> Certificado disponível, clique no botao abaixo para fazer o download!</p>
-          <button class="btn-matricula"><a href="imagem" download>Baixar certificado</a></button>
+          <button class="btn-matricula"><a [href]="certificado" download>Baixar certificado</a></button>
         </div>
 
-        <ul class="avaliacao">
-          <li class="star-icon ativo" data-avaliacao="1"></li>
-          <li class="star-icon" data-avaliacao="2"></li>
-          <li class="star-icon" data-avaliacao="3"></li>
-          <li class="star-icon" data-avaliacao="4"></li>
-          <li class="star-icon" data-avaliacao="5"></li>
+        <ul class="avaliacao" *ngIf="avaliarCursoNota">
+          <li class="star-icon ativo" data-avaliacao="1" (click)="avaliarCurso(1)"></li>
+          <li class="star-icon" data-avaliacao="2" (click)="avaliarCurso(2)"></li>
+          <li class="star-icon" data-avaliacao="3" (click)="avaliarCurso(3)"></li>
+          <li class="star-icon" data-avaliacao="4" (click)="avaliarCurso(4)"></li>
+          <li class="star-icon" data-avaliacao="5" (click)="avaliarCurso(5)"></li>
         </ul>
+
+        <p *ngIf="obgAvaliar"> Obrigado por avaliar este curso!</p>
 
       </div>
     </div>

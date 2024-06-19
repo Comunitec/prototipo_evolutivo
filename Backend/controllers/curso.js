@@ -303,3 +303,67 @@ export const deleteCurso = (req, res) => {
     return res.status(200).json({ message: 'Curso deletado com sucesso', data });
   });
 };
+
+//Rota para avaliar curso
+export const avaliarCurso = (req, res) => {
+  const idCurso = req.params.idCurso;
+  const idAluno = req.params.idAluno;
+  const nota = req.params.nota;
+  const q = `UPDATE alunocurso SET notaAlunoCurso = ? WHERE idCurso = ? AND idAluno = ?`
+  
+  db.query(q, [nota, idCurso, idAluno], (err, data) => { 
+    if (err) 
+    return res.status(500).json(err);
+    return res.status(200).json({ message: 'Curso avaliado com sucesso', data });
+  });
+};
+
+//Rota para pegar a media de avaliacao de um curso
+export const getAvaliacaoMediaCurso = (req, res) => {
+  const id = req.params.id;
+  const q = "SELECT mediaAvaliacao FROM curso WHERE idCurso = ?"
+
+  db.query(q, [id], (err, data) => { // Coloque idCurso dentro de um array
+    if (err) {
+      console.error(err);
+      return res.sendStatus(500);
+    }
+    if (result.length === 0) {
+      return res.sendStatus(404);
+    }
+
+  });
+};
+
+//Get certificado do curso
+export const getCertificadoCurso = (req, res) => {
+  const id = req.params.id; // ID do curso
+  const q = "SELECT Certificado FROM curso WHERE idCurso = ?";
+
+  db.query(q, [id], (err, result) => {
+    if (err) {
+      console.error(err);
+      return res.sendStatus(500);
+    }
+    if (result.length === 0) {
+      return res.sendStatus(404);
+    }
+    
+    const certPath = result[0].Certificado.toString(); // Converter para string
+    const certAbsPath = path.join(process.cwd(), certPath); // Caminho absoluto do certificado usando process.cwd()
+
+    console.log("Caminho absoluto do certificado:", certAbsPath);
+
+    // Lê o arquivo de imagem do disco
+    fs.readFile(certAbsPath, (err, data) => {
+      if (err) {
+        console.error(err);
+        return res.sendStatus(500);
+      }
+      // Envia a imagem como resposta
+      console.log("Certificado lido com sucesso.");
+      res.writeHead(200, {'Content-Type': 'application/pdf'});
+      res.end(data);
+    });
+  });
+};

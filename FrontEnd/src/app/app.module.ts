@@ -90,7 +90,7 @@ const routes: Routes = [
   {path: 'staff', component: StaffComponent},
   {path: 'recuperar-senha', component: RecuperarSenhaComponent},
   {path: 'alterar-senha', component: AlterarSenhaComponent},
-  {path: 'finalizarCurso', component: FinalizarCursoComponent},
+  {path: 'finalizarCurso/:id', component: FinalizarCursoComponent},
   {path: 'gerenciar-usuarios', component: GerenciarUsuariosComponent},
   {path: 'excluir-conta', component: ModalExcluirContaComponent},
   {path: 'EditCourseFormComponent/:id', component: EditCourseFormComponent},
