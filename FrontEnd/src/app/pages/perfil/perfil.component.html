@@ -2,7 +2,6 @@
   <app-menu-lateral></app-menu-lateral>
 </app-left-column>
 
-
 <app-middle-column>
   <div class="titulo-pagina">
     <h1>GERENCIAR PERFIL</h1>
@@ -10,13 +9,12 @@
   </div>
 
   <div class="container_dados-cadastrais">
-
     <div class="card_perfil">
       <div class="card_perfil-foto">
-        <img [src]= "imagem" alt="">
+        <img [src]="imagem" alt="">
         <label for="input-foto" class="input-icon">
           <i class="icone-foto"><fa-icon [icon]="faCamera"></fa-icon></i>
-          <input type="file" id="input-foto" accept="image/*" style="display: none;" > <!-- input de imagem oculto -->
+          <input type="file" id="input-foto" accept="image/*" style="display: none;"> <!-- input de imagem oculto -->
         </label>
       </div>
       <div class="card_pontuacao">
@@ -29,16 +27,11 @@
           <span class="titulo">Emblemas adquiridos: </span>
           <br>
           <div class="emblemas">
-            <img src="https://cdn.pixabay.com/photo/2014/03/25/16/25/award-297024_1280.png" alt="">
-            <img src="https://cdn.pixabay.com/photo/2014/03/25/16/25/award-297024_1280.png" alt="">
-            <img src="https://cdn.pixabay.com/photo/2014/03/25/16/25/award-297024_1280.png" alt="">
-            <img src="https://cdn.pixabay.com/photo/2014/03/25/16/25/award-297024_1280.png" alt="">
+            <img *ngFor="let emblema of emblemas" [src]="emblema" alt="Emblema do Curso">
           </div>
         </div>
       </div>
     </div>
-
-
 
     <div class="card_dados_cadastrais">
       <div class="card_dados_cadastrais-linha1">
@@ -47,7 +40,6 @@
       </div>
 
       <div class="card_dados_cadastrais-linha2">
-
         <div class="card_e-mail">
           <label for="">Email</label>
           <input type="email" [(ngModel)]="Email" placeholder="Email" disabled="">
@@ -57,9 +49,7 @@
           <label for="">Data Nascimento</label>
           <input type="date" [(ngModel)]="DataNasc" placeholder="DataNasc">
         </div>
-
       </div>
-
 
       <div class="card_senha">
         <fa-icon [icon]="faKey"></fa-icon>
@@ -71,17 +61,10 @@
 
       <br><br><br><br><br>
       <div class="excluir" (click)="openModalExcluir()"><fa-icon [icon]="faTrash"></fa-icon> Excluir Conta</div>
-
-
     </div>
-
   </div>
-
-
 </app-middle-column>
 
-
-
 <app-right-column>
-    <app-ranking></app-ranking>
+  <app-ranking></app-ranking>
 </app-right-column>

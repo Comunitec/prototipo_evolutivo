@@ -11,6 +11,21 @@ export const getCursos = (_, res) => {
     return res.status(200).json(data);
   });
 };
+// Get dos ids dos cursos concluídos de um aluno
+export const getCursosConcluidos = (req, res) => {
+  const { idAluno } = req.params; // Supondo que o ID do aluno seja passado como parâmetro de rota
+
+  const q = `
+    SELECT idCurso 
+    FROM alunocurso 
+    WHERE idAluno = ? AND status = 'concluído'
+  `;
+
+  db.query(q, [idAluno], (err, data) => {
+    if (err) return res.json(err);
+    return res.status(200).json(data);
+  });
+};
 
 //Lógica para enviar o curso para aprovação do Staff
 export const enviarParaAprovacao  = (req, res) =>{

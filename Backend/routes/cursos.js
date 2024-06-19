@@ -16,7 +16,8 @@ import {
   reprovarCurso,
   enviarParaAprovacao,
   inativarCurso,
-  deleteCurso
+  deleteCurso,
+  getCursosConcluidos
 } from "../controllers/curso.js";
 import multer from "multer";
 import path from "path";
@@ -90,6 +91,7 @@ router.get("/getCursoPorId/:id", getCursoPorId);
 router.get("/getCursosEmCriacao/:idAlunoCriador", getCursosEmCriacao);
 router.get("/getCursosAguardandoAprovacao", getCursosAguardandoAprovacao);
 router.get("/getCursosAprovados", getCursosAprovados);
+router.get('/getCursosConcluidos/:idAluno', getCursosConcluidos);
 
 //Delete
 router.delete('/deleteCurso/:idCurso', deleteCurso)

@@ -236,3 +236,9 @@ button.btn-salvar:hover {
  color: var(--hover-btn-secondary);
  cursor: pointer;
 }
+
+.emblemas img {
+  width: 100px; /* Ajuste este valor para o tamanho desejado */
+  height: 100px; /* Ajuste este valor para o tamanho desejado */
+  margin: 5px;   /* Espaçamento entre os emblemas */
+}
