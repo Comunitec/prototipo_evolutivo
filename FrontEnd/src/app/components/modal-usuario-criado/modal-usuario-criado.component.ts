@@ -15,6 +15,10 @@ export class ModalUsuarioCriadoComponent {
 
   closeModal(): void {
     this.dialogRef.close();
-    this.router.navigate(['/']);
+    if (this.router.url === '/signup') {
+      this.router.navigate(['/login']);
+    } else {
+      // lógica para fechar o modal de gerenciamento de usuários se necessário
+    }
   }
 }
