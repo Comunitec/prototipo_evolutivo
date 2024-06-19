@@ -3,10 +3,13 @@ import {
   addCurso,
   getCursos,
   getImagemCurso,
+  getCertificadoCurso,
   getCursoPorId,
   getCursosEmCriacao,
   getCursosAguardandoAprovacao,
   getCursosAprovados,
+  getAvaliacaoMediaCurso,
+  avaliarCurso,
   updateCurso,
   getEmblemaCurso,
   aprovarCurso,
@@ -70,14 +73,18 @@ router.post(
   },
   updateCurso
 );
+
 router.put("/aprovarCurso/:idCurso", aprovarCurso);
 router.put("/reprovarCurso/:idCurso", reprovarCurso);
 router.put("/enviarParaAprovacao/:idCurso", enviarParaAprovacao);
 router.put("/inativarCurso/:idCurso", inativarCurso);
+router.put('/avaliarCurso/:idCurso/:idAluno/:nota', avaliarCurso);
 
 //GETS
 router.get("/getCursos", getCursos);
 router.get("/getImagemCurso/:id", getImagemCurso);
+router.get("/getCertificadoCurso/:id", getCertificadoCurso);
+router.get("/getAvaliacaoMediaCurso/:id", getAvaliacaoMediaCurso);
 router.get("/getEmblemaCurso/:id", getEmblemaCurso);
 router.get("/getCursoPorId/:id", getCursoPorId);
 router.get("/getCursosEmCriacao/:idAlunoCriador", getCursosEmCriacao);
