@@ -21,14 +21,15 @@ export class PerfilComponent implements OnInit {
   faUser = faUser;
 
   emblemas: string[] = [];
+  selectedFile: File | null = null;
 
   url = "http://localhost:8800/imagem/";
-  Nome: string | null = sessionStorage.getItem('Nome');
-  Pontos: string | null = sessionStorage.getItem('Pontuacao');
-  id: string | null = sessionStorage.getItem('idAluno');
-  imagem: string = this.id ? this.url + this.id : '';
-  Email: string | null = sessionStorage.getItem('Email');
-  DataNasc = '';
+  Nome: string | null = '';
+  Pontos: string | null = '';
+  id: string | null = '';
+  imagem: string = '';
+  Email: string | null = '';
+  DataNasc: string | null = '';
 
   constructor(
     private http: HttpClient,
@@ -38,13 +39,18 @@ export class PerfilComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    const dataNasc = sessionStorage.getItem('DataNasc');
-    if (dataNasc) {
-      // Converter a data para o formato ISO 8601 (yyyy-mm-dd)
-      this.DataNasc = new Date(dataNasc).toISOString().substring(0, 10);
-    }
-
+    this.atualizarDadosDoPerfil();
     this.carregarEmblemas();
+  }
+
+  atualizarDadosDoPerfil() {
+    this.Nome = sessionStorage.getItem('Nome');
+    this.Pontos = sessionStorage.getItem('Pontuacao');
+    this.id = sessionStorage.getItem('idAluno');
+    this.imagem = this.id ? this.url + this.id : '';
+    this.Email = sessionStorage.getItem('Email');
+    const dataNasc = sessionStorage.getItem('DataNasc');
+    this.DataNasc = dataNasc ? new Date(dataNasc).toISOString().substring(0, 10) : '';
   }
 
   carregarEmblemas() {
@@ -71,15 +77,29 @@ export class PerfilComponent implements OnInit {
     }
   }
 
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+    if (this.selectedFile) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.imagem = e.target.result;
+      };
+      reader.readAsDataURL(this.selectedFile);
+    }
+  }
+
   atualizarPerfil() {
     const id = sessionStorage.getItem('idAluno');
-    const userData = {
-      Nome: this.Nome,
-      Email: this.Email,
-      DataNasc: this.DataNasc,
-    };
+    const formData = new FormData();
 
-    this.http.put<string[]>(`http://localhost:8800/updateAluno/${id}`, userData)
+    formData.append('Nome', this.Nome as string);
+    formData.append('Email', this.Email as string);
+    formData.append('DataNasc', this.DataNasc || ''); // Tratamento para DataNasc nulo
+    if (this.selectedFile) {
+      formData.append('Foto', this.selectedFile);
+    }
+
+    this.http.put(`http://localhost:8800/updateAluno/${id}`, formData)
       .subscribe(
         response => {
           console.log("Aluno atualizado com sucesso!!!");
@@ -96,6 +116,9 @@ export class PerfilComponent implements OnInit {
 
           // Atualize o serviço com os novos valores
           this.atualizarPerfilService.changeAluno(updatedData);
+
+          // Atualize os dados no componente após a atualização
+          this.atualizarDadosDoPerfil();
 
         },
         error => {

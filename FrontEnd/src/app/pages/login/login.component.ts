@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ export class LoginComponent {
   email: string = '';
   password: string = '';
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private snackBar: MatSnackBar) { }
 
   enviarRegistro() {
     const url = 'http://localhost:8800/login'; // Substitua pela URL do seu servidor Node.js
@@ -29,16 +30,13 @@ export class LoginComponent {
         const token = response.token; // Receba o userId da resposta
         const idAluno = response.idAluno; // Receba o userId da resposta
         localStorage.setItem('token', token); // Armazene o token no LocalStorage
-        //localStorage.setItem('token', token); // Armazene o token no LocalStorage
         console.log('token:', token);
-        this.http.get(url2)
 
-        
-        fetch(url2 + idAluno, {headers: {'Authorization': `Bearer ${token}`} })
-        .then(response => response.json())  // Convertendo a resposta para JSON
-        .then(data => {
+        fetch(url2 + idAluno, { headers: { 'Authorization': `Bearer ${token}` } })
+          .then(response => response.json())  // Convertendo a resposta para JSON
+          .then(data => {
             console.log(data);  // Imprimindo a resposta no console
-    
+
             // Extraindo o idAluno
             const idAluno = data.user.idAluno;
             const Nome = data.user.Nome;
@@ -47,7 +45,6 @@ export class LoginComponent {
             const PerfilDeAcesso = data.user.PerfilDeAcesso;
             const DataNasc = data.user.DataNasc;
 
-    
             // Colocando dados no sessionStorage
             sessionStorage.setItem('idAluno', idAluno); // Armazene o token no sessionStorage
             sessionStorage.setItem('Nome', Nome); // Armazene o token no sessionStorage
@@ -56,20 +53,25 @@ export class LoginComponent {
             sessionStorage.setItem('PerfilDeAcesso', PerfilDeAcesso); // Armazene o token no sessionStorage
             sessionStorage.setItem('DataNasc', DataNasc); // Armazene o token no sessionStorage
             this.router.navigate(['/home-logado']);
-        })
-        .catch(error => {
+          })
+          .catch(error => {
             console.error('Erro ao fazer a solicitação:', error);
-        });
-
-
+          });
 
       },
       (error) => {
         console.error('Erro na solicitação:', error);
-        // Trate o erro, se necessário
+        let message = 'Ocorreu um erro inesperado. Por favor, tente novamente mais tarde.';
+        if (error.status === 401) {
+          message = 'E-mail ou senha incorretos. Tente novamente.';
+        }
+        this.snackBar.open(message, 'Fechar', {
+          duration: 5000,
+          panelClass: ['error-snackbar'],
+          verticalPosition: 'top', // Muda a posição para o topo
+          horizontalPosition: 'center' // Centraliza horizontalmente
+        });
       }
     );
-
-
   }
 }

@@ -4,7 +4,7 @@
       <div class="input-group imagem">
         <label>Adicionar imagem de perfil</label>
         <img src="https://portal.fidelis.edu.br/wp-content/uploads/2020/10/perfil.jpg"
-          style="width: 140px; border-radius: 50%;" *ngIf="!selectedImagem" alt="Clique para adicionar"
+          style="width: 140px; border-radius: 50%; border: 1px solid white;" *ngIf="!selectedImagem" alt="Clique para adicionar"
           (click)="triggerFileInput('adicionarImagem')">
         <input class="input-file" id="adicionarImagem" type="file" accept=".jpg, .jpeg, .png"
           (change)="onFileSelected($event)" hidden />
@@ -53,7 +53,7 @@
           </div>
 
           <div class="input-group btns">
-            <button class="back-button" (click)="goBack()" id="backButton">Voltar</button>
+            <button class="back-button" (click)="goBack($event)" id="backButton">Voltar</button>
             <button type="submit" class="signup-button">Criar conta</button>
           </div>
         </div>

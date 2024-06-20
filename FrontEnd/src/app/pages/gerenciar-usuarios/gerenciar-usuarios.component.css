@@ -83,8 +83,8 @@ h1 {
   border-radius: 8px;
   background-color: var(--back-menu);
   box-shadow: var(--box-shadow);
-  max-width: 190px;
-  min-width: 190px;
+  max-width: 200px;
+  min-width: 200px;
 }
 
 p {

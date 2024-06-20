@@ -5,24 +5,36 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class AtualizarPerfilService {
-  private alunoSource = new BehaviorSubject<any>({
-    Nome: sessionStorage.getItem('Nome'),
-    Email: sessionStorage.getItem('Email'),
-    Pontuacao: sessionStorage.getItem('Pontuacao'),
-    idAluno: sessionStorage.getItem('idAluno'),
-    DataNasc: sessionStorage.getItem('DataNasc')
-  });
+  private alunoSource = new BehaviorSubject<any>(this.getInitialAluno());
 
   currentAluno = this.alunoSource.asObservable();
 
   constructor() {}
 
   changeAluno(aluno: any) {
-    sessionStorage.setItem('Nome', aluno.Nome);
-    sessionStorage.setItem('Email', aluno.Email);
-    sessionStorage.setItem('Pontuacao', aluno.Pontuacao);
-    sessionStorage.setItem('idAluno', aluno.idAluno);
-    sessionStorage.setItem('DataNasc', aluno.DataNasc);
-    this.alunoSource.next(aluno);
+    // Atualiza apenas as propriedades necessárias na sessionStorage
+    if (aluno.Nome) sessionStorage.setItem('Nome', aluno.Nome);
+    if (aluno.Email) sessionStorage.setItem('Email', aluno.Email);
+
+    if (aluno.idAluno) sessionStorage.setItem('idAluno', aluno.idAluno);
+    if (aluno.DataNasc) sessionStorage.setItem('DataNasc', aluno.DataNasc);
+
+    // Atualiza a URL da imagem do perfil com o novo idAluno
+    const updatedAluno = {
+      ...aluno,
+      ImagemPerfil: aluno.idAluno ? `http://localhost:8800/imagem/${aluno.idAluno}` : ''
+    };
+
+    this.alunoSource.next(updatedAluno);
+  }
+
+  private getInitialAluno() {
+    return {
+      Nome: sessionStorage.getItem('Nome'),
+      Email: sessionStorage.getItem('Email'),
+      idAluno: sessionStorage.getItem('idAluno'),
+      DataNasc: sessionStorage.getItem('DataNasc'),
+      ImagemPerfil: sessionStorage.getItem('idAluno') ? `http://localhost:8800/imagem/${sessionStorage.getItem('idAluno')}` : ''
+    };
   }
 }

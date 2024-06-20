@@ -1,11 +1,10 @@
 .titulo-pagina{
+  margin: 1rem;
   display: flex;
   flex-direction: row;
-  padding: 5px;
+  padding: 10px;
   align-items: center;
   justify-content: center;
-  color: var(--hover-btn-secondary);
-  gap: 10px;
 
 }
 

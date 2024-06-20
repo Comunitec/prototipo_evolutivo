@@ -1,6 +1,7 @@
-import { MatDialogRef , MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Component, Inject, OnInit } from '@angular/core';
-import { faTrash, faCamera, faFloppyDisk, faKey, faUser } from '@fortawesome/free-solid-svg-icons';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { HttpClient } from '@angular/common/http';
+import { faTrash, faCamera, faFloppyDisk, faKey, faUser, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalAlterarSenhaComponent } from 'src/app/components/modal-alterar-senha/modal-alterar-senha.component';
 
@@ -24,21 +25,22 @@ export class ModalEditarUsuarioComponent implements OnInit {
   faFloppyDisk = faFloppyDisk;
   faKey = faKey;
   faUser = faUser;
+  faXmark = faXmark;
 
   usuario: Usuario;
 
   constructor(
     private dialogRef: MatDialogRef<ModalEditarUsuarioComponent>,
     @Inject(MAT_DIALOG_DATA) private data: { usuario: Usuario },
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private http: HttpClient
   ) {
-    this.usuario = data.usuario; // Recebe os dados do usuário passados para o modal
+    this.usuario = { ...data.usuario };
   }
 
   ngOnInit() {
     const dataNasc = sessionStorage.getItem('DataNasc');
     if (dataNasc) {
-      // Converter a data para o formato ISO 8601 (yyyy-mm-dd)
       this.usuario.DataNasc = new Date(dataNasc).toISOString().substring(0, 10);
     }
   }
@@ -46,7 +48,7 @@ export class ModalEditarUsuarioComponent implements OnInit {
   openModal(): void {
     const dialogRef = this.dialog.open(ModalAlterarSenhaComponent, {
       width: '360px',
-      data: { idAluno: this.usuario.idAluno } // Passando o ID do usuário para o modal
+      data: { idAluno: this.usuario.idAluno }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -57,5 +59,24 @@ export class ModalEditarUsuarioComponent implements OnInit {
         console.log('Alteração de senha cancelada');
       }
     });
+  }
+
+  salvarAlteracoes(): void {
+    const url = `http://localhost:8800/api/alunos/updateAluno/${this.usuario.idAluno}`;
+
+    this.http.put(url, this.usuario).subscribe(
+      response => {
+        console.log('Usuário atualizado com sucesso:', response);
+        this.dialogRef.close(true); // Fechar modal em caso de sucesso
+      },
+      error => {
+        console.error('Erro ao atualizar o usuário:', error);
+        // Aqui você pode adicionar lógica para mostrar uma mensagem de erro ao usuário
+      }
+    );
+  }
+
+  cancelar(): void {
+    this.dialogRef.close(false); // Fechar modal e indicar cancelamento
   }
 }

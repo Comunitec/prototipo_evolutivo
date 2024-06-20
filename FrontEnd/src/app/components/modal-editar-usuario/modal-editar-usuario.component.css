@@ -219,11 +219,22 @@ button {
   width: 120px;
 }
 
-.btn-salvar{
+button.btn-salvar{
   background-color: var(--primary-color);
   transition: background-color 0.2s;
 }
 
 button.btn-salvar:hover {
   background-color: var(--hover-btn-primary);
+  transition: background-color 0.2s;
+}
+
+button.btn-cancelar {
+  background-color: var(--secondary-color);
+}
+
+button.btn-cancelar:hover {
+  background-color: var(--hover-btn-secondary);
+  transition: background-color 0.2s;
+
 }

@@ -212,25 +212,53 @@ export const getAlunoPorId = (req, res) => {
 };
 
 // Get informações do aluno por ID atualizar dados aluno
+// Update aluno
 export const updateAluno = (req, res) => {
   const id = req.params.id;
-  const { Nome, Email, DataNasc } = req.body;
+  const { Nome, Email, DataNasc } = req.body; // Remova Pontuacao daqui
 
-  // Log para imprimir o valor da data de nascimento
-  console.log("Data de nascimento recebida:", DataNasc);
+  let updateFields = [Nome, Email, DataNasc, id]; // Remova Pontuacao daqui
 
-  const q = "UPDATE aluno SET Nome = ?, Email = ?, DataNasc = ? WHERE idAluno = ?";
+  let q = "UPDATE aluno SET Nome = ?, Email = ?, DataNasc = ?"; // Remova Pontuacao daqui
+
+  if (req.file) {
+    const filename = req.file.filename;
+    const filepath = path.join('/static/images/alunos', filename);
+    q += ", Foto = ?";
+    updateFields = [Nome, Email, DataNasc, filepath, id]; // Remova Pontuacao daqui
+    
+    const qSelect = "SELECT Foto FROM aluno WHERE idAluno = ?";
+    db.query(qSelect, [id], (err, result) => {
+      if (err) {
+        console.error("Erro ao selecionar imagem do aluno:", err);
+        return res.sendStatus(500);
+      }
+
+      if (result.length > 0) {
+        const imagePath = result[0].Foto.toString();
+        const imageAbsPath = path.join(process.cwd(), imagePath);
+
+        fs.unlink(imageAbsPath, (err) => {
+          if (err) {
+            console.error("Erro ao excluir imagem do aluno:", err);
+          }
+        });
+      }
+    });
+  }
+
+  q += " WHERE idAluno = ?";
   
-  db.query(q, [Nome, Email, DataNasc, id], (err, result) => {
+  db.query(q, updateFields, (err, result) => {
     if (err) {
       console.error("Erro ao atualizar aluno:", err);
       return res.sendStatus(500);
     }
 
-    console.log("Resultado da atualização:", result);
     return res.status(200).json({ message: "Aluno atualizado com sucesso." });
   });
 };
+
 
 // Rota para recuperar a senha atual do aluno por ID
 export const getSenhaAtual = (req, res) => {
