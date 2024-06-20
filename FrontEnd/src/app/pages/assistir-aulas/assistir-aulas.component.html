@@ -25,6 +25,10 @@
     <button class="btn" (click)="finalizarCurso()">Finalizar curso</button>
   </div>
   <h2 *ngIf="statusAlunoCurso">Você finalizou esse curso</h2>
+  <div>
+    <button *ngIf="statusAlunoCurso" class="btn" [routerLink]="['/finalizarCurso', idCurso]">Obter certificado</button>
+  </div>
+  
 </app-middle-column>
 
 <app-right-column></app-right-column>
