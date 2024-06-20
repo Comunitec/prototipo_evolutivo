@@ -9,7 +9,7 @@
       <span>{{ item.position }}º</span>
       <img [src]="item.photo" alt="{{ item.name }}" class="photo">
       <div class="dados">
-        <p class="name">{{ item.name }}</p>
+        <p class="name">{{ getFirstAndLastName(item.name) }}</p>
         <p class="pontos">{{ item.points }} comunicoins</p>
       </div>
     </div>

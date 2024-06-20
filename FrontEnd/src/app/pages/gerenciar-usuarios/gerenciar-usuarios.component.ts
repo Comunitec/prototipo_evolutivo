@@ -105,7 +105,7 @@ export class GerenciarUsuariosComponent implements OnInit {
 
   openCadastroModal(): void {
     const dialogRef = this.dialog.open(SignupFormComponent, {
-      width: '70%', // Defina o tamanho do modal conforme necessário
+      width: '60%', // Defina o tamanho do modal conforme necessário
       data: { origem: 'modal' } // Passar a origem como parâmetro
     });
 

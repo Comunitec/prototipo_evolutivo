@@ -13,7 +13,6 @@ import {
   faChevronDown,
   faUserTie
 } from '@fortawesome/free-solid-svg-icons';
-import { AtualizarPerfilService } from 'src/app/services/atualizar-perfil.service';
 
 @Component({
   selector: 'app-menu-lateral',
@@ -36,21 +35,20 @@ export class MenuLateralComponent implements OnInit {
   url = "http://localhost:8800/imagem/";
   Nome = sessionStorage.getItem('Nome');
   PerfilDeAcesso = sessionStorage.getItem('PerfilDeAcesso');
-  Pontos = sessionStorage.getItem('Pontuacao');
+  Pontos: string | null = sessionStorage.getItem('Pontuacao'); // Tipo string | null
+
   id = sessionStorage.getItem('idAluno');
   imagem = this.url + this.id;
 
   submenuOpen: boolean = true;
 
-  constructor(private router: Router, private atualizarPerfilService: AtualizarPerfilService) {}
+  constructor(private router: Router) {}
 
   ngOnInit() {
-    this.atualizarPerfilService.currentAluno.subscribe(aluno => {
-      this.Nome = aluno.Nome;
-      this.Pontos = aluno.Pontuacao;
-      this.id = aluno.idAluno;
-      this.imagem = this.url + this.id;
-    });
+    // Verificar se Pontos é null antes de usar
+    if (this.Pontos === null) {
+      this.Pontos = ''; // Definir um valor padrão ou tratar conforme necessário
+    }
   }
 
   toggleSubmenus() {
@@ -60,5 +58,13 @@ export class MenuLateralComponent implements OnInit {
   sair() {
     sessionStorage.clear();
     this.router.navigate(['/']);
+  }
+
+  getFirstAndLastName(): string {
+    if (!this.Nome) return '';
+
+    const names = this.Nome.split(' ');
+    if (names.length === 1) return names[0];
+    return `${names[0]} ${names[names.length - 1]}`;
   }
 }

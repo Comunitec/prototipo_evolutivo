@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto");
 
-
 :root {
   --primary-color: #990000;
   --secondary-color: #666666;
@@ -46,3 +45,19 @@ h1{
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.error-snackbar {
+  font-size: 1.2em; /* Aumenta o tamanho da fonte */
+  font-weight: bold; /* Texto em negrito */
+  text-align: center; /* Centraliza o texto */
+  border-radius: 4px; /* Cantos arredondados */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* Sombra para destaque */
+}
+
+.mat-snack-bar-container {
+  border-radius: 4px !important;
+  padding: 0 !important;
+  background: none !important;
+  box-shadow: none !important;
+}
+

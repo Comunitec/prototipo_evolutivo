@@ -1,4 +1,4 @@
-<form action="">
+<form (ngSubmit)="salvarAlteracoes()">
   <div class="container_dados-cadastrais">
 
     <div class="card_perfil">
@@ -6,7 +6,7 @@
         <img [src]="usuario.photoUrl" alt="">
         <label for="input-foto" class="input-icon">
           <i class="icone-foto"><fa-icon [icon]="faCamera"></fa-icon></i>
-          <input type="file" id="input-foto" accept="image/*" style="display: none;" >
+          <input type="file" id="input-foto" accept="image/*" style="display: none;">
         </label>
       </div>
       <div class="card_pontuacao">
@@ -27,18 +27,18 @@
 
     <div class="card_dados_cadastrais">
       <div class="card_dados_cadastrais-linha1">
-        <label for="">Nome</label>
-        <input type="text" [(ngModel)]="usuario.Nome" name="nome">
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" [(ngModel)]="usuario.Nome" name="nome" required>
       </div>
 
       <div class="card_dados_cadastrais-linha2">
         <div class="card_e-mail">
-          <label for="">Email</label>
-          <input type="email" [(ngModel)]="usuario.Email" name="email">
+          <label for="email">Email</label>
+          <input type="email" id="email" [(ngModel)]="usuario.Email" name="email" required>
         </div>
         <div class="card_data-nascimento">
-          <label for="">Data Nascimento</label>
-          <input type="date" [(ngModel)]="usuario.DataNasc" name="dataNascimento">
+          <label for="dataNascimento">Data Nascimento</label>
+          <input type="date" id="dataNascimento" [(ngModel)]="usuario.DataNasc" name="dataNascimento" required>
         </div>
       </div>
 
@@ -47,10 +47,13 @@
         <a (click)="openModal()">Alterar senha</a>
       </div>
       <div class="container_btn">
-        <button class="btn-salvar"><fa-icon [icon]="faFloppyDisk"></fa-icon> Salvar</button>
+        <button type="button" class="btn-cancelar" (click)="cancelar()">
+          <fa-icon [icon]="faXmark"></fa-icon> Cancelar
+        </button>
+        <button type="submit" class="btn-salvar">
+          <fa-icon [icon]="faFloppyDisk"></fa-icon> Salvar
+        </button>
       </div>
-
     </div>
-
   </div>
 </form>

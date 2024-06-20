@@ -149,7 +149,8 @@ export class SignupFormComponent implements OnInit {
     fileInput.click();
   }
 
-  goBack() {
+  goBack(event: Event) {
+    event.preventDefault();
     console.log('Origem:', this.origem);
     if (this.origem === 'modal' && this.dialogRef) {
       console.log('Fechando modal');

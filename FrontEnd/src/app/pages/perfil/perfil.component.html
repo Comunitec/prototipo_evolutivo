@@ -14,7 +14,7 @@
         <img [src]="imagem" alt="">
         <label for="input-foto" class="input-icon">
           <i class="icone-foto"><fa-icon [icon]="faCamera"></fa-icon></i>
-          <input type="file" id="input-foto" accept="image/*" style="display: none;"> <!-- input de imagem oculto -->
+          <input type="file" id="input-foto" accept="image/*" style="display: none;" (change)="onFileSelected($event)"> <!-- input de imagem oculto -->
         </label>
       </div>
       <div class="card_pontuacao">
