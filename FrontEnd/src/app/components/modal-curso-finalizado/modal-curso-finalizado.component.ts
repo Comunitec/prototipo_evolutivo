@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-modal-curso-finalizado',
@@ -8,12 +9,17 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 })
 export class ModalCursoFinalizadoComponent {
   constructor(
+    private router: Router, 
+    private route: ActivatedRoute,
     public dialogRef: MatDialogRef<ModalCursoFinalizadoComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { message: string }
   ) {}
 
   onClose(): void {
+    const idCurso = this.route.snapshot.paramMap.get('id');
+    this.router.navigate(['/finalizarCurso/', idCurso]);
     this.dialogRef.close();
+    
   }
 
 }
