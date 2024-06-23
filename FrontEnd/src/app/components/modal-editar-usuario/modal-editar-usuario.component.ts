@@ -62,7 +62,7 @@ export class ModalEditarUsuarioComponent implements OnInit {
   }
 
   salvarAlteracoes(): void {
-    const url = `http://localhost:8800/api/alunos/updateAluno/${this.usuario.idAluno}`;
+    const url = `api/alunos/updateAluno/${this.usuario.idAluno}`; // Rota para atualizar o aluno
 
     this.http.put(url, this.usuario).subscribe(
       response => {
@@ -71,7 +71,7 @@ export class ModalEditarUsuarioComponent implements OnInit {
       },
       error => {
         console.error('Erro ao atualizar o usuário:', error);
-        // Aqui você pode adicionar lógica para mostrar uma mensagem de erro ao usuário
+        // Tratar erro aqui
       }
     );
   }

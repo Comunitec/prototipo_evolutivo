@@ -4,6 +4,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { ModalUsuarioCriadoComponent } from 'src/app/components/modal-usuario-criado/modal-usuario-criado.component';
 import { ModalErroAoCriarUsuarioComponent } from 'src/app/components/modal-erro-ao-criar-usuario/modal-erro-ao-criar-usuario.component';
 import { ActivatedRoute, Router } from '@angular/router';
+import { faCamera } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-signup-form',
@@ -22,6 +23,7 @@ export class SignupFormComponent implements OnInit {
   selectedImagem: string | ArrayBuffer | null = null;
   origem: string | null = null;
   formSubmitted: boolean = false;
+  faCamera = faCamera;
 
   constructor(
     private http: HttpClient,

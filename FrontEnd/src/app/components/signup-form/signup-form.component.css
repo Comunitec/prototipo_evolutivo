@@ -3,12 +3,20 @@
   font-size: 12px;
 
 }
+.login{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .signup-container {
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #EDEDED;
-  box-shadow:   var(--box-shadow);
+  box-shadow: var(--box-shadow);
+  width: 75%;
+  border-radius: 8PX;
 }
 
 .signup-box {
@@ -51,9 +59,8 @@ label {
 input[type="text"],
 input[type="email"],
 input[type="password"],
-input[type="date"],
-input[type="file"] {
-  width: 400px;
+input[type="date"]{
+  width: 370px;
   /* height: 20px; */
   padding: 10px;
   border-radius: 8px;
@@ -62,6 +69,7 @@ input[type="file"] {
   box-shadow: 1px 3px 4px -2px #898989;
 
 }
+
 
 button {
   color: white;

@@ -42,11 +42,22 @@ h2 {
 }
 
 .ranking-item img {
-  border: 1px solid white;
   width: 50px;
   height: 50px;
   border-radius: 50%;
   margin: 10px 5px;
+}
+
+.gold-border {
+  border: 3px solid gold;
+}
+
+.silver-border {
+  border: 3px solid silver;
+}
+
+.bronze-border {
+  border: 3px solid #cd7f32; /* Cor de bronze */
 }
 
 .dados {
@@ -61,12 +72,20 @@ p {
   font-size: small;
   font-weight: bolder;
 }
-
-.pontos {
-  color: gray;
+.card-pontos{
+  display: flex;
   font-size: x-small;
-  font-style: italic;
+  align-items: center;
+  color: var(--secondary-color);
+}
+.pontos {
   text-align: left;
+  font-weight: bold;
+
+}
+
+.comunicoins{
+  margin-left: 2px;
 }
 
 a {

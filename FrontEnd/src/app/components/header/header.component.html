@@ -9,8 +9,21 @@
   </div>
   <nav>
     <ul>
-      <li><a class="cursos-link" (click)="navigateToCursos()">Cursos</a></li>
-      <li><a routerLink="/faq">Ajuda</a></li>
+      <li class="item-menu">
+        <a class="cursos-link" (click)="navigateToCursos()">Início</a>
+        <i class="icone-foto"><fa-icon [icon]="faHouse"></fa-icon></i>
+      </li>
+      <li class="item-menu" routerLink="/faq">
+        <a>Ajuda</a>
+        <i class="icone-foto"><fa-icon [icon]="faCircleQuestion"></fa-icon></i>
+      </li>
+      <div *ngIf="!isLoggedIn()">
+        <li class="item-menu-entrar"  routerLink="/login">
+          <a>Entrar</a>
+          <i class="icone-foto"><fa-icon [icon]="faRightToBracket"></fa-icon></i>
+        </li>
+
+      </div>
     </ul>
   </nav>
 </div>

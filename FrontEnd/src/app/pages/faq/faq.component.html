@@ -5,8 +5,10 @@
 
 <!-- Coluna do Meio (Rolável) - Conteúdo Principal -->
 <app-middle-column>
-  <br><br><br>
-  <h1>Perguntas frequentes</h1>
+  <div class="titulo-pagina">
+    <h1>PERGUNTAS FREQUENTES</h1>
+    <i class="fa-layers center-icon"><fa-icon [icon]="faCircleQuestion"></fa-icon></i>
+  </div>
   <button routerLink="/FaqFormComponent" class="save-button" *ngIf="podeAdicionarEDeletar">Adicionar Pergunta</button>
   <br><br>
   <mat-accordion>

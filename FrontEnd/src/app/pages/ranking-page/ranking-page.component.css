@@ -18,8 +18,10 @@
 }
 
 .titulo-pagina > i {
-  font-size: 20px;
+  padding-right: 10px;
+  color: goldenrod;
 }
+
 
 h1{
   margin: 0;

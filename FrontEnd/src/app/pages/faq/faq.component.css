@@ -1,5 +1,5 @@
 ::ng-deep .matExpansion .mat-expansion-panel-body{
-    padding: 50px!important;
+    padding: 20px!important;
 }
 
 .matExpansion.mat-expansion-panel .mat-expansion-panel-header{
@@ -10,12 +10,29 @@
     background-color: rgb(196, 196, 196);
 }
   .matExpansion{
-    margin: 0 70px;
+    margin: 0 60px;
   }
 
-h1 {
+  .titulo-pagina{
+    display: flex;
+    flex-direction: row;
+    padding: 30px;
+    align-items: center;
+    justify-content: center;
+    color: var(--hover-btn-secondary);
+    gap: 10px;
+
+  }
+
+  .titulo-pagina > i {
+    font-size: 20px;
+  }
+
+  h1{
+    margin: 0;
+    font-weight: bold;
     text-align: center;
-}
+  }
 
 .contentToogle{
     font-size: 16px;
