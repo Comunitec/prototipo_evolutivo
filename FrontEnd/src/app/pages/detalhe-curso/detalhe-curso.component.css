@@ -3,7 +3,7 @@
   background: var(--back-menu);
   border-radius: 8px;
   box-shadow: var(--box-shadow);
-  padding: 50px;
+  padding: 20px;
 }
 
 h1 {
@@ -20,9 +20,7 @@ h1 {
 
 .card_curso-thumb {
   flex: 1 1 33.33%;
-  padding: 20px;
   box-sizing: border-box;
-
   background: var(--hover-menu);
   border-radius: 8px;
   display: flex;
@@ -36,7 +34,7 @@ p{margin: 0;}
 .card_curso-thumb img {
   width: 100%;
   height: auto;
-  border-radius: 10px;
+  border-start-end-radius: 8px;
 }
 
 .card_curso-descricao {

@@ -39,6 +39,7 @@ export class ModalEditarUsuarioComponent implements OnInit {
   }
 
   ngOnInit() {
+    // Inicializa os dados do usuário no modal
     const dataNasc = sessionStorage.getItem('DataNasc');
     if (dataNasc) {
       this.usuario.DataNasc = new Date(dataNasc).toISOString().substring(0, 10);
@@ -54,7 +55,7 @@ export class ModalEditarUsuarioComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         console.log('Senha alterada:', result);
-        // Aqui você pode adicionar a lógica para alterar a senha no backend
+        // Lógica para alterar a senha no backend, se necessário
       } else {
         console.log('Alteração de senha cancelada');
       }
@@ -62,7 +63,7 @@ export class ModalEditarUsuarioComponent implements OnInit {
   }
 
   salvarAlteracoes(): void {
-    const url = `api/alunos/updateAluno/${this.usuario.idAluno}`; // Rota para atualizar o aluno
+    const url = `http://localhost:8800/updateAluno/${this.usuario.idAluno}`; // Rota para atualizar o aluno
 
     this.http.put(url, this.usuario).subscribe(
       response => {
@@ -71,12 +72,14 @@ export class ModalEditarUsuarioComponent implements OnInit {
       },
       error => {
         console.error('Erro ao atualizar o usuário:', error);
-        // Tratar erro aqui
+        // Tratar erro aqui, se necessário
       }
     );
+    window.location.reload();
   }
 
   cancelar(): void {
-    this.dialogRef.close(false); // Fechar modal e indicar cancelamento
+    this.dialogRef.close(false); // Fechar modal indicando cancelamento
+
   }
 }

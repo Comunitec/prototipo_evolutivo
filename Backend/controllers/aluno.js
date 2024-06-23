@@ -29,44 +29,66 @@ export const getAlunosRanking = (_, res) => {
   });
 };
 
+
 export const deleteAluno = (req, res) => {
   const id = req.params.id;
+  const sistemaId = 23; // O novo id do sistema
 
   const qSelect = "SELECT Foto FROM aluno WHERE idAluno = ?";
+  const qUpdateCurso = "UPDATE curso SET idAlunoCriador = ? WHERE idAlunoCriador = ?";
+  const qUpdateAlunoCurso = "UPDATE alunocurso SET idAluno = ? WHERE idAluno = ?";
+  const qUpdateFaq = "UPDATE faq SET fk_adm_idAluno = ? WHERE fk_adm_idAluno = ?";
   const qDelete = "DELETE FROM aluno WHERE idAluno = ?";
 
   db.query(qSelect, [id], (err, result) => {
     if (err) {
       console.error("Erro ao selecionar imagem do aluno:", err);
-      return res.sendStatus(500);
+      return res.status(500).json({ error: "Erro ao selecionar imagem do aluno." });
     }
 
     if (result.length === 0) {
       return res.status(404).json({ error: "Usuário não encontrado." });
     }
 
-    const imagePath = result[0].Foto.toString();
-    const imageAbsPath = path.join(process.cwd(), imagePath);
+    // Obtém o BLOB da imagem do aluno
+    const imagemBLOB = result[0].Foto;
 
-    console.log("Caminho absoluto da imagem:", imageAbsPath);
-
-    fs.unlink(imageAbsPath, (err) => {
+    // Desassocia todos os registros relacionados antes de excluir o aluno
+    db.query(qUpdateCurso, [null, id], (err) => {
       if (err) {
-        console.error("Erro ao excluir imagem do aluno:", err);
-        return res.sendStatus(500);
+        console.error("Erro ao atualizar cursos:", err);
+        return res.status(500).json({ error: "Erro ao atualizar cursos." });
       }
 
-      db.query(qDelete, [id], (err) => {
+      db.query(qUpdateAlunoCurso, [sistemaId, id], (err) => {
         if (err) {
-          console.error("Erro ao excluir aluno do banco de dados:", err);
-          return res.sendStatus(500);
+          console.error("Erro ao atualizar aluno curso:", err);
+          return res.status(500).json({ error: "Erro ao atualizar aluno curso." });
         }
 
-        return res.status(200).json({ message: "Usuário e imagem deletados com sucesso." });
+        db.query(qUpdateFaq, [sistemaId, id], (err) => {
+          if (err) {
+            console.error("Erro ao atualizar FAQ:", err);
+            return res.status(500).json({ error: "Erro ao atualizar FAQ." });
+          }
+
+          // Exclui o aluno, incluindo o BLOB da imagem
+          db.query(qDelete, [id], (err) => {
+            if (err) {
+              console.error("Erro ao excluir aluno do banco de dados:", err);
+              return res.status(500).json({ error: "Erro ao excluir aluno do banco de dados." });
+            }
+
+            return res.status(200).json({ message: "Usuário e registros atualizados e deletados com sucesso." });
+          });
+        });
       });
     });
   });
 };
+
+
+
 
 //Adicionar alunos
 export const addAluno = (req, res) => {

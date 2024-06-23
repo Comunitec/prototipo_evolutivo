@@ -8,9 +8,12 @@
     <i class="fa-layers center-icon"><fa-icon [icon]="faUserGear"></fa-icon></i>
   </div>
   <div class="container">
-    <div class="search">
-      <input class="common-style" type="text" placeholder="Pesquisar usuário por nome ou e-mail" [formControl]="searchControl">
-      <button class="btn-add" (click)="openCadastroModal()">Adicionar Usuário</button>
+    <div class="container-serach">
+      <div class="search">
+        <input class="common-style" type="text" placeholder="Pesquisar usuário por nome ou e-mail" [formControl]="searchControl">
+        <button class="btn-add" (click)="openCadastroModal()">Adicionar Usuário</button>
+
+      </div>
     </div>
 
     <div class="container-usuarios">

@@ -14,13 +14,13 @@
         <div class="card_descricao-tags">
           <span *ngFor="let tag of curso.tags">{{ tag }}</span>
         </div>
-        <p>
-          Curso criado por: <b>{{ curso.nomeCriador }}</b>
-        </p>
+        <p>Curso criado por: </p>
+        <b>{{ curso.nomeCriador }}</b>
         <p>
           <!-- <b>{{ finishTotal }} pessoas</b> já concluiram este curso -->
         </p>
-        <p>Curso criado em: {{ curso.DataCriacao | date:'dd/MM/yyyy' }}</p>
+        <p>Curso criado em: </p>
+        {{ curso.DataCriacao | date:'dd/MM/yyyy' }}
       </div>
 
       <div class="card_curso-descricao">

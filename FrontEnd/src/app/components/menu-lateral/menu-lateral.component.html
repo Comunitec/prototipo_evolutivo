@@ -5,8 +5,15 @@
     </div>
     <div class="card_perfil-dados">
       <span class="nomePerfil">{{ getFirstAndLastName() }}</span>
-      <span class="pontuacao">{{Pontos}} comunicoins</span>
-      <span class="pontuacao">Perfil: {{PerfilDeAcesso}}</span>
+      <div class="perfil">
+        <span class="perfil-texto">Perfil: </span>
+        <span class="perfil-tipo">{{PerfilDeAcesso}}</span>
+      </div>
+      <div class="card-pontos">
+        <span class="pontos">{{Pontos}}</span>
+        <span class="comunicoins">comunicoins</span>
+      </div>
+
     </div>
   </div>
 
@@ -41,11 +48,12 @@
         <i class="fa-layers center-icon"><fa-icon [icon]="faChalkboardTeacher"></fa-icon></i>
         <span>Professor</span>
       </a>
-      <a routerLink="/staff" routerLinkActive="active">
+      <a routerLink="/staff" routerLinkActive="active" *ngIf="PerfilDeAcesso === 'Staff' || PerfilDeAcesso === 'Administrador'">
         <i class="fa-layers center-icon"><fa-icon [icon]="faThumbsUp"></fa-icon></i>
         <span>Staff</span>
       </a>
-      <a routerLink="/gerenciar-usuarios" routerLinkActive="active">
+
+      <a routerLink="/gerenciar-usuarios" routerLinkActive="active" *ngIf="PerfilDeAcesso === 'Administrador'">
         <i class="fa-layers center-icon"><fa-icon [icon]="faUserTie"></fa-icon></i>
         <span>Administrador</span>
       </a>
