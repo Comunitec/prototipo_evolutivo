@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { faTrophy } from '@fortawesome/free-solid-svg-icons';
 
@@ -41,13 +40,14 @@ export class RankingPageComponent implements OnInit {
     }
   }
 
-
   ngOnInit(): void {
     this.carregarMenuLateral();
     const apiUrl = 'http://localhost:8800/ranking'; // URL correta da API
     this.http.get<Aluno[]>(apiUrl).pipe(
       map(alunos => {
-        return alunos.map(aluno => ({
+        // Filtrando os alunos com idAluno diferente de 23
+        const filteredAlunos = alunos.filter(aluno => aluno.idAluno !== 23);
+        return filteredAlunos.map(aluno => ({
           position: aluno.position,
           name: aluno.Nome,
           points: aluno.Pontuacao,
@@ -57,5 +57,15 @@ export class RankingPageComponent implements OnInit {
     ).subscribe(data => {
       this.rankingItems = data;
     });
+  }
+  getBorderClass(index: number): string {
+    if (index === 0) {
+      return 'gold-border';
+    } else if (index === 1) {
+      return 'silver-border';
+    } else if (index === 2) {
+      return 'bronze-border';
+    }
+    return '';
   }
 }

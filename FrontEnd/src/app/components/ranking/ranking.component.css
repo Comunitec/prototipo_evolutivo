@@ -2,6 +2,7 @@
   padding: 5px;
   padding-left: 5px;
   margin: 3px;
+
 }
 
 .titulo-pagina{
@@ -69,7 +70,7 @@ p {
 }
 
 .name {
-  font-size: small;
+  font-size: smaller;
   font-weight: bolder;
 }
 .card-pontos{
@@ -77,10 +78,16 @@ p {
   font-size: x-small;
   align-items: center;
   color: var(--secondary-color);
+  background-color: #d9d9d9;
+  border-radius: 8px;
+  padding: 2px 5px;
+  width: 80px;
+
 }
 .pontos {
   text-align: left;
   font-weight: bold;
+  -webkit-text-stroke: black;
 
 }
 

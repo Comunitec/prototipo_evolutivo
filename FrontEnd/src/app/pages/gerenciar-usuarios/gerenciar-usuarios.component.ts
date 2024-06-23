@@ -46,10 +46,12 @@ export class GerenciarUsuariosComponent implements OnInit {
     this.http.get<Usuario[]>('http://localhost:8800/getAlunos').subscribe(
       data => {
         console.log('Dados dos usuários:', data);
-        this.usuarios = data.map(usuario => ({
-          ...usuario,
-          photoUrl: `http://localhost:8800/imagem/${usuario.idAluno}`
-        }));
+        this.usuarios = data
+          .filter(usuario => usuario.idAluno !== 23) // Filtra o usuário com ID 23
+          .map(usuario => ({
+            ...usuario,
+            photoUrl: `http://localhost:8800/imagem/${usuario.idAluno}`
+          }));
         this.filteredUsuarios = this.usuarios; // Inicializa a lista filtrada
       },
       error => {

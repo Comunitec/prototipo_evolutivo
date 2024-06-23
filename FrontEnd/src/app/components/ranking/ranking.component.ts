@@ -32,27 +32,30 @@ export class RankingComponent implements OnInit {
   constructor(private http: HttpClient, private rankingService: RankingService) {}
 
   ngOnInit(): void {
-    this.getTopRanking().subscribe(data => {
-      this.rankingService.updateRanking(data);
-    });
-
-    this.rankingService.getRanking().subscribe(data => {
-      this.rankingItems = data;
-    });
+    this.fetchTopRanking();
   }
 
-  getTopRanking(): Observable<RankingItem[]> {
+  fetchTopRanking(): void {
     const apiUrl = 'http://localhost:8800/ranking';
-    return this.http.get<Aluno[]>(apiUrl).pipe(
-      map(alunos => {
-        console.log(alunos);
-        return alunos.map(aluno => ({
+    this.http.get<Aluno[]>(apiUrl).pipe(
+      map(alunos => alunos.filter(aluno => aluno.idAluno !== 23)),
+      map(filteredAlunos => {
+        return filteredAlunos.map(aluno => ({
           position: aluno.position,
           name: aluno.Nome,
           points: aluno.Pontuacao,
           photo: `http://localhost:8800/imagem/${aluno.idAluno}`
         }));
       })
+    ).subscribe(
+      data => {
+        this.rankingItems = data;
+        this.rankingService.updateRanking(data); // Atualiza o serviço de ranking com os dados recebidos
+      },
+      error => {
+        console.error('Erro ao carregar ranking:', error);
+        // Lógica para tratamento de erro, se necessário
+      }
     );
   }
 
@@ -75,4 +78,3 @@ export class RankingComponent implements OnInit {
     return fullName;
   }
 }
-

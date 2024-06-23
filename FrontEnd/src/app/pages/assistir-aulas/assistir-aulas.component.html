@@ -4,31 +4,34 @@
 
 <app-middle-column>
   <h1>{{ nomeCurso }}</h1>
-  <mat-accordion>
-    <mat-expansion-panel *ngFor="let aula of aulas; let i = index" [disabled]="!aula.Titulo" class="matExpansion">
-      <mat-expansion-panel-header>
-        <mat-panel-title> Aula {{ i + 1 }} </mat-panel-title>
-        <mat-panel-description>
-          {{ aula.Titulo || 'Título não disponível' }}
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <p>{{ aula.Descricao || 'Descrição não disponível' }}</p>
-      <iframe *ngIf="aula.SafeLinkIncorporacao" class="iframeElement" width="560" height="315" [src]="aula.SafeLinkIncorporacao" frameborder="0"
-        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
-        referrerpolicy="strict-origin-when-cross-origin"></iframe>
-      <div>
-        <button *ngIf="aula.LinkFormulario" class="btn" (click)="openModal(aula.LinkFormulario, aula.idAula, aula.idCurso)" [disabled]="aula.questionarioFinalizado">Acessar questionário</button>
-      </div>
-    </mat-expansion-panel>
-  </mat-accordion>
-  <div *ngIf="finalizarCursoVisivel && !statusAlunoCurso">
-    <button class="btn" (click)="finalizarCurso()">Finalizar curso</button>
+  <div class="aulas">
+    <mat-accordion>
+      <mat-expansion-panel *ngFor="let aula of aulas; let i = index" [disabled]="!aula.Titulo" class="matExpansion">
+        <mat-expansion-panel-header>
+          <mat-panel-title> Aula {{ i + 1 }} </mat-panel-title>
+          <mat-panel-description>
+            {{ aula.Titulo || 'Título não disponível' }}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="card-conteudo_aula">
+        <p>{{ aula.Descricao || 'Descrição não disponível' }}</p>
+        <iframe *ngIf="aula.SafeLinkIncorporacao" class="iframeElement" width="560" height="315" [src]="aula.SafeLinkIncorporacao" frameborder="0"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
+          referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        <div>
+          <button *ngIf="aula.LinkFormulario" class="btn" (click)="openModal(aula.LinkFormulario, aula.idAula, aula.idCurso)" [disabled]="aula.questionarioFinalizado">Acessar questionário</button>
+        </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <div *ngIf="finalizarCursoVisivel && !statusAlunoCurso">
+      <button class="btn" (click)="finalizarCurso()">Finalizar curso</button>
+    </div>
+    <h2 *ngIf="statusAlunoCurso">Você finalizou esse curso</h2>
+    <div>
+      <button *ngIf="statusAlunoCurso" class="btn" [routerLink]="['/finalizarCurso', idCurso]">Obter certificado</button>
+    </div>
   </div>
-  <h2 *ngIf="statusAlunoCurso">Você finalizou esse curso</h2>
-  <div>
-    <button *ngIf="statusAlunoCurso" class="btn" [routerLink]="['/finalizarCurso', idCurso]">Obter certificado</button>
-  </div>
-  
 </app-middle-column>
 
 <app-right-column></app-right-column>

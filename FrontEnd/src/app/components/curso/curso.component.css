@@ -47,12 +47,25 @@
 }
 
 .card_descricao-titulo {
+  display: flex;
+  align-items: center;
   height: 20%; /* Ajusta a altura do título para 20% do card */
+
 }
 
 .card_descricao-titulo h2 {
   text-transform: uppercase;
   margin-bottom: 0;
+  width: 80%;
+}
+
+.status {
+  border-radius: 8px;
+  background-color: #d9d9d9;
+  padding: 5px;
+  width: 30%;
+  font-size: smaller;
+  text-align: center;
 }
 
 .container-tags {
@@ -82,9 +95,7 @@
   line-height: 1.5;
 }
 
-.status {
-  height: 10%; /* Ajusta a altura do status para 10% do card */
-}
+
 
 .card_descricao-botoes {
   height: 10%; /* Ajusta a altura dos botões para 10% do card */

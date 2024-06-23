@@ -1,5 +1,5 @@
 ::ng-deep .matExpansion .mat-expansion-panel-body{
-    padding: 50px!important;
+    padding: 20px!important;
 }
 
 .matExpansion.mat-expansion-panel .mat-expansion-panel-header{
@@ -37,17 +37,33 @@ h2{
     background-color: var(--secondary-color);
     cursor: pointer;
 }
+.aulas{
+  display: flex;
+  flex-direction: column;
+}
 
 mat-accordion{
   display: flex;
   align-items: center;
   flex-direction: column;
+  justify-content: center;
+  max-width: 80%;
+}
+.matExpansion{
+  width: 100%;
+}
+
+.card-conteudo_aula{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 div{
   display: flex;
   justify-content: space-around;
   align-items: center;
+
 }
 
 

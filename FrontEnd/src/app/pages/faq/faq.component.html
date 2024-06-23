@@ -1,6 +1,7 @@
 <!-- Coluna Esquerda (Fixa) - Menu Lateral -->
 <app-left-column>
   <app-menu-lateral *ngIf="podeVerMenuLateral"></app-menu-lateral>
+  <app-initialactions *ngIf="!podeVerMenuLateral"></app-initialactions>
 </app-left-column>
 
 <!-- Coluna do Meio (Rolável) - Conteúdo Principal -->

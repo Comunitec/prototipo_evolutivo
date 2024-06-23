@@ -1,5 +1,5 @@
 <!-- Campo de pesquisa -->
- <div class="pesquisar">
+<div class="pesquisar">
   <div class="filter-container search-container">
     <input class="common-style" type="text" placeholder="Pesquisar cursos por título ou tecnologia..." [(ngModel)]="termoPesquisa" (input)="pesquisar()">
     <div *ngIf="exibirBotaoAdicionar" class="adicionar">
@@ -17,12 +17,12 @@
     <div class="card_curso-descricao">
       <div class="card_descricao-titulo">
         <h2>{{ curso.Nome }}</h2>
+        <div id="statusDiv" class="status" *ngIf="deveMostrarStatus(curso)"><b>Status do curso: </b> <span id="statusText" >{{ curso.Status }}</span></div>
       </div>
       <div class="container-tags">
         <p *ngFor="let tag of curso.tags">{{ tag }}</p>
       </div>
       <div class="card_descricao-texto">{{ getTruncatedText(curso.Descricao, 300) }}</div>
-      <div *ngIf="deveMostrarStatus()" id="statusDiv" class="status"><b>Status do curso: </b> <span id="statusText">{{ curso.Status }}</span></div>
       <div class="card_descricao-botoes">
         <button *ngIf="podeVisualizar" (click)="redirecionarParaRotaDetalhe(curso.idCurso)" class="btn-visualizar">Visualizar</button>
         <button *ngIf="podeEditar" (click)="redirecionarParaRota(curso.idCurso)" class="btn-editar">Editar</button>
