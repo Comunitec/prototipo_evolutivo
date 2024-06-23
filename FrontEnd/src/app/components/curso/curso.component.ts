@@ -301,4 +301,9 @@ export class CursoComponent implements OnInit {
       this.cursosFiltrados = [...this.cursos];
     }
   }
+
+  deveMostrarStatus(): boolean {
+    const currentRoute = this.router.url;
+    return !currentRoute.includes('/home-logado') && !currentRoute.includes('/') && !currentRoute.includes('/meusCursosAluno');
+  }
 }

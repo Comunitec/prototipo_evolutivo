@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { faCircleQuestion} from '@fortawesome/free-solid-svg-icons';
 
 interface FAQ {
   idFaq: number;
@@ -18,6 +19,7 @@ export class FaqComponent implements OnInit {
   podeVerMenuLateral: boolean = false;
   podeAdicionarEDeletar: boolean = false;
   PerfilDeAcesso = sessionStorage.getItem('PerfilDeAcesso');
+  faCircleQuestion = faCircleQuestion;
 
   constructor(private http: HttpClient) {}
 

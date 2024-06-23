@@ -1,7 +1,7 @@
 <h1>Questionário</h1>
 <form (ngSubmit)="finalizarQuestionario()">
     <p>Após assistir a aula realize o questionário no link abaixo para verificar seu aprendizado. Caso seja satisfatório clique na opção finalizar.</p>
-    <a style="text-align: center;" [href]="data.linkFormulario" >Questionário</a>
+    <a style="text-align: center;" [href]="data.LinkFormulario" target="_blank" >Questionário</a>
 
     <div class="navigation-buttons">
       <button class="btn cancel" mat-button type="button" (click)="cancel()">Fechar</button>

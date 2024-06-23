@@ -1,8 +1,8 @@
+<div class="login">
 <div class="signup-container">
   <div class="signup-box">
     <form (ngSubmit)="enviarRegistro()">
       <div class="input-group imagem">
-        <label>Adicionar imagem de perfil</label>
         <img src="https://portal.fidelis.edu.br/wp-content/uploads/2020/10/perfil.jpg"
           style="width: 140px; border-radius: 50%; border: 1px solid white;" *ngIf="!selectedImagem" alt="Clique para adicionar"
           (click)="triggerFileInput('adicionarImagem')">
@@ -11,6 +11,7 @@
         <div class="image-preview" *ngIf="selectedImagem">
           <img [src]="selectedImagem" alt="Imagem selecionada">
         </div>
+
       </div>
 
       <div class="inputs">
@@ -60,4 +61,5 @@
       </div>
     </form>
   </div>
+</div>
 </div>

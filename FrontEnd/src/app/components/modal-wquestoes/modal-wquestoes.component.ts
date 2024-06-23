@@ -12,7 +12,7 @@ export class ModalWQuestoesComponent {
   questionarioFinalizado: boolean;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: { linkFormulario: string, idAula: number, idCurso: number, idAlunoCurso: number | null, questionarioFinalizado: boolean },
+    @Inject(MAT_DIALOG_DATA) public data: { LinkFormulario: string, idAula: number, idCurso: number, idAlunoCurso: number | null, questionarioFinalizado: boolean },
     public dialogRef: MatDialogRef<ModalWQuestoesComponent>,
     private http: HttpClient,
     private dialog: MatDialog // Injete o MatDialog aqui
@@ -44,7 +44,7 @@ export class ModalWQuestoesComponent {
       }
     );
   }
-  
+
   openModalAulaJaFinalizada(): void {
     const dialogRef = this.dialog.open(ModalAulaJaEstaFinalizadaComponent, {
       width: '350px',

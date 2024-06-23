@@ -58,21 +58,21 @@ export class RankingComponent implements OnInit {
 
   getBorderClass(index: number): string {
     if (index === 0) {
-      return 'primeiro';
+      return 'gold-border';
     } else if (index === 1) {
-      return 'segundo';
+      return 'silver-border';
     } else if (index === 2) {
-      return 'terceiro';
-    } else {
-      return '';
+      return 'bronze-border';
     }
+    return '';
   }
 
-  getFirstAndLastName(name: string): string {
-    if (!name) return '';
-
-    const names = name.split(' ');
-    if (names.length === 1) return names[0];
-    return `${names[0]} ${names[names.length - 1]}`;
+  getFirstAndLastName(fullName: string): string {
+    const names = fullName.split(' ');
+    if (names.length > 1) {
+      return `${names[0]} ${names[names.length - 1]}`;
+    }
+    return fullName;
   }
 }
+

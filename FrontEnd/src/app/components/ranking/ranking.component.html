@@ -5,12 +5,15 @@
   </div>
 
   <div *ngFor="let item of rankingItems; let i = index">
-    <div *ngIf="i < 5" class="ranking-item" [ngClass]="getBorderClass(i)">
+    <div *ngIf="i < 5" class="ranking-item">
       <span>{{ item.position }}º</span>
-      <img [src]="item.photo" alt="{{ item.name }}" class="photo">
+      <img [src]="item.photo" alt="{{ item.name }}" class="photo" [ngClass]="getBorderClass(i)">
       <div class="dados">
         <p class="name">{{ getFirstAndLastName(item.name) }}</p>
-        <p class="pontos">{{ item.points }} comunicoins</p>
+        <div class="card-pontos">
+          <p class="pontos">{{ item.points }}</p>
+          <p class="comunicoins">comunicoins</p>
+        </div>
       </div>
     </div>
   </div>

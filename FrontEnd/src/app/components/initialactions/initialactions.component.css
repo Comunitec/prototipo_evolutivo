@@ -8,7 +8,7 @@
   text-align: center;
   border-radius: 8px;
   width: 80%;
-  max-width: 350px;
+  max-width: 330px;
   padding: 20px;
   margin: 0 auto;
   margin-top: 20%;
@@ -41,7 +41,7 @@ p {
   width: 70%;
   padding: 5px;
   margin: 5px 0;
-  background: rgb(193, 3, 3);
+  background: var(--primary-color);
   color: white;
   border: none;
   border-radius: 5px;
@@ -53,6 +53,6 @@ p {
 
 .login-button:hover,
 .signup-button:hover {
-  background-color: #0056b3;
+  background-color: red;
   transform: translateY(-3px);
 }
