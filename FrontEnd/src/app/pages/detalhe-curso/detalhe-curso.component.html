@@ -5,37 +5,43 @@
 
 <!-- Coluna do Meio (Rolável) - Feed Principal -->
 <app-middle-column>
-  <div class="container_curso" *ngIf="curso">
-    <h1><b>{{ curso.Nome }} </b></h1>
+  <div *ngIf="curso">
+    <div class="titulo-pagina">
+      <h1>{{ curso.Nome }}</h1>
+    </div>
 
-    <div class="card_curso">
-      <div class="card_curso-thumb">
-        <img [src]="curso.Imagem" alt="Img do Curso" />
-        <div class="card_descricao-tags">
-          <span *ngFor="let tag of curso.tags">{{ tag }}</span>
+    <div class="container_curso">
+      <div class="card_curso">
+        <div class="card_curso-thumb">
+          <img [src]="curso.Imagem" alt="Img do Curso" />
         </div>
-        <p>Curso criado por: </p>
-        <b>{{ curso.nomeCriador }}</b>
-        <p>
-          <!-- <b>{{ finishTotal }} pessoas</b> já concluiram este curso -->
-        </p>
-        <p>Curso criado em: </p>
-        {{ curso.DataCriacao | date:'dd/MM/yyyy' }}
-      </div>
+        <div class="dados-criador">
+          <p>Criado por: <b>{{ curso.nomeCriador }}</b></p>
+          <p>Em: {{ curso.DataCriacao | date:'dd/MM/yyyy' }}</p>
+        </div>
 
-      <div class="card_curso-descricao">
-        <div class="card_descricao">Descrição:</div>
-        <div class="card_descricao-texto">{{ curso.Descricao }}</div>
+        <div class="card_curso-descricao">
+          <div class="card_descricao"><h2>Descrição:</h2></div>
 
-        <div class="card_btn">
-          <button *ngIf="!isAlunoCriador && !curso.matricula" class="btn-matricula" (click)="openModal()">Matricular-se</button>
-          <button *ngIf="!isAlunoCriador && curso.matricula" class="btn-matricula" (click)="desmatricularAluno()">Desmatricular-se</button>
-          <button *ngIf="isAlunoCriador || curso.matricula" class="btn-matricula" [routerLink]="['/assistirAulas', curso.idCurso]">Assistir aulas</button>
-
+          <div class="card_descricao-texto">{{ curso.Descricao }}</div>
+          <div class="card_descricao-tag">
+            <h2>Tags:  </h2><span *ngFor="let tag of curso.tags" class="tag"> {{ tag }}</span>
+          </div>
+          <div class="card-emblema">
+            <h2>Emblema:</h2>
+            <img *ngIf="curso.Emblema" [src]="curso.Emblema" alt="Emblema do Curso" class="curso-emblema">
+          </div>
         </div>
       </div>
+    </div>
+    <div class="card_btn">
+      <button *ngIf="!isAlunoCriador && !curso.matricula" class="btn-matricula" (click)="openModal()">Matricular-se</button>
+      <button *ngIf="!isAlunoCriador && curso.matricula" class="btn-dematricular" (click)="desmatricularAluno()">Desmatricular-se</button>
+      <button *ngIf="isAlunoCriador || curso.matricula" class="btn-matricula" [routerLink]="['/assistirAulas', curso.idCurso]">Assistir aulas</button>
     </div>
   </div>
 </app-middle-column>
 
-<app-right-column></app-right-column>
+<app-right-column>
+  <app-ranking></app-ranking>
+</app-right-column>

@@ -1,3 +1,12 @@
+h2{
+  text-align: center;
+}
+mat-dialog-actions{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .btn{
     padding: 8px 16px;
     border: none;
@@ -8,12 +17,12 @@
     margin-top: 10px;
     margin-bottom: 15px;
     background-color: var(--primary-color);
-    width: 500px;
+    width: var(--button-width);
     display: flex;
     justify-content: center;
   }
 
   .btn:hover {
-    background-color: var(--secondary-color);
+    background-color: var(--hover-btn-primary);
     cursor: pointer;
 }

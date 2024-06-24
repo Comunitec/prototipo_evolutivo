@@ -5,7 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ModalWQuestoesComponent } from 'src/app/components/modal-wquestoes/modal-wquestoes.component';
 import { ModalCursoFinalizadoComponent } from 'src/app/components/modal-curso-finalizado/modal-curso-finalizado.component';
-import { ModalAulaJaEstaFinalizadaComponent } from 'src/app/components/modal-aula-ja-esta-finalizada/modal-aula-ja-esta-finalizada.component';
+
 
 interface Aula {
   idAula: number;
@@ -55,12 +55,11 @@ export class AssistirAulasComponent implements OnInit {
       this.getAulas(this.idCurso);
     }
     this.getStatusAlunoCurso();
-    
   }
 
-  getStatusAlunoCurso(){
+  getStatusAlunoCurso() {
     const idCurso = this.route.snapshot.params['id'];
-    const idAluno = sessionStorage.getItem('idAluno'); 
+    const idAluno = sessionStorage.getItem('idAluno');
 
     this.http.get<{ status: string }>(`http://localhost:8800/getStatusAlunoCurso/${idCurso}/${idAluno}`).subscribe(
       response => {
@@ -165,17 +164,13 @@ export class AssistirAulasComponent implements OnInit {
     const idAluno = this.idAlunoLogado;
     this.http.get<{ totalAulasConcluidas: number }>(`http://localhost:8800/countAulasConcluidas/${idAluno}/${idCurso}`).subscribe(
       (response) => {
-        // Se o total de aulas concluídas for 4, define finalizarCursoVisivel como true
         this.finalizarCursoVisivel = response.totalAulasConcluidas === 4;
-
-        console.log('ESTOU APARECENDO POR ISSO')
       },
       (error) => {
         console.error('Erro ao verificar o número de aulas concluídas:', error);
       }
     );
   }
-
 
   finalizarCurso(): void {
     const idAluno = Number(this.idAlunoLogado);
@@ -191,12 +186,11 @@ export class AssistirAulasComponent implements OnInit {
     this.http.post(`http://localhost:8800/finalizarCurso`, alunocursoData).subscribe(
       (response) => {
         console.log('Curso finalizado com sucesso:', response);
-          // Open the modal here
-          this.dialog.open(ModalCursoFinalizadoComponent, {
-            width: '400px',
-            data: { message: 'Curso finalizado com sucesso!' }
-          });
-          this.getStatusAlunoCurso();
+        this.dialog.open(ModalCursoFinalizadoComponent, {
+          width: '400px',
+          data: { message: 'Curso finalizado com sucesso!' }
+        });
+        this.getStatusAlunoCurso();
       },
       (error) => {
         console.error('Erro ao finalizar o curso:', error);

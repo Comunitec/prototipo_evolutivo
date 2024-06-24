@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material/dialog'; // Importe o MatDialog aqui
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
 import { ModalAulaJaEstaFinalizadaComponent } from '../modal-aula-ja-esta-finalizada/modal-aula-ja-esta-finalizada.component';
 
@@ -15,7 +15,7 @@ export class ModalWQuestoesComponent {
     @Inject(MAT_DIALOG_DATA) public data: { LinkFormulario: string, idAula: number, idCurso: number, idAlunoCurso: number | null, questionarioFinalizado: boolean },
     public dialogRef: MatDialogRef<ModalWQuestoesComponent>,
     private http: HttpClient,
-    private dialog: MatDialog // Injete o MatDialog aqui
+    private dialog: MatDialog
   ) {
     this.questionarioFinalizado = data.questionarioFinalizado;
   }

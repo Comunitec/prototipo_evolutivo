@@ -45,8 +45,15 @@ export class DetalheCursoComponent implements OnInit {
 
   getImagemCurso(idCurso: number, curso: Curso): void {
     if (idCurso) {
-      console.log(`Setting image URL for course ${curso.Nome} with ID ${idCurso}`);
       curso.Imagem = `http://localhost:8800/getImagemCurso/${idCurso}`;
+    } else {
+      console.error('ID do curso é undefined para curso:', curso);
+    }
+  }
+
+  getEmblemaCurso(idCurso: number, curso: Curso): void {
+    if (idCurso) {
+      curso.Emblema = `http://localhost:8800/getEmblemaCurso/${idCurso}`;
     } else {
       console.error('ID do curso é undefined para curso:', curso);
     }
@@ -56,24 +63,19 @@ export class DetalheCursoComponent implements OnInit {
     this.http.get<Curso>(`http://localhost:8800/getCursoPorId/${idCurso}`).subscribe(
       (curso) => {
         this.getImagemCurso(idCurso, curso);
+        this.getEmblemaCurso(idCurso, curso);
+        this.getTagsCurso(idCurso, curso); // Adicionado para garantir o carregamento das tags
         this.getNomeCriador(curso.idAlunoCriador).subscribe(
           (data) => {
-            console.log(`Resposta da API para o aluno criador com ID ${curso.idAlunoCriador}:`, data);
-
-            curso.nomeCriador = data.Nome; // Atribuir o nome do criador ao curso
+            curso.nomeCriador = data.Nome;
             this.curso = curso;
             this.verAulas = !this.curso.matricula;
-            console.log('Curso:', this.curso);
-
-            // Verifica se o aluno logado é o criador do curso
             this.isAlunoCriador = Number(this.idAlunoLogado) === curso.idAlunoCriador;
-
-            // Verifica a matrícula do aluno logado no curso
             this.verificarMatricula(Number(this.idAlunoLogado), curso.idCurso);
           },
           (error) => {
             console.error(`Erro ao obter nome do criador para o curso ${idCurso}:`, error);
-            this.curso = curso; // Atribuir o curso mesmo se houver erro ao obter o nome do criador
+            this.curso = curso;
             this.verAulas = !this.curso.matricula;
           }
         );
@@ -85,7 +87,6 @@ export class DetalheCursoComponent implements OnInit {
   }
 
   getNomeCriador(idAluno: number) {
-    console.log(`Requisição para obter nome do criador com ID ${idAluno}`);
     return this.http.get<{ Nome: string }>(`http://localhost:8800/getAlunoPorId/${idAluno}`);
   }
 
@@ -109,9 +110,8 @@ export class DetalheCursoComponent implements OnInit {
 
     this.http.post<{ idAlunoCurso: number }>('http://localhost:8800/matricularAluno', matriculaData).subscribe(
       (response) => {
-        console.log('Matrícula realizada com sucesso - RESPONSE:', response);
         this.curso!.matricula = true;
-        this.idAlunoCurso = response.idAlunoCurso; // Armazena o idAlunoCurso
+        this.idAlunoCurso = response.idAlunoCurso;
       },
       (error) => {
         console.error('Erro ao matricular aluno:', error);
@@ -126,7 +126,6 @@ export class DetalheCursoComponent implements OnInit {
 
     this.http.delete('http://localhost:8800/desmatricularAluno', { body: matriculaData }).subscribe(
       (response) => {
-        console.log('Desmatrícula realizada com sucesso:', response);
         this.curso!.matricula = false;
       },
       (error) => {
@@ -146,8 +145,20 @@ export class DetalheCursoComponent implements OnInit {
         if (result === 'confirm') {
           this.matricularAluno();
         }
-        console.log('The dialog was closed');
       });
     }
+  }
+
+  getTagsCurso(idCurso: number, curso: Curso): void {
+    this.http.get<string[]>(`http://localhost:8800/${idCurso}/tags`)
+      .subscribe(
+        (tags) => {
+          curso.tags = tags;
+          console.log('Tags do curso', curso.Nome, ':', tags);
+        },
+        (error) => {
+          console.error(`Erro ao obter tags do curso ${idCurso}:`, error);
+        }
+      );
   }
 }

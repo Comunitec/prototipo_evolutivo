@@ -8,12 +8,11 @@
     margin-top: 10px;
     margin-bottom: 15px;
     background-color: var(--primary-color);
-    width: 500px;
-    display: flex;
     justify-content: center;
+    width: 150px;
   }
 
   .btn:hover {
-    background-color: var(--secondary-color);
+    background-color: var(--hover-btn-primary);
     cursor: pointer;
 }

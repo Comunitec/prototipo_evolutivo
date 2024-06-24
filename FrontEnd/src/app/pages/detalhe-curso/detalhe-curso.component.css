@@ -1,98 +1,171 @@
 .container_curso {
-  margin: 4rem 5rem;
+  margin: 0 5rem 10px 5rem;
   background: var(--back-menu);
   border-radius: 8px;
   box-shadow: var(--box-shadow);
-  padding: 20px;
+  padding: 0;
 }
 
-h1 {
+.titulo-pagina{
+  display: flex;
+  flex-direction: row;
+  padding: 30px;
+  align-items: center;
+  justify-content: center;
+  color: var(--hover-btn-secondary);
+  gap: 10px;
+
+}
+
+h1{
+  margin: 0;
+  font-weight: bold;
   text-align: center;
+  text-transform: uppercase;
 }
 
 .card_curso {
+  padding: 10px;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  border-radius: 10px;
-  overflow: hidden;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: solid 1px;
+  border: 1px solid #ddd;
+
 }
 
 .card_curso-thumb {
-  flex: 1 1 33.33%;
-  box-sizing: border-box;
-  background: var(--hover-menu);
   border-radius: 8px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 4px;
+  width: 35%;
+  min-width: 35%;
+
 }
+
 p{margin: 0;}
 
 .card_curso-thumb img {
   width: 100%;
   height: auto;
-  border-start-end-radius: 8px;
+  border-radius: 8px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.dados-criador{
+  text-align: center;
+  padding: 10px;
 }
 
 .card_curso-descricao {
-  flex: 2 1 66.67%;
-  padding: 20px;
+  padding: 0 20px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  width: 90%;
 }
 
 .card_descricao-titulo {
-  margin-bottom: 1rem;
+  margin-bottom: 10px;
+}
+.card_descricao {
+  font-size: 20px;
+  margin-bottom: 10px;
 }
 
-.card_descricao-tags {
+.card_descricao > h2{
+  margin: 0;
+}
+
+.card_descricao-tag{
+  height: 5%; /* Ajusta a altura das tags para 5% do card */
   display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 1rem;
+  align-items: center;
+  margin: 10px 0 5px 0;
+  gap: 10px;
+
 }
 
-.card_descricao-tags span {
-  color: white;
-  background-color: var(--primary-color);
-  border-radius: 14px;
-  padding: 1px 20px;
+.card_descricao-tag > span {
+  background: white;
+  border-radius: 8px;
+  padding: 0px 5px;
+  margin: 0 4px 10px 0;
+  min-width: 30px;
+  text-align: center;
   font-size: 10px;
-  margin: 0 10px 10px 0;
+  text-transform: uppercase;
+  box-shadow: #555;
+  height: 20px;
+
 }
 
 .card_descricao-texto {
   text-align: justify;
-  margin-bottom: 1rem;
 }
-.card_descricao {
-  font-size: 20px;
-  margin-bottom: 1rem;
+
+
+.card-emblema{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid;
+  border-radius: 8px;
+  padding: 5px;
+}
+.card-emblema > h2{
+  margin-bottom: 5px;
+}
+.curso-emblema{
+  max-width: 60px;
+}
+.curso-emblema > img{
+  max-width: 60px;
+}
+
+.card_btn{
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
 .btn-matricula {
   padding: 8px 16px;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   color: white;
   position: relative;
-  margin-top: 10px;
-  margin-bottom: 15px;
   background-color: var(--primary-color);
   display: flex;
   justify-content: center;
 }
 
 .btn-matricula:hover {
-  background-color: var(--secondary-color);
+  background-color: var(--hover-btn-primary);
   cursor: pointer;
 }
 
-.card_btn{
+.btn-dematricular{
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  position: relative;
+  background-color: var(--secondary-color);
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+}
 
+.btn-dematricular:hover {
+  background-color: var(--hover-btn-secondary);
+  cursor: pointer;
 }
