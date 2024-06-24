@@ -54,11 +54,15 @@ export class CursoComponent implements OnInit {
       } else if (currentRoute.includes('/home-logado')) {
         this.listarCursosAprovados();
         this.liberaInativar();
-      } else if(currentRoute.includes('/')){
+      } else {
         this.listarCursosAprovados();
-        this.podeVisualizar = false;
+        this.podeVisualizar = true; // Permitir visualizar mesmo para não logados
       }
     });
+  }
+
+  isUserLoggedIn(): boolean {
+    return !!sessionStorage.getItem('idAluno');
   }
 
   liberaInativar(){
@@ -172,7 +176,11 @@ export class CursoComponent implements OnInit {
   }
 
   redirecionarParaRotaDetalhe(idCurso: number) {
-    this.router.navigate(['/detalheCurso', idCurso]);
+    if (this.isUserLoggedIn()) {
+      this.router.navigate(['/detalheCurso', idCurso]);
+    } else {
+      alert('Por favor, faça login para ver os detalhes do curso.');
+    }
   }
 
   getTruncatedText(text: string, limit: number): string {
@@ -301,6 +309,7 @@ export class CursoComponent implements OnInit {
       this.cursosFiltrados = [...this.cursos];
     }
   }
+
   deveMostrarStatus(curso: Curso): boolean {
     const currentRoute = this.router.url;
     // Verifica se a rota é diferente de '/' e '/home-logado'

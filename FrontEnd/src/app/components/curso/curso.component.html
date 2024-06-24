@@ -8,9 +8,9 @@
   </div>
 </div>
 
-<div class="container_curso">
+<div class="container_curso" *ngFor="let curso of cursosFiltrados">
   <!-- Itera sobre cada curso filtrado e exibe as informações -->
-  <div class="card_curso" *ngFor="let curso of cursosFiltrados">
+  <div class="card_curso" *ngIf="podeVisualizar" (click)="redirecionarParaRotaDetalhe(curso.idCurso)">
     <div class="card_curso-thumb">
       <img [src]="curso.Imagem" class="photo">
     </div>
@@ -24,7 +24,6 @@
       </div>
       <div class="card_descricao-texto">{{ getTruncatedText(curso.Descricao, 300) }}</div>
       <div class="card_descricao-botoes">
-        <button *ngIf="podeVisualizar" (click)="redirecionarParaRotaDetalhe(curso.idCurso)" class="btn-visualizar">Visualizar</button>
         <button *ngIf="podeEditar" (click)="redirecionarParaRota(curso.idCurso)" class="btn-editar">Editar</button>
         <button *ngIf="podeAprovar" (click)="aprovarCurso(curso.idCurso)" class="btn-Aprovar">Aprovar</button>
         <button *ngIf="podeReprovar" (click)="reprovarCurso(curso.idCurso)" class="btn-Reprovar">Reprovar</button>

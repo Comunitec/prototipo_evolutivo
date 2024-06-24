@@ -4,7 +4,7 @@ form {
 }
 
 /* Estilos para h2 */
-h2 {
+h2{
   padding: 10px;
   text-align: center;
   font-weight: bold;
@@ -20,28 +20,35 @@ p {
 }
 
 /* Estilos para botões */
-.btn {
-  margin-bottom: 15px;
+.btn{
   display: flex;
   flex-direction: row;
   width: 100%;
-  font-size: larger;
-  font-weight: bolder;
   justify-content: center;
+  gap: 10px;
+
 }
 
-.btn > button {
-  font-size: large;
-  height: 35px;
-  margin: 10px;
-  padding: 10px;
-  cursor: pointer;
-  border: none;
-  border-radius: 5%;
-}
-
-/* Estilos para o botão de confirmar */
-.confirmar {
+button{
   color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  height: 32px;
+  padding: 10px 20px;
+  width: var(--button-width);
+}
+
+.confirmar{
   background-color: var(--primary-color);
 }
+.confirmar:hover{
+  background-color: var(--hover-btn-primary);
+}
+.cancelar{
+  background-color: var(--secondary-color);
+}
+.cancelar:hover{
+  background-color: var(--hover-btn-secondary);
+}
+

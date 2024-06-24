@@ -9,7 +9,6 @@
   justify-content: center;
   color: var(--hover-btn-secondary);
   gap: 10px;
-
 }
 
 .titulo-pagina > i {
@@ -23,6 +22,7 @@ h1{
 }
 
 .container_dados-cadastrais {
+  border: 1px solid #ddd;
   background-color: #EDEDED;
   width: 70%;
   margin: 0 auto;
@@ -30,7 +30,7 @@ h1{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-radius: 2%;
+  border-radius: 8px;
   padding: 20px 0;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }

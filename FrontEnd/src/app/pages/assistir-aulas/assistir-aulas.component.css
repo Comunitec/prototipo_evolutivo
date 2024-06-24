@@ -1,69 +1,97 @@
-::ng-deep .matExpansion .mat-expansion-panel-body{
-    padding: 20px!important;
+/* Estilo para o corpo do painel de expansão */
+::ng-deep .mat-expansion-panel .mat-expansion-panel-body {
+  padding: 20px !important;
 }
 
-.matExpansion.mat-expansion-panel .mat-expansion-panel-header{
-    background-color: rgb(219, 219, 219);
+/* Estilo para o cabeçalho do painel de expansão de aula finalizada */
+::ng-deep .mat-expansion-panel.aula-finalizada .mat-expansion-panel-header {
+  background-color: var(--primary-color) !important;
 }
 
-.matExpansion.mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:hover:not([aria-disabled=true]){
-    background-color: rgb(196, 196, 196);
-
+/* Estilo padrão para cabeçalhos de painel de expansão */
+::ng-deep .mat-expansion-panel .mat-expansion-panel-header {
+  background-color: rgb(219, 219, 219) !important;
 }
-h1{
-    font-weight: bold;
-    margin: 20px;
-    text-align: center;
 
+/* Estilo para hover nos painéis de expansão */
+::ng-deep .mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:hover:not([aria-disabled=true]) {
+  background-color: rgb(196, 196, 196) !important;
 }
-h2{
+
+/* Estilo para título da página */
+.titulo-pagina {
+  display: flex;
+  flex-direction: row;
+  padding: 30px;
+  align-items: center;
+  justify-content: center;
+  color: var(--hover-btn-secondary);
+  gap: 10px;
+  text-transform: uppercase;
+}
+
+/* Estilo para títulos h1 */
+h1 {
+  margin: 0;
+  font-weight: bold;
   text-align: center;
 }
 
-.btn{
-    padding: 8px 16px;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    position: relative;
-    margin-top: 10px;
-    margin-bottom: 15px;
-    background-color: var(--primary-color);
-    display: flex;
-    justify-content: center;
-  }
-
-  .btn:hover {
-    background-color: var(--secondary-color);
-    cursor: pointer;
+/* Estilo para títulos h2 */
+h2 {
+  text-align: center;
 }
-.aulas{
+
+/* Estilo para botões */
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  position: relative;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  background-color: var(--primary-color);
+  display: flex;
+  justify-content: center;
+}
+
+.btn:hover {
+  background-color: var(--secondary-color);
+  cursor: pointer;
+}
+
+/* Estilo para o container de aulas */
+.aulas {
   display: flex;
   flex-direction: column;
 }
 
-mat-accordion{
+/* Estilo para o mat-accordion */
+mat-accordion {
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
   max-width: 80%;
+  min-width: 80%;
 }
-.matExpansion{
+
+/* Estilo para o matExpansion */
+.matExpansion {
   width: 100%;
 }
 
-.card-conteudo_aula{
+/* Estilo para o conteúdo da aula */
+.card-conteudo_aula {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-div{
+/* Estilo genérico para div */
+div {
   display: flex;
   justify-content: space-around;
   align-items: center;
-
 }
-
-
