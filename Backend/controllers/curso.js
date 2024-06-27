@@ -336,16 +336,12 @@ export const avaliarCurso = (req, res) => {
 //Rota para pegar a media de avaliacao de um curso
 export const getAvaliacaoMediaCurso = (req, res) => {
   const id = req.params.id;
-  const q = "SELECT mediaAvaliacao FROM curso WHERE idCurso = ?"
+  const q = "SELECT avg(notaAlunoCurso) as notaMedia FROM alunocurso WHERE idCurso = ?"
 
   db.query(q, [id], (err, data) => { // Coloque idCurso dentro de um array
-    if (err) {
-      console.error(err);
-      return res.sendStatus(500);
-    }
-    if (result.length === 0) {
-      return res.sendStatus(404);
-    }
+    if (err) 
+    return res.status(500).json(err);
+    return res.status(200).json(data[0]);
 
   });
 };

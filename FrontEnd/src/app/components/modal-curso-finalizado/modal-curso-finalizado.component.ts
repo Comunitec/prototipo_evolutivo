@@ -16,10 +16,7 @@ export class ModalCursoFinalizadoComponent {
   ) {}
 
   onClose(): void {
-    const idCurso = this.route.snapshot.paramMap.get('id');
-    this.router.navigate(['/finalizarCurso/', idCurso]);
     this.dialogRef.close();
-    
   }
 
 }
