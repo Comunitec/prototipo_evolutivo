@@ -31,6 +31,7 @@
           required
           [(ngModel)]="aula.Titulo"
           required
+          maxlength="45"
         />
 
         <label for="descricaoAula">Descrição da aula</label>
@@ -42,6 +43,7 @@
           name="descricaoAula"
           id="descricaoAula"
           [(ngModel)]="aula.Descricao"
+          maxlength="255"
         ></textarea>
 
         <label for="adicionarVideo">Adicionar link do vídeo</label>
@@ -51,6 +53,7 @@
           type="text"
           placeholder="Insira o link do vídeo"
           [(ngModel)]="aula.LinkIncorporacao"
+          maxlength="500"
         />
         <span class="tooltip" (click)="openModalSaibaMaisVideo()">Saiba mais</span>
 
@@ -61,6 +64,7 @@
           type="text"
           placeholder="Insira o link do formulário"
           [(ngModel)]="aula.LinkFormulario"
+          maxlength="500"
         />
         <span class="tooltip" (click)="openModal()">Saiba mais</span>
 

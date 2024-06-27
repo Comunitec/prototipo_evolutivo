@@ -6,6 +6,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Alternativa, Aula, Curso, Questao, Tag } from 'src/app/interfaces/curso';
 import { ModalCursoCriadoComponent } from 'src/app/components/modal-curso-criado/modal-curso-criado.component';
+import { ModalErroAoEditarCursoComponent } from 'src/app/components/modal-erro-ao-editar-curso/modal-erro-ao-editar-curso.component';
 
 type imageType = string | ArrayBuffer | null;
 
@@ -111,6 +112,7 @@ export class CourseFormComponent implements OnInit {
       },
       (error) => {
         console.error('Erro ao salvar curso:', error);
+        this.openModalErroAoEditarCurso();
       }
     );
   }
@@ -182,4 +184,12 @@ export class CourseFormComponent implements OnInit {
       width: '350px',
     });
   }
+
+  openModalErroAoEditarCurso(): void {
+    const dialogRef = this.dialog.open(ModalErroAoEditarCursoComponent, {
+      width: '350px',
+    });
+  }
 }
+
+

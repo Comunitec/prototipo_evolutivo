@@ -11,11 +11,11 @@
         <div class="input-group">
           <label for="courseName">Nome do Curso</label>
           <input class="common-style" name="courseName" type="text" id="courseName" placeholder="Digite o nome do curso"
-            required [(ngModel)]="curso.tituloCurso" />
+            required [(ngModel)]="curso.tituloCurso" maxlength="45" />
 
           <label for="courseDescription">Descrição</label>
           <textarea class="common-style" name="courseDescription" id="courseDescription" cols="30" rows="10"
-            placeholder="Digite a descrição do curso" [(ngModel)]="curso.descricaoCurso"></textarea>
+            placeholder="Digite a descrição do curso" [(ngModel)]="curso.descricaoCurso" maxlength="255"></textarea>
 
           <label for="tag">Tag</label>
           <span style="font-size: 10px;">Não encontrou uma tag que se encaixe no seu curso? Entre em contato conosco

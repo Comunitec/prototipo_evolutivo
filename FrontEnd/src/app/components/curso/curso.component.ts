@@ -267,6 +267,7 @@ export class CursoComponent implements OnInit {
         (response) => {
           console.log("Curso deletado");
           this.listarCursosEmCriacao();
+          this.router.navigate(['/meusCursosProfessor']);
         },
         (error) => {
           console.error(`Erro ao reprovar curso`, error);
@@ -287,7 +288,7 @@ export class CursoComponent implements OnInit {
   }
 
   deletarVinculosDeTags(idCurso: number) {
-    this.http.delete<any>(`http://localhost:8800/deleteVinculoTagCurso/${idCurso}`)
+    this.http.delete<any>(`http://localhost:8800/deleteTags/${idCurso}`)
       .subscribe(
         (response) => {
           console.log('Todos os vínculos de tags foram deletados');
