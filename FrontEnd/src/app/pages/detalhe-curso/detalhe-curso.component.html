@@ -27,10 +27,16 @@
           <div class="card_descricao-tag">
             <h2>Tags:  </h2><span *ngFor="let tag of curso.tags" class="tag"> {{ tag }}</span>
           </div>
+          <div class="card_descricao"><h2>Nota média do curso:</h2></div>
+
+          <ul class="avaliacao" >{{ notaMedia }}
+            <li class="star-icon ativo" ></li>
+          </ul>
+          <br>
           <div class="card-emblema">
             <h2>Emblema:</h2>
             <img *ngIf="curso.Emblema" [src]="curso.Emblema" alt="Emblema do Curso" class="curso-emblema">
-          </div>
+          </div> 
         </div>
       </div>
     </div>

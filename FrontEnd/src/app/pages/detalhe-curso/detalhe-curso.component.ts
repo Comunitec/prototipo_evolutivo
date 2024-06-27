@@ -30,6 +30,8 @@ export class DetalheCursoComponent implements OnInit {
   isAlunoCriador: boolean = false;
   idAlunoCurso: number | null = null;
 
+  notaMedia: number = 0
+
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
@@ -63,6 +65,7 @@ export class DetalheCursoComponent implements OnInit {
     this.http.get<Curso>(`http://localhost:8800/getCursoPorId/${idCurso}`).subscribe(
       (curso) => {
         this.getImagemCurso(idCurso, curso);
+        this.getNotaMediaCurso(idCurso);
         this.getEmblemaCurso(idCurso, curso);
         this.getTagsCurso(idCurso, curso); // Adicionado para garantir o carregamento das tags
         this.getNomeCriador(curso.idAlunoCriador).subscribe(
@@ -160,5 +163,15 @@ export class DetalheCursoComponent implements OnInit {
           console.error(`Erro ao obter tags do curso ${idCurso}:`, error);
         }
       );
+  }
+
+  getNotaMediaCurso(idCurso: number):void {
+    this.http.get<{ notaMedia: number }>(`http://localhost:8800/getAvaliacaoMediaCurso/${idCurso}`)
+        .subscribe(response => {
+            console.log(response);
+            this.notaMedia = response.notaMedia;
+        }, error => {
+            console.error('Erro ao obter a nota média:', error);
+        });
   }
 }
