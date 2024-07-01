@@ -7,43 +7,69 @@
 <app-middle-column>
   <div *ngIf="curso">
     <div class="titulo-pagina">
-      <h1>{{ curso.Nome }}</h1>
+      <h1>Detalhes do curso:</h1>
     </div>
 
     <div class="container_curso">
       <div class="card_curso">
-        <div class="card_curso-thumb">
-          <img [src]="curso.Imagem" alt="Img do Curso" />
-        </div>
-        <div class="dados-criador">
-          <p>Criado por: <b>{{ curso.nomeCriador }}</b></p>
-          <p>Em: {{ curso.DataCriacao | date:'dd/MM/yyyy' }}</p>
-        </div>
-
-        <div class="card_curso-descricao">
-          <div class="card_descricao"><h2>Descrição:</h2></div>
-
-          <div class="card_descricao-texto">{{ curso.Descricao }}</div>
-          <div class="card_descricao-tag">
-            <h2>Tags:  </h2><span *ngFor="let tag of curso.tags" class="tag"> {{ tag }}</span>
+          <div class="card_curso-coluna1">
+            <img [src]="curso.Imagem" alt="Img do Curso" />
+            <div class="card_nota">
+              <h3>Avaliação do curso: </h3>
+              <ul class="avaliacao" >
+                <h3>{{ notaMedia }}</h3>
+                <li class="star-icon ativo" ></li>
+              </ul>
+            </div>
+            <div class="dados-criador">
+              <p>Criado por: <b>{{ curso.nomeCriador }}</b></p>
+              <p>Em:  {{ curso.DataCriacao | date:'dd/MM/yyyy' }} </p>
+            </div>
           </div>
-          <div class="card_descricao"><h2>Nota média do curso:</h2></div>
 
-          <ul class="avaliacao" >{{ notaMedia }}
-            <li class="star-icon ativo" ></li>
-          </ul>
-          <br>
-          <div class="card-emblema">
-            <h2>Emblema:</h2>
-            <img *ngIf="curso.Emblema" [src]="curso.Emblema" alt="Emblema do Curso" class="curso-emblema">
-          </div> 
+          <div class="card_curso-coluna2">
+            <h2>{{ curso.Nome }}</h2>
+            <div class="card_descricao-tag">
+              <h3>Tags:  </h3><span *ngFor="let tag of curso.tags" class="tag"> {{ tag }}</span>
+            </div>
+
+
+            <div class="card_curso-descricao">
+              <div class="card_descricao-texto">
+                <h3>Descrição:</h3>
+                <div>{{ curso.Descricao }}</div>
+              </div>
+              <div class="card-emblema">
+                <h3>Emblema:</h3>
+                <img *ngIf="curso.Emblema" [src]="curso.Emblema" alt="Emblema do Curso" class="curso-emblema">
+              </div>
+
+
+
+              <br>
+
+          </div>
+          </div>
+
         </div>
-      </div>
+
+
     </div>
     <div class="card_btn">
-      <button *ngIf="!isAlunoCriador && !curso.matricula" class="btn-matricula" (click)="openModal()">Matricular-se</button>
-      <button *ngIf="!isAlunoCriador && curso.matricula" class="btn-dematricular" (click)="desmatricularAluno()">Desmatricular-se</button>
-      <button *ngIf="isAlunoCriador || curso.matricula" class="btn-matricula" [routerLink]="['/assistirAulas', curso.idCurso]">Assistir aulas</button>
+      <!-- Botão para assistir às aulas -->
+      <button *ngIf="curso && curso.Status !== 'aprovado'" class="btn-matricula" [routerLink]="['/assistirAulas', curso.idCurso]">Assistir aulas</button>
+
+      <!-- Verifica se o curso está aprovado -->
+      <div *ngIf="curso && curso.Status === 'aprovado'" class="card_btn">
+        <!-- Botão para assistir aulas -->
+        <button *ngIf="isAlunoCriador || curso.matricula" class="btn-matricula" [routerLink]="['/assistirAulas', curso.idCurso]">Assistir aulas</button>
+
+        <!-- Botão para matricular-se -->
+        <button *ngIf="!isAlunoCriador && !curso.matricula" class="btn-matricula" (click)="openModal()">Matricular-se</button>
+
+        <!-- Botão para desmatricular-se -->
+        <button *ngIf="!isAlunoCriador && curso.matricula" class="btn-dematricular" (click)="desmatricularAluno()">Desmatricular-se</button>
+      </div>
     </div>
   </div>
 </app-middle-column>

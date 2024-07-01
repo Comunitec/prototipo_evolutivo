@@ -14,6 +14,7 @@ import { faCamera } from '@fortawesome/free-solid-svg-icons';
 export class SignupFormComponent implements OnInit {
   Nome: string = '';
   Email: string = '';
+  ConfirmarEmail: string = '';
   Senha: string = '';
   ConfirmarSenha: string = '';
   DataNasc: string = '';
@@ -61,7 +62,7 @@ export class SignupFormComponent implements OnInit {
     this.formSubmitted = true; // Marcador de formulário submetido
 
     // Validar se todos os campos obrigatórios estão preenchidos
-    if (!this.Nome || !this.Email || !this.Senha || !this.DataNasc) {
+    if (!this.Nome || !this.Email || !this.ConfirmarEmail || !this.Senha || !this.ConfirmarSenha || !this.DataNasc) {
       console.error('Por favor, preencha todos os campos obrigatórios.');
       this.openModalErro('Por favor, preencha todos os campos obrigatórios.');
       return;
@@ -71,6 +72,13 @@ export class SignupFormComponent implements OnInit {
     if (!this.validarEmail()) {
       console.error('O email deve ser válido e do domínio @fatec.sp.gov.br.');
       this.openModalErro('O email deve ser válido e do domínio @fatec.sp.gov.br.');
+      return;
+    }
+
+    // Validar se os e-mails coincidem
+    if (this.Email !== this.ConfirmarEmail) {
+      console.error('Os emails não coincidem.');
+      this.openModalErro('Os emails não coincidem.');
       return;
     }
 

@@ -13,6 +13,16 @@ import {
   faChevronDown,
   faUserTie
 } from '@fortawesome/free-solid-svg-icons';
+import { HttpClient } from '@angular/common/http';
+import { RankingService } from 'src/app/services/ranking.service';
+
+interface RankingItem {
+  id: string | null;
+  position: number;
+  name: string;
+  points: number;
+  photo: string;
+}
 
 @Component({
   selector: 'app-menu-lateral',
@@ -31,25 +41,24 @@ export class MenuLateralComponent implements OnInit {
   faChevronRight = faChevronRight;
   faChevronDown = faChevronDown;
   faUserTie = faUserTie;
+  rankingItems: RankingItem[] = [];
 
   url = "http://localhost:8800/imagem/";
   Nome = sessionStorage.getItem('Nome');
   PerfilDeAcesso = sessionStorage.getItem('PerfilDeAcesso');
-  Pontos: string | null = sessionStorage.getItem('Pontuacao'); // Tipo string | null
-
+  Pontos: number | null = parseInt(sessionStorage.getItem('Pontuacao') || '0', 10); // Corrige para número
   id = sessionStorage.getItem('idAluno');
   imagem = this.url + this.id;
 
   submenuOpen: boolean = true;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private http: HttpClient, private rankingService: RankingService) {}
 
   ngOnInit() {
-    // Verificar se Pontos é null antes de usar
-    if (this.Pontos === null) {
-      this.Pontos = ''; // Definir um valor padrão ou tratar conforme necessário
-    }
+
   }
+
+
 
   toggleSubmenus() {
     this.submenuOpen = !this.submenuOpen;

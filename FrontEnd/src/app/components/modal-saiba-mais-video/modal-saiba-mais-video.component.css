@@ -1,22 +1,34 @@
-.btn{
-    padding: 8px 16px;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    font-weight: bold;
-    position: relative;
-    margin-top: 10px;
-    margin-bottom: 15px;
-    background-color: var(--primary-color);
-    width: 500px;
-    display: flex;
-    justify-content: center;
-  }
-
-  .btn:hover {
-    background-color: var(--secondary-color);
-    cursor: pointer;
+*{
+  text-align: center;
 }
-p {
-  text-align: justify;
+.container_saibamais-video{
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn{
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  position: relative;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  background-color:var(--primary-color);
+  width: 110px;
+  display: flex;
+  justify-content: center;
+  border: none;
+  outline: none;
+}
+
+.btn:hover {
+  background-color: var(--hover-btn-primary);
+  cursor: pointer;
+  border: none;
+  outline: none;
 }

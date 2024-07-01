@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { faRankingStar, faTrophy } from '@fortawesome/free-solid-svg-icons';
 import { RankingService } from 'src/app/services/ranking.service';

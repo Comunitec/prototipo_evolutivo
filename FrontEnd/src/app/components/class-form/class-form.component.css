@@ -5,10 +5,17 @@
   font-family: sans-serif, Arial;
 }
 
-.container-buttons {
+.container-buttons,.enviarParaStaff {
   display: flex;
   justify-content: center;
   gap: 60px;
+  margin-bottom: 10px;
+}
+
+.card-btn{
+    margin: 15px 0;
+    display: flex;
+    justify-content: center;
 }
 
 form {
@@ -21,7 +28,7 @@ h1 {
 }
 
 .input-group {
-  margin: 10px 70px;
+  margin: 0px 70px;
   display: flex;
   flex-direction: column;
 }
@@ -83,6 +90,33 @@ select {
   margin-right: 10px;
 }
 
+.save-button:hover {
+    background-color: var(--hover-btn-primary);
+}
+
+.excluir-button{
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    height: 32px;
+    padding: 10px 20px;
+    margin-top: 20px;
+    margin-right: 10px;
+}
+.excluir-button:hover {
+    background-color: var(--hover-btn-secondary);
+}
+
+.delete{
+    background-color: var(--secondary-color);
+}
+
+.delete:hover{
+    background-color: var(--hover-btn-secondary);
+}
+
 .enviarParaStaff-button {
   background-color: green;
   color: white;
@@ -95,9 +129,7 @@ select {
   margin-left: 10px;
 }
 
-.save-button:hover {
-  background-color: var(--hover-btn-primary);
-}
+
 
 .delete{
   background-color: var(--secondary-color);
@@ -119,7 +151,7 @@ input:required:invalid {
 }
 
 .aviso {
-  padding: 10px; /* Espaçamento interno */
+  text-align: center;
   border-radius: 5px; /* Cantos arredondados */
   margin-bottom: 10px; /* Espaço abaixo do aviso */
   margin-top: 10px;

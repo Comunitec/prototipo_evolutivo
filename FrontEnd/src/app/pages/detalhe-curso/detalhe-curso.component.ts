@@ -16,6 +16,7 @@ interface Curso {
   idAlunoCriador: number;
   nomeCriador: string;
   matricula: boolean;
+  Status: string;
 }
 
 @Component({
@@ -29,8 +30,7 @@ export class DetalheCursoComponent implements OnInit {
   idAlunoLogado = sessionStorage.getItem('idAluno');
   isAlunoCriador: boolean = false;
   idAlunoCurso: number | null = null;
-
-  notaMedia: number = 0
+  notaMedia: number = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -167,11 +167,11 @@ export class DetalheCursoComponent implements OnInit {
 
   getNotaMediaCurso(idCurso: number):void {
     this.http.get<{ notaMedia: number }>(`http://localhost:8800/getAvaliacaoMediaCurso/${idCurso}`)
-        .subscribe(response => {
-            console.log(response);
-            this.notaMedia = response.notaMedia;
-        }, error => {
-            console.error('Erro ao obter a nota média:', error);
-        });
+      .subscribe(response => {
+          console.log(response);
+          this.notaMedia = response.notaMedia;
+      }, error => {
+          console.error('Erro ao obter a nota média:', error);
+      });
   }
 }

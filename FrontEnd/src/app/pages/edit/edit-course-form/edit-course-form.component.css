@@ -4,6 +4,9 @@
     box-sizing: border-box;
     font-family: sans-serif, Arial;
 }
+mat-tab-group{
+  padding-top: 10px;
+}
 
 .container-tags {
     display: flex;
@@ -30,7 +33,7 @@ h1 {
     flex-direction: column;
     border-radius: 8px;
     border: none;
-    padding: 20px;
+    padding: 0 20px 10px 20px;
     background-color: var(--back-menu-cl);
     box-shadow: var(--box-shadow);
 }
@@ -40,7 +43,7 @@ label {
     font-weight: bold;
     text-align: left;
     margin-bottom: 5px;
-    margin-top: 30px;
+    margin-top: 15px;
 }
 
 .common-style {
@@ -57,9 +60,14 @@ label {
     outline: none;
 }
 
-input,
-textarea {
+input{
     width: 100%;
+}
+
+textarea{
+  width: 100%;
+  max-width: 100%;
+  height: 100px;
 }
 
 button {

@@ -84,6 +84,13 @@ h1 {
   background-color: var(--back-menu);
   box-shadow: var(--box-shadow);
   width: 200px;
+  border: 1px solid transparent; /* Adiciona uma borda transparente */
+  transition: box-shadow 0.3s, border-color 0.3s;
+}
+
+.usuario:hover{
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: 1px solid #ddd;
 }
 
 p {

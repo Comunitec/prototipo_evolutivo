@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalConfirmacaoParaInativarComponent } from '../modal-confirmacao-para-inativar/modal-confirmacao-para-inativar.component';
 import { ModalDeletarCursoComponent } from '../modal-deletar-curso/modal-deletar-curso.component';
+import { Location } from '@angular/common';
 
 // Definição da interface Curso
 export interface Curso {
@@ -35,7 +36,7 @@ export class CursoComponent implements OnInit {
   termoPesquisa: string = '';
   exibirBotaoAdicionar: boolean = false;
 
-  constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private dialog: MatDialog, private pesquisaService: PesquisaService) {}
+  constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private dialog: MatDialog, private pesquisaService: PesquisaService, private location: Location) {}
 
   ngOnInit() {
     this.route.url.subscribe(url => {
@@ -88,7 +89,22 @@ export class CursoComponent implements OnInit {
         );
     }
   }
-
+  listarCursosDoUsuario(idUsuario: number): void {
+    if (idUsuario) {
+      this.http.get<Curso[]>(`http://localhost:8800/getCursosDoUsuario/${idUsuario}`)
+        .subscribe(
+          (data) => {
+            console.log('Cursos do usuário:', data);
+            this.cursos = data;
+            this.cursosFiltrados = data;
+            this.carregarDadosExtras();
+          },
+          (error) => {
+            console.error('Erro ao obter cursos do usuário:', error);
+          }
+        );
+    }
+  }
   listarCursosAguardandoAprovacao(): void {
     this.http.get<Curso[]>('http://localhost:8800/getCursosAguardandoAprovacao')
       .subscribe(
@@ -210,6 +226,7 @@ export class CursoComponent implements OnInit {
         (response) => {
           console.log("Curso reprovado");
           this.listarCursosAguardandoAprovacao();
+          this.location.back();
         },
         (error) => {
           console.error(`Erro ao reprovar curso`, error);
@@ -232,7 +249,7 @@ export class CursoComponent implements OnInit {
 
   openModalInativar(idCurso: number) {
     const dialogRef = this.dialog.open(ModalConfirmacaoParaInativarComponent, {
-      width: '350px',
+      width: '400px',
     });
 
     dialogRef.afterClosed().subscribe(result => {

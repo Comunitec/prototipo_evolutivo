@@ -1,65 +1,74 @@
-<div class="login">
 <div class="signup-container">
-  <div class="signup-box">
-    <form (ngSubmit)="enviarRegistro()">
-      <div class="input-group imagem">
-        <img src="https://portal.fidelis.edu.br/wp-content/uploads/2020/10/perfil.jpg"
-          style="width: 140px; border-radius: 50%; border: 1px solid white;" *ngIf="!selectedImagem" alt="Clique para adicionar"
-          (click)="triggerFileInput('adicionarImagem')">
-        <input class="input-file" id="adicionarImagem" type="file" accept=".jpg, .jpeg, .png"
-          (change)="onFileSelected($event)" hidden />
-        <div class="image-preview" *ngIf="selectedImagem">
-          <img [src]="selectedImagem" alt="Imagem selecionada">
-        </div>
+  <form (ngSubmit)="enviarRegistro()">
+    <!-- Imagem de perfil -->
+    <div class="input-group imagem">
+      <img src="https://portal.fidelis.edu.br/wp-content/uploads/2020/10/perfil.jpg"
+        style="border-radius: 50%; border: 1px solid white;" *ngIf="!selectedImagem" alt="Clique para adicionar"
+        (click)="triggerFileInput('adicionarImagem')">
+      <input class="input-file" id="adicionarImagem" type="file" accept=".jpg, .jpeg, .png"
+        (change)="onFileSelected($event)" hidden />
+      <div class="image-preview" *ngIf="selectedImagem">
+        <img [src]="selectedImagem" alt="Imagem selecionada">
+      </div>
+      <div><b>Adicionar Imagem</b></div>
+      <div class="error-message" *ngIf="formSubmitted && !selectedImagem" style="color: red;">Selecione uma imagem de perfil!</div>
+    </div>
 
+    <!-- Campos de entrada -->
+    <div class="inputs">
+      <div class="linha1">
+        <div class="input-group">
+          <label for="name">Nome Completo</label>
+          <input name="name" type="text" id="name" [(ngModel)]="Nome" placeholder="Digite seu nome completo"
+            required />
+          <div class="error-message" *ngIf="formSubmitted && !Nome" style="color: red;">O nome é obrigatório.</div>
+        </div>
+        <div class="input-group">
+          <label for="birthdate">Data de Nascimento</label>
+          <input type="date" id="birthdate" name="birthdate" required [(ngModel)]="DataNasc" />
+          <div class="error-message" *ngIf="formSubmitted && !DataNasc" style="color: red;">Campo obrigatório!.</div>
+        </div>
       </div>
 
-      <div class="inputs">
-        <div>
-          <div class="input-group">
-            <label for="name">Nome Completo</label>
-            <input name="name" type="text" id="name" [(ngModel)]="Nome" placeholder="Digite seu nome completo"
-              required />
-            <div class="error-message" *ngIf="formSubmitted && !Nome" style="color: red;">O nome é obrigatório.</div>
-          </div>
-          <div class="input-group">
-            <label for="birthdate">Data de Nascimento</label>
-            <input type="date" id="birthdate" name="birthdate" required [(ngModel)]="DataNasc" />
-            <div class="error-message" *ngIf="formSubmitted && !DataNasc" style="color: red;">A data de nascimento é obrigatória.</div>
-          </div>
-          <div class="input-group">
-            <label for="email">E-mail</label>
-            <input [(ngModel)]="Email" name="email" type="email" id="email" placeholder="Informe seu email que deve ser válido e do domínio @fatec.sp.gov.br"
-              required />
-            <div class="error-message" *ngIf="formSubmitted && !Email" style="color: red;">O email é obrigatório.</div>
-            <div class="error-message" *ngIf="formSubmitted && Email && !validarEmail()" style="color: red;">O email deve ser válido e do domínio @fatec.sp.gov.br.</div>
-          </div>
+      <div class="linha2">
+        <div class="input-group">
+          <label for="email">E-mail</label>
+          <input [(ngModel)]="Email" name="email" type="email" id="email" placeholder="Informe o seu email do domínio @fatec.sp.gov.br"
+            required />
+          <div class="error-message" *ngIf="formSubmitted && !Email" style="color: red;">O email é obrigatório.</div>
+          <div class="error-message" *ngIf="formSubmitted && Email && !validarEmail()" style="color: red;">O email deve ser válido e do domínio @fatec.sp.gov.br.</div>
         </div>
-
-        <div>
-          <div class="input-group">
-            <label for="password">Senha</label>
-            <input [(ngModel)]="Senha" name="password" type="password" id="password" placeholder="Digite sua senha"
-              required />
-            <div class="error-message" *ngIf="formSubmitted && !Senha" style="color: red;">A senha é obrigatória.</div>
-            <div class="error-message" *ngIf="formSubmitted && Senha && Senha.length < 3" style="color: red;">A senha deve ter pelo menos 3 caracteres.</div>
-          </div>
-
-          <div class="input-group">
-            <label for="confirmPassword">Confirmação de Senha</label>
-            <input type="password" id="confirmPassword" placeholder="Confirme sua senha" name="confirmPassword"
-              [(ngModel)]="ConfirmarSenha" required />
-            <div class="error-message" *ngIf="formSubmitted && !ConfirmarSenha" style="color: red;">A confirmação de senha é obrigatória.</div>
-            <div class="error-message" *ngIf="formSubmitted && ConfirmarSenha && ConfirmarSenha !== Senha" style="color: red;">A confirmação de senha não coincide com a senha digitada.</div>
-          </div>
-
-          <div class="input-group btns">
-            <button class="back-button" (click)="goBack($event)" id="backButton">Voltar</button>
-            <button type="submit" class="signup-button">Criar conta</button>
-          </div>
+        <div class="input-group">
+          <label for="confirmEmail">Confirmar e-mail</label>
+          <input [(ngModel)]="ConfirmarEmail" name="confirmEmail" type="email" id="confirmEmail" placeholder="Confirme o seu email do domínio @fatec.sp.gov.br"
+            required />
+          <div class="error-message" *ngIf="formSubmitted && !ConfirmarEmail" style="color: red;">A confirmação de email é obrigatória.</div>
+          <div class="error-message" *ngIf="formSubmitted && ConfirmarEmail !== Email" style="color: red;">Os emails não coincidem.</div>
         </div>
       </div>
-    </form>
-  </div>
-</div>
+
+      <div class="linha3">
+        <div class="input-group">
+          <label for="password">Senha</label>
+          <input [(ngModel)]="Senha" name="password" type="password" id="password" placeholder="Digite sua senha"
+            required />
+          <div class="error-message" *ngIf="formSubmitted && !Senha" style="color: red;">A senha é obrigatória.</div>
+          <div class="error-message" *ngIf="formSubmitted && Senha && Senha.length < 3" style="color: red;">A senha deve ter pelo menos 3 caracteres.</div>
+        </div>
+        <div class="input-group">
+          <label for="confirmPassword">Confirmação de Senha</label>
+          <input type="password" id="confirmPassword" placeholder="Confirme sua senha" name="confirmPassword"
+            [(ngModel)]="ConfirmarSenha" required />
+          <div class="error-message" *ngIf="formSubmitted && !ConfirmarSenha" style="color: red;">A confirmação de senha é obrigatória.</div>
+          <div class="error-message" *ngIf="formSubmitted && ConfirmarSenha && ConfirmarSenha !== Senha" style="color: red;">A confirmação de senha não coincide com a senha digitada.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="input-group btns">
+      <button class="back-button" (click)="goBack($event)" id="backButton">Voltar</button>
+      <button type="submit" class="signup-button">Criar conta</button>
+    </div>
+    <br>
+  </form>
 </div>

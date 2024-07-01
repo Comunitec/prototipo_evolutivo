@@ -20,7 +20,7 @@ mat-dialog-actions{
     width: var(--button-width);
     display: flex;
     justify-content: center;
-  }
+}
 
   .btn:hover {
     background-color: var(--hover-btn-primary);

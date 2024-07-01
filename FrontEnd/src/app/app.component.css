@@ -1,0 +1,8 @@
+.footer {
+  width: 100%;
+  background-color: var(--back-menu);
+  color: var(--hover-btn-secondary);
+  text-align: center;
+  padding: 10px 0;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+}

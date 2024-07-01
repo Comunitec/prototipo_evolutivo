@@ -10,7 +10,9 @@
     <h1>PERGUNTAS FREQUENTES</h1>
     <i class="fa-layers center-icon"><fa-icon [icon]="faCircleQuestion"></fa-icon></i>
   </div>
-  <button routerLink="/FaqFormComponent" class="save-button" *ngIf="podeAdicionarEDeletar">Adicionar Pergunta</button>
+  <div class="btn">
+    <button routerLink="/FaqFormComponent" class="save-button" *ngIf="podeAdicionarEDeletar">+ Adicionar Pergunta</button>
+  </div>
   <br><br>
   <mat-accordion>
     <mat-expansion-panel class="matExpansion" *ngFor="let faq of faqs">
@@ -20,7 +22,9 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
       <p>{{ faq.Resposta }}</p>
-      <button (click)="deletarFaq(faq.idFaq)" class="save-button" *ngIf="podeAdicionarEDeletar" >Deletar</button>
+      <div class="btn">
+        <button (click)="deletarFaq(faq.idFaq)" class="save-button" *ngIf="podeAdicionarEDeletar" >Deletar</button>
+      </div>
     </mat-expansion-panel>
     <br>
   </mat-accordion>

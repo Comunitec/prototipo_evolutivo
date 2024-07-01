@@ -26,6 +26,7 @@
 
   .titulo-pagina > i {
     font-size: 20px;
+
   }
 
   h1{
@@ -42,20 +43,7 @@
     font-size: 10px;
 }
 
-footer {
-    background-color: var( --secondary-color);
-    color: #fff;
-    text-align: center;
-    padding: 10px;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 30px;
-}
-footer p{
-  margin: 0;
-}
+
 
 body {
     margin: 0;
@@ -63,6 +51,7 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
+
 }
 
 .save-button {
@@ -73,6 +62,24 @@ body {
     cursor: pointer;
     height: 32px;
     padding: 10px 20px;
-    margin-top: 20px;
-    margin-right: 10px;
+    width: 180px;
   }
+.btn{
+  display: flex;
+  justify-content: center;
+}
+
+footer {
+  background-color: var( --secondary-color);
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30px;
+}
+footer p{
+margin: 0;
+}
