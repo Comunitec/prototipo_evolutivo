@@ -1,19 +1,40 @@
-.btn{
-    padding: 8px 16px;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    font-weight: bold;
-    position: relative;
-    margin-top: 10px;
-    margin-bottom: 15px;
-    background-color: var(--primary-color);
-    width: 500px;
-    display: flex;
-    justify-content: center;
-  }
 
-  .btn:hover {
-    background-color: var(--secondary-color);
-    cursor: pointer;
+h3{
+  text-align: justify;
+}
+
+mat-dialog-actions{
+  gap: 10px;
+  justify-content: center;
+}
+button{
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  position: relative;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  width: 110px;
+  display: flex;
+  justify-content: center;
+
+}
+
+.btn-confirmar{
+  background-color: var(--primary-color);
+}
+
+.btn-confirmar:hover {
+  background-color: var(--hover-btn-primary);
+  cursor: pointer;
+}
+
+.btn-cancelar {
+  background-color: var(--secondary-color);
+}
+
+.btn-cancelar:hover {
+  background-color: var(--hover-btn-secondary);
+  cursor: pointer;
 }

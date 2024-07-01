@@ -1,11 +1,3 @@
-.container_curso {
-  margin: 0 5rem 10px 5rem;
-  background: var(--back-menu);
-  border-radius: 8px;
-  box-shadow: var(--box-shadow);
-  padding: 0;
-}
-
 .titulo-pagina{
   display: flex;
   flex-direction: row;
@@ -17,118 +9,193 @@
 
 }
 
-h1{
-  margin: 0;
-  font-weight: bold;
-  text-align: center;
-  text-transform: uppercase;
-}
+  .titulo-pagina > h1{
+    margin: 0;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+  }
 
-.card_curso {
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.container_curso {
+  margin: 0 5rem 10px 5rem;
+  background: var(--back-menu-cl);
   border-radius: 8px;
-  border: solid 1px;
-  border: 1px solid #ddd;
-
-}
-
-.card_curso-thumb {
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 35%;
-  min-width: 35%;
-
-}
-
-p{margin: 0;}
-
-.card_curso-thumb img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  object-fit: cover;
-  object-position: center;
-}
-
-.dados-criador{
-  text-align: center;
-  padding: 10px;
-}
-
-.card_curso-descricao {
-  padding: 0 20px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 90%;
-}
-
-.card_descricao-titulo {
-  margin-bottom: 10px;
-}
-.card_descricao {
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-
-.card_descricao > h2{
-  margin: 0;
-}
-
-.card_descricao-tag{
-  height: 5%; /* Ajusta a altura das tags para 5% do card */
-  display: flex;
-  align-items: center;
-  margin: 10px 0 5px 0;
-  gap: 10px;
-
-}
-
-.card_descricao-tag > span {
-  background: white;
-  border-radius: 8px;
-  padding: 0px 5px;
-  margin: 0 4px 10px 0;
-  min-width: 30px;
-  text-align: center;
-  font-size: 10px;
-  text-transform: uppercase;
-  box-shadow: #555;
-  height: 20px;
-
-}
-
-.card_descricao-texto {
-  text-align: justify;
+  box-shadow: var(--box-shadow);
+  padding: 0;
 }
 
 
-.card-emblema{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid;
-  border-radius: 8px;
-  padding: 5px;
-}
-.card-emblema > h2{
-  margin-bottom: 5px;
-}
-.curso-emblema{
-  max-width: 60px;
-}
-.curso-emblema > img{
-  max-width: 60px;
-}
+
+  .card_curso {
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    border-radius: 8px;
+    border: solid 1px;
+    border: 1px solid #dddddd;
+    height: 100%;
+    width: 100%;
+  }
+
+
+    .card_curso-coluna1 {
+      border-start-start-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      justify-content: top;
+      align-items: center;
+      max-width: 40%;
+      min-width: 40%;
+      border: #ffe500;
+      padding-bottom: 10px;
+      background-color: var(--back-menu);
+    }
+
+      .card_curso-coluna1 img {
+        width: 100%;
+        height: auto;
+        border-top-left-radius: 8px;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .card_nota {
+        padding: 5px 0;
+        font-size: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+
+        width: 100%;
+      }
+
+      .card_nota > h3{
+        font-weight: bold;
+        margin: 0;
+      }
+
+        .avaliacao{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
+        }
+          .avaliacao > h3{
+            font-weight: bold;
+            margin: 0;
+          }
+          .star-icon{
+            list-style-type: none;
+            color: #ffe500;
+            font-size: 20px;/* alterar o tamanho das estrelas */
+            margin: 0;
+          }
+          .star-icon::before{
+            content: "\2605";
+          }
+          .star-icon.ativo ~ .star-icon::before{
+            content: "\2606";
+          }
+
+
+      .dados-criador{
+        text-align: center;
+        padding: 10px;
+        border-radius: 8px;
+        width: 100%;
+      }
+
+      .dados-criador p > b{
+        color:  var(--primary-color);
+      }
+
+        .dados-criador > p{margin: 0;}
+
+    .card_curso-coluna2{
+      display: flex;
+      flex-direction: column;
+      justify-content: top;
+      align-items: center;
+      width: 60%;
+      padding-top:  10px;
+
+    }
+    .card_curso-coluna2 > h2{
+      margin: 20px 0 10px 0;
+      font-weight: bold;
+      text-align: center;
+      text-transform: uppercase;
+
+    }
+    .card_descricao-tag{
+      height: 5%; /* Ajusta a altura das tags para 5% do card */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      margin-bottom: 10px;
+      gap: 10px;
+    }
+    .card_descricao-tag > h3 {
+      margin: 0;
+      font-weight: bold;
+      color: var(--secondary-color);
+
+    }
+
+    .card_descricao-tag > span {
+      margin: 0;
+      background: white;
+      border-radius: 8px;
+      padding: 0px 5px;
+      min-width: 30px;
+      text-align: center;
+      font-size: 10px;
+      text-transform: uppercase;
+      box-shadow: #555;
+      height: 20px;
+    }
+
+      .card_curso-descricao {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 90%;
+      }
+      .card_descricao-texto {
+        text-align: justify;
+        padding-bottom: 10px;
+        font-size: 12px;
+      }
+
+      .card_descricao-texto > h3{
+        margin: 0;
+        font-weight: bold;
+      }
+
+      .card-emblema{
+        display: flex;
+        flex-direction: row;
+        justify-content: left;
+        align-items: center;
+        border-radius: 8px;
+        gap: 5px;
+      }
+
+        .card-emblema > h3{
+          margin: 0;
+          font-weight: bold;
+        }
+        .curso-emblema {
+          max-width: 30px;
+          align-items: stretch;
+          margin: 0;
+          object-fit: cover;
+        }
+
 
 .card_btn{
   margin-top: 30px;
@@ -170,17 +237,3 @@ p{margin: 0;}
   cursor: pointer;
 }
 
-.star-icon{
-  list-style-type: none;
-  color: #ffe500;
-  font-size: 40px;/* alterar o tamanho das estrelas */
-}
-.star-icon::before{
-  content: "\2605";
-}
-.star-icon.ativo ~ .star-icon::before{
-  content: "\2606";
-}
-.avaliacao{
-  display: flex;
- }

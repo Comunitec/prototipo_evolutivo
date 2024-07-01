@@ -1,3 +1,13 @@
+mat-dialog-actions{
+  display: flex;
+  justify-content: center;
+}
+
+h3{
+  text-align: justify;
+  font-size: 12px;
+}
+
 .btn{
     padding: 8px 16px;
     border: none;
@@ -8,12 +18,12 @@
     margin-top: 10px;
     margin-bottom: 15px;
     background-color: var(--primary-color);
-    width: 500px;
+    width: 110px;
     display: flex;
     justify-content: center;
   }
 
   .btn:hover {
-    background-color: var(--secondary-color);
+    background-color: var(--hover-btn-primary);
     cursor: pointer;
 }

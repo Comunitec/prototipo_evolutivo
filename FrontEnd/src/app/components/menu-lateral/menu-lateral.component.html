@@ -6,7 +6,7 @@
     <div class="card_perfil-dados">
       <span class="nomePerfil">{{ getFirstAndLastName() }}</span>
       <div class="card-pontos">
-        <span class="pontos">{{Pontos}}</span>
+        <span class="pontos">{{ Pontos }}</span>
         <span class="comunicoins">comunicoins</span>
       </div>
 
@@ -49,7 +49,7 @@
         <i class="fa-layers center-icon"><fa-icon [icon]="faChalkboardTeacher"></fa-icon></i>
         <span>Professor</span>
       </a>
-      <a routerLink="/staff" routerLinkActive="active" *ngIf="PerfilDeAcesso === 'Staff' || PerfilDeAcesso === 'Administrador'">
+      <a routerLink="/staff" routerLinkActive="active" *ngIf="PerfilDeAcesso === 'Staff'">
         <i class="fa-layers center-icon"><fa-icon [icon]="faThumbsUp"></fa-icon></i>
         <span>Staff</span>
       </a>

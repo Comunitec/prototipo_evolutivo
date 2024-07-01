@@ -9,6 +9,7 @@
     background-color: var(--primary-color);
     display: flex;
     justify-content: center;
+    width: var(--button-width);
 
   }
 
@@ -18,7 +19,7 @@
 }
 .cancel{
   background-color: var(--secondary-color);
-  cursor: pointer;
+
 }
 .cancel:hover{
   background-color: var( --hover-btn-secondary);
@@ -27,6 +28,7 @@
 p {
   margin-left: 20px;
   padding: 8px 16px;
+  text-align: justify;
 }
 h1{
   margin-top: 25px;
@@ -45,7 +47,9 @@ form{
 
 .navigation-buttons{
   display: flex;
-  justify-content: space-around;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   width: 100%;
 }
 
@@ -63,6 +67,7 @@ mat-radio-group{
 }
 
 .mat-mdc-radio-button.mat-accent {
+
 --mdc-radio-selected-focus-icon-color: var(--primary-color);
 --mdc-radio-selected-hover-icon-color: var(--primary-color);
 --mdc-radio-selected-icon-color: var(--primary-color);

@@ -1,34 +1,41 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .modal-title {
-    text-align: center;
-    margin-bottom: 20px; /* Aumenta a margem inferior */
-  }
-  
-  .modal-content {
-    margin-bottom: 20px; /* Adiciona espaço entre o parágrafo e o card */
-  }
-  
-  .modal-text {
-    text-align: justify;
-  }
-  
-  .mat-dialog-container {
-    padding: 20px; /* Aumenta o espaço interno do modal */
-  }
-  
-  .btn {
-    padding: 8px 16px;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    font-weight: bold;
-    margin-top: 10px;
-    background-color: var(--primary-color);
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-  
-  .btn:hover {
-    background-color: var(--secondary-color);
-    cursor: pointer;
-  }
+  text-align: center;
+  margin-bottom: 10px; /* Aumenta a margem inferior */
+}
+
+.modal-content {
+  padding: 0 20px;
+  justify-content: center;
+}
+
+.modal-text {
+  text-align: justify;
+}
+
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  margin-top: 10px;
+  background-color: var(--primary-color);
+  width: 110px;
+
+}
+
+.btn:hover {
+  background-color: var(--hover-btn-primary);
+  cursor: pointer;
+}
+mat-dialog-actions{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}

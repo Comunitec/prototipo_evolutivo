@@ -3,46 +3,83 @@
   font-size: 12px;
 
 }
-.login{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .signup-container {
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #EDEDED;
   box-shadow: var(--box-shadow);
-  width: 75%;
-  border-radius: 8PX;
+  width: 850px;
+  border-radius: 8px;
 }
 
-.signup-box {
+
+
+form {
+  padding-top: 10px;
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
-  padding: 20px;
-  text-align: left;
-  border-radius: 5px;
-  width: 890px;
+  justify-content: center;
+
 }
 
-.input-group {
-  margin-bottom: 15px;
-}
-.inputs{
-  display: flex;
-  gap: 20px;
-}
-.imagem{
+
+.imagem {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 0;
+  margin: 0;
   flex-direction: column;
+
 }
+
+.imagem img {
+  width: 110px; /* Reduzi o tamanho da largura */
+  height: 110px; /* Reduzi o tamanho da altura */
+  border-radius: 50%;
+  border: 1px solid white;
+}
+
+.img-signup {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}
+
+.image-preview img {
+  border-radius: 50%;
+  border: 1px solid white;
+}
+.login{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid;
+}
+
+.input-group {
+  margin-bottom: 10px;
+
+}
+
+.linha1{
+  display: flex;
+  gap: 10px;
+}
+
+.inputs>.linha2{
+  display: flex;
+  gap: 10px;
+}
+
+.linha3{
+  display: flex;
+  gap: 10px;
+}
+
+
 
 p {
   font-size: 10px;
@@ -60,7 +97,7 @@ input[type="text"],
 input[type="email"],
 input[type="password"],
 input[type="date"]{
-  width: 370px;
+  width: 300px;
   /* height: 20px; */
   padding: 10px;
   border-radius: 8px;
@@ -69,8 +106,14 @@ input[type="date"]{
   box-shadow: 1px 3px 4px -2px #898989;
 
 }
+input[type="text"]{
+  width: 480px;
+}
 
-
+input[type="date"]{
+  width: 120px;
+  text-align: center;
+}
 button {
   color: white;
   border: none;
@@ -101,37 +144,11 @@ button.back-button:hover {
   background: var(--hover-btn-secondary);
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 5px;
-}
-
-
-
-img {
-  width: 140px;
-  height: 140px;
-}
-
-.img-signup {
-  display: flex;
-  justify-content: center;
-  margin-top: 0;
-}
-
-.image-preview img {
-  border-radius: 50%;
-  border: 1px solid white;
-}
 
 .btns{
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding-top: 30px;
+  padding-top: 10px;
 }

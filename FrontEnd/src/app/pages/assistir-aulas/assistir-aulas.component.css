@@ -6,6 +6,7 @@
 /* Estilo para o cabeçalho do painel de expansão de aula finalizada */
 ::ng-deep .mat-expansion-panel.aula-finalizada .mat-expansion-panel-header {
   background-color: var(--primary-color) !important;
+  color: white;
 }
 
 /* Estilo padrão para cabeçalhos de painel de expansão */

@@ -1,91 +1,96 @@
 <div class="container_aula">
-  <button type="button" class="save-button" (click)="adicionarAula()">
-    + Adicionar aula
-  </button>
-  <button type="button" class="save-button" (click)="deletarAulas()">
-    Excluir todas as aulas
-  </button>
+    <div class="card-btn">
+      <button type="button" class="excluir-button" (click)="deletarAulas()">
+        Excluir todas as aulas
+      </button>
   
-  <button
+      <button type="button" class="save-button" (click)="adicionarAula()">
+        + Adicionar aula
+      </button>
+      <button
+        type="button"
+        class="enviarParaStaff-button"
+        *ngIf="podeEnviarParaAprovacao"
+        (click)="enviarParaStaff()"
+      >
+        Enviar curso para aprovação dos Staff
+      </button>
+    </div>
+  
+    <p class="aviso">
+      Adicione 4 aulas, após isso o botão "Enviar curso para aprovação dos Staff" estará disponível para que você submeta seu curso para aprovação.
+    </p>
+  
+    <!-- Itera sobre cada aula e exibe as informações -->
+    <mat-tab-group>
+      <mat-tab *ngFor="let aula of aulas; let i = index" [label]="'Aula ' + (i + 1)">
+        <div class="input-group">
+          <div class="add-video">
+            <div class="card_aula-thumb">
+              <label for="tituloAula">Título da aula</label>
+              <input
+                type="text"
+                class="common-style"
+                placeholder="Digite o título da aula"
+                name="tituloAula"
+                id="tituloAula"
+                required
+                [(ngModel)]="aula.Titulo"
+                maxlength="45"
+              />
+  
+              <label for="descricaoAula">Descrição da aula</label>
+              <textarea
+                class="common-style"
+                cols="30"
+                rows="2"
+                placeholder="Digite a descrição da aula"
+                name="descricaoAula"
+                id="descricaoAula"
+                [(ngModel)]="aula.Descricao"
+                maxlength="255"
+              ></textarea>
+  
+              <label for="adicionarVideo">Adicionar link do vídeo</label>
+              <input
+                class="common-style"
+                id="adicionarVideo"
+                type="text"
+                placeholder="Insira o link do vídeo"
+                [(ngModel)]="aula.LinkIncorporacao"
+                maxlength="500"
+              />
+              <span class="tooltip" (click)="openModalSaibaMaisVideo()">Saiba mais</span>
+  
+              <label for="adicionarFormulario">Adicionar link do formulário</label>
+              <input
+                class="common-style"
+                id="adicionarFormulario"
+                type="text"
+                placeholder="Insira o link do formulário"
+                [(ngModel)]="aula.LinkFormulario"
+                maxlength="500"
+              />
+              <span class="tooltip" (click)="openModal()">Saiba mais</span>
+  
+              <div class="container-buttons">
+                <button type="button" class="save-button" (click)="saveClass(aula.NumeroAula)">
+                  Salvar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+<div class="enviarParaStaff">
+<button
     type="button"
     class="enviarParaStaff-button"
     *ngIf="podeEnviarParaAprovacao"
     (click)="enviarParaStaff()"
-  >
+    >
     Enviar curso para aprovação dos Staff
-  </button>
-
-  <p class="aviso">Adicione 4 aulas, após isso o botão "Enviar curso para aprovação dos Staff" estará disponível para que você submeta seu curso para aprovação.</p>
-
-  <!-- Itera sobre cada aula e exibe as informações -->
-  <div class="input-group" *ngFor="let aula of aulas">
-    <div class="add-video">
-      <div class="card_aula-thumb">
-        <label for="tituloAula">Título da aula</label>
-        <input
-          type="text"
-          class="common-style"
-          placeholder="Digite o título da aula"
-          name="tituloAula"
-          id="tituloAula"
-          required
-          [(ngModel)]="aula.Titulo"
-          required
-          maxlength="45"
-        />
-
-        <label for="descricaoAula">Descrição da aula</label>
-        <textarea
-          class="common-style"
-          cols="30"
-          rows="2"
-          placeholder="Digite a descrição da aula"
-          name="descricaoAula"
-          id="descricaoAula"
-          [(ngModel)]="aula.Descricao"
-          maxlength="255"
-        ></textarea>
-
-        <label for="adicionarVideo">Adicionar link do vídeo</label>
-        <input
-          class="common-style"
-          id="adicionarVideo"
-          type="text"
-          placeholder="Insira o link do vídeo"
-          [(ngModel)]="aula.LinkIncorporacao"
-          maxlength="500"
-        />
-        <span class="tooltip" (click)="openModalSaibaMaisVideo()">Saiba mais</span>
-
-        <label for="adicionarFormulario">Adicionar link do formulário</label>
-        <input
-          class="common-style"
-          id="adicionarFormulario"
-          type="text"
-          placeholder="Insira o link do formulário"
-          [(ngModel)]="aula.LinkFormulario"
-          maxlength="500"
-        />
-        <span class="tooltip" (click)="openModal()">Saiba mais</span>
-
-        <div class="container-buttons">
-          <button
-            type="button"
-            class="save-button"
-            (click)="saveClass(aula.NumeroAula)"
-          >
-            Salvar
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
+    </button>
 </div>
-<button
-type="button"
-class="enviarParaStaff-button"
-*ngIf="podeEnviarParaAprovacao"
-(click)="enviarParaStaff()"
->
-Enviar curso para aprovação dos Staff
-</button>

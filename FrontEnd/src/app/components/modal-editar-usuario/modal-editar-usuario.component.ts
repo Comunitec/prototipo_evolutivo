@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { faTrash, faCamera, faFloppyDisk, faKey, faUser, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalAlterarSenhaComponent } from 'src/app/components/modal-alterar-senha/modal-alterar-senha.component';
+import { Router } from '@angular/router';
 
 interface Usuario {
   idAluno: number;
@@ -12,6 +13,7 @@ interface Usuario {
   DataNasc: string;
   photoUrl?: string;
   Pontuacao: number;
+  Foto?: File; // Adicionar propriedade para Foto
 }
 
 @Component({
@@ -33,7 +35,8 @@ export class ModalEditarUsuarioComponent implements OnInit {
     private dialogRef: MatDialogRef<ModalEditarUsuarioComponent>,
     @Inject(MAT_DIALOG_DATA) private data: { usuario: Usuario },
     private dialog: MatDialog,
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) {
     this.usuario = { ...data.usuario };
   }
@@ -62,10 +65,23 @@ export class ModalEditarUsuarioComponent implements OnInit {
     });
   }
 
+  onFileSelected(event: any) {
+    this.usuario.Foto = event.target.files[0]; // Salva o arquivo selecionado na propriedade Foto
+  }
+
   salvarAlteracoes(): void {
+    const formData = new FormData();
+    formData.append('Nome', this.usuario.Nome);
+    formData.append('Email', this.usuario.Email);
+    formData.append('DataNasc', this.usuario.DataNasc);
+    formData.append('Pontuacao', this.usuario.Pontuacao.toString());
+    if (this.usuario.Foto) {
+      formData.append('Foto', this.usuario.Foto);
+    }
+
     const url = `http://localhost:8800/updateAluno/${this.usuario.idAluno}`; // Rota para atualizar o aluno
 
-    this.http.put(url, this.usuario).subscribe(
+    this.http.put(url, formData).subscribe(
       response => {
         console.log('Usuário atualizado com sucesso:', response);
         this.dialogRef.close(true); // Fechar modal em caso de sucesso
@@ -75,11 +91,12 @@ export class ModalEditarUsuarioComponent implements OnInit {
         // Tratar erro aqui, se necessário
       }
     );
-    window.location.reload();
+    this.router.navigate(['/gerenciar-usuarios']).then(() => {
+      window.location.reload();
+    });
   }
 
   cancelar(): void {
     this.dialogRef.close(false); // Fechar modal indicando cancelamento
-
   }
 }

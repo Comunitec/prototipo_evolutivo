@@ -1,3 +1,14 @@
+.container_usuario-criado{
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+h2{
+  text-align: center;
+}
+
 .btn{
     padding: 8px 16px;
     border: none;
@@ -8,12 +19,16 @@
     margin-top: 10px;
     margin-bottom: 15px;
     background-color:var(--primary-color);
-    width: 500px;
+    width: 110px;
     display: flex;
     justify-content: center;
+    border: none;
+    outline: none;
   }
 
   .btn:hover {
-    background-color: var(--secondary-color);
+    background-color: var(--hover-btn-primary);
     cursor: pointer;
+    border: none;
+    outline: none;
 }

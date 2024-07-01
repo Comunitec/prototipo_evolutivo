@@ -1,3 +1,16 @@
+*{
+  text-align: center;
+}
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.card-btn{
+  display: flex;
+  justify-content: center;
+}
+
 .btn{
     padding: 8px 16px;
     border: none;

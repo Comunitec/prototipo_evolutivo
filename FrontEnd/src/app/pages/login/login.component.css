@@ -37,9 +37,9 @@ body {
 .login{
   border-radius: 8px;
   background-color: var( --back-menu-cl);
-
+  box-shadow: var(--box-shadow);
   padding: 20px;
-  width: 40%;
+  width: 30%;
 }
 .container {
     border-radius: 5px;

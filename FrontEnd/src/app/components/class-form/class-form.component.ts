@@ -114,31 +114,31 @@ export class ClassFormComponent implements OnInit {
   }
 
   openModal(): void {
-    const dialogRef = this.dialog.open(ModalSaibaMaisFormularioComponent, {
+    this.dialog.open(ModalSaibaMaisFormularioComponent, {
       width: '350px',
     });
   }
 
   openModalSaibaMaisVideo(){
-    const dialogRef = this.dialog.open(ModalSaibaMaisVideoComponent, {
+    this.dialog.open(ModalSaibaMaisVideoComponent, {
       width: '350px',
     });
   }
 
   openModalAulaSalva(): void {
-    const dialogRef = this.dialog.open(ModalAulaSalvaComponent, {
+    this.dialog.open(ModalAulaSalvaComponent, {
       width: '350px',
     });
   }
 
   openModalErroSalvarAula(): void {
-    const dialogRef = this.dialog.open(ModalErroAoSalvarAulaComponent, {
+    this.dialog.open(ModalErroAoSalvarAulaComponent, {
       width: '350px',
     });
   }
 
   openModalCursoEnviadoParaAprovacao(): void {
-    const dialogRef = this.dialog.open(ModalCursoenviadoParaAprovacaoComponent, {
+    this.dialog.open(ModalCursoenviadoParaAprovacaoComponent, {
       width: '350px',
     });
   }
@@ -147,7 +147,7 @@ export class ClassFormComponent implements OnInit {
     const idCurso = this.route.snapshot.params['id'];
       this.http.put<string[]>(`http://localhost:8800/enviarParaAprovacao/${idCurso}`, {})
         .subscribe(
-          (response) => {
+          () => {
             console.log("Curso enviado para aprovação");
             this.openModalCursoEnviadoParaAprovacao();
             this.router.navigate(['/meusCursosProfessor']);
@@ -158,4 +158,3 @@ export class ClassFormComponent implements OnInit {
         );
   }
 }
-

@@ -41,6 +41,7 @@ export class PerfilComponent implements OnInit {
   ngOnInit() {
     this.atualizarDadosDoPerfil();
     this.carregarEmblemas();
+    this.carregarPontos();
   }
 
   atualizarDadosDoPerfil() {
@@ -51,6 +52,18 @@ export class PerfilComponent implements OnInit {
     this.Email = sessionStorage.getItem('Email');
     const dataNasc = sessionStorage.getItem('DataNasc');
     this.DataNasc = dataNasc ? new Date(dataNasc).toISOString().substring(0, 10) : '';
+  }
+  carregarPontos() {
+    if (this.id) {
+      this.http.get<number>(`http://localhost:8800/getPontosAluno/${this.id}`).subscribe(
+        pontos => {
+          this.Pontos = pontos.toString(); // Atualiza os pontos no componente
+        },
+        error => {
+          console.error('Erro ao carregar pontos do aluno:', error);
+        }
+      );
+    }
   }
 
   carregarEmblemas() {
@@ -128,6 +141,7 @@ export class PerfilComponent implements OnInit {
           });
         }
       );
+      window.location.reload();
   }
 
   openModal(): void {

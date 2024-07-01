@@ -11,17 +11,17 @@
   <div class="container_dados-cadastrais">
     <div class="card_perfil">
       <div class="card_perfil-foto">
-        <img [src]="imagem" alt="">
+        <img [src]="imagem" alt="Foto do Perfil">
         <label for="input-foto" class="input-icon">
           <i class="icone-foto"><fa-icon [icon]="faCamera"></fa-icon></i>
-          <input type="file" id="input-foto" accept="image/*" style="display: none;" (change)="onFileSelected($event)"> <!-- input de imagem oculto -->
+          <input type="file" id="input-foto" accept="image/*" style="display: none;" (change)="onFileSelected($event)">
         </label>
       </div>
       <div class="card_pontuacao">
         <h3 class="ranking">RANKING:</h3>
         <div class="card_pontuacao-comunicoins">
           <span class="titulo">Pontuação: </span>
-          <span class="pontos">{{Pontos}}</span> Comunicoins
+          <span class="pontos">{{ Pontos }}</span> Comunicoins
         </div>
         <div class="card_pontuacao-emblemas">
           <span class="titulo">Emblemas adquiridos: </span>
@@ -42,7 +42,7 @@
       <div class="card_dados_cadastrais-linha2">
         <div class="card_e-mail">
           <label for="">Email</label>
-          <input type="email" [(ngModel)]="Email" placeholder="Email" disabled="">
+          <input type="email" [(ngModel)]="Email" placeholder="Email" disabled>
         </div>
 
         <div class="card_data-nascimento">
@@ -55,6 +55,7 @@
         <fa-icon [icon]="faKey"></fa-icon>
         <a (click)="openModal()">Altere sua senha</a>
       </div>
+
       <div class="container_btn">
         <button class="btn-salvar" (click)="atualizarPerfil()"><fa-icon [icon]="faFloppyDisk"></fa-icon> Salvar</button>
       </div>
