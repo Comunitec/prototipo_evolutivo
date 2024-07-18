@@ -5,15 +5,17 @@ import { faTrash, faCamera, faFloppyDisk, faKey, faUser, faXmark } from '@fortaw
 import { MatDialog } from '@angular/material/dialog';
 import { ModalAlterarSenhaComponent } from 'src/app/components/modal-alterar-senha/modal-alterar-senha.component';
 import { Router } from '@angular/router';
+import { forkJoin } from 'rxjs';
 
 interface Usuario {
   idAluno: number;
   Nome: string;
   Email: string;
   DataNasc: string;
-  photoUrl?: string;
   Pontuacao: number;
-  Foto?: File; // Adicionar propriedade para Foto
+  Foto?: File;
+  emblemas: string[];
+  photoUrl?: string;
 }
 
 @Component({
@@ -29,6 +31,7 @@ export class ModalEditarUsuarioComponent implements OnInit {
   faUser = faUser;
   faXmark = faXmark;
 
+  emblemas: string[] = [];
   usuario: Usuario;
 
   constructor(
@@ -42,10 +45,10 @@ export class ModalEditarUsuarioComponent implements OnInit {
   }
 
   ngOnInit() {
-    // Inicializa os dados do usuário no modal
+    this.carregarEmblemas();
     const dataNasc = sessionStorage.getItem('DataNasc');
     if (dataNasc) {
-      this.usuario.DataNasc = new Date(dataNasc).toISOString().substring(0, 10);
+      this.usuario.DataNasc = new Date(dataNasc).toISOString().substring(0, 10); // Formato YYYY-MM-DD
     }
   }
 
@@ -65,15 +68,48 @@ export class ModalEditarUsuarioComponent implements OnInit {
     });
   }
 
+  carregarEmblemas() {
+    if (this.usuario.idAluno) {
+      this.http.get<{ idCurso: number }[]>(`http://localhost:8800/getCursosConcluidos/${this.usuario.idAluno}`).subscribe(
+        cursosConcluidos => {
+          const emblemaRequests = cursosConcluidos.map(curso =>
+            this.http.get(`http://localhost:8800/getEmblemaCurso/${curso.idCurso}`, { responseType: 'blob' })
+          );
+
+          forkJoin(emblemaRequests).subscribe(
+            emblemasBlobs => {
+              this.emblemas = emblemasBlobs.map(blob => URL.createObjectURL(blob));
+            },
+            error => {
+              console.error('Erro ao carregar os emblemas dos cursos', error);
+            }
+          );
+        },
+        error => {
+          console.error('Erro ao obter os cursos concluídos', error);
+        }
+      );
+    }
+  }
+
   onFileSelected(event: any) {
-    this.usuario.Foto = event.target.files[0]; // Salva o arquivo selecionado na propriedade Foto
+    if (event.target.files && event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.usuario.Foto = file; // Salva o arquivo selecionado na propriedade Foto
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.usuario.photoUrl = reader.result as string; // Atualiza a URL da foto no front-end
+      };
+      reader.readAsDataURL(file);
+    }
   }
 
   salvarAlteracoes(): void {
     const formData = new FormData();
     formData.append('Nome', this.usuario.Nome);
     formData.append('Email', this.usuario.Email);
-    formData.append('DataNasc', this.usuario.DataNasc);
+    formData.append('DataNasc', this.formatarData(this.usuario.DataNasc));
     formData.append('Pontuacao', this.usuario.Pontuacao.toString());
     if (this.usuario.Foto) {
       formData.append('Foto', this.usuario.Foto);
@@ -85,18 +121,21 @@ export class ModalEditarUsuarioComponent implements OnInit {
       response => {
         console.log('Usuário atualizado com sucesso:', response);
         this.dialogRef.close(true); // Fechar modal em caso de sucesso
+
+
       },
       error => {
         console.error('Erro ao atualizar o usuário:', error);
-        // Tratar erro aqui, se necessário
       }
     );
-    this.router.navigate(['/gerenciar-usuarios']).then(() => {
-      window.location.reload();
-    });
+    window.location.reload();
   }
 
   cancelar(): void {
     this.dialogRef.close(false); // Fechar modal indicando cancelamento
+  }
+  private formatarData(data: string): string {
+    // Função para formatar a data se necessário
+    return data; // Aqui você deve implementar a lógica para formatar conforme necessário
   }
 }

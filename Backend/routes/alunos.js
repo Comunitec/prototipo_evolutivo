@@ -11,7 +11,8 @@ import {
   getAlunoPorId, 
   updateAluno, 
   getSenhaAtual, 
-  atualizarSenha 
+  atualizarSenha,
+  getPontosAluno
 } from "../controllers/aluno.js";
 import multer from 'multer';
 import path from 'path';
@@ -42,5 +43,7 @@ router.get('/getAlunoPorId/:id', getAlunoPorId);
 router.put('/updateAluno/:id', upload.single('Foto'), updateAluno);  // Adicionado middleware de upload
 router.get('/getSenhaAtual/:id', getSenhaAtual);
 router.put('/atualizarSenha/:id', atualizarSenha);
+router.get('/getPontosAluno/:id', getPontosAluno);
+
 
 export default router;

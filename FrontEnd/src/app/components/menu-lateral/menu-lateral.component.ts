@@ -55,10 +55,32 @@ export class MenuLateralComponent implements OnInit {
   constructor(private router: Router, private http: HttpClient, private rankingService: RankingService) {}
 
   ngOnInit() {
-
+    this.carregarPontosAluno();
   }
 
+  carregarPontosAluno() {
+    const id = sessionStorage.getItem('idAluno');
+    if (id) {
+      this.http.get<any>(`http://localhost:8800/getPontosAluno/${id}`).subscribe(
+        (data) => {
+          this.Pontos = data.pontos; // 'pontos' deve corresponder ao nome do campo no JSON retornado
 
+          // Atualiza o sessionStorage com o novo valor de Pontuacao
+          if (this.Pontos !== null && this.Pontos !== undefined) {
+            sessionStorage.setItem('Pontuacao', this.Pontos.toString());
+          } else {
+            console.error('Erro: Pontos não está definido ou é nulo.');
+          }
+        },
+        (error) => {
+          console.error('Erro ao carregar pontos do aluno:', error);
+          // Trate o erro conforme necessário
+        }
+      );
+    } else {
+      console.error('Erro: idAluno não encontrado em sessionStorage.');
+    }
+  }
 
   toggleSubmenus() {
     this.submenuOpen = !this.submenuOpen;

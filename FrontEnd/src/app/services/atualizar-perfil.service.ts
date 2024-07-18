@@ -27,18 +27,6 @@ export class AtualizarPerfilService {
     this.alunoSource.next(updatedAluno);
   }
 
-  updatePontos(pontos: number) {
-    sessionStorage.setItem('Pontuacao', pontos.toString());
-
-    // Atualiza os pontos do aluno no objeto alunoSource
-    const currentAlunoValue = this.alunoSource.getValue();
-    const updatedAluno = {
-      ...currentAlunoValue,
-      Pontuacao: pontos.toString()
-    };
-
-    this.alunoSource.next(updatedAluno);
-  }
 
   private getInitialAluno() {
     return {
@@ -47,7 +35,6 @@ export class AtualizarPerfilService {
       idAluno: sessionStorage.getItem('idAluno'),
       DataNasc: sessionStorage.getItem('DataNasc'),
       ImagemPerfil: sessionStorage.getItem('idAluno') ? `http://localhost:8800/imagem/${sessionStorage.getItem('idAluno')}` : '',
-      Pontuacao: sessionStorage.getItem('Pontuacao')
     };
   }
 }

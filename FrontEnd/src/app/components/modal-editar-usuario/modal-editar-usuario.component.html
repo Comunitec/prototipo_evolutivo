@@ -1,12 +1,11 @@
 <form (ngSubmit)="salvarAlteracoes()">
   <div class="container_dados-cadastrais">
-
     <div class="card_perfil">
       <div class="card_perfil-foto">
-        <img [src]="usuario.photoUrl" alt="">
+        <img [src]="usuario.photoUrl || 'assets/default-avatar.png'" alt="Foto do Perfil">
         <label for="input-foto" class="input-icon">
           <i class="icone-foto"><fa-icon [icon]="faCamera"></fa-icon></i>
-          <input type="file" id="input-foto" accept="image/*" style="display: none;">
+          <input type="file" id="input-foto" accept="image/*" style="display: none;" (change)="onFileSelected($event)">
         </label>
       </div>
       <div class="card_pontuacao">
@@ -19,7 +18,8 @@
           <span class="titulo">Emblemas adquiridos: </span>
           <br>
           <div class="emblemas">
-            <!--img *ngFor="let emblema of usuario.e" [src]="emblema" alt=""-->
+            <!-- Mostrar os emblemas adquiridos pelo usuário -->
+            <img *ngFor="let emblema of emblemas" [src]="emblema" alt="Emblema do Curso">
           </div>
         </div>
       </div>

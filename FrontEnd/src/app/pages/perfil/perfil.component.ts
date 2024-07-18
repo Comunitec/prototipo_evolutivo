@@ -41,7 +41,7 @@ export class PerfilComponent implements OnInit {
   ngOnInit() {
     this.atualizarDadosDoPerfil();
     this.carregarEmblemas();
-    this.carregarPontos();
+    this.carregarPontosAluno();
   }
 
   atualizarDadosDoPerfil() {
@@ -53,16 +53,27 @@ export class PerfilComponent implements OnInit {
     const dataNasc = sessionStorage.getItem('DataNasc');
     this.DataNasc = dataNasc ? new Date(dataNasc).toISOString().substring(0, 10) : '';
   }
-  carregarPontos() {
-    if (this.id) {
-      this.http.get<number>(`http://localhost:8800/getPontosAluno/${this.id}`).subscribe(
-        pontos => {
-          this.Pontos = pontos.toString(); // Atualiza os pontos no componente
+  carregarPontosAluno() {
+    const id = sessionStorage.getItem('idAluno');
+    if (id) {
+      this.http.get<any>(`http://localhost:8800/getPontosAluno/${id}`).subscribe(
+        (data) => {
+          this.Pontos = data.pontos; // 'pontos' deve corresponder ao nome do campo no JSON retornado
+
+          // Atualiza o sessionStorage com o novo valor de Pontuacao
+          if (this.Pontos !== null && this.Pontos !== undefined) {
+            sessionStorage.setItem('Pontuacao', this.Pontos.toString());
+          } else {
+            console.error('Erro: Pontos não está definido ou é nulo.');
+          }
         },
-        error => {
+        (error) => {
           console.error('Erro ao carregar pontos do aluno:', error);
+          // Trate o erro conforme necessário
         }
       );
+    } else {
+      console.error('Erro: idAluno não encontrado em sessionStorage.');
     }
   }
 

@@ -319,3 +319,23 @@ export const atualizarSenha = (req, res) => {
     return res.status(200).json({ message: "Senha atualizada com sucesso." });
   });
 };
+
+export const getPontosAluno = (req, res) => {
+  const id = req.params.id; // Captura o parâmetro ID da requisição
+  const q = "SELECT Pontuacao FROM aluno WHERE idAluno = ?"; // Query SQL para buscar a Pontuacao do aluno pelo ID
+
+  // Executa a consulta SQL com o ID como parâmetro
+  db.query(q, [id], (err, result) => {
+    if (err) { // Verifica se houve erro na consulta SQL
+      console.error("Erro ao carregar pontos do aluno:", err);
+      return res.status(500).json({ error: "Erro ao carregar pontos do aluno." }); // Retorna erro 500 se houver erro na consulta
+    }
+
+    if (result.length === 0) { // Verifica se nenhum aluno foi encontrado com o ID fornecido
+      return res.status(404).json({ error: "Aluno não encontrado." }); // Retorna erro 404 se nenhum aluno for encontrado
+    }
+
+    const pontos = result[0].Pontuacao; // Extrai a Pontuacao do primeiro aluno encontrado
+    return res.status(200).json({ pontos }); // Retorna a Pontuacao encontrada com status 200
+  });
+};
